@@ -1,0 +1,13 @@
+C:\Users\Eze\Desktop\UTN\Diseño de Sistemas\TP DDS (consola)\TP DDS (consola)\bin\Debug\netcoreapp3.1\TP DDS (consola).exe
+C:\Users\Eze\Desktop\UTN\Diseño de Sistemas\TP DDS (consola)\TP DDS (consola)\bin\Debug\netcoreapp3.1\TP DDS (consola).deps.json
+C:\Users\Eze\Desktop\UTN\Diseño de Sistemas\TP DDS (consola)\TP DDS (consola)\bin\Debug\netcoreapp3.1\TP DDS (consola).runtimeconfig.json
+C:\Users\Eze\Desktop\UTN\Diseño de Sistemas\TP DDS (consola)\TP DDS (consola)\bin\Debug\netcoreapp3.1\TP DDS (consola).runtimeconfig.dev.json
+C:\Users\Eze\Desktop\UTN\Diseño de Sistemas\TP DDS (consola)\TP DDS (consola)\bin\Debug\netcoreapp3.1\TP DDS (consola).dll
+C:\Users\Eze\Desktop\UTN\Diseño de Sistemas\TP DDS (consola)\TP DDS (consola)\bin\Debug\netcoreapp3.1\TP DDS (consola).pdb
+C:\Users\Eze\Desktop\UTN\Diseño de Sistemas\TP DDS (consola)\TP DDS (consola)\obj\Debug\netcoreapp3.1\TP DDS (consola).csprojAssemblyReference.cache
+C:\Users\Eze\Desktop\UTN\Diseño de Sistemas\TP DDS (consola)\TP DDS (consola)\obj\Debug\netcoreapp3.1\TP DDS (consola).csproj.CoreCompileInputs.cache
+C:\Users\Eze\Desktop\UTN\Diseño de Sistemas\TP DDS (consola)\TP DDS (consola)\obj\Debug\netcoreapp3.1\TP DDS (consola).AssemblyInfoInputs.cache
+C:\Users\Eze\Desktop\UTN\Diseño de Sistemas\TP DDS (consola)\TP DDS (consola)\obj\Debug\netcoreapp3.1\TP DDS (consola).AssemblyInfo.cs
+C:\Users\Eze\Desktop\UTN\Diseño de Sistemas\TP DDS (consola)\TP DDS (consola)\obj\Debug\netcoreapp3.1\TP DDS (consola).dll
+C:\Users\Eze\Desktop\UTN\Diseño de Sistemas\TP DDS (consola)\TP DDS (consola)\obj\Debug\netcoreapp3.1\TP DDS (consola).pdb
+C:\Users\Eze\Desktop\UTN\Diseño de Sistemas\TP DDS (consola)\TP DDS (consola)\obj\Debug\netcoreapp3.1\TP DDS (consola).genruntimeconfig.cache
