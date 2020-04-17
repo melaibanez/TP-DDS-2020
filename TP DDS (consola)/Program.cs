@@ -6,7 +6,18 @@ namespace TP_DDS__consola_
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello Madafakas!");
+            Console.WriteLine("Ingrese constrasenia: \n");
+            string pass = Console.ReadLine();
+            while (pass.CompareTo("0") != 0)
+            {
+                if (ValidadorContrasenia.validarContrasenia(pass))
+                    Console.WriteLine("contrasenia valida");
+                else
+                    Console.WriteLine("contrasenia invalida");
+
+                Console.WriteLine("Ingrese constrasenia: \n");
+                pass = Console.ReadLine();
+            }
         }
     }
 }
