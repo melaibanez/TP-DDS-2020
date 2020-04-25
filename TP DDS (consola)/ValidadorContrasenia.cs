@@ -9,7 +9,7 @@ namespace TP_DDS__consola_
     {
         public static bool validarContrasenia(string pass)
         {
-            return checkLongitud(pass) && checkCaracteresRepetidos(pass) && !estaEnArchivoDeContrasenias(pass);
+            return checkLongitud(pass) && !estaEnArchivoDeContrasenias(pass) && checkCaracteresRepetidos(pass) && checkSiEsASCII(pass);
         }
 
         private static bool checkCaracteresRepetidos(string pass) //chequea si hay 
@@ -22,6 +22,17 @@ namespace TP_DDS__consola_
                 }
             }
             return true;
+        }
+
+        private static bool checkSiEsASCII(string pass)
+        {
+            bool esASCII = true;
+            foreach (char element in pass)
+            {
+                if ((int)element < 32 || (int)element > 126)
+                    esASCII = false;
+            }
+            return esASCII;
         }
 
         private static bool checkLongitud(string pass)
