@@ -12,7 +12,8 @@ namespace TP_DDS__consola_
             return checkLongitud(pass) && !estaEnArchivoDeContrasenias(pass) && checkCaracteresRepetidos(pass) && checkSiEsASCII(pass);
         }
 
-        private static bool checkCaracteresRepetidos(string pass) //chequea si hay 
+
+        private static bool checkCaracteresRepetidos(string pass)
         {
             for (int i = 0; i < pass.Length - 2; i++)
             {
@@ -42,6 +43,7 @@ namespace TP_DDS__consola_
 
         private static bool estaEnArchivoDeContrasenias(string pass)
         {
+            
             bool encontrado = false;
             string path = @"C:\Users\Eze\Desktop\UTN\Diseño de Sistemas\TP DDS (consola)\worst-pass.txt";
             if (File.Exists(path))
