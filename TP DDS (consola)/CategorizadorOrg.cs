@@ -65,7 +65,7 @@ namespace TP_DDS__consola_
             }
         }
 
-        public static Empresa declaracionDeEmpresa(Empresa emp, int categoria) //se fija si instanciar una nueva clase o devolver la original
+        private static Empresa declaracionDeEmpresa(Empresa emp, int categoria) //se fija si instanciar una nueva clase o devolver la original
                                                                                //dependiendo de si se cambio de categoria o no
         {
             switch (categoria)
