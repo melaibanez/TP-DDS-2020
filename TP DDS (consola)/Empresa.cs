@@ -10,5 +10,12 @@ namespace TP_DDS__consola_
         public float promedioVentas { get; set; }
         public int cantPersonal { get; set; }
 
+        public Empresa(string actividad, string sector, float promVentas, int cantPersonal) : base(actividad)
+        {
+            this.sector = sector;
+            this.promedioVentas = promVentas;
+            this.cantPersonal = cantPersonal;
+        }
+
     }
 }

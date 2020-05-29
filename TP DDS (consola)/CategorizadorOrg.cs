@@ -8,15 +8,15 @@ namespace TP_DDS__consola_
     class CategorizadorOrg
     {
         public static int[,,] criterios = new int[4, 5, 2] {
-            { {15230000, 12}, {8500000, 7}, {29740000, 7}, {26540000, 15}, {12890000, 5} },
-            { {90310000, 45}, {50950000, 30}, {178860000, 35}, {190410000, 60}, {48480000, 10} },
-            { {503880000, 200}, {425170000, 165}, {1502750000, 125}, {1190330000, 235}, {345430000, 50} },
-            { {755740000, 590}, {607210000, 535}, {2146810000, 345}, {1739590000, 655}, {547890000, 215} }
+            { {12, 15230000}, {7, 8500000}, {7, 29740000}, {15, 26540000}, {5, 12890000} },
+            { {45, 90310000}, {30, 50950000}, {35, 178860000}, {60, 190410000}, {10, 48480000} },
+            { {200, 503880000}, {165, 425170000}, {125, 1502750000}, {235, 1190330000}, {50, 345430000} },
+            { {590, 755740000}, {535, 607210000}, {345, 2146810000}, {655, 1739590000}, {215, 547890000} }
         };
 
         public static Dictionary<string, int> sectores = new Dictionary<string, int> {
             {"Construccion", 0},
-            {"servicios", 1},
+            {"Servicios", 1},
             {"Comercio", 2},
             {"IndYMin", 3},
             {"Agropecuario", 4}
@@ -35,16 +35,24 @@ namespace TP_DDS__consola_
             //aca hay que fijarse si el criterio
             //tiene que ser cant de empleados o promedio
             // de ventas en funcion de la actividad de la empresa
+            int clasificacionElegida = 0;
             criterio = criterioPorActividad(emp.actividad);
-            return clasificarPorCriterio(emp, criterio);
+            for (int i = 0; i <= criterio; i++)
+            {
+                if (clasificarPorCriterio(emp, i) > clasificacionElegida)
+                {
+                    clasificacionElegida = clasificarPorCriterio(emp, i);
+                }
+            }
+            return declaracionDeEmpresa(emp, clasificacionElegida);
         }
 
-        private static Empresa clasificarPorCriterio(Empresa emp, int criterio)
+        private static int clasificarPorCriterio(Empresa emp, int criterio)
         {
             int parametro;
 
             //seteo el parametro en funcion del criterio
-            if (criterio == 1)
+            if (criterio == 0)
                 parametro = emp.cantPersonal;
             else
                 parametro = (int)emp.promedioVentas;
@@ -52,21 +60,21 @@ namespace TP_DDS__consola_
             switch (parametro)
             {
                 case var expression when parametro < (criterios[0, sectores[emp.sector], criterio]):
-                    return declaracionDeEmpresa(emp, tipoEmpresa["Micro"]);
+                    return 0;
                 case var expression when parametro < (criterios[1, sectores[emp.sector], criterio]):
-                    return declaracionDeEmpresa(emp, tipoEmpresa["Pequenia"]);
+                    return 1;
                 case var expression when parametro < (criterios[2, sectores[emp.sector], criterio]):
-                    return declaracionDeEmpresa(emp, tipoEmpresa["Mediana Tramo 1"]);
+                    return 2;
                 case var expression when parametro < (criterios[3, sectores[emp.sector], criterio]):
-                    return declaracionDeEmpresa(emp, tipoEmpresa["Mediana Tramo 2"]);
+                    return 3;
                 default:
                     Console.WriteLine("Hubo un error");
-                    return emp;
+                    return -1;
             }
         }
-
+        //declaracionDeEmpresa(emp, tipoEmpresa["Mediana Tramo 2"]);
         private static Empresa declaracionDeEmpresa(Empresa emp, int categoria) //se fija si instanciar una nueva clase o devolver la original
-                                                                               //dependiendo de si se cambio de categoria o no
+                                                                                //dependiendo de si se cambio de categoria o no
         {
             switch (categoria)
             {
@@ -92,8 +100,10 @@ namespace TP_DDS__consola_
 
             }
         }
-        
-        private static int criterioPorActividad (string actividad){
+
+        private static int criterioPorActividad(string actividad)
+        {
             return 0;
         }
+    }
 }

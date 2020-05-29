@@ -4,8 +4,13 @@ using System.Text;
 
 namespace TP_DDS__consola_
 {
-    class TipoOrganizacion
+    abstract class TipoOrganizacion
     {
         public string actividad { get; set; }
+
+        public TipoOrganizacion(string actividad)
+        {
+            this.actividad = actividad;
+        }
     }
 }
