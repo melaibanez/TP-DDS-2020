@@ -7,7 +7,7 @@ namespace TP_DDS__consola_
     class DocumentoComercial
     {
         private string nroIdentificacion;
-        private string tipo-enlace;
+        private string tipo_enlace;
 
     }
 }

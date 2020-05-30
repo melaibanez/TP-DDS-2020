@@ -9,12 +9,22 @@ namespace TP_DDS__consola_
 
         public bool validar (Compra compra)
         {
-            return cantidadIndicadaPresupuestos(compra) && esMenorPresupuesto(compra) && compraUsaPresupuesto(compra);
+            if(compra.cantMinimaPresupuestos > 0)
+            {
+                return cantidadIndicadaPresupuestos(compra) && esMenorPresupuesto(compra) && compraUsaPresupuesto(compra);
+                //habria que poner los resultados en la bandeja de mensajes
+            }
+            else
+            {
+                Console.WriteLine("La compra no requiere presupuestos");
+                return true;
+            }
+           
         }
 
         private bool cantidadIndicadaPresupuestos(Compra compra)
         {
-
+            return compra.cantMinimaPresupuestos == compra.presupuestos.Count;
         }
 
         private bool esMenorPresupuesto(Compra compra)

@@ -6,10 +6,11 @@ namespace TP_DDS__consola_
 {
     class Compra
     {
-        private int cantMinimaPresupuestos;//a definir
-        private float criterio;//a definir
+        public int cantMinimaPresupuestos { get; set; }//a definir
+        private float criterio { get; set; }//a definir
         private Egreso egreso;
-        private List<Presupuesto> presupuestos;
+        public List<Presupuesto> presupuestos { get; set; }
+        
         private Usuario revisores;
 
     }
