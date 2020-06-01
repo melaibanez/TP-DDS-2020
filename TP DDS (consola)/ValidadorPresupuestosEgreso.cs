@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace TP_DDS__consola_
 {
     class ValidadorPresupuestosEgreso
     {
-
-        public bool validar (Compra compra)
+        public static bool validar (Compra compra)
         {
             if(compra.cantMinimaPresupuestos > 0)
             {
@@ -22,19 +22,21 @@ namespace TP_DDS__consola_
            
         }
 
-        private bool cantidadIndicadaPresupuestos(Compra compra)
+        private static bool cantidadIndicadaPresupuestos(Compra compra)
         {
-            return compra.cantMinimaPresupuestos == compra.presupuestos.Count;
+            return compra.cantMinimaPresupuestos <= compra.presupuestos.Count;
         }
 
-        private bool esMenorPresupuesto(Compra compra)
+        private static bool esMenorPresupuesto(Compra compra)
         {
-
+            //return !(compra.presupuestos.Any(presupuesto => compra.getEgreso().getPresupuestoElegido()!= presupuesto && presupuesto.getMontoTotal() <= compra.getEgreso().getPresupuestoElegido().getMontoTotal()));
+            return compra.presupuestos.OrderBy(p => p.getMontoTotal()).First() == compra.getEgreso().getPresupuestoElegido();
         }
 
-        private bool compraUsaPresupuesto(Compra compra)
+        private static bool compraUsaPresupuesto(Compra compra)
         {
-
+            return compra.getPresupuestos().Contains(compra.getEgreso().getPresupuestoElegido());
+            //buscamos en la lista de presupuestos de la compra, si alguna tiene el mismo prestador de servicios y además veo si tienen el mismo valorTotal
         }
     }
 }

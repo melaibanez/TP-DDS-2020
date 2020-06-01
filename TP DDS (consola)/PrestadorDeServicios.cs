@@ -11,5 +11,13 @@ namespace TP_DDS__consola_
         private string razonSocial;
         private string tipoDoc;
 
+        public PrestadorDeServicios(string direccionPostal, string razonSocial, string tipoDoc, string numDoc)
+        {
+            this.direccionPostal = direccionPostal;
+            this.numDoc = numDoc;
+            this.razonSocial = razonSocial;
+            this.tipoDoc = tipoDoc;
+        }
+
     }
 }
