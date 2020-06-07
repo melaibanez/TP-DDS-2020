@@ -8,18 +8,37 @@ namespace TP_DDS__consola_
     class ValidadorPresupuestosEgreso
     {
         public static bool validar (Compra compra)
-        {
-            if(compra.cantMinimaPresupuestos > 0)
+        { 
+
+            if (compra.cantMinimaPresupuestos > 0)
             {
-                return cantidadIndicadaPresupuestos(compra) && esMenorPresupuesto(compra) && compraUsaPresupuesto(compra);
-                //habria que poner los resultados en la bandeja de mensajes
+
+                if (cantidadIndicadaPresupuestos(compra) && esMenorPresupuesto(compra) && compraUsaPresupuesto(compra))
+                {
+                    enviarMensajes(compra.getRevisores(), "Todo bien");
+                    return true;
+                }
+                else
+                {
+                    enviarMensajes(compra.getRevisores(), "Hubo un error");
+                    return false;
+                }
             }
             else
             {
                 Console.WriteLine("La compra no requiere presupuestos");
                 return true;
             }
-           
+
+     
+        }
+
+        public static void enviarMensajes(List<Usuario> usuarios, string mensaje)
+        {
+            foreach (Usuario usuario in usuarios)
+            {
+                usuario.recibirMensaje(new Notificacion(mensaje, DateTime.Now));
+            }
         }
 
         private static bool cantidadIndicadaPresupuestos(Compra compra)
