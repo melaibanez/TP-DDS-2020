@@ -43,7 +43,7 @@ namespace TP_DDS__consola_
 
         private static bool cantidadIndicadaPresupuestos(Compra compra)
         {
-            return compra.cantMinimaPresupuestos <= compra.presupuestos.Count;
+            return compra.cantMinimaPresupuestos <= compra.getCantPresupuestos();
         }
 
         private static bool esMenorPresupuesto(Compra compra)
