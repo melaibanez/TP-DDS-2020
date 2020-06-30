@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Text;
 
 namespace TP_DDS__consola_
@@ -8,6 +9,8 @@ namespace TP_DDS__consola_
     {
         public string nombreFicticio { get; set; }
         public List<Compra> comprasRealizadas { get; set; }
+        public List<Ingreso> ingresos { get; set; }
+        public List<Criterio> criterios { get; set; }
 
         public Entidad (string nombreFicticio)
         {

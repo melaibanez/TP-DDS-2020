@@ -2,32 +2,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace TP_DDS__consola_
 {
     class ValidadorPresupuestosEgreso
     {
-        public static bool validar (Compra compra)
-        { 
-
+        public static async Task validar (Compra compra)
+        {
+            compra.fueVerificada = true;
             if (compra.cantMinimaPresupuestos > 0)
             {
 
                 if (cantidadIndicadaPresupuestos(compra) && esMenorPresupuesto(compra) && compraUsaPresupuesto(compra))
                 {
                     enviarMensajes(compra.getRevisores(), "Todo bien");
-                    return true;
+                    
                 }
                 else
                 {
                     enviarMensajes(compra.getRevisores(), "Hubo un error");
-                    return false;
+                   
                 }
             }
             else
             {
                 Console.WriteLine("La compra no requiere presupuestos");
-                return true;
+                
             }
 
      
