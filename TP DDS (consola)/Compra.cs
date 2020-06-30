@@ -26,6 +26,7 @@ namespace TP_DDS__consola_
         public List<Usuario> getRevisores() { return revisores; }
         public Egreso getEgreso() { return egreso; }
         public List<Presupuesto> getPresupuestos() { return presupuestos; }
+        public int getCantPresupuestos() { return presupuestos.Count; }
 
 
 
