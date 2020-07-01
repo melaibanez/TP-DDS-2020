@@ -37,7 +37,7 @@ namespace TP_DDS__consola_
 
             sched.run();
 
-            jobValidador(sched, comp);
+            jobValidador(sched, comp); 
 
             System.Threading.Thread.Sleep(2000);// duermo el hilo para que le lleguen los mensajes y mostrarlos por pantalla
             foreach (Notificacion mensaje in eze.getBandejaMensajes())
@@ -49,7 +49,7 @@ namespace TP_DDS__consola_
         }
 
 
-        public static void jobValidador(MyScheduler sched, Compra compra)
+        public static void jobValidador(MyScheduler sched, Compra compra) //hacerlo en MyScheduler
         {
             JobDataMap jobData = new JobDataMap();
             jobData.Add("compra", compra);
