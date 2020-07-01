@@ -9,5 +9,7 @@ namespace TP_DDS__consola_
         private List<Categoria> categorias;
 
         public List<Categoria> getCategorias() { return categorias; }
+
+        public void addCategoria(Categoria cat) { this.categorias.Add(cat); }
     }
 }

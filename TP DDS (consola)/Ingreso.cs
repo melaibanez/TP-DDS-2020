@@ -20,5 +20,7 @@ namespace TP_DDS__consola_
         }
 
         public Egreso getEgresoAsociado() { return egresoAsociado; }
+
+        public void setEgresoAsociado(Egreso egreso) { this.egresoAsociado = egreso; } 
     }
 }

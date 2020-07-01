@@ -17,18 +17,15 @@ namespace TP_DDS__consola_
                 if (cantidadIndicadaPresupuestos(compra) && esMenorPresupuesto(compra) && compraUsaPresupuesto(compra))
                 {
                     enviarMensajes(compra.getRevisores(), "Todo bien");
-                    
                 }
                 else
                 {
                     enviarMensajes(compra.getRevisores(), "Hubo un error");
-                   
                 }
             }
             else
             {
                 Console.WriteLine("La compra no requiere presupuestos");
-                
             }
 
      
@@ -56,7 +53,7 @@ namespace TP_DDS__consola_
         private static bool compraUsaPresupuesto(Compra compra)
         {
             return compra.getPresupuestos().Contains(compra.getEgreso().getPresupuestoElegido());
-            //buscamos en la lista de presupuestos de la compra, si alguna tiene el mismo prestador de servicios y además veo si tienen el mismo valorTotal
+            //buscamos en la lista de presupuestos de la compra, si esta el presupuesto elegido
         }
     }
 }

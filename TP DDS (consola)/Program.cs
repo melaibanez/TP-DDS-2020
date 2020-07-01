@@ -32,6 +32,7 @@ namespace TP_DDS__consola_
             Compra comp = new Compra(2, 678, egre, new List<Presupuesto> { pres1, pres2, pres3 }, new List<Usuario> {eze}, false);
 
 
+
             MyScheduler sched = MyScheduler.getInstance();
 
             sched.run();

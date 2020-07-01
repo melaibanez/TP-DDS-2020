@@ -13,7 +13,7 @@ namespace TP_DDS__consola_.Jobs
         {
             Compra compra = (Compra)context.JobDetail.JobDataMap.Get("compra");
 
-            if (compra.fueVerificada == false)
+            if (!compra.fueVerificada)
             {
                 await ValidadorPresupuestosEgreso.validar(compra);
             }
