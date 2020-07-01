@@ -12,11 +12,11 @@ namespace TP_DDS__consola_
     {
         static void Main(string[] args)
         {
-            EntidadJuridica ent = new EntidadJuridica("asd", "asd", "asd", "asd", new List<EntidadBase>(), "asd", "asd", "Comercio", 1502750800, 100);
+            EntidadJuridica ent = new EntidadJuridica("Entidad", "asd", "CUIT", "DireccionPostal", new List<EntidadBase>(), "asd", "asd", "Comercio", 1502750800, 100);
 
-            Usuario eze = new Usuario("eze", "Admin", "rgag");
+            Usuario eze = new Usuario("Eze", "Admin", "contraseña");
             
-            PrestadorDeServicios prest1 = new PrestadorDeServicios("calle falsa 123", "tuvieja", "DNI", "4135123");
+            PrestadorDeServicios prest1 = new PrestadorDeServicios("direccion1", "razonSocial1", "DNI", "4135123");
             List<Item> listaDeItems1 = new List<Item> { new Item(1, "silla", 50), new Item(1, "mesa", 100), new Item(1, "lampara", 70) };
             Presupuesto pres1 = new Presupuesto("1234","Presupuesto",listaDeItems1,prest1);
 
@@ -24,7 +24,7 @@ namespace TP_DDS__consola_
             List<Item> listaDeItems2 = new List<Item> { new Item(1, "silla", 90), new Item(1, "mesa", 60), new Item(1, "lampara", 4100) };
             Presupuesto pres2 = new Presupuesto("2365", "Presupuesto", listaDeItems2, prest2);
 
-            PrestadorDeServicios prest3 = new PrestadorDeServicios("calle real 321", "yvan eht nioj", "DNI", "1");
+            PrestadorDeServicios prest3 = new PrestadorDeServicios("Direccion3", "razonSocial2", "DNI", "41254632");
             List<Item> listaDeItems3 = new List<Item> { new Item(1, "silla", 100), new Item(1, "mesa", 85), new Item(1, "lampara", 750) };
             Presupuesto pres3 = new Presupuesto("4567", "Presupuesto", listaDeItems3, prest3);
 
