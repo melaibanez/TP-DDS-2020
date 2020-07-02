@@ -15,8 +15,9 @@ namespace TP_DDS__consola_
         private MedioDePago medioDePago;
         private float montoTotal;
         private PrestadorDeServicios prestadorDeServicios;
+        private Ingreso ingresoAsociado;
 
-        public Egreso(List<Item> detalle, List<DocumentoComercial> docsComerciales, Entidad entidad, DateTime fechaEgreso, MedioDePago medioDePago, PrestadorDeServicios prestadorDeServicios)
+        public Egreso(List<Item> detalle, List<DocumentoComercial> docsComerciales, Entidad entidad, DateTime fechaEgreso, MedioDePago medioDePago, PrestadorDeServicios prestadorDeServicios, Ingreso ingresoAsociado)
         {
             this.detalle = detalle;
             this.docsComerciales = docsComerciales;
@@ -25,6 +26,7 @@ namespace TP_DDS__consola_
             this.medioDePago = medioDePago;
             this.montoTotal = detalle.Sum(i => i.getValor() * i.getCant());
             this.prestadorDeServicios = prestadorDeServicios;
+            this.ingresoAsociado = ingresoAsociado;
         }
 
         public float getMontoTotal() { return montoTotal; }

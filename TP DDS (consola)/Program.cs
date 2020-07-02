@@ -28,7 +28,7 @@ namespace TP_DDS__consola_
             List<Item> listaDeItems3 = new List<Item> { new Item(1, "silla", 100), new Item(1, "mesa", 85), new Item(1, "lampara", 750) };
             Presupuesto pres3 = new Presupuesto("4567", "Presupuesto", listaDeItems3, prest3);
 
-            Egreso egre = new Egreso(listaDeItems1, new List<DocumentoComercial> { pres1 }, ent, DateTime.Now, null, prest1);
+            Egreso egre = new Egreso(listaDeItems1, new List<DocumentoComercial> { pres1 }, ent, DateTime.Now, null, prest1, null);
             Compra comp = new Compra(2, 678, egre, new List<Presupuesto> { pres1, pres2, pres3 }, new List<Usuario> {eze}, false);
 
 

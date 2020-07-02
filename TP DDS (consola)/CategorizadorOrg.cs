@@ -7,7 +7,7 @@ namespace TP_DDS__consola_
 {
     class CategorizadorOrg
     {
-        public static int[,,] criterios = new int[4, 5, 2] {
+        public static int[,,] valoresCriterios = new int[4, 5, 2] {
             { {12, 15230000}, {7, 8500000}, {7, 29740000}, {15, 26540000}, {5, 12890000} },
             { {45, 90310000}, {30, 50950000}, {35, 178860000}, {60, 190410000}, {10, 48480000} },
             { {200, 503880000}, {165, 425170000}, {125, 1502750000}, {235, 1190330000}, {50, 345430000} },
@@ -59,21 +59,21 @@ namespace TP_DDS__consola_
 
             switch (parametro)
             {
-                case var expression when parametro < (criterios[0, sectores[emp.sector], criterio]):
+                case var expression when parametro < (valoresCriterios[0, sectores[emp.sector], criterio]):
                     return 0;
-                case var expression when parametro < (criterios[1, sectores[emp.sector], criterio]):
+                case var expression when parametro < (valoresCriterios[1, sectores[emp.sector], criterio]):
                     return 1;
-                case var expression when parametro < (criterios[2, sectores[emp.sector], criterio]):
+                case var expression when parametro < (valoresCriterios[2, sectores[emp.sector], criterio]):
                     return 2;
-                case var expression when parametro < (criterios[3, sectores[emp.sector], criterio]):
+                case var expression when parametro < (valoresCriterios[3, sectores[emp.sector], criterio]):
                     return 3;
                 default:
                     Console.WriteLine("Hubo un error");
                     return -1;
             }
         }
-        //declaracionDeEmpresa(emp, tipoEmpresa["Mediana Tramo 2"]);
-        private static Empresa declaracionDeEmpresa(Empresa emp, int categoria) //se fija si instanciar una nueva clase o devolver la original
+
+        private static Empresa declaracionDeEmpresa(Empresa emp, int categoria) //se fija si instanciar un nuevo objeto del tipo de la nueva categoria o devolver el original
                                                                                 //dependiendo de si se cambio de categoria o no
         {
             switch (categoria)

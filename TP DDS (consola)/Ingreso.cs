@@ -10,17 +10,17 @@ namespace TP_DDS__consola_
         public string descripcion { get; set; }
         public float montoTotal { get; set; }
 
-        private Egreso egresoAsociado;
+        private List<Egreso> egresosAsociados;
 
-        public Ingreso (string descripcion, float montoTotal, Egreso egresoAsociado)
+        public Ingreso (string descripcion, float montoTotal, List<Egreso> egresosAsociados)
         {
             this.descripcion = descripcion;
             this.montoTotal = montoTotal;
-            this.egresoAsociado = egresoAsociado;
+            this.egresosAsociados = egresosAsociados;
         }
 
-        public Egreso getEgresoAsociado() { return egresoAsociado; }
+        public List<Egreso> getEgresoAsociado() { return egresosAsociados; }
 
-        public void setEgresoAsociado(Egreso egreso) { this.egresoAsociado = egreso; } 
+        public void addEgresoAsociado(Egreso egreso) { this.egresosAsociados.Add(egreso); } 
     }
 }

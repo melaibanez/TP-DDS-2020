@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TP_DDS__consola_.Jobs;
 
 namespace TP_DDS__consola_
 {
@@ -49,6 +50,29 @@ namespace TP_DDS__consola_
         public void agregarTask(IJobDetail job, ITrigger trigger)
         {
             scheduler.ScheduleJob(job, trigger);
+        }
+
+        public static void jobValidador(MyScheduler sched, Compra compra) //hacerlo en MyScheduler
+        {
+            JobDataMap jobData = new JobDataMap();
+            jobData.Add("compra", compra);
+
+            IJobDetail jobVal = JobBuilder.Create<JobValidadorPresupuestos>()
+                .WithIdentity("validadorDeCompra", "Validadores")
+                .UsingJobData(jobData)
+                .Build();
+
+            ITrigger triggerVal = TriggerBuilder.Create()
+                 .WithIdentity("triggerValidador", "Triggers")
+                 .StartNow()
+                 .WithSimpleSchedule(x => x
+                     .WithIntervalInSeconds(2)
+                     .RepeatForever())
+                 .Build();
+
+            sched.agregarTask(jobVal, triggerVal);
+
+
         }
     }
 }
