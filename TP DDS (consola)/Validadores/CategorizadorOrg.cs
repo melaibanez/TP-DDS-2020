@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TP_DDS__consola_
 {
-    class CategorizadorOrg
+    public class CategorizadorOrg
     {
         public static int[,,] valoresCriterios = new int[4, 5, 2] {
             { {12, 15230000}, {7, 8500000}, {7, 29740000}, {15, 26540000}, {5, 12890000} },

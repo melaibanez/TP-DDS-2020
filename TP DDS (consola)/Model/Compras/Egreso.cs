@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using TP_DDS__consola_.Model;
 
-namespace TP_DDS__consola_
+namespace TP_DDS__consola_.Model.Compras
 {
-    class Egreso
+    public class Egreso
     {
         private Entidad entidad;
         private List<Item> detalle;

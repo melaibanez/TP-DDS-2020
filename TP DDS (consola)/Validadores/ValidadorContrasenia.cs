@@ -5,7 +5,7 @@ using System.IO;
 
 namespace TP_DDS__consola_
 {
-    class ValidadorContrasenia
+    public class ValidadorContrasenia
     {
         public static bool validarContrasenia(string pass)
         {
@@ -45,7 +45,7 @@ namespace TP_DDS__consola_
         {
             
             bool encontrado = false;
-            string path = @"C:\Users\Eze\Desktop\UTN\Diseño de Sistemas\TP DDS (consola)\worst-pass.txt";
+            string path = @"worst-pass.txt";
             if (File.Exists(path))
             {
                 using (StreamReader sr = File.OpenText(path))

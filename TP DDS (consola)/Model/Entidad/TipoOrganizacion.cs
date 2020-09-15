@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TP_DDS__consola_
 {
-    abstract class TipoOrganizacion
+    public abstract class TipoOrganizacion
     {
         public string actividad { get; set; }
 

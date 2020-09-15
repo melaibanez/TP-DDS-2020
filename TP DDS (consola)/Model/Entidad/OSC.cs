@@ -4,10 +4,9 @@ using System.Text;
 
 namespace TP_DDS__consola_
 {
-    class MedioDePago
+    public class OSC : TipoOrganizacion
     {
-        private string identificador;
-        private string tipo;
+        public OSC(string actividad) : base(actividad){ }
 
     }
 }

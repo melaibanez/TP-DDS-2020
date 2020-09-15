@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TP_DDS__consola_
 {
-    class DocumentoComercial
+    public class DocumentoComercial
     {
         private string nroIdentificacion;
         private string tipo_enlace;

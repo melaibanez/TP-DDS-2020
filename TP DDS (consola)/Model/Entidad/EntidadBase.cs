@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TP_DDS__consola_
 {
-    class EntidadBase : Entidad
+    public class EntidadBase : Entidad
     {
         public string descripcion { get; set; }
         public EntidadJuridica entidadJuridica { get; set; }

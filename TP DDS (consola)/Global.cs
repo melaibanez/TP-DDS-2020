@@ -6,7 +6,7 @@ namespace TP_DDS__consola_
 {
     public static class Global
     {
-        public static List<Compra> comprasNoValidadas; 
+        public static List<Compra> comprasNoValidadas;
         
 
     }

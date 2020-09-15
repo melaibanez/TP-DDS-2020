@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TP_DDS__consola_
 {
-    class EntidadJuridica : Entidad
+    public class EntidadJuridica : Entidad
     {
         public string condInscripDefinitiva { get; set; }
         public string CUIT { get; set; }

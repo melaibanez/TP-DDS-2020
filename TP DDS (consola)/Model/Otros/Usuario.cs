@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TP_DDS__consola_
 {
-    class Usuario
+    public class Usuario
     {
         private string usuario;
         private string tipo;

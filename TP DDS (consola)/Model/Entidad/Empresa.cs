@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TP_DDS__consola_
 {
-    class Empresa : TipoOrganizacion
+    public class Empresa : TipoOrganizacion
     {
         public string sector { get; set; }
         public float promedioVentas { get; set; }

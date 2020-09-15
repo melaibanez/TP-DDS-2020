@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TP_DDS__consola_
 {
-    class Notificacion
+    public class Notificacion
     {
         private DateTime fecha;
         private string mensaje;
