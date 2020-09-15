@@ -9,14 +9,15 @@ namespace TP_DDS__consola_.Model.Compras
 {
     public class Egreso
     {
-        private Entidad entidad;
-        private List<Item> detalle;
-        private List<DocumentoComercial> docsComerciales;
-        private DateTime fechaEgreso;
-        private MedioDePago medioDePago;
-        private float montoTotal;
-        private PrestadorDeServicios prestadorDeServicios;
-        private Ingreso ingresoAsociado;
+        public int idEgreso { get; set; }
+        public Entidad entidad;
+        public List<Item> detalle;
+        public List<DocumentoComercial> docsComerciales;
+        public DateTime fechaEgreso;
+        public MedioDePago medioDePago;
+        public float montoTotal;
+        public PrestadorDeServicios prestadorDeServicios;
+        public Ingreso ingresoAsociado;
 
         public Egreso(List<Item> detalle, List<DocumentoComercial> docsComerciales, Entidad entidad, DateTime fechaEgreso, MedioDePago medioDePago, PrestadorDeServicios prestadorDeServicios, Ingreso ingresoAsociado)
         {

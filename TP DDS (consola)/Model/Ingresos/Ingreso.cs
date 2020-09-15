@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TP_DDS__consola_.Model.Compras;
 
-namespace TP_DDS__consola_
+namespace TP_DDS__consola_.Model.Ingresos
 {
     public class Ingreso
     {

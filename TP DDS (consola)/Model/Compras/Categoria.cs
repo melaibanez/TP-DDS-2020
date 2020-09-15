@@ -6,7 +6,9 @@ namespace TP_DDS__consola_
 {
     public class Categoria
     {
-        private Criterio criterio;
+        public int idCategoria { get; set; }
+
+        public Criterio criterio { get; set; }
 
         public string nombre { get; set; }
 

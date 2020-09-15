@@ -6,8 +6,10 @@ namespace TP_DDS__consola_
 {
     public class MedioDePago
     {
-        private string identificador;
-        private string tipo;
+        public int idMedioPago{ get; set; }
+
+        public string identificador { get; set; }
+        public string tipo { get; set; }
 
     }
 }

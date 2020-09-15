@@ -7,8 +7,8 @@ namespace TP_DDS__consola_
 {
     public class Notificacion
     {
-        private DateTime fecha;
-        private string mensaje;
+        public DateTime fecha { get; set; }
+        public string mensaje { get; set; }
 
         public Notificacion (string mensaje, DateTime fecha)
         {

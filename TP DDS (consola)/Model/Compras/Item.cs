@@ -6,10 +6,11 @@ namespace TP_DDS__consola_
 {
     public class Item
     {
-        private int cant;
-        private string descripcion;
-        private float valor;
-        private Categoria categorias;
+        public int idItem { get; set; }
+        public int cant { get; set; }
+        public string descripcion { get; set; }
+        public float valor { get; set; }
+        public Categoria categorias { get; set; }
 
         public Item(int cant, string descripcion, float valor, Categoria categorias) //recibe las categorias ya anidadas abajo de la categoria raiz
         {

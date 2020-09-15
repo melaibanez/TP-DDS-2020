@@ -6,8 +6,9 @@ namespace TP_DDS__consola_
 {
     public class DocumentoComercial
     {
-        private string nroIdentificacion;
-        private string tipo_enlace;
+        public int idDocComercial { get; set; }
+        public  string nroIdentificacion { get; set; }
+        public string tipo_enlace { get; set; }
 
         public DocumentoComercial(string nroIdentificacion, string tipo_enlace)
         {

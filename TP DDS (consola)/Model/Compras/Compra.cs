@@ -8,6 +8,7 @@ namespace TP_DDS__consola_
 {
     public class Compra
     {
+        public int idCompra { get; set; }
         public int cantMinimaPresupuestos { get; set; }//a definir
         private float criterio { get; set; }//a definir
         private Egreso egreso;

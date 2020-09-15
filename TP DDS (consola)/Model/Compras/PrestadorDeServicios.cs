@@ -6,10 +6,11 @@ namespace TP_DDS__consola_
 {
     public class PrestadorDeServicios
     {
-        private string direccionPostal;
-        private string numDoc;
-        private string razonSocial;
-        private string tipoDoc;
+        public int idPrestador { get; set; }
+        public string direccionPostal { get; set; }
+        public string numDoc { get; set; }
+        public string razonSocial { get; set; }
+        public string tipoDoc { get; set; }
 
         public PrestadorDeServicios(string direccionPostal, string razonSocial, string tipoDoc, string numDoc)
         {

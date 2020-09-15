@@ -6,7 +6,9 @@ namespace TP_DDS__consola_
 {
     public class Criterio
     {
-        private List<Categoria> categorias;
+        public int idCriterio { get; set; }
+
+        public List<Categoria> categorias { get; set; }
 
         public List<Categoria> getCategorias() { return categorias; }
     }
