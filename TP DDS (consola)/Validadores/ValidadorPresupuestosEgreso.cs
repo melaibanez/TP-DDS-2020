@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TP_DDS__consola_.Model.Otros;
+using TP_DDS__consola_.Model.Compras;
 
-namespace TP_DDS__consola_
+
+
+namespace TP_DDS__consola_.Validadores
 {
     public class ValidadorPresupuestosEgreso
     {
@@ -47,7 +51,7 @@ namespace TP_DDS__consola_
         private static bool esMenorPresupuesto(Compra compra)
         {
             //return !(compra.presupuestos.Any(presupuesto => compra.getEgreso().getPresupuestoElegido()!= presupuesto && presupuesto.getMontoTotal() <= compra.getEgreso().getPresupuestoElegido().getMontoTotal()));
-            return compra.presupuestos.OrderBy(p => p.getMontoTotal()).First() == compra.getEgreso().getPresupuestoElegido();
+            return compra.presupuestos.OrderBy(p => p.montoTotal).First() == compra.getEgreso().getPresupuestoElegido();
         }
 
         private static bool compraUsaPresupuesto(Compra compra)

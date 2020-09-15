@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Text;
+using TP_DDS__consola_.Model.Compras;
+using TP_DDS__consola_.Model.Ingresos;
 
-namespace TP_DDS__consola_
+namespace TP_DDS__consola_.Model.Entidades
 {
     public abstract class Entidad
     {

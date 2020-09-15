@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
+using TP_DDS__consola_.Model.Entidades.TiposEmpresa;
+using TP_DDS__consola_.Model.Entidades;
 
-namespace TP_DDS__consola_
+namespace TP_DDS__consola_.Validadores
 {
     public class CategorizadorOrg
     {

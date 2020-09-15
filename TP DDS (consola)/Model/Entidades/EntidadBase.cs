@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TP_DDS__consola_.Validadores;
 
-namespace TP_DDS__consola_
+namespace TP_DDS__consola_.Model.Entidades
 {
     public class EntidadBase : Entidad
     {

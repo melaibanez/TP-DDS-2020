@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TP_DDS__consola_.Scheduler.Jobs;
+using TP_DDS__consola_.Model.Compras;
 
 namespace TP_DDS__consola_.Scheduler
 {

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TP_DDS__consola_.Model.Entidades;
 
-namespace TP_DDS__consola_
+namespace TP_DDS__consola_.Model.Compras
 {
     public class Presupuesto : DocumentoComercial
     {
@@ -11,7 +12,7 @@ namespace TP_DDS__consola_
         public Entidad entidad { get; set; }
         public DateTime fechaEgreso { get; set; }
         public MedioDePago medioDePago { get; set; }
-        public+ List<Item> items { get; set; }
+        public List<Item> items { get; set; }
         public PrestadorDeServicios prestadorDeServicios { get; set; }
         public float montoTotal { get; set; }
 
@@ -21,8 +22,6 @@ namespace TP_DDS__consola_
             this.montoTotal = items.Sum(i => i.getValor() * i.getCant());
         }
 
-        public float getMontoTotal() { return montoTotal; }
-        public PrestadorDeServicios getPrestadorDeServicios() { return prestadorDeServicios; }
         public List<Item> getItems() { return items; }
     }
 }

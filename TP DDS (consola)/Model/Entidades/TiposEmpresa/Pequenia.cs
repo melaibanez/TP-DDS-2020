@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TP_DDS__consola_
+namespace TP_DDS__consola_.Model.Entidades.TiposEmpresa
 {
     public class Pequenia : Empresa
     {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection.Metadata;
-using TP_DDS__consola_.Model.Compras;
 using System.Text;
+using TP_DDS__consola_.Model.Otros;
 
-namespace TP_DDS__consola_
+
+namespace TP_DDS__consola_.Model.Compras
 {
     public class Compra
     {

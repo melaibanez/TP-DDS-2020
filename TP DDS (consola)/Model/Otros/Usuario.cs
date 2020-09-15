@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 
-namespace TP_DDS__consola_
+namespace TP_DDS__consola_.Model.Otros
 {
     public class Usuario
     {
