@@ -9,6 +9,7 @@ namespace TP_DDS__consola_.Model.Entidades
 {
     public abstract class Entidad
     {
+        public int idEntidad { get; set; }
         public string nombreFicticio { get; set; }
         public List<Compra> comprasRealizadas { get; set; }
         public List<Ingreso> ingresos { get; set; }

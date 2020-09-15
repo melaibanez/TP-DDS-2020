@@ -7,6 +7,7 @@ namespace TP_DDS__consola_.Model.Entidades
 {
     public class EntidadBase : Entidad
     {
+        public int idEntidadBase { get; set; }
         public string descripcion { get; set; }
         public EntidadJuridica entidadJuridica { get; set; }
         public TipoOrganizacion tipoOrganizacion { get; set; }

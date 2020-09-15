@@ -7,6 +7,7 @@ namespace TP_DDS__consola_.Model.Entidades
 {
     public class EntidadJuridica : Entidad
     {
+        public int idEntidadJuridica { get; set; }
         public string condInscripDefinitiva { get; set; }
         public string CUIT { get; set; }
         public string direccionPostal { get; set; }

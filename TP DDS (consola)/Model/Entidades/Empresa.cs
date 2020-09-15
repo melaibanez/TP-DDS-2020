@@ -6,6 +6,7 @@ namespace TP_DDS__consola_.Model.Entidades
 {
     public class Empresa : TipoOrganizacion
     {
+        public int idEmpresa { get; set; }
         public string sector { get; set; }
         public float promedioVentas { get; set; }
         public int cantPersonal { get; set; }
