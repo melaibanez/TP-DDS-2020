@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
-namespace TP_DDS__consola_
+namespace TP_DDS__consola_.Validadores
 {
     public class ValidadorContrasenia
     {

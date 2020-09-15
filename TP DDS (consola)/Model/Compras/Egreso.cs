@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using TP_DDS__consola_.Model;
+using TP_DDS__consola_.Model.Entidades;
+using TP_DDS__consola_.Model.Ingresos;
 
 namespace TP_DDS__consola_.Model.Compras
 {

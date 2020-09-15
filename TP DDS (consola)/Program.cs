@@ -6,6 +6,9 @@ using System.Security.Cryptography.X509Certificates;
 using TP_DDS__consola_.Scheduler.Jobs;
 using TP_DDS__consola_.Scheduler;
 using TP_DDS__consola_.Model.Compras;
+using TP_DDS__consola_.Model.Otros;
+using TP_DDS__consola_.Model.Ingresos;
+using TP_DDS__consola_.Model.Entidades;
 
 
 namespace TP_DDS__consola_
