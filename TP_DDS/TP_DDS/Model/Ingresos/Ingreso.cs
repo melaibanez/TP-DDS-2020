@@ -11,7 +11,7 @@ namespace TP_DDS.Model.Ingresos
     {
 
         public string descripcion { get; set; }
-        public float montoTotal { get; set; }
+        public float monto { get; set; }
 
         private List<Egreso> egresosAsociados;
 
