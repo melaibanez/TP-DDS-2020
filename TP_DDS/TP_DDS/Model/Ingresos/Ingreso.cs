@@ -11,9 +11,11 @@ namespace TP_DDS.Model.Ingresos
     {
 
         public string descripcion { get; set; }
-        public float monto { get; set; }
+        public float montoTotal { get; set; }
+        public DateTime fechaDesde { get; set; }
+        public DateTime fechaHasta { get; set; }
 
-        private List<Egreso> egresosAsociados;
+        public List<Egreso> egresosAsociados;
 
         public Ingreso(string descripcion, float montoTotal, List<Egreso> egresosAsociados)
         {
@@ -25,5 +27,14 @@ namespace TP_DDS.Model.Ingresos
         public List<Egreso> getEgresoAsociado() { return egresosAsociados; }
 
         public void addEgresoAsociado(Egreso egreso) { this.egresosAsociados.Add(egreso); }
+
+        public bool EgresosTotalizanMonto()
+        {
+            List<float> montosEgresos = egresosAsociados.Select(egreso => egreso.montoTotal).ToList();
+            int montoTotalEgresos = montosEgresos.Sum(monto => Convert.ToInt32(monto));
+
+            return montoTotal == montoTotalEgresos;
+
+        }
     }
 }

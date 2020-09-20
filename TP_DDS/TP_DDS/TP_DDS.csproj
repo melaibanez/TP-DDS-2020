@@ -129,6 +129,7 @@
     <Compile Include="Validadores\CategorizadorOrg.cs" />
     <Compile Include="Validadores\ValidadorContrasenia.cs" />
     <Compile Include="Validadores\ValidadorPresupuestosEgreso.cs" />
+    <Compile Include="VinculadorEgresoIngreso\Vinculador.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

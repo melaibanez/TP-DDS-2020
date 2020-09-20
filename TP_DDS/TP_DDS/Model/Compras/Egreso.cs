@@ -37,5 +37,10 @@ namespace TP_DDS.Model.Compras
         {
             return (Presupuesto)docsComerciales.Find(doc => doc.getTipo_Enlace() == "Presupuesto");
         }
+
+       public bool TieneIngresoAsociado() {
+            return this.ingresoAsociado != null;
+        }
     }
+
 }

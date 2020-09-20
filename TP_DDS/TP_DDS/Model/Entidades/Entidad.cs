@@ -21,5 +21,15 @@ namespace TP_DDS.Model.Entidades
             this.nombreFicticio = nombreFicticio;
             this.comprasRealizadas = new List<Compra>();
         }
+
+        public List<Compra> GetComprasSinIngresoAsignado()
+        {
+            return comprasRealizadas.FindAll(compra => compra.egreso.TieneIngresoAsociado() != true);
+        }
+
+        public List<Ingreso> GetIngresosDispobibles()
+        {
+            return ingresos.FindAll(ingreso => !ingreso.EgresosTotalizanMonto());
+        }
     }
 }
