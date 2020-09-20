@@ -10,7 +10,11 @@ namespace TP_DDS.Model.Entidades
 {
     public abstract class Entidad
     {
+        [Key]
+        [Column("idEntidad")]
         public int idEntidad { get; set; }
+
+        [Column("nombreFicticio")]
         public string nombreFicticio { get; set; }
         public List<Compra> comprasRealizadas { get; set; }
         public List<Ingreso> ingresos { get; set; }

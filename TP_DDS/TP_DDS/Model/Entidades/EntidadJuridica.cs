@@ -9,11 +9,23 @@ namespace TP_DDS.Model.Entidades
 {
     public class EntidadJuridica : Entidad
     {
-        public int idEntidadJuridica { get; set; }
+        
+        [Column("idEntidadJuridica")]
+        public int idEntidadJuridica { get; set; } //esto no esta en el DER
+
+        [Column("condInscripDefinitiva")]
         public string condInscripDefinitiva { get; set; }
+
+        [Key]
+        [Column("CUIT")]
         public string CUIT { get; set; }
+
+        [Column("direccionPostal")]
         public string direccionPostal { get; set; }
+
         public List<EntidadBase> listaEntidadesBase;
+
+        [Column("razonSocial")]
         public string razonSocial { get; set; }
         public TipoOrganizacion tipoOrganizacion { get; set; }
 

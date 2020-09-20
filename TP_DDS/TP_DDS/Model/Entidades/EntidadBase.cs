@@ -9,9 +9,16 @@ namespace TP_DDS.Model.Entidades
 {
     public class EntidadBase : Entidad
     {
+        [Key]
+        [Column("idEntidadBase")]
         public int idEntidadBase { get; set; }
+
+        [Column("descripcion")]
         public string descripcion { get; set; }
+
+        [Column("idEntidadJuridica")]
         public EntidadJuridica entidadJuridica { get; set; }
+
         public TipoOrganizacion tipoOrganizacion { get; set; }
 
         public EntidadBase(string nombreFicticio, string descripcion, EntidadJuridica entidadJuridica, string actividad) : base(nombreFicticio)
