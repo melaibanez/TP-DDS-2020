@@ -14,31 +14,33 @@ namespace TP_DDS.Model.Compras
     public class Egreso
     {
         [Key]
-        [Column("idEgreso")]
+        [Column("idegreso")]
         public int idEgreso { get; set; }
 
-        [Column("idEntidad")]
+        [Column("idEntidad")?]
         public int idEntidad { get; set; }
         public Entidad entidad { get; set; }
 
+        [Column("idItem")?]
         public List<Item> detalle { get; set; }
 
+        [Column("idDocumentoComercial")?]
         public List<DocumentoComercial> docsComerciales { get; set; }
 
-        [Column("")]
+        [Column("fechaDeOperacion")]
         public DateTime fechaEgreso { get; set; }
 
-        [Column("idMetodoDePago")]
+        [Column("idMedioDePago")]
         public int idMetodoDePago { get; set; }
         public MedioDePago medioDePago { get; set; }
 
-        [Column("")]
+        [Column("monto")]
         public float montoTotal { get; set; }
 
-        [Column("")]
+        [Column("idPrestadorDeServicios")]
         public PrestadorDeServicios prestadorDeServicios { get; set; }
 
-        [Column("")]
+        [Column("idIngresoAsociado")]
         public Ingreso ingresoAsociado { get; set; }
 
         public Egreso() { }

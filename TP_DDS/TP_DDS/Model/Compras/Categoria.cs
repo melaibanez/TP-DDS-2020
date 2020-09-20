@@ -11,11 +11,14 @@ namespace TP_DDS.Model.Compras
         [Key]
         [Column("idCategoria")]
         public int idCategoria { get; set; }
+        public Categoria subCategoria { get; set; }
 
         [Column("idCriterio")]
         public int idCriterio { get; set; }
         public Criterio criterio { get; set; }
+
+        [Column("descripcion")]
         public string nombre { get; set; }
-        public Categoria subCategoria { get; set; }
+        
     }
 }
