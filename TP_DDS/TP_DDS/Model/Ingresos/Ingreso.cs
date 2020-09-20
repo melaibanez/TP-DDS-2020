@@ -8,22 +8,27 @@ using TP_DDS.Model.Compras;
 
 namespace TP_DDS.Model.Ingresos
 {
+    [Table("ingreso")]
     public class Ingreso
     {
+        [Column("idIngreso")]
+        public int idIngreso { get; set; }
+
         [Column("descripcion")]
         public string descripcion { get; set; }
-
-        public float montoTotal { get; set; }
-        public DateTime fechaDesde { get; set; }
-        public DateTime fechaHasta { get; set; }
 
         [Column("monto")]
         public float monto { get; set; }
 
-        [Column("idEgreso")]
-        private int idEgreso { get; set; }
+        [Column("fechaIngreso")]
+        public DateTime fechaDesde { get; set; }
+
+        [Column("periodo")]
+        public DateTime fechaHasta { get; set; }
+
         private List<Egreso> egresosAsociados;
 
+        public Ingreso() { }
         public Ingreso(string descripcion, float montoTotal, List<Egreso> egresosAsociados)
         {
             this.descripcion = descripcion;

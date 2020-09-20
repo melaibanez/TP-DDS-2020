@@ -17,31 +17,25 @@ namespace TP_DDS.Model.Compras
         [Column("idegreso")]
         public int idEgreso { get; set; }
 
-        [Column("idEntidad")?]
-        public int idEntidad { get; set; }
-        public Entidad entidad { get; set; }
-
-        [Column("idItem")?]
-        public List<Item> detalle { get; set; }
-
-        [Column("idDocumentoComercial")?]
-        public List<DocumentoComercial> docsComerciales { get; set; }
-
         [Column("fechaDeOperacion")]
         public DateTime fechaEgreso { get; set; }
 
         [Column("idMedioDePago")]
-        public int idMetodoDePago { get; set; }
+        public int idMedioDePago { get; set; }
         public MedioDePago medioDePago { get; set; }
 
         [Column("monto")]
         public float montoTotal { get; set; }
 
         [Column("idPrestadorDeServicios")]
+        public int idPrestadorDeServicios { get; set; }
         public PrestadorDeServicios prestadorDeServicios { get; set; }
 
         [Column("idIngresoAsociado")]
         public Ingreso ingresoAsociado { get; set; }
+
+        public List<Item> detalle { get; set; }
+        public List<DocumentoComercial> docsComerciales { get; set; }
 
         public Egreso() { }
         public Egreso(List<Item> detalle, List<DocumentoComercial> docsComerciales, Entidad entidad, DateTime fechaEgreso, MedioDePago medioDePago, PrestadorDeServicios prestadorDeServicios, Ingreso ingresoAsociado)
@@ -59,7 +53,7 @@ namespace TP_DDS.Model.Compras
 
         public Presupuesto getPresupuestoElegido()
         {
-            return (Presupuesto)docsComerciales.Find(doc => doc.getTipo_Enlace() == "Presupuesto");
+            return (Presupuesto)docsComerciales.Find(doc => doc.tipo_enlace == "Presupuesto");
         }
 
        public bool TieneIngresoAsociado() {
