@@ -76,7 +76,6 @@ namespace TP_DDS
 
             sched.agregarTask(jobVal, triggerVal);
 
-
-        }
     }
+}
 }
