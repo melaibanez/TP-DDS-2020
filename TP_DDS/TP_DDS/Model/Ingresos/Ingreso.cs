@@ -40,13 +40,16 @@ namespace TP_DDS.Model.Ingresos
 
         public void addEgresoAsociado(Egreso egreso) { this.egresosAsociados.Add(egreso); }
 
-        public bool EgresosTotalizanMonto()
+        public bool EgresosNoTotalizanMonto()
+        {
+              return ingreso.montoTotalEgresosAsociados > 0;
+
+        }
+
+        public float montoTotalEgresosAsociados()
         {
             List<float> montosEgresos = egresosAsociados.Select(egreso => egreso.montoTotal).ToList();
-            int montoTotalEgresos = montosEgresos.Sum(monto => Convert.ToInt32(monto));
-
-            return montoTotal == montoTotalEgresos;
-
+            return montosEgresos.Sum(monto => Convert.ToInt32(monto));
         }
     }
 }

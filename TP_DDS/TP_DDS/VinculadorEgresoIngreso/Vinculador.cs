@@ -20,60 +20,114 @@ namespace TP_DDS.VinculadorEgresoIngreso
 
         public static void vincularCompras(Entidad entidad, List<string> criterios) {
 
-            List<Egreso> egresosSinVincular = entidad.GetComprasSinIngresoAsignado().Select(compra=> compra.egreso).ToList();
-            List<Ingreso> ingresosDisponibles = entidad.GetIngresosDispobibles();
-            int cantidadEgresos = egresosSinVincular.Count();
-            int cantidadIngresosDispobibles = ingresosDisponibles.Count();
             string criterio = criterios.First();
-            /*
-             *  
-             */
+           
             if (criterio == "PE")
             {
-               List<Egreso> egresosSinVincularOrder = egresosSinVincular.OrderByDescending(egreso => egreso.montoTotal).ToList();
-                for (int i = 0; i < cantidadEgresos; i++) {
-                    for (int j = 0; j < cantidadIngresosDispobibles; j++) {
-                        if (cumpleCondiciones(egresosSinVincularOrder.ElementAt(i), ingresosDisponibles.ElementAt(j)))
-                        {
-                            asignarEgresoIngreso(egresosSinVincularOrder.ElementAt(i), ingresosDisponibles.ElementAt(j));
-                            break; //si ya asigno un egreso a un ingreso pasa al siguiente. Y vuelve a cero J para empezar de nuevo.
-                        }
-                    }
-                }
+                OrdenValorPrimeroEgreso(entidad);
             }
 
             if (criterio == "PI")
             {
-                List<Ingreso> ingresosOrder = ingresosDisponibles.OrderByDescending(ingreso=> ingreso.montoTotal).ToList();
-                for (int i = 0; i < cantidadIngresosDispobibles; i++)
-                {
-                    for (int j = 0; j < cantidadEgresos; j++)
-                    {
-                        if (cumpleCondiciones(egresosSinVincular.ElementAt(j), ingresosDisponibles.ElementAt(i)))
-                        {
-                            asignarEgresoIngreso(egresosSinVincular.ElementAt(j), ingresosDisponibles.ElementAt(i));
-                            break;
-                        }
-                    }
-                }
+                OrdenValorPrimeroIngreso(entidad);
+
             }
             if (criterio == "F")
             {
-                List<Egreso> egresosSinVincularOrder = egresosSinVincular.OrderByDescending(egreso => egreso.montoTotal).ThenBy(egreso => egreso.fechaEgreso).ToList();
-
+                OrdenFecha(entidad);
+                
             }
             if (criterio == "MIX")
             {
-                List<Egreso> egresosSinVincularMix;
+                OrdenMix(entidad,criterios);
+            }
+        }
+        /*----------------------------------*/
 
-               // for
+        private void OrdenValorPrimeroEgreso(Entidad entidad)
+        {
+            List<Egreso> egresosSinVincular = entidad.GetComprasSinIngresoAsignado().Select(compra => compra.egreso).ToList();
+            List<Ingreso> ingresosDisponibles = entidad.GetIngresosDisponibles();
+            int cantidadEgresos = egresosSinVincular.Count();
+            int cantidadIngresosDisponibles = ingresosDisponibles.Count();
+
+            List<Egreso> egresosSinVincularOrder = egresosSinVincular.OrderByDescending(egreso => egreso.montoTotal).ToList();
+
+            for (int i = 0; i < cantidadEgresos; i++)
+            {
+                for (int j = 0; j < cantidadIngresosDisponibles; j++)
+                {
+                    if (cumpleCondiciones(egresosSinVincularOrder.ElementAt(i), ingresosDisponibles.ElementAt(j)))
+                    {
+                        asignarEgresoIngreso(egresosSinVincularOrder.ElementAt(i), ingresosDisponibles.ElementAt(j));
+                        break; //si ya asigno un egreso a un ingreso pasa al siguiente. Y vuelve a cero J para empezar de nuevo.
+                    }
+                }
+            }
+        }
+
+        private void OrdenValorPrimeroIngreso(Entidad entidad)
+        {
+            List<Egreso> egresosSinVincular = entidad.GetComprasSinIngresoAsignado().Select(compra => compra.egreso).ToList();
+            List<Ingreso> ingresosDisponibles = entidad.GetIngresosDisponibles();
+            int cantidadEgresos = egresosSinVincular.Count();
+            int cantidadIngresosDisponibles = ingresosDisponibles.Count();
+
+            //List<Egreso> egresosSinVincularOrder = egresosSinVincular.OrderByDescending(egreso => egreso.montoTotal).ToList();
+
+            List<Ingreso> ingresosOrder = ingresosDisponibles.OrderByDescending(ingreso => ingreso.montoTotal).ToList();
+
+            for (int i = 0; i < cantidadIngresosDisponibles; i++)
+            {
+                for (int j = 0; j < cantidadEgresos; j++)
+                {
+                    if (cumpleCondiciones(egresosSinVincular.ElementAt(j), ingresosDisponibles.ElementAt(i)))
+                    {
+                        asignarEgresoIngreso(egresosSinVincular.ElementAt(j), ingresosDisponibles.ElementAt(i));
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void OrdenFecha(List<Egreso> egresosSinVincular, List<Ingreso> ingresosDisponibles)
+        {
+            List<Egreso> egresosSinVincular = entidad.GetComprasSinIngresoAsignado().Select(compra => compra.egreso).ToList();
+            List<Ingreso> ingresosDisponibles = entidad.GetIngresosDisponibles();
+            int cantidadEgresos = egresosSinVincular.Count();
+            int cantidadIngresosDisponibles = ingresosDisponibles.Count();
+
+            List<Egreso> egresosSinVincularOrder = egresosSinVincular.OrderBy(egreso => egreso.fechaEgreso).ToList();
+            List<Ingreso> ingresosDisponiblesOrder = ingresosDisponibles.OrderBy(ingreso => ingreso.fechaDesde).ToList();
+            for (int i = 0; i < cantidadEgresos; i++)
+            {
+                for (int j = 0; j < cantidadIngresosDisponibles; j++)
+                {
+                    if (cumpleCondiciones(egresosSinVincularOrder.ElementAt(i), ingresosDisponiblesOrder.ElementAt(j)))
+                    {
+                        asignarEgresoIngreso(egresosSinVincularOrder.ElementAt(i), ingresosDisponibles.ElementAt(j));
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void OrdenMix(Entidad entidad, List<string> criterios)
+        {
+            int cantCriterios = criterios.Count();
+            for (int i = 1; i < cantCriterios; i++)
+            {
+                if (criterios.ElementAt(i) == "PE") OrdenValorPrimeroEgreso(entidad);
+                if (criterios.ElementAt(i) == "PI") OrdenValorPrimeroIngreso(entidad);
+                if (criterios.ElementAt(i) == "F") OrdenFecha(entidad);
+               // if (criterios.ElementAt(i) == "MIX") OrdenMix(entidad); ((((?
             }
         }
 
         private static void asignarEgresoIngreso(Egreso egreso, Ingreso ingreso)
         {
             egreso.ingresoAsociado = ingreso;
-            ingreso.egresosAsociados.Add(egreso);
+            ingreso.addEgresoAsociado(egreso);
         }
 
         /*
@@ -82,7 +136,7 @@ namespace TP_DDS.VinculadorEgresoIngreso
 
         private static bool cumpleCondiciones(Egreso egreso, Ingreso ingreso)
         {
-            return EntraEnPeriodo(egreso, ingreso) && CubreMonto(egreso, ingreso);
+            return ingreso.EgresosNoTotalizanMonto() && EntraEnPeriodo(egreso, ingreso) && CubreMonto(egreso, ingreso);
         }
 
         private static bool EntraEnPeriodo(Egreso egreso, Ingreso ingreso)
@@ -92,7 +146,7 @@ namespace TP_DDS.VinculadorEgresoIngreso
         
         private static bool CubreMonto(Egreso egreso, Ingreso ingreso)
         {
-            return (ingreso.montoTotal - egreso.montoTotal) >= 0; 
+            return (ingreso.monto - egreso.montoTotal) >= 0; 
         }
 
     }

@@ -31,7 +31,7 @@ namespace TP_DDS.Model.Entidades
             return comprasRealizadas.FindAll(compra => compra.egreso.TieneIngresoAsociado() != true);
         }
 
-        public List<Ingreso> GetIngresosDispobibles()
+        public List<Ingreso> GetIngresosDisponibles()
         {
             return ingresos.FindAll(ingreso => !ingreso.EgresosTotalizanMonto());
         }
