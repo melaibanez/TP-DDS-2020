@@ -18,7 +18,7 @@ namespace TP_DDS.Model.Ingresos
         public Ingreso(string descripcion, float montoTotal, List<Egreso> egresosAsociados)
         {
             this.descripcion = descripcion;
-            this.montoTotal = montoTotal;
+            this.monto = montoTotal;
             this.egresosAsociados = egresosAsociados;
         }
 
