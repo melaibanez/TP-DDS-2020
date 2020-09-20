@@ -8,9 +8,16 @@ namespace TP_DDS.Model.Otros
 {
     public class Usuario
     {
+        [Key]
+        [Column("nombreUsuario")]
         private string usuario;
+
+        [Column("tipo")]
         private string tipo;
+
+        [Column("contrasenia")]
         private string contrasenia;
+
         private List<Notificacion> bandejaMensajes;
 
         public Usuario(string usuario, string tipo, string contrasenia)
