@@ -10,6 +10,7 @@ using TP_DDS.Model.Entidades;
 namespace TP_DDS.Model.Compras
 {
 
+    [Table("criterios")]
     public class Criterio
     {
         [Key]

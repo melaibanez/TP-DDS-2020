@@ -22,6 +22,7 @@ namespace TP_DDS.Model.Entidades
 
 
         public Empresa() { }
+
         public Empresa(string actividad, string sector, float promVentas, int cantPersonal) : base(actividad)
         {
             this.sector = sector;

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace TP_DDS.Model.Compras
 {
+    [Table("documento_comercial")]
     public class DocumentoComercial
     {
         [Key]

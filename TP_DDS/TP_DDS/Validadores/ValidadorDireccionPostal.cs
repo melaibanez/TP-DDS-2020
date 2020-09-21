@@ -10,16 +10,21 @@ using Newtonsoft.Json.Linq;
 
 namespace TP_DDS.Validadores
 {
+
     class ValidadorDireccionPostal
     {
 
         public static bool validarDireccionPostal(DireccionPostal dirPos)
         {
-            string id_P = validarPais(dirPos);
-            if (!id_P.Equals("Pais No Encontrado")){ 
-                validarProvincia(dirPos, id_P);
+            string id_C = validarPais(dirPos);
+            if (!id_C.Equals("Pais No Encontrado")){ 
+                string id_S = validarProvincia(dirPos, id_C);
+                if(!id_S.Equals("Provincia No Encontrada"))
+                {
+                   return validarCiudad(dirPos, id_S);
+                }
             }
-            return true;
+            return false;
         }
 
         public static string validarPais(DireccionPostal dirPos)
@@ -30,10 +35,9 @@ namespace TP_DDS.Validadores
             request.RequestFormat = DataFormat.Json;
             var response = client.Get(request).Content;
             dynamic countries = JArray.Parse(response);
-            string paisComparado = "Uruguay";//dirPos.pais;
-            int i;
+            string paisComparado = dirPos.pais;
             int cantidadPaises = countries.Count;
-            for (i = 0; i < cantidadPaises; i++)
+            for (int i = 0; i < cantidadPaises; i++)
             {
                 //Console.WriteLine(countries[i].name);
                 if (countries[i].name == paisComparado)
@@ -46,16 +50,46 @@ namespace TP_DDS.Validadores
 
         }
 
-        public static string validarProvincia(DireccionPostal dirPos, string id_P)
+        public static string validarProvincia(DireccionPostal dirPos, string id_C)
         {
             var client = new RestClient("https://api.mercadolibre.com/");
 
-            var request = new RestRequest("classified_locations/countries/" + id_P);
+            var request = new RestRequest("classified_locations/countries/" + id_C);
             request.RequestFormat = DataFormat.Json;
             var response = client.Get(request).Content;
             dynamic states = JArray.Parse(response);
-            return "asd";
+            string stateComparado = dirPos.provincia;
+            int cantidadProvincias = states.Count;
+            for(int i = 0; i < cantidadProvincias; i++)
+            {
+                if (states[i].name == stateComparado)
+                {
+                    return states[i].id;
+                }
+            }
+            return "Provincia No Encontrada";
 
+
+        }
+
+
+        public static bool validarCiudad(DireccionPostal dirPos, string id_S)
+        {
+            var client = new RestClient("https://api.mercadolibre.com/");
+            var request = new RestRequest("classified_locations/countries/states/" + id_S);
+            request.RequestFormat = DataFormat.Json;
+            var response = client.Get(request).Content;
+            dynamic cities = JArray.Parse(response);
+            string citieComparada = dirPos.ciudad;
+            int cantidadCiudades = cities.Count;
+            for (int i = 0; i < cantidadCiudades; i++)
+            {
+                if (cities[i].name == citieComparada)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

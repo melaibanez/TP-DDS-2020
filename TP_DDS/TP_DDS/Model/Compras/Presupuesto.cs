@@ -9,6 +9,7 @@ using TP_DDS.Model.Entidades;
 
 namespace TP_DDS.Model.Compras
 {
+    [Table("presupuesto")]
     public class Presupuesto : DocumentoComercial
     {
         /*[ForeignKey("entidad")]
