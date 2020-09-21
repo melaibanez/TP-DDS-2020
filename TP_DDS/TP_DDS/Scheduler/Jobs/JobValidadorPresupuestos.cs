@@ -54,7 +54,7 @@ namespace TP_DDS.Scheduler.Jobs
             jobValidador(sched, comp); 
 
             System.Threading.Thread.Sleep(2000);// duermo el hilo para que le lleguen los mensajes y mostrarlos por pantalla
-            foreach (Notificacion mensaje in usuario.getBandejaMensajes())
+            foreach (Notificacion mensaje in usuario.bandejaMensajes)
             {
                 Console.WriteLine(mensaje.ToString());
             }

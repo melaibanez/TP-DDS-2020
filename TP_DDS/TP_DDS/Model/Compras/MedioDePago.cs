@@ -9,7 +9,7 @@ using TP_DDS.Model.Otros;
 
 namespace TP_DDS.Model.Compras
 {
-    [Table("medio_de_pago")]
+    [Table("medios_de_pago")]
     public class MedioDePago
     {
         [Key]

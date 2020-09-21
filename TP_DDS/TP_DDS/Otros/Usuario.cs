@@ -9,24 +9,24 @@ using TP_DDS.Model.Compras;
 
 namespace TP_DDS.Model.Otros
 {
-    [Table("Usuario")]
+    [Table("usuarios")]
     public class Usuario
     {
         [Key]
         public int idUsuario { get; set; }
 
         [StringLength(50)]
-        private string nombreUsuario { get; set; }
+        public string nombreUsuario { get; set; }
 
         [StringLength(50)]
-        private string tipo { get; set; }
+        public string tipo { get; set; }
 
         [StringLength(50)]
-        private string contrasenia { get; set; }
+        public string contrasenia { get; set; }
 
         public List<Compra> comprasRevisadas { get; set; }
 
-        private List<Notificacion> bandejaMensajes { get; set; }
+        public List<Notificacion> bandejaMensajes { get; set; }
 
         public Usuario(string numbreUsuario, string tipo, string contrasenia)
         {

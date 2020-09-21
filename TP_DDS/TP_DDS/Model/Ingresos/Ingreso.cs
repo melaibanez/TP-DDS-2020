@@ -10,7 +10,7 @@ using TP_DDS.Model.Entidades;
 
 namespace TP_DDS.Model.Ingresos
 {
-    [Table("ingreso")]
+    [Table("ingresos")]
     public class Ingreso
     {
         [Key]

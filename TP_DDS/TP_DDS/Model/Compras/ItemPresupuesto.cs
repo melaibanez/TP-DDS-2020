@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TP_DDS.Model.Compras
 {
-    [Table("item_presupuesto")]
+    [Table("items_presupuesto")]
     public class ItemPresupuesto
     {
         [Key]

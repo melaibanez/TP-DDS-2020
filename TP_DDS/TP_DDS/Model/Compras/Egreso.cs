@@ -10,7 +10,7 @@ using TP_DDS.Model.Ingresos;
 
 namespace TP_DDS.Model.Compras
 {
-    [Table("egreso")]
+    [Table("egresos")]
     public class Egreso
     {
         [Key]
