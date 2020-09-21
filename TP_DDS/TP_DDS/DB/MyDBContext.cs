@@ -32,6 +32,7 @@ namespace TP_DDS.DB
         public DbSet<Entidad> Entidades { get; set; }
         public DbSet<TipoOrganizacion> Organizaciones { get; set; }
         public DbSet<TipoEmpresa> TiposEmpresas { get; set; }
+    
 
 
 

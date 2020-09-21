@@ -9,12 +9,12 @@ using TP_DDS.Model.Entidades;
 
 namespace TP_DDS.Model.Compras
 {
-    [Table("presupuestos")]
+  
     public class Presupuesto : DocumentoComercial
     {
-        /*[ForeignKey("entidad")]
+        [ForeignKey("entidad")]
         public int idEntidad { get; set; }
-        public Entidad entidad { get; set; }*/
+        public Entidad entidad { get; set; }
 
         public DateTime fechaEgreso { get; set; }
 
