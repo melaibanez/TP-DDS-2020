@@ -35,47 +35,7 @@ namespace TP_DDS
             Egreso egre = new Egreso(listaDeItems1, new List<DocumentoComercial> { pres1 }, ent, DateTime.Now, null, prest1, null);
             Compra comp = new Compra(2, 678, egre, new List<Presupuesto> { pres1, pres2, pres3 }, new List<Usuario> { eze }, false);
 
+            JobValidadorPresupuestos.iniciarScheduler(eze, comp);
 
-
-            MyScheduler sched = MyScheduler.getInstance();
-
-            sched.run();
-
-            jobValidador(sched, comp);
-
-            System.Threading.Thread.Sleep(2000);// duermo el hilo para que le lleguen los mensajes y mostrarlos por pantalla
-            foreach (Notificacion mensaje in eze.getBandejaMensajes())
-            {
-                Console.WriteLine(mensaje.ToString());
-            }
-
-            sched.stop();
-
-
-            Console.ReadLine(); //para que no se salga la consola apenas ejecuta
         }
-
-
-        public static void jobValidador(MyScheduler sched, Compra compra) //hacerlo en MyScheduler
-        {
-            JobDataMap jobData = new JobDataMap();
-            jobData.Add("compra", compra);
-
-            IJobDetail jobVal = JobBuilder.Create<JobValidadorPresupuestos>()
-                .WithIdentity("validadorDeCompra", "Validadores")
-                .UsingJobData(jobData)
-                .Build();
-
-            ITrigger triggerVal = TriggerBuilder.Create()
-                 .WithIdentity("triggerValidador", "Triggers")
-                 .StartNow()
-                 .WithSimpleSchedule(x => x
-                     .WithIntervalInSeconds(2)
-                     .RepeatForever())
-                 .Build();
-
-            sched.agregarTask(jobVal, triggerVal);
-
-    }
-}
 }
