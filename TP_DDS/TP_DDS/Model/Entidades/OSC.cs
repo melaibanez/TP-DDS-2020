@@ -14,9 +14,6 @@ namespace TP_DDS.Model.Entidades
         [Column("idOrganizacion")]
         public int idOSC { get; set; }
 
-        [Column("actividad")]
-        public string actividad { get; set; }
-
         [Column("cantPersonal")]
         public int cantPersonal { get; set; }
 

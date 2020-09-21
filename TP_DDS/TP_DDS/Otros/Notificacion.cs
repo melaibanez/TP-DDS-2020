@@ -8,21 +8,18 @@ using System.Threading.Tasks;
 
 namespace TP_DDS.Model.Otros
 {
-    [Table("notificacion")]
     public class Notificacion
     {
 
         [Key]
-        [Column("idNotificacion")]
         public int idNotificacion { get; set; }
 
-        [Column("fecha")]
         public DateTime fecha { get; set; }
 
-        [Column("mensaje")]   
+        [StringLength(300)]  
         public string mensaje { get; set; }
 
-        [Column("idUsuario")]
+        [ForeignKey("usuario")]
         public int idUsuario { get; set; }
         public Usuario usuario { get; set; }
 

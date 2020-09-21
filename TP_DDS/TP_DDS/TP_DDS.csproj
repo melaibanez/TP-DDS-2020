@@ -125,12 +125,14 @@
   <ItemGroup>
     <Compile Include="DB\MyDBContext.cs" />
     <Compile Include="Global.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Compras\Categoria.cs" />
     <Compile Include="Model\Compras\Compra.cs" />
     <Compile Include="Model\Compras\Criterio.cs" />
     <Compile Include="Model\Compras\DocumentoComercial.cs" />
     <Compile Include="Model\Compras\Egreso.cs" />
-    <Compile Include="Model\Compras\Item.cs" />
+    <Compile Include="Model\Compras\ItemEgreso.cs" />
+    <Compile Include="Model\Compras\ItemPresupuesto.cs" />
     <Compile Include="Model\Compras\MedioDePago.cs" />
     <Compile Include="Model\Compras\PrestadorDeServicios.cs" />
     <Compile Include="Model\Compras\Presupuesto.cs" />

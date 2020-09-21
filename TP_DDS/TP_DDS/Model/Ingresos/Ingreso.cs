@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -8,22 +9,18 @@ using TP_DDS.Model.Compras;
 
 namespace TP_DDS.Model.Ingresos
 {
-    [Table("ingreso")]
     public class Ingreso
     {
-        [Column("idIngreso")]
+        [Key]
         public int idIngreso { get; set; }
-
-        [Column("descripcion")]
+        
+        [StringLength(200)]
         public string descripcion { get; set; }
 
-        [Column("monto")]
         public float monto { get; set; }
 
-        [Column("fechaIngreso")]
         public DateTime fechaDesde { get; set; }
 
-        [Column("periodo")]
         public DateTime fechaHasta { get; set; }
 
         private List<Egreso> egresosAsociados;

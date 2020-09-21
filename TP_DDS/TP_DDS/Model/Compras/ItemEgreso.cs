@@ -8,31 +8,34 @@ using System.Threading.Tasks;
 
 namespace TP_DDS.Model.Compras
 {
-    [Table("item")]
-    public class Item
+    public class ItemEgreso
     {
         [Key]
-        [Column("idItem")]
-        public int idItem { get; set; }
+        public int idItemEgreso { get; set; }
 
-        [Column("cant")]
         public int cant { get; set; }
 
-        [Column("descripcion")]
+        [StringLength(200)]
         public string descripcion { get; set; }
 
-        [Column("valor")]
         public float valor { get; set; }
 
-        [Column("idJerarquiaCategorias")]
+        [ForeignKey("egreso")]
+        public int idEgreso { get; set; }
+        public Egreso egreso { get; set; }
+
+
+        [NotMapped]
         public int idJerarquiaCategorias { get; set; }
 
         [NotMapped]
         public Categoria categorias { get; set; }
 
-        public Item() { }
 
-        public Item(int cant, string descripcion, float valor, Categoria categorias) //recibe las categorias ya anidadas abajo de la categoria raiz
+
+        public ItemEgreso() { }
+
+        public ItemEgreso(int cant, string descripcion, float valor, Categoria categorias) //recibe las categorias ya anidadas abajo de la categoria raiz
         {
             this.cant = cant;
             this.descripcion = descripcion;
