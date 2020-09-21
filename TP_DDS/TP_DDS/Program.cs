@@ -9,6 +9,7 @@ using TP_DDS.Model.Entidades;
 using TP_DDS.Model.Otros;
 using TP_DDS.Scheduler;
 using TP_DDS.Scheduler.Jobs;
+using TP_DDS.Validadores;
 
 namespace TP_DDS
 {
@@ -16,9 +17,12 @@ namespace TP_DDS
     {
         static void Main(string[] args)
         {
+            DireccionPostal dirPos = new DireccionPostal();
+            ValidadorDireccionPostal.validarPais(dirPos);
+
             EntidadJuridica ent = new EntidadJuridica("Entidad", "asd", "CUIT", "DireccionPostal", new List<EntidadBase>(), "asd", "asd", "Comercio", 1502750800, 100);
 
-            Usuario eze = new Usuario("Eze", "Admin", "contraseña");
+          /*  Usuario eze = new Usuario("Eze", "Admin", "contraseña");
 
             PrestadorDeServicios prest1 = new PrestadorDeServicios("direccion1", "razonSocial1", "DNI", "4135123");
             List<Item> listaDeItems1 = new List<Item> { new Item(1, "silla", 50, null), new Item(1, "mesa", 100, null), new Item(1, "lampara", 70, null) };
@@ -34,8 +38,10 @@ namespace TP_DDS
 
             Egreso egre = new Egreso(listaDeItems1, new List<DocumentoComercial> { pres1 }, ent, DateTime.Now, null, prest1, null);
             Compra comp = new Compra(2, 678, egre, new List<Presupuesto> { pres1, pres2, pres3 }, new List<Usuario> { eze }, false);
-
+          */
             JobValidadorPresupuestos.iniciarScheduler(eze, comp);
 
+
         }
+    }
 }

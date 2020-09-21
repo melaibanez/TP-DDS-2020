@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,15 +9,18 @@ using TP_DDS.Model.Otros;
 
 namespace TP_DDS.Model.Compras
 {
+    [Table("medio_de_pago")]
     public class MedioDePago
     {
-        [Column("idMedioDePago")]
+        [Key]
         public int idMedioPago { get; set; }
 
-        [NotMapped]
-        public string identificador { get; set; }
+        [StringLength(50)]
+        public string numInstrumento { get; set; }
 
-        [Column("tipo")?]
-        public string tipo { get; set; }
+        [StringLength(50)]
+        public string instrumento { get; set; }
+
+        public MedioDePago() { }
     }
 }

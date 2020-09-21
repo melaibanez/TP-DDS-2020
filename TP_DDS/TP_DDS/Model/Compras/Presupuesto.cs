@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,36 +9,35 @@ using TP_DDS.Model.Entidades;
 
 namespace TP_DDS.Model.Compras
 {
+    [Table("presupuesto")]
     public class Presupuesto : DocumentoComercial
     {
-        [Key]
-        [Column("idPresupuesto")]
-        public int idPresupuesto { get; set; }
-
-        [Column("idEntidad")?]
+        /*[ForeignKey("entidad")]
         public int idEntidad { get; set; }
-        public Entidad entidad { get; set; }
+        public Entidad entidad { get; set; }*/
 
-        [Column("fechaEgreso")?]
-        public int idFechaEgreso { get; set; }
         public DateTime fechaEgreso { get; set; }
 
-        [Column("idMedioDePago")?]
+        [ForeignKey("medioDePago")]
         public int idMedioDePago { get; set; }
         public MedioDePago medioDePago { get; set; }
 
-        [Column("idItem")?]
-        public int idItem { get; set; }
-        public List<Item> items { get; set; }
 
-        [Column("idPrestadorDeServicios")]
+        [ForeignKey("prestadorDeServicios")]
         public int idPrestadorDeServicios { get; set; }
         public PrestadorDeServicios prestadorDeServicios { get; set; }
 
-        [Column("montoTotal")]
         public float montoTotal { get; set; }
 
-        public Presupuesto(string nroIdentificacion, string tipo_enlace, List<Item> items, PrestadorDeServicios prestadorDeServicios) : base(nroIdentificacion, tipo_enlace)
+        [ForeignKey("compra")]
+        public int idCompra { get; set; }
+        public Compra compra { get; set; }
+
+        public List<ItemPresupuesto> items { get; set; }
+
+        public Presupuesto() { }
+
+        public Presupuesto(string nroIdentificacion, string tipo_enlace, List<ItemPresupuesto> items, PrestadorDeServicios prestadorDeServicios) : base(nroIdentificacion, tipo_enlace)
         {
             this.items = items;
             this.prestadorDeServicios = prestadorDeServicios;

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,12 +30,12 @@ namespace TP_DDS.Model.Entidades
 
         public List<Compra> GetComprasSinIngresoAsignado()
         {
-            return comprasRealizadas.FindAll(compra => compra.egreso.TieneIngresoAsociado() != true);
+            return comprasRealizadas.FindAll(compra => compra.egreso.tieneIngresoAsociado() != true);
         }
 
-        public List<Ingreso> GetIngresosDispobibles()
+        public List<Ingreso> GetIngresosDisponibles()
         {
-            return ingresos.FindAll(ingreso => !ingreso.EgresosTotalizanMonto());
+            return ingresos.FindAll(ingreso => !ingreso.EgresosNoTotalizanMonto());
         }
     }
 }

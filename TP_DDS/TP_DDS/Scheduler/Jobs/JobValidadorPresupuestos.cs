@@ -16,7 +16,7 @@ namespace TP_DDS.Scheduler.Jobs
         {
             Compra compra = (Compra)context.JobDetail.JobDataMap.Get("compra");
 
-            if (!compra.fueVerificada)
+            if (!compra.compraValidada)
             {
                 await ValidadorPresupuestosEgreso.validar(compra);
             }

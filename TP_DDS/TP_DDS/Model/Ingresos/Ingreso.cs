@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -8,22 +9,24 @@ using TP_DDS.Model.Compras;
 
 namespace TP_DDS.Model.Ingresos
 {
+    [Table("ingreso")]
     public class Ingreso
     {
-        [Column("descripcion")]
+        [Key]
+        public int idIngreso { get; set; }
+        
+        [StringLength(200)]
         public string descripcion { get; set; }
 
-        public float montoTotal { get; set; }
-        public DateTime fechaDesde { get; set; }
-        public DateTime fechaHasta { get; set; }
-
-        [Column("monto")]
         public float monto { get; set; }
 
-        [Column("idEgreso")]
-        private int idEgreso { get; set; }
+        public DateTime fechaDesde { get; set; }
+
+        public DateTime fechaHasta { get; set; }
+
         private List<Egreso> egresosAsociados;
 
+        public Ingreso() { }
         public Ingreso(string descripcion, float montoTotal, List<Egreso> egresosAsociados)
         {
             this.descripcion = descripcion;
@@ -35,13 +38,16 @@ namespace TP_DDS.Model.Ingresos
 
         public void addEgresoAsociado(Egreso egreso) { this.egresosAsociados.Add(egreso); }
 
-        public bool EgresosTotalizanMonto()
+        public bool EgresosNoTotalizanMonto()
+        {
+              return this.montoTotalEgresosAsociados() > 0;
+
+        }
+
+        public float montoTotalEgresosAsociados()
         {
             List<float> montosEgresos = egresosAsociados.Select(egreso => egreso.montoTotal).ToList();
-            int montoTotalEgresos = montosEgresos.Sum(monto => Convert.ToInt32(monto));
-
-            return montoTotal == montoTotalEgresos;
-
+            return montosEgresos.Sum(monto => Convert.ToInt32(monto));
         }
     }
 }

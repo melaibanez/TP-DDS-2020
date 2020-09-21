@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,9 +13,6 @@ namespace TP_DDS.Model.Entidades
         [Key]
         [Column("idOrganizacion")]
         public int idOSC { get; set; }
-
-        [Column("actividad")]
-        public string actividad { get; set; }
 
         [Column("cantPersonal")]
         public int cantPersonal { get; set; }
