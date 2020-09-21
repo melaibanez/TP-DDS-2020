@@ -20,9 +20,9 @@ namespace TP_DDS.Model.Compras
         [NotMapped]
         private float criterio { get; set; }//a definir
 
-        /*[ForeignKey("entidad")]
-        public string idEntidad { get; set; }
-        public Entidad entidad { get; set; }*/
+        [ForeignKey("entidad")]
+        public int idEntidad { get; set; }
+        public Entidad entidad { get; set; }
 
         [ForeignKey("egreso")]
         public int idEgreso { get; set; }

@@ -54,8 +54,7 @@ namespace TP_DDS.Validadores
             request.RequestFormat = DataFormat.Json;
             var response = client.Get(request).Content;
             dynamic states = JArray.Parse(response);
-
-
+            return "asd";
 
         }
     }

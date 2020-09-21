@@ -10,17 +10,19 @@ using TP_DDS.Model.Ingresos;
 
 namespace TP_DDS.Model.Entidades
 {
+    [Table("entidades")]
     public abstract class Entidad
     {
         [Key]
-        [Column("idEntidad")]
         public int idEntidad { get; set; }
 
-        [Column("nombreFicticio")]
+        [StringLength(50)]
         public string nombreFicticio { get; set; }
         public List<Compra> comprasRealizadas { get; set; }
         public List<Ingreso> ingresos { get; set; }
         public List<Criterio> criterios { get; set; }
+
+        public Entidad() { }
 
         public Entidad(string nombreFicticio)
         {

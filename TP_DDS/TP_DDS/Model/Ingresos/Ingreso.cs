@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TP_DDS.Model.Compras;
+using TP_DDS.Model.Entidades;
 
 namespace TP_DDS.Model.Ingresos
 {
@@ -22,6 +23,10 @@ namespace TP_DDS.Model.Ingresos
         public DateTime fechaDesde { get; set; }
 
         public DateTime fechaHasta { get; set; }
+
+        [ForeignKey("entidad")]
+        public int idEntidad { get; set; }
+        public Entidad entidad { get; set; }
 
         private List<Egreso> egresosAsociados;
 

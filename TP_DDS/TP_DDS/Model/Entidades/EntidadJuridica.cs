@@ -9,28 +9,34 @@ using TP_DDS.Validadores;
 
 namespace TP_DDS.Model.Entidades
 {
+    [Table("entidades_juridica")]
     public class EntidadJuridica : Entidad
     {
         [Key]
-        [Column("idEntidadJuridica")]
         public int idEntidadJuridica { get; set; } //esto no esta en el DER
 
-        [Column("condInscripDefinitiva")]
+        [StringLength(50)]
         public string condInscripDefinitiva { get; set; }
 
-        [Column("CUIT")]
+        [StringLength(20)]
         public string CUIT { get; set; }
 
-        [Column("direccionPostal")]
-        public string direccionPostal { get; set; }
+        [ForeignKey("direccionPostal")]
+        public int idDireccionPostal { get; set; }
+        public DireccionPostal direccionPostal { get; set; }
+
+        [StringLength(50)]
+        public string razonSocial { get; set; }
+
+        [ForeignKey("tipoOrganizacion")]
+        public int idTipoOrganizacion { get; set; }
+        public TipoOrganizacion tipoOrganizacion { get; set; }
 
         public List<EntidadBase> listaEntidadesBase;
 
-        [Column("razonSocial")]
-        public string razonSocial { get; set; }
-        public TipoOrganizacion tipoOrganizacion { get; set; }
+        public EntidadJuridica() { }
 
-        public EntidadJuridica(string nombreFicticio, string condInscripDefinitiva, string CUIT, string direccionPostal, List<EntidadBase> listaEntidadesBase, string razonSocial, string actividad) : base(nombreFicticio)
+        public EntidadJuridica(string nombreFicticio, string condInscripDefinitiva, string CUIT, DireccionPostal direccionPostal, List<EntidadBase> listaEntidadesBase, string razonSocial, string actividad) : base(nombreFicticio)
         {
             this.condInscripDefinitiva = condInscripDefinitiva;
             this.CUIT = CUIT;
@@ -40,7 +46,7 @@ namespace TP_DDS.Model.Entidades
             this.tipoOrganizacion = new OSC(actividad);
         }
 
-        public EntidadJuridica(string nombreFicticio, string condInscripDefinitiva, string CUIT, string direccionPostal, List<EntidadBase> listaEntidadesBase, string razonSocial, string actividad, string sector, float promVentas, int cantPersonal) : base(nombreFicticio)
+        public EntidadJuridica(string nombreFicticio, string condInscripDefinitiva, string CUIT, DireccionPostal direccionPostal, List<EntidadBase> listaEntidadesBase, string razonSocial, string actividad, string sector, float promVentas, int cantPersonal) : base(nombreFicticio)
         {
             this.condInscripDefinitiva = condInscripDefinitiva;
             this.CUIT = CUIT;

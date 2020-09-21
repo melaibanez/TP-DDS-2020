@@ -9,20 +9,24 @@ using TP_DDS.Validadores;
 
 namespace TP_DDS.Model.Entidades
 {
+    [Table("entidades_base")]
     public class EntidadBase : Entidad
     {
         [Key]
-        [Column("idEntidadBase")]
         public int idEntidadBase { get; set; }
 
-        [Column("descripcion")]
+        [StringLength(50)]
         public string descripcion { get; set; }
 
-        [Column("idEntidadJuridica")]
+        [ForeignKey("entidadJuridica")]
+        public int idEntidadJuridica { get; set; }
         public EntidadJuridica entidadJuridica { get; set; }
 
+        [ForeignKey("tipoOrganizacion")]
+        public int idTipoOrganizacion { get; set; }
         public TipoOrganizacion tipoOrganizacion { get; set; }
-
+        
+        public EntidadBase() { }
         public EntidadBase(string nombreFicticio, string descripcion, EntidadJuridica entidadJuridica, string actividad) : base(nombreFicticio)
         {
             this.descripcion = descripcion;
