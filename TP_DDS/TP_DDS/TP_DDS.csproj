@@ -145,6 +145,7 @@
     <Compile Include="Model\Entidades\TiposEmpresa\MedianaTramo2.cs" />
     <Compile Include="Model\Entidades\TiposEmpresa\Micro.cs" />
     <Compile Include="Model\Entidades\TiposEmpresa\Pequenia.cs" />
+    <Compile Include="Model\Entidades\TiposEmpresa\TipoEmpresa.cs" />
     <Compile Include="Model\Ingresos\Ingreso.cs" />
     <Compile Include="Otros\Notificacion.cs" />
     <Compile Include="Otros\Usuario.cs" />

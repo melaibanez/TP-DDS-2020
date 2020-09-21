@@ -42,7 +42,6 @@ namespace TP_DDS.Model.Compras
         {
             this.detalle = detalle;
             this.docsComerciales = docsComerciales;
-            this.entidad = entidad;
             this.fechaEgreso = fechaEgreso;
             this.medioDePago = medioDePago;
             this.montoTotal = detalle.Sum(i => i.valor * i.cant);
@@ -56,7 +55,7 @@ namespace TP_DDS.Model.Compras
             return (Presupuesto)docsComerciales.Find(doc => doc.tipo_enlace == "Presupuesto");
         }
 
-       public bool TieneIngresoAsociado() {
+       public bool tieneIngresoAsociado() {
             return this.ingresoAsociado != null;
         }
     }

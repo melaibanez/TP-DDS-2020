@@ -42,7 +42,7 @@ namespace TP_DDS.Model.Ingresos
 
         public bool EgresosNoTotalizanMonto()
         {
-              return ingreso.montoTotalEgresosAsociados > 0;
+              return this.montoTotalEgresosAsociados() > 0;
 
         }
 

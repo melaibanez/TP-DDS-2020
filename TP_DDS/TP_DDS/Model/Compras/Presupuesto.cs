@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,19 +15,19 @@ namespace TP_DDS.Model.Compras
         [Column("idPresupuesto")]
         public int idPresupuesto { get; set; }
 
-        [Column("idEntidad")?]
+        [Column("idEntidad")]
         public int idEntidad { get; set; }
         public Entidad entidad { get; set; }
 
-        [Column("fechaEgreso")?]
+        [Column("fechaEgreso")]
         public int idFechaEgreso { get; set; }
         public DateTime fechaEgreso { get; set; }
 
-        [Column("idMedioDePago")?]
+        [Column("idMedioDePago")]
         public int idMedioDePago { get; set; }
         public MedioDePago medioDePago { get; set; }
 
-        [Column("idItem")?]
+        [Column("idItem")]
         public int idItem { get; set; }
         public List<Item> items { get; set; }
 

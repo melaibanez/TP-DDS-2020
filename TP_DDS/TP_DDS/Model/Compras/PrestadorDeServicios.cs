@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace TP_DDS.Model.Compras
     {
         [Column("idPrestadorDeServicios")]
         public int idPrestador { get; set; }
-        [Column("direccionPostal")?]
+        [Column("direccionPostal")]
         public string direccionPostal { get; set; }
         [Column("numDoc")]
         public string numDoc { get; set; }

@@ -44,7 +44,7 @@ namespace TP_DDS.VinculadorEgresoIngreso
         }
         /*----------------------------------*/
 
-        private void OrdenValorPrimeroEgreso(Entidad entidad)
+        private static void OrdenValorPrimeroEgreso(Entidad entidad)
         {
             List<Egreso> egresosSinVincular = entidad.GetComprasSinIngresoAsignado().Select(compra => compra.egreso).ToList();
             List<Ingreso> ingresosDisponibles = entidad.GetIngresosDisponibles();
@@ -66,7 +66,7 @@ namespace TP_DDS.VinculadorEgresoIngreso
             }
         }
 
-        private void OrdenValorPrimeroIngreso(Entidad entidad)
+        private static void OrdenValorPrimeroIngreso(Entidad entidad)
         {
             List<Egreso> egresosSinVincular = entidad.GetComprasSinIngresoAsignado().Select(compra => compra.egreso).ToList();
             List<Ingreso> ingresosDisponibles = entidad.GetIngresosDisponibles();
@@ -75,7 +75,7 @@ namespace TP_DDS.VinculadorEgresoIngreso
 
             //List<Egreso> egresosSinVincularOrder = egresosSinVincular.OrderByDescending(egreso => egreso.montoTotal).ToList();
 
-            List<Ingreso> ingresosOrder = ingresosDisponibles.OrderByDescending(ingreso => ingreso.montoTotal).ToList();
+            List<Ingreso> ingresosOrder = ingresosDisponibles.OrderByDescending(ingreso => ingreso.monto).ToList();
 
             for (int i = 0; i < cantidadIngresosDisponibles; i++)
             {
@@ -90,7 +90,7 @@ namespace TP_DDS.VinculadorEgresoIngreso
             }
         }
 
-        private void OrdenFecha(List<Egreso> egresosSinVincular, List<Ingreso> ingresosDisponibles)
+        private static void OrdenFecha(Entidad entidad)
         {
             List<Egreso> egresosSinVincular = entidad.GetComprasSinIngresoAsignado().Select(compra => compra.egreso).ToList();
             List<Ingreso> ingresosDisponibles = entidad.GetIngresosDisponibles();
@@ -112,7 +112,7 @@ namespace TP_DDS.VinculadorEgresoIngreso
             }
         }
 
-        private void OrdenMix(Entidad entidad, List<string> criterios)
+        private static void OrdenMix(Entidad entidad, List<string> criterios)
         {
             int cantCriterios = criterios.Count();
             for (int i = 1; i < cantCriterios; i++)

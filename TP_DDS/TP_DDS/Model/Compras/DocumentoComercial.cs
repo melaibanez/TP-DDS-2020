@@ -8,17 +8,15 @@ using System.Threading.Tasks;
 
 namespace TP_DDS.Model.Compras
 {
-    [Table("documentocomercial")]
     public class DocumentoComercial
     {
         [Key]
-        [Column("idDocComercial")]
         public int idDocComercial { get; set; }
 
-        [Column("nroIdentificador")]
+        [StringLength(50)]
         public string nroIdentificacion { get; set; }
 
-        [Column("tipo-enlace")]
+        [StringLength(50)]
         public string tipo_enlace { get; set; }
 
         public DocumentoComercial() { }

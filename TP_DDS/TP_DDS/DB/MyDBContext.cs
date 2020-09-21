@@ -14,14 +14,6 @@ namespace TP_DDS.DB
     {
 
         public DbSet<Categoria> categorias { get; set; }
-        public DbSet<Post> posts { get; set; }
-        public DbSet<Post> posts { get; set; }
-        public DbSet<Post> posts { get; set; }
-        public DbSet<Post> posts { get; set; }
-        public DbSet<Post> posts { get; set; }
-        public DbSet<Post> posts { get; set; }
-        public DbSet<Post> posts { get; set; }
-        public DbSet<Post> posts { get; set; }
 
         // El string "dbConn" es el nombre del connection string definido en App.config
         public MyDBContext() : base("dbConn")
@@ -36,10 +28,7 @@ namespace TP_DDS.DB
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             // configures one-to-many relationship
-            modelBuilder.Entity<Post>()
-                .HasRequired<Usuario>(s => s.creador)
-                .WithMany(g => g.posts)
-                .HasForeignKey<int>(s => s.creador_id);
+           
         }
     }
 }
