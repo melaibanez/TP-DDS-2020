@@ -10,6 +10,7 @@ using TP_DDS.Scheduler.Jobs;
 
 namespace TP_DDS.Scheduler
 {
+
     public class MyScheduler
     {
         private static MyScheduler instance = new MyScheduler();

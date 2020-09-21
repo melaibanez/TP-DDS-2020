@@ -9,6 +9,7 @@ using TP_DDS.Model.Compras;
 
 namespace TP_DDS.Model.Ingresos
 {
+    [Table("ingreso")]
     public class Ingreso
     {
         [Key]

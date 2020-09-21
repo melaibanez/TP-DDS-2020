@@ -10,6 +10,7 @@ using Newtonsoft.Json.Linq;
 
 namespace TP_DDS.Validadores
 {
+
     class ValidadorDireccionPostal
     {
 
@@ -55,7 +56,7 @@ namespace TP_DDS.Validadores
             var response = client.Get(request).Content;
             dynamic states = JArray.Parse(response);
 
-
+            return "hol";
 
         }
     }

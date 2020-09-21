@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace TP_DDS.Model.Otros
 {
+    [Table("Notificacion")]
     public class Notificacion
     {
 

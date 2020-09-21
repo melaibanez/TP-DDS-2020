@@ -10,6 +10,7 @@ using TP_DDS.Model.Otros;
 
 namespace TP_DDS.Model.Compras
 {
+    [Table("compra")]
     public class Compra
     {
         [Key]
