@@ -86,7 +86,9 @@
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.ComponentModel.DataAnnotations.dll</HintPath>
+    </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
@@ -125,12 +127,14 @@
   <ItemGroup>
     <Compile Include="DB\MyDBContext.cs" />
     <Compile Include="Global.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Compras\Categoria.cs" />
     <Compile Include="Model\Compras\Compra.cs" />
     <Compile Include="Model\Compras\Criterio.cs" />
     <Compile Include="Model\Compras\DocumentoComercial.cs" />
     <Compile Include="Model\Compras\Egreso.cs" />
-    <Compile Include="Model\Compras\Item.cs" />
+    <Compile Include="Model\Compras\ItemEgreso.cs" />
+    <Compile Include="Model\Compras\ItemPresupuesto.cs" />
     <Compile Include="Model\Compras\MedioDePago.cs" />
     <Compile Include="Model\Compras\PrestadorDeServicios.cs" />
     <Compile Include="Model\Compras\Presupuesto.cs" />

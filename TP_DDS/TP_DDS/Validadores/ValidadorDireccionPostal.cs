@@ -10,6 +10,7 @@ using Newtonsoft.Json.Linq;
 
 namespace TP_DDS.Validadores
 {
+
     class ValidadorDireccionPostal
     {
 
@@ -74,7 +75,6 @@ namespace TP_DDS.Validadores
         public static bool validarCiudad(DireccionPostal dirPos, string id_S)
         {
             var client = new RestClient("https://api.mercadolibre.com/");
-
             var request = new RestRequest("classified_locations/countries/states/" + id_S);
             request.RequestFormat = DataFormat.Json;
             var response = client.Get(request).Content;

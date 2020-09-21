@@ -82,21 +82,21 @@ namespace TP_DDS.Validadores
             switch (categoria)
             {
                 case 0:
-                    if (emp.GetType().Name == "Micro")
-                        return emp;
-                    return new Micro(emp.actividad, emp.sector, emp.promedioVentas, emp.cantPersonal);
+                    if (emp.tipoEmpresa.GetType().Name != "Micro")
+                        emp.tipoEmpresa= new Micro();
+                    return emp;
                 case 1:
-                    if (emp.GetType().Name == "Pequenia")
-                        return emp;
-                    return new Pequenia(emp.actividad, emp.sector, emp.promedioVentas, emp.cantPersonal);
+                    if (emp.tipoEmpresa.GetType().Name != "Pequenia")
+                        emp.tipoEmpresa = new Pequenia();
+                    return emp;
                 case 2:
-                    if (emp.GetType().Name == "MedianaTramo1")
-                        return emp;
-                    return new MedianaTramo1(emp.actividad, emp.sector, emp.promedioVentas, emp.cantPersonal);
+                    if (emp.tipoEmpresa.GetType().Name != "MedianaTramo1")
+                        emp.tipoEmpresa = new MedianaTramo1();
+                    return emp;
                 case 3:
-                    if (emp.GetType().Name == "MedianaTramo2")
-                        return emp;
-                    return new MedianaTramo2(emp.actividad, emp.sector, emp.promedioVentas, emp.cantPersonal);
+                    if (emp.tipoEmpresa.GetType().Name != "MedianaTramo2")
+                        emp.tipoEmpresa = new MedianaTramo2();
+                    return emp;
                 default:
                     Console.WriteLine("Hay un error");
                     return emp;

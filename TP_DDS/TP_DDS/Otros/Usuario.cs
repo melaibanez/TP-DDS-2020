@@ -5,26 +5,32 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TP_DDS.Model.Compras;
 
 namespace TP_DDS.Model.Otros
 {
+    [Table("Usuario")]
     public class Usuario
     {
         [Key]
-        [Column("nombreUsuario")]
-        private string usuario;
+        public int idUsuario { get; set; }
 
-        [Column("tipo")]
-        private string tipo;
+        [StringLength(50)]
+        private string nombreUsuario { get; set; }
 
-        [Column("contrasenia")]
-        private string contrasenia;
+        [StringLength(50)]
+        private string tipo { get; set; }
 
-        private List<Notificacion> bandejaMensajes;
+        [StringLength(50)]
+        private string contrasenia { get; set; }
 
-        public Usuario(string usuario, string tipo, string contrasenia)
+        public List<Compra> comprasRevisadas { get; set; }
+
+        private List<Notificacion> bandejaMensajes { get; set; }
+
+        public Usuario(string numbreUsuario, string tipo, string contrasenia)
         {
-            this.usuario = usuario;
+            this.nombreUsuario = nombreUsuario;
             this.tipo = tipo;
             this.contrasenia = contrasenia;
             this.bandejaMensajes = new List<Notificacion>();
@@ -33,11 +39,6 @@ namespace TP_DDS.Model.Otros
         public void recibirMensaje(Notificacion noti)
         {
             this.bandejaMensajes.Add(noti);
-        }
-
-        public List<Notificacion> getBandejaMensajes()
-        {
-            return bandejaMensajes;
         }
 
     }

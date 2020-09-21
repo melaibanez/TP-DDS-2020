@@ -12,7 +12,7 @@ namespace TP_DDS.Validadores
     {
         public static async Task validar(Compra compra)
         {
-            compra.fueVerificada = true;
+            compra.compraValidada = true;
             if (compra.cantMinimaPresupuestos > 0)
             {
 

@@ -14,31 +14,29 @@ namespace TP_DDS.Model.Compras
     public class Egreso
     {
         [Key]
-        [Column("idegreso")]
         public int idEgreso { get; set; }
 
-        [Column("fechaDeOperacion")]
         public DateTime fechaEgreso { get; set; }
 
-        [Column("idMedioDePago")]
+        [ForeignKey("medioDePago")]
         public int idMedioDePago { get; set; }
         public MedioDePago medioDePago { get; set; }
 
-        [Column("monto")]
         public float montoTotal { get; set; }
 
-        [Column("idPrestadorDeServicios")]
+        [ForeignKey("prestadorDeServicios")]
         public int idPrestadorDeServicios { get; set; }
         public PrestadorDeServicios prestadorDeServicios { get; set; }
 
-        [Column("idIngresoAsociado")]
+        [ForeignKey("ingresoAsociado")]
+        public int idIngresoAsociado { get; set; }
         public Ingreso ingresoAsociado { get; set; }
 
-        public List<Item> detalle { get; set; }
+        public List<ItemEgreso> detalle { get; set; }
         public List<DocumentoComercial> docsComerciales { get; set; }
 
         public Egreso() { }
-        public Egreso(List<Item> detalle, List<DocumentoComercial> docsComerciales, Entidad entidad, DateTime fechaEgreso, MedioDePago medioDePago, PrestadorDeServicios prestadorDeServicios, Ingreso ingresoAsociado)
+        public Egreso(List<ItemEgreso> detalle, List<DocumentoComercial> docsComerciales, Entidad entidad, DateTime fechaEgreso, MedioDePago medioDePago, PrestadorDeServicios prestadorDeServicios, Ingreso ingresoAsociado)
         {
             this.detalle = detalle;
             this.docsComerciales = docsComerciales;

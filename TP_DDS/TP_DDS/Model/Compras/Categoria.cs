@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace TP_DDS.Model.Compras
 {
+    [Table("categoria")]
     public class Categoria
     {
         [Key]

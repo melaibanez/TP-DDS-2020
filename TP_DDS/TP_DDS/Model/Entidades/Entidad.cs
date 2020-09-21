@@ -35,7 +35,7 @@ namespace TP_DDS.Model.Entidades
 
         public List<Ingreso> GetIngresosDisponibles()
         {
-            return ingresos.FindAll(ingreso => !ingreso.EgresosTotalizanMonto());
+            return ingresos.FindAll(ingreso => !ingreso.EgresosNoTotalizanMonto());
         }
     }
 }

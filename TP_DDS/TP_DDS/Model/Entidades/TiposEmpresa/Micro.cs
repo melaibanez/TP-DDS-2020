@@ -8,6 +8,6 @@ namespace TP_DDS.Model.Entidades.TiposEmpresa
 {
     public class Micro : TipoEmpresa
     {
-        public Micro(string actividad, string sector, float promVentas, int cantPersonal) : base(actividad, sector, promVentas, cantPersonal) { }
+        public Micro() { }
     }
 }

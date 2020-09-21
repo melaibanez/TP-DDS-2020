@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace TP_DDS.Model.Compras
 {
+    [Table("documento_comercial")]
     public class DocumentoComercial
     {
         [Key]
@@ -18,6 +19,10 @@ namespace TP_DDS.Model.Compras
 
         [StringLength(50)]
         public string tipo_enlace { get; set; }
+
+        [ForeignKey("egreso")]
+        public int idEgreso { get; set; }
+        public Egreso egreso { get; set; }
 
         public DocumentoComercial() { }
         public DocumentoComercial(string nroIdentificacion, string tipo_enlace)

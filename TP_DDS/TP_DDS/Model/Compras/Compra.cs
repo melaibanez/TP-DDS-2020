@@ -10,6 +10,7 @@ using TP_DDS.Model.Otros;
 
 namespace TP_DDS.Model.Compras
 {
+    [Table("compra")]
     public class Compra
     {
         [Key]
@@ -20,9 +21,9 @@ namespace TP_DDS.Model.Compras
         [NotMapped]
         private float criterio { get; set; }//a definir
 
-        [ForeignKey("entidad")]
+        /*[ForeignKey("entidad")]
         public string idEntidad { get; set; }
-        public Entidad entidad { get; set; }
+        public Entidad entidad { get; set; }*/
 
         [ForeignKey("egreso")]
         public int idEgreso { get; set; }

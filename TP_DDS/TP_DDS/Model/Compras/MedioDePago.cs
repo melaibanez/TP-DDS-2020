@@ -9,17 +9,16 @@ using TP_DDS.Model.Otros;
 
 namespace TP_DDS.Model.Compras
 {
-    [Table("mediodepago")]
+    [Table("medio_de_pago")]
     public class MedioDePago
     {
         [Key]
-        [Column("idMedioDePago")]
         public int idMedioPago { get; set; }
 
-        [Column("numInstrumento")]
+        [StringLength(50)]
         public string numInstrumento { get; set; }
 
-        [Column("instrumento")]
+        [StringLength(50)]
         public string instrumento { get; set; }
 
         public MedioDePago() { }
