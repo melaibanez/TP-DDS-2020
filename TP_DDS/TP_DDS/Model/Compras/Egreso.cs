@@ -54,7 +54,7 @@ namespace TP_DDS.Model.Compras
         }
 
        public bool tieneIngresoAsociado() {
-            return this.ingresoAsociado != null;
+            return ingresoAsociado != null;
         }
     }
 

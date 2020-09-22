@@ -14,7 +14,7 @@ namespace TP_DDS.Model.Entidades
     {
         
         [StringLength(50)]
-        public string codInscripDefinitiva { get; set; }
+        public string condInscripDefinitiva { get; set; }
 
         [StringLength(20)]
         public string CUIT { get; set; }

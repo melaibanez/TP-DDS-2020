@@ -28,16 +28,28 @@ namespace TP_DDS.Model.Entidades
         {
             this.nombreFicticio = nombreFicticio;
             this.comprasRealizadas = new List<Compra>();
+            this.ingresos = new List<Ingreso>();
         }
 
         public List<Compra> GetComprasSinIngresoAsignado()
         {
-            return comprasRealizadas.FindAll(compra => compra.egreso.tieneIngresoAsociado() != true);
+            return comprasRealizadas.FindAll(compra => !compra.egreso.tieneIngresoAsociado());
         }
 
         public List<Ingreso> GetIngresosDisponibles()
         {
-            return ingresos.FindAll(ingreso => !ingreso.EgresosNoTotalizanMonto());
+            return ingresos.FindAll(ingreso => ingreso.EgresosNoTotalizanMonto());
+        }
+
+        public void AgregarCompra(Compra compra)
+        {
+            comprasRealizadas.Add(compra);
+        }
+
+        public void AgregarIngreso(Ingreso ingreso)
+        {
+            ingresos.Add(ingreso);
+
         }
     }
 }
