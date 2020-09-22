@@ -1,6 +1,8 @@
 ﻿using Quartz;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Text;
+using System.IdentityModel.Protocols.WSTrust;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,71 +22,75 @@ namespace TP_DDS
     {
         static void Main(string[] args)
         {
+            
+            pruebaDB();
 
-           // using (MyDBContext context = new MyDBContext())
-            //{
+            /*DireccionPostal dirPos = new DireccionPostal();
+            ValidadorDireccionPostal.validarPais(dirPos);
 
-                DireccionPostal dirPos = new DireccionPostal();
-                ValidadorDireccionPostal.validarPais(dirPos);
+            MyScheduler sched = MyScheduler.getInstance();
 
-                EntidadJuridica ent = new EntidadJuridica("Entidad", "asd", "CUIT", null, new List<EntidadBase>(), "asd", "asd", "Comercio", 1502750800, 100);
-                //context.Entidades.Add(ent);
+            sched.run();
 
-                Usuario eze = new Usuario("Eze", "Admin", "contraseña");
-
-                //context.Usuarios.Add(eze);
-
-
-                PrestadorDeServicios prest1 = new PrestadorDeServicios("direccion1", "razonSocial1", "DNI", "4135123");
-                /* List<ItemPresupuesto> listaDeItems1 = new List<ItemPresupuesto> { new ItemPresupuesto(1, "silla", 50, null), new ItemPresupuesto(1, "mesa", 100, null), new ItemPresupuesto(1, "lampara", 70, null) };
-                 Presupuesto pres1 = new Presupuesto("1234", "Presupuesto", listaDeItems1, prest1);
-                 context.DocumentosComerciales.Add(pres1);
-                 context.SaveChanges();
+            System.Threading.Thread.Sleep(2000);// duermo el hilo para que le lleguen los mensajes y mostrarlos por pantalla
+            foreach (Notificacion mensaje in eze.bandejaMensajes)
+            {
+                Console.WriteLine(mensaje.ToString());
+            }
 
 
-                 PrestadorDeServicios prest2 = new PrestadorDeServicios("medrano 918", "pepe", "DNI", "21065813");
-                 List<ItemPresupuesto> listaDeItems2 = new List<ItemPresupuesto> { new ItemPresupuesto(1, "silla", 90, null), new ItemPresupuesto(1, "mesa", 60, null), new ItemPresupuesto(1, "lampara", 4100, null) };
-                 Presupuesto pres2 = new Presupuesto("2365", "Presupuesto", listaDeItems2, prest2);
-                 context.DocumentosComerciales.Add(pres2);
-                 PrestadorDeServicios prest3 = new PrestadorDeServicios("Direccion3", "razonSocial2", "DNI", "41254632");
-                 List<ItemPresupuesto> listaDeItems3 = new List<ItemPresupuesto> { new ItemPresupuesto(1, "silla", 100, null), new ItemPresupuesto(1, "mesa", 85, null), new ItemPresupuesto(1, "lampara", 750, null) };
-                 Presupuesto pres3 = new Presupuesto("4567", "Presupuesto", listaDeItems3, prest3);
-                 context.DocumentosComerciales.Add(pres3);
+            sched.stop();*/
+
+            Console.ReadLine(); //para que no se salga la consola apenas ejecuta
+            
+
+        }
+
+        private static void pruebaDB()
+        {
+            using (MyDBContext context = new MyDBContext())
+            {
+                DireccionPostal dirPos = new DireccionPostal("Santa Rosa", "1622", "-", "Vicente López", "Buenos Aires", "Argentina");
+                Console.WriteLine(ValidadorDireccionPostal.validarPais(dirPos));
+
+                EntidadJuridica ent = new EntidadJuridica("Pepito y Asociados", null , "2201783276", dirPos, new List<EntidadBase>() , "Lo de Pepito", "asdf", "Comercio", 1502750800, 100);
+                context.Entidades.Add(ent);
+                Usuario eze = new Usuario("eze", "Admin", "utndds123", ent);
+                context.Usuarios.Add(eze);
+
+                MedioDePago mdp1 = new MedioDePago("Visa debito", "41764516725513");
+                PrestadorDeServicios prest1 = new PrestadorDeServicios("proveedor 1", new DireccionPostal("calle falsa", "123", null, "Mar del Plata", "Buenos Aires", "Argentina"), "DNI", "4135123");
+                List<ItemPresupuesto> listaDeItems1 = new List<ItemPresupuesto> { new ItemPresupuesto(1, "silla", 50, null), new ItemPresupuesto(1, "mesa", 100, null), new ItemPresupuesto(1, "lampara", 70, null) };
+                Presupuesto pres1 = new Presupuesto("102734", "Presupuesto", listaDeItems1, prest1, mdp1);
+                context.DocumentosComerciales.Add(pres1);
+
+                PrestadorDeServicios prest2 = new PrestadorDeServicios("pepe", new DireccionPostal(), "DNI", "21065813");
+                List<ItemPresupuesto> listaDeItems2 = new List<ItemPresupuesto> { new ItemPresupuesto(1, "silla", 90, null), new ItemPresupuesto(1, "mesa", 60, null), new ItemPresupuesto(1, "lampara", 4100, null) };
+                Presupuesto pres2 = new Presupuesto("234165", "Presupuesto", listaDeItems2, prest2, new MedioDePago("Visa debito", "4513456134"));
+                context.DocumentosComerciales.Add(pres2);
+
+                PrestadorDeServicios prest3 = new PrestadorDeServicios("razonSocial2", new DireccionPostal(), "DNI", "41254632");
+                List<ItemPresupuesto> listaDeItems3 = new List<ItemPresupuesto> { new ItemPresupuesto(1, "silla", 100, null), new ItemPresupuesto(1, "mesa", 85, null), new ItemPresupuesto(1, "lampara", 750, null) };
+                Presupuesto pres3 = new Presupuesto("421567", "Presupuesto", listaDeItems3, prest3, new MedioDePago("Ticket", "526674516725513"));
+                context.DocumentosComerciales.Add(pres3);
 
 
-                 List<ItemEgreso> listaDeItems4 = new List<ItemEgreso> { new ItemEgreso(1, "silla", 50, null), new ItemEgreso(1, "mesa", 100, null), new ItemEgreso(1, "lampara", 70, null) };
+                List<ItemEgreso> listaDeItems4 = new List<ItemEgreso> { new ItemEgreso(1, "silla", 50, null), new ItemEgreso(1, "mesa", 100, null), new ItemEgreso(1, "lampara", 70, null) };
+                Egreso egre = new Egreso(listaDeItems4, new List<DocumentoComercial> { pres1 }, ent, DateTime.Now, null);
+                Compra comp = new Compra(2, 678, egre, new List<Presupuesto> { pres1, pres2, pres3 }, new List<Usuario> { eze });
+                context.Compras.Add(comp);
 
-                 Egreso egre = new Egreso(listaDeItems4, new List<DocumentoComercial> { pres1 }, ent, DateTime.Now, null, prest1, null);
-                 Compra comp = new Compra(2, 678, egre, new List<Presupuesto> { pres1, pres2, pres3 }, new List<Usuario> { eze });
-
-
-
-                 MyScheduler sched = MyScheduler.getInstance();
-
-                 sched.run();
+                context.SaveChanges();
+                Console.WriteLine("Presione enter para terminar la prueba");
 
 
-
-                 System.Threading.Thread.Sleep(2000);// duermo el hilo para que le lleguen los mensajes y mostrarlos por pantalla
-                 foreach (Notificacion mensaje in eze.bandejaMensajes)
-                 {
-                     Console.WriteLine(mensaje.ToString());
-                 }
-
-                 sched.stop();
-
-
-                 Console.ReadLine(); //para que no se salga la consola apenas ejecuta
-             }
-             */
-
-                List<ItemEgreso> listaDeItems1 = new List<ItemEgreso> { new ItemEgreso(1, "silla", 126312, null) };
+                List<ItemEgreso> listaDeItems11 = new List<ItemEgreso> { new ItemEgreso(1, "silla", 126312, null) };
                 List<ItemPresupuesto> listaDeItems1p = new List<ItemPresupuesto> { new ItemPresupuesto(1, "silla", 126312, null) };
-                List<ItemEgreso> listaDeItems2 = new List<ItemEgreso> { new ItemEgreso(1, "silla", 1263, null) };
+                List<ItemEgreso> listaDeItems22 = new List<ItemEgreso> { new ItemEgreso(1, "silla", 1263, null) };
                 List<ItemPresupuesto> listaDeItems2p = new List<ItemPresupuesto> { new ItemPresupuesto(1, "silla", 1263, null) };
-                List<ItemEgreso> listaDeItems3 = new List<ItemEgreso> { new ItemEgreso(1, "silla", 4365, null) };
+                List<ItemEgreso> listaDeItems33 = new List<ItemEgreso> { new ItemEgreso(1, "silla", 4365, null) };
                 List<ItemPresupuesto> listaDeItems3p = new List<ItemPresupuesto> { new ItemPresupuesto(1, "silla", 4365, null) };
-                List<ItemEgreso> listaDeItems4 = new List<ItemEgreso> { new ItemEgreso(1, "silla", 126, null) };
+                List<ItemEgreso> listaDeItems44 = new List<ItemEgreso> { new ItemEgreso(1, "silla", 126, null) };
                 List<ItemPresupuesto> listaDeItems4p = new List<ItemPresupuesto> { new ItemPresupuesto(1, "silla", 126, null) };
                 List<ItemEgreso> listaDeItems5 = new List<ItemEgreso> { new ItemEgreso(1, "silla", 1248, null) };
                 List<ItemPresupuesto> listaDeItems5p = new List<ItemPresupuesto> { new ItemPresupuesto(1, "silla", 1248, null) };
@@ -99,36 +105,36 @@ namespace TP_DDS
                 List<ItemEgreso> listaDeItems10 = new List<ItemEgreso> { new ItemEgreso(1, "silla", 48, null) };
                 List<ItemPresupuesto> listaDeItems10p = new List<ItemPresupuesto> { new ItemPresupuesto(1, "silla", 48, null) };
 
-                Presupuesto pres1 = new Presupuesto("1234", "Presupuesto", listaDeItems1p, prest1);
-                Presupuesto pres2 = new Presupuesto("1234", "Presupuesto", listaDeItems2p, prest1);
-                Presupuesto pres3 = new Presupuesto("1234", "Presupuesto", listaDeItems3p, prest1);
-                Presupuesto pres4 = new Presupuesto("1234", "Presupuesto", listaDeItems4p, prest1);
-                Presupuesto pres5 = new Presupuesto("1234", "Presupuesto", listaDeItems5p, prest1);
-                Presupuesto pres6 = new Presupuesto("1234", "Presupuesto", listaDeItems6p, prest1);
-                Presupuesto pres7 = new Presupuesto("1234", "Presupuesto", listaDeItems7p, prest1);
-                Presupuesto pres8 = new Presupuesto("1234", "Presupuesto", listaDeItems8p, prest1);
-                Presupuesto pres9 = new Presupuesto("1234", "Presupuesto", listaDeItems9p, prest1);
-                Presupuesto pres10 = new Presupuesto("1234", "Presupuesto", listaDeItems10p, prest1);
+                Presupuesto pres11 = new Presupuesto("1234", "Presupuesto", listaDeItems1p, prest1,mdp1);
+                Presupuesto pres22 = new Presupuesto("1234", "Presupuesto", listaDeItems2p, prest1, mdp1);
+                Presupuesto pres33 = new Presupuesto("1234", "Presupuesto", listaDeItems3p, prest1, mdp1);
+                Presupuesto pres4 = new Presupuesto("1234", "Presupuesto", listaDeItems4p, prest1, mdp1);
+                Presupuesto pres5 = new Presupuesto("1234", "Presupuesto", listaDeItems5p, prest1, mdp1);
+                Presupuesto pres6 = new Presupuesto("1234", "Presupuesto", listaDeItems6p, prest1, mdp1);
+                Presupuesto pres7 = new Presupuesto("1234", "Presupuesto", listaDeItems7p, prest1, mdp1);
+                Presupuesto pres8 = new Presupuesto("1234", "Presupuesto", listaDeItems8p, prest1, mdp1);
+                Presupuesto pres9 = new Presupuesto("1234", "Presupuesto", listaDeItems9p, prest1, mdp1);
+                Presupuesto pres10 = new Presupuesto("1234", "Presupuesto", listaDeItems10p, prest1, mdp1);
 
-                Egreso egre1 = new Egreso(listaDeItems1, new List<DocumentoComercial> { pres1 }, ent, DateTime.Now, null, prest1, null);
+                Egreso egre1 = new Egreso(listaDeItems11, new List<DocumentoComercial> { pres1 }, ent, DateTime.Now, null);
                 Compra comp1 = new Compra(1, 678, egre1, new List<Presupuesto> { pres1 }, new List<Usuario> { eze });
-                Egreso egre2 = new Egreso(listaDeItems2, new List<DocumentoComercial> { pres2 }, ent, DateTime.Now, null, prest1, null);
+                Egreso egre2 = new Egreso(listaDeItems22, new List<DocumentoComercial> { pres2 }, ent, DateTime.Now, null);
                 Compra comp2 = new Compra(1, 678, egre2, new List<Presupuesto> { pres2 }, new List<Usuario> { eze });
-                Egreso egre3 = new Egreso(listaDeItems3, new List<DocumentoComercial> { pres3 }, ent, DateTime.Now, null, prest1, null);
+                Egreso egre3 = new Egreso(listaDeItems33, new List<DocumentoComercial> { pres3 }, ent, DateTime.Now, null);
                 Compra comp3 = new Compra(1, 678, egre3, new List<Presupuesto> { pres3 }, new List<Usuario> { eze });
-                Egreso egre4 = new Egreso(listaDeItems4, new List<DocumentoComercial> { pres4 }, ent, DateTime.Now, null, prest1, null);
+                Egreso egre4 = new Egreso(listaDeItems44, new List<DocumentoComercial> { pres4 }, ent, DateTime.Now,  null);
                 Compra comp4 = new Compra(1, 678, egre4, new List<Presupuesto> { pres4 }, new List<Usuario> { eze });
-                Egreso egre5 = new Egreso(listaDeItems5, new List<DocumentoComercial> { pres5 }, ent, DateTime.Now, null, prest1, null);
+                Egreso egre5 = new Egreso(listaDeItems5, new List<DocumentoComercial> { pres5 }, ent, DateTime.Now,  null);
                 Compra comp5 = new Compra(1, 678, egre5, new List<Presupuesto> { pres5 }, new List<Usuario> { eze });
-                Egreso egre6 = new Egreso(listaDeItems6, new List<DocumentoComercial> { pres6 }, ent, DateTime.Now, null, prest1, null);
+                Egreso egre6 = new Egreso(listaDeItems6, new List<DocumentoComercial> { pres6 }, ent, DateTime.Now,   null);
                 Compra comp6 = new Compra(1, 678, egre6, new List<Presupuesto> { pres6 }, new List<Usuario> { eze });
-                Egreso egre7 = new Egreso(listaDeItems7, new List<DocumentoComercial> { pres7 }, ent, DateTime.Now, null, prest1, null);
+                Egreso egre7 = new Egreso(listaDeItems7, new List<DocumentoComercial> { pres7 }, ent, DateTime.Now,   null);
                 Compra comp7 = new Compra(1, 678, egre7, new List<Presupuesto> { pres7 }, new List<Usuario> { eze });
-                Egreso egre8 = new Egreso(listaDeItems8, new List<DocumentoComercial> { pres8 }, ent, DateTime.Now, null, prest1, null);
+                Egreso egre8 = new Egreso(listaDeItems8, new List<DocumentoComercial> { pres8 }, ent, DateTime.Now,  null);
                 Compra comp8 = new Compra(1, 678, egre8, new List<Presupuesto> { pres8 }, new List<Usuario> { eze });
-                Egreso egre9 = new Egreso(listaDeItems9, new List<DocumentoComercial> { pres9 }, ent, DateTime.Now, null, prest1, null);
+                Egreso egre9 = new Egreso(listaDeItems9, new List<DocumentoComercial> { pres9 }, ent, DateTime.Now,  null);
                 Compra comp9 = new Compra(1, 678, egre9, new List<Presupuesto> { pres9 }, new List<Usuario> { eze });
-                Egreso egre10 = new Egreso(listaDeItems10, new List<DocumentoComercial> { pres10 }, ent, DateTime.Now, null, prest1, null);
+                Egreso egre10 = new Egreso(listaDeItems10, new List<DocumentoComercial> { pres10 }, ent, DateTime.Now, null);
                 Compra comp10 = new Compra(1, 678, egre10, new List<Presupuesto> { pres10 }, new List<Usuario> { eze });
 
                 Ingreso ingre1 = new Ingreso("prestamo", 7842, null);
@@ -173,8 +179,10 @@ namespace TP_DDS
                 Console.WriteLine("Termino el programa");
                 Console.ReadLine();
 
-           // }
                 
             }
+               
+          
+        }
     }
 }

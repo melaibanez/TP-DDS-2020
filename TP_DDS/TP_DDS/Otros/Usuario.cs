@@ -34,12 +34,13 @@ namespace TP_DDS.Model.Otros
         public int idEntidad { get; set; }
         public Entidad entidad { get; set; }
 
-        public Usuario(string numbreUsuario, string tipo, string contrasenia)
+        public Usuario(string numbreUsuario, string tipo, string contrasenia, Entidad entidad)
         {
             this.nombreUsuario = nombreUsuario;
             this.tipo = tipo;
             this.contrasenia = contrasenia;
             this.bandejaMensajes = new List<Notificacion>();
+            this.entidad = entidad;
         }
 
         public void recibirMensaje(Notificacion noti)
