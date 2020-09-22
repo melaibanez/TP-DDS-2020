@@ -12,9 +12,7 @@ namespace TP_DDS.Model.Entidades
     [Table("entidades_base")]
     public class EntidadBase : Entidad
     {
-        [Key]
-        public int idEntidadBase { get; set; }
-
+        
         [StringLength(50)]
         public string descripcion { get; set; }
 
@@ -31,7 +29,6 @@ namespace TP_DDS.Model.Entidades
         {
             this.descripcion = descripcion;
             this.entidadJuridica = entidadJuridica;
-            this.nombreFicticio = nombreFicticio;
             this.tipoOrganizacion = new OSC(actividad);
         }
         public EntidadBase(string nombreFicticio, string descripcion, EntidadJuridica entidadJuridica, string actividad, string sector, float promVentas, int cantPersonal) : base(nombreFicticio)

@@ -17,7 +17,7 @@ namespace TP_DDS.Model.Entidades
 
         [StringLength(50)]
         public string calle { get; set; }
-        [StringLength(5)]
+        [StringLength(6)]
         public string numero { get; set; }
         [StringLength(20)]
         public string piso_depto { get; set; }

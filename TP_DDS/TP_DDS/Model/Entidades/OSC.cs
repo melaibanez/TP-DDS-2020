@@ -9,9 +9,7 @@ using System.Threading.Tasks;
 namespace TP_DDS.Model.Entidades
 {
     public class OSC : TipoOrganizacion
-    {
-        public int cantPersonal { get; set; }
-       
+    {       
         public OSC() { }
 
         public OSC(string actividad) : base(actividad) { }

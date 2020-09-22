@@ -12,10 +12,6 @@ namespace TP_DDS.Model.Compras
   
     public class Presupuesto : DocumentoComercial
     {
-        [ForeignKey("entidad")]
-        public int idEntidad { get; set; }
-        public Entidad entidad { get; set; }
-
         public DateTime fechaEgreso { get; set; }
 
         [ForeignKey("medioDePago")]

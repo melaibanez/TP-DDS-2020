@@ -9,14 +9,12 @@ using TP_DDS.Validadores;
 
 namespace TP_DDS.Model.Entidades
 {
-    [Table("entidades_juridica")]
+    [Table("entidades_juridicas")]
     public class EntidadJuridica : Entidad
     {
-        [Key]
-        public int idEntidadJuridica { get; set; } //esto no esta en el DER
-
+        
         [StringLength(50)]
-        public string condInscripDefinitiva { get; set; }
+        public string codInscripDefinitiva { get; set; }
 
         [StringLength(20)]
         public string CUIT { get; set; }

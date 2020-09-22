@@ -40,8 +40,8 @@ namespace TP_DDS.DB
         public MyDBContext() : base("dbConn")
         {
 
-            // Deshabilita la inicializacion mágica del ORM
-            Database.SetInitializer<MyDBContext>(new DropCreateDatabaseAlways<MyDBContext>());
+            // Inicializacion seteada para que cada vez que se inicia borre la DB y la vuelva a crear
+            Database.SetInitializer(new DropCreateDatabaseAlways<MyDBContext>());
 
         }
 

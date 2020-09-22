@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace TP_DDS.Model.Entidades
 {
-    [Table("tipos_organizaciones")]
+    [Table("organizaciones")]
     public abstract class TipoOrganizacion
     {
         [Key]
