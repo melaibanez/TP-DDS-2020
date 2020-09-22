@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TP_DDS.Model.Compras;
+using TP_DDS.Model.Entidades;
+
 
 namespace TP_DDS.Model.Otros
 {
@@ -27,6 +29,10 @@ namespace TP_DDS.Model.Otros
         public List<Compra> comprasRevisadas { get; set; }
 
         public List<Notificacion> bandejaMensajes { get; set; }
+
+        [ForeignKey("entidad")]
+        public int idEntidad { get; set; }
+        public Entidad entidad { get; set; }
 
         public Usuario(string numbreUsuario, string tipo, string contrasenia)
         {

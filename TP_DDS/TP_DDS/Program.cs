@@ -56,7 +56,20 @@ namespace TP_DDS
                 Compra comp = new Compra(2, 678, egre, new List<Presupuesto> { pres1, pres2, pres3 }, new List<Usuario> { eze });
 
 
-                JobValidadorPresupuestos.iniciarScheduler(eze, comp);
+                MyScheduler sched = MyScheduler.getInstance();
+
+                sched.run();
+
+                System.Threading.Thread.Sleep(2000);// duermo el hilo para que le lleguen los mensajes y mostrarlos por pantalla
+                foreach (Notificacion mensaje in eze.bandejaMensajes)
+                {
+                    Console.WriteLine(mensaje.ToString());
+                }
+
+                sched.stop();
+
+
+                Console.ReadLine(); //para que no se salga la consola apenas ejecuta
             }
            
 
