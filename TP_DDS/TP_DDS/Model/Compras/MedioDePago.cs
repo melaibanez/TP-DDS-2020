@@ -22,5 +22,11 @@ namespace TP_DDS.Model.Compras
         public string instrumento { get; set; }
 
         public MedioDePago() { }
+
+        public MedioDePago(string instrumento, string numInstrumento)
+        {
+            this.instrumento = instrumento;
+            this.numInstrumento = numInstrumento;
+        }
     }
 }

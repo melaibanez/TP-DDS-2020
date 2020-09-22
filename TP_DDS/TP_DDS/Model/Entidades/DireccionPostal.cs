@@ -30,6 +30,16 @@ namespace TP_DDS.Model.Entidades
 
         public DireccionPostal() { }
 
+        public DireccionPostal(string calle, string numero, string piso_depto, string ciudad, string provincia, string pais)
+        {
+            this.calle = calle;
+            this.numero = numero;
+            this.piso_depto = piso_depto;
+            this.ciudad = ciudad;
+            this.provincia = provincia;
+            this.pais = pais;
+        }
+
 
     }
 }

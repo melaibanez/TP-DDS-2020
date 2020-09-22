@@ -12,12 +12,9 @@ namespace TP_DDS.Model.Compras
   
     public class Presupuesto : DocumentoComercial
     {
-        public DateTime fechaEgreso { get; set; }
-
         [ForeignKey("medioDePago")]
         public int idMedioDePago { get; set; }
         public MedioDePago medioDePago { get; set; }
-
 
         [ForeignKey("prestadorDeServicios")]
         public int idPrestadorDeServicios { get; set; }
@@ -33,11 +30,12 @@ namespace TP_DDS.Model.Compras
 
         public Presupuesto() { }
 
-        public Presupuesto(string nroIdentificacion, string tipo_enlace, List<ItemPresupuesto> items, PrestadorDeServicios prestadorDeServicios) : base(nroIdentificacion, tipo_enlace)
+        public Presupuesto(string nroIdentificacion, string tipo_enlace, List<ItemPresupuesto> items, PrestadorDeServicios prestadorDeServicios, MedioDePago medioDePago) : base(nroIdentificacion, tipo_enlace)
         {
             this.items = items;
             this.prestadorDeServicios = prestadorDeServicios;
             this.montoTotal = items.Sum(i => i.valor * i.cant);
+            this.medioDePago = medioDePago;
         }
 
     }

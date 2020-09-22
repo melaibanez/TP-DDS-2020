@@ -22,6 +22,7 @@ namespace TP_DDS.DB
         public DbSet<Compra> Compras { get; set; }
         public DbSet<Criterio> Criterios { get; set; }
         public DbSet<DocumentoComercial> DocumentosComerciales { get; set; }
+        public DbSet<DireccionPostal> DireccionesPostales { get; set; }
         public DbSet<Egreso> Egresos { get; set; }
         public DbSet<ItemEgreso> ItemsEgresos { get; set; }
         public DbSet<ItemPresupuesto> ItemsPresupuestos { get; set; }
@@ -48,7 +49,7 @@ namespace TP_DDS.DB
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-
+            
 
         }
     }

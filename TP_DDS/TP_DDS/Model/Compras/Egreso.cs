@@ -29,21 +29,21 @@ namespace TP_DDS.Model.Compras
         public PrestadorDeServicios prestadorDeServicios { get; set; }
 
         [ForeignKey("ingresoAsociado")]
-        public int idIngresoAsociado { get; set; }
-        public Ingreso ingresoAsociado { get; set; }
+        public int? idIngresoAsociado { get; set; }
+        public virtual Ingreso ingresoAsociado { get; set; }
 
         public List<ItemEgreso> detalle { get; set; }
         public List<DocumentoComercial> docsComerciales { get; set; }
 
         public Egreso() { }
-        public Egreso(List<ItemEgreso> detalle, List<DocumentoComercial> docsComerciales, Entidad entidad, DateTime fechaEgreso, MedioDePago medioDePago, PrestadorDeServicios prestadorDeServicios, Ingreso ingresoAsociado)
+        public Egreso(List<ItemEgreso> detalle, List<DocumentoComercial> docsComerciales, Entidad entidad, DateTime fechaEgreso, Ingreso ingresoAsociado)
         {
             this.detalle = detalle;
             this.docsComerciales = docsComerciales;
             this.fechaEgreso = fechaEgreso;
-            this.medioDePago = medioDePago;
+            this.medioDePago = ((Presupuesto)docsComerciales.Find(d=> d.tipo_enlace == "Presupuesto")).medioDePago;
             this.montoTotal = detalle.Sum(i => i.valor * i.cant);
-            this.prestadorDeServicios = prestadorDeServicios;
+            this.prestadorDeServicios = ((Presupuesto)docsComerciales.Find(d => d.tipo_enlace == "Presupuesto")).prestadorDeServicios;
             this.ingresoAsociado = ingresoAsociado;
         }
 

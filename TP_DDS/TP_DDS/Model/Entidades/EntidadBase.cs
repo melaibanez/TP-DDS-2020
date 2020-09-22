@@ -17,8 +17,8 @@ namespace TP_DDS.Model.Entidades
         public string descripcion { get; set; }
 
         [ForeignKey("entidadJuridica")]
-        public int idEntidadJuridica { get; set; }
-        public EntidadJuridica entidadJuridica { get; set; }
+        public int? idEntidadJuridica { get; set; }
+        public virtual EntidadJuridica entidadJuridica { get; set; }
 
         [ForeignKey("tipoOrganizacion")]
         public int idTipoOrganizacion { get; set; }

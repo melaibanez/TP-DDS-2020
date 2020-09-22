@@ -28,9 +28,9 @@ namespace TP_DDS.Model.Compras
         [StringLength(10)]
         public string tipoDoc { get; set; }
 
-        public PrestadorDeServicios(string direccionPostal, string razonSocial, string tipoDoc, string numDoc)
+        public PrestadorDeServicios(string razonSocial, DireccionPostal direccionPostal, string tipoDoc, string numDoc)
         {
-            //this.direccionPostal = direccionPostal;
+            this.direccionPostal = direccionPostal;
             this.numDoc = numDoc;
             this.razonSocial = razonSocial;
             this.tipoDoc = tipoDoc;
