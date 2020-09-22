@@ -51,14 +51,11 @@ namespace TP_DDS.Scheduler
             scheduler.ScheduleJob(job, trigger);
         }
 
-        public static void jobValidador(MyScheduler sched, Compra compra)
+        public static void jobValidador() //hacerlo en MyScheduler
         {
-            JobDataMap jobData = new JobDataMap();
-            jobData.Add("compra", compra);
-
+            
             IJobDetail jobVal = JobBuilder.Create<JobValidadorPresupuestos>()
                 .WithIdentity("validadorDeCompra", "Validadores")
-                .UsingJobData(jobData)
                 .Build();
 
             ITrigger triggerVal = TriggerBuilder.Create()
@@ -69,9 +66,9 @@ namespace TP_DDS.Scheduler
                      .RepeatForever())
                  .Build();
 
-            sched.agregarTask(jobVal, triggerVal);
-
+            agregarTask(jobVal, triggerVal);
 
         }
+
     }
 }
