@@ -48,7 +48,9 @@ namespace TP_DDS
         {
             using (MyDBContext context = new MyDBContext())
             {
-                DireccionPostal dirPos = new DireccionPostal();
+                DireccionPostal dirPos = new DireccionPostal("Santa Rosa", "1622", "-", "Vicente López", "Buenos Aires", "Argentina");
+                Console.WriteLine(ValidadorDireccionPostal.validarPais(dirPos));
+
                 EntidadJuridica ent = new EntidadJuridica("Pepito y Asociados", null , "2201783276", dirPos, new List<EntidadBase>() , "Lo de Pepito", "asdf", "Comercio", 1502750800, 100);
                 context.Entidades.Add(ent);
 
@@ -78,6 +80,7 @@ namespace TP_DDS
                 context.Compras.Add(comp);
 
                 context.SaveChanges();
+                Console.WriteLine("Presione enter para terminar la prueba");
             }
         }
     }
