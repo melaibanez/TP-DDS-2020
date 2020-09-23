@@ -11,6 +11,7 @@ using TP_DDS.Model.Entidades;
 using TP_DDS.Model.Entidades.TiposEmpresa;
 using TP_DDS.Model.Ingresos;
 using TP_DDS.Model.Otros;
+using TP_DDS.Otros;
 
 namespace TP_DDS.DB
 {
@@ -24,16 +25,16 @@ namespace TP_DDS.DB
         public DbSet<DocumentoComercial> DocumentosComerciales { get; set; }
         public DbSet<DireccionPostal> DireccionesPostales { get; set; }
         public DbSet<Egreso> Egresos { get; set; }
-        public DbSet<ItemEgreso> ItemsEgresos { get; set; }
-        public DbSet<ItemPresupuesto> ItemsPresupuestos { get; set; }
+        public DbSet<Item> ItemsEgresos { get; set; }
         public DbSet<MedioDePago> MediosDePago { get; set; }
         public DbSet<PrestadorDeServicios> PrestadoresDeServicios { get; set; }
         public DbSet<Ingreso> Ingresos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Entidad> Entidades { get; set; }
         public DbSet<TipoOrganizacion> Organizaciones { get; set; }
-        public DbSet<TipoEmpresa> TiposEmpresas { get; set; }
-    
+        public DbSet<Pais> Paises { get; set; }
+        public DbSet<Provincia> Provincias { get; set; }
+        public DbSet<Ciudad> Ciudades { get; set; }
 
 
 
@@ -42,7 +43,7 @@ namespace TP_DDS.DB
         {
 
             // Inicializacion seteada para que cada vez que se inicia borre la DB y la vuelva a crear
-            Database.SetInitializer(new DropCreateDatabaseAlways<MyDBContext>());
+            Database.SetInitializer(new CreateDatabaseIfNotExists<MyDBContext>());
 
         }
 
