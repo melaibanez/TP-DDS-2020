@@ -7,89 +7,54 @@ using System.Text;
 using System.Threading.Tasks;
 using TP_DDS.Model.Entidades;
 using Newtonsoft.Json.Linq;
+using TP_DDS.DB;
+using TP_DDS.Otros;
 
 namespace TP_DDS.Validadores
 {
 
-    class ValidadorDireccionPostal
+    public class ValidadorDireccionPostal
     {
 
         public static bool validarDireccionPostal(DireccionPostal dirPos)
         {
-            string id_C = validarPais(dirPos);
-            if (!id_C.Equals("Pais No Encontrado")){ 
-                string id_S = validarProvincia(dirPos, id_C);
-                if(!id_S.Equals("Provincia No Encontrada"))
+            Pais pais = validarPais(dirPos);
+
+            if (pais != null){
+                Provincia prov = validarProvincia(dirPos);
+                if (prov != null)
                 {
-                   return validarCiudad(dirPos, id_S);
+                    return validarCiudad(dirPos)!=null;
                 }
             }
             return false;
         }
 
-        public static string validarPais(DireccionPostal dirPos)
+        private static Pais validarPais(DireccionPostal dirPos)
         {
-            var client = new RestClient("https://api.mercadolibre.com/");
- 
-            var request = new RestRequest("classified_locations/countries/");
-            request.RequestFormat = DataFormat.Json;
-            var response = client.Get(request).Content;
-            dynamic countries = JArray.Parse(response);
-            string paisComparado = dirPos.pais;
-            int cantidadPaises = countries.Count;
-            for (int i = 0; i < cantidadPaises; i++)
+            using (MyDBContext context = new MyDBContext())
             {
-                //Console.WriteLine(countries[i].name);
-                if (countries[i].name == paisComparado)
-                {
-                    //Console.WriteLine(countries[i].id);
-                    return countries[i].id;
-                }
+                return context.Paises.Where(p => p.nombre == dirPos.pais).FirstOrDefault();
             }
-            return "Pais No Encontrado";
 
         }
 
-        public static string validarProvincia(DireccionPostal dirPos, string id_C)
+        private static Provincia validarProvincia(DireccionPostal dirPos)
         {
-            var client = new RestClient("https://api.mercadolibre.com/");
-
-            var request = new RestRequest("classified_locations/countries/" + id_C);
-            request.RequestFormat = DataFormat.Json;
-            var response = client.Get(request).Content;
-            dynamic states = JArray.Parse(response);
-            string stateComparado = dirPos.provincia;
-            int cantidadProvincias = states.Count;
-            for(int i = 0; i < cantidadProvincias; i++)
+            using (MyDBContext context = new MyDBContext())
             {
-                if (states[i].name == stateComparado)
-                {
-                    return states[i].id;
-                }
+                return context.Provincias.Where(p => p.nombre == dirPos.provincia).FirstOrDefault();
             }
-            return "Provincia No Encontrada";
-
 
         }
 
 
-        public static bool validarCiudad(DireccionPostal dirPos, string id_S)
+        private static Ciudad validarCiudad(DireccionPostal dirPos)
         {
-            var client = new RestClient("https://api.mercadolibre.com/");
-            var request = new RestRequest("classified_locations/countries/states/" + id_S);
-            request.RequestFormat = DataFormat.Json;
-            var response = client.Get(request).Content;
-            dynamic cities = JArray.Parse(response);
-            string citieComparada = dirPos.ciudad;
-            int cantidadCiudades = cities.Count;
-            for (int i = 0; i < cantidadCiudades; i++)
+            using (MyDBContext context = new MyDBContext())
             {
-                if (cities[i].name == citieComparada)
-                {
-                    return true;
-                }
+                return context.Ciudades.Where(c => c.nombre == dirPos.ciudad).FirstOrDefault();
             }
-            return false;
         }
     }
 }

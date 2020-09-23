@@ -37,7 +37,7 @@ namespace TP_DDS.Model.Ingresos
             this.descripcion = descripcion;
             this.monto = montoTotal;
             this.egresosAsociados = new List<Egreso>();
-            egresosAsociados = egresosAsociados;
+            this.egresosAsociados = egresosAsociados;
         }
 
         public List<Egreso> getEgresoAsociado() { return egresosAsociados; }

@@ -126,6 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DB\MyDBContext.cs" />
+    <Compile Include="DB\PersistenciaDireccionPostal.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Compras\Categoria.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Model\Compras\Criterio.cs" />
     <Compile Include="Model\Compras\DocumentoComercial.cs" />
     <Compile Include="Model\Compras\Egreso.cs" />
+    <Compile Include="Model\Compras\Item.cs" />
     <Compile Include="Model\Compras\ItemEgreso.cs" />
     <Compile Include="Model\Compras\ItemPresupuesto.cs" />
     <Compile Include="Model\Compras\MedioDePago.cs" />
@@ -151,7 +153,10 @@
     <Compile Include="Model\Entidades\TiposEmpresa\Pequenia.cs" />
     <Compile Include="Model\Entidades\TiposEmpresa\TipoEmpresa.cs" />
     <Compile Include="Model\Ingresos\Ingreso.cs" />
+    <Compile Include="Otros\Ciudad.cs" />
     <Compile Include="Otros\Notificacion.cs" />
+    <Compile Include="Otros\Pais.cs" />
+    <Compile Include="Otros\Provincia.cs" />
     <Compile Include="Otros\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
