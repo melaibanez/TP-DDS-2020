@@ -34,7 +34,7 @@ namespace TP_DDS.Model.Otros
         public int idEntidad { get; set; }
         public Entidad entidad { get; set; }
 
-        public Usuario(string numbreUsuario, string tipo, string contrasenia, Entidad entidad)
+        public Usuario(string nombreUsuario, string tipo, string contrasenia, Entidad entidad)
         {
             this.nombreUsuario = nombreUsuario;
             this.tipo = tipo;

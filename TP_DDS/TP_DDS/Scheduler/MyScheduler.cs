@@ -46,14 +46,11 @@ namespace TP_DDS.Scheduler
             await scheduler.Shutdown();
         }
 
-        public void agregarTask(IJobDetail job, ITrigger trigger)
-        {
-            scheduler.ScheduleJob(job, trigger);
-        }
 
-        public static void jobValidador() //hacerlo en MyScheduler
+        public static void agregarJobValidador() 
         {
-            
+           
+
             IJobDetail jobVal = JobBuilder.Create<JobValidadorPresupuestos>()
                 .WithIdentity("validadorDeCompra", "Validadores")
                 .Build();
@@ -62,13 +59,19 @@ namespace TP_DDS.Scheduler
                  .WithIdentity("triggerValidador", "Triggers")
                  .StartNow()
                  .WithSimpleSchedule(x => x
-                     .WithIntervalInSeconds(2)
+                     .WithIntervalInSeconds(1)
                      .RepeatForever())
                  .Build();
 
-            agregarTask(jobVal, triggerVal);
+            
+            scheduler.ScheduleJob(jobVal, triggerVal);
 
         }
+
+      
+
+            
+        
 
     }
 }

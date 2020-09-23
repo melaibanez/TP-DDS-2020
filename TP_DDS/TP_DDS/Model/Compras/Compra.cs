@@ -43,6 +43,7 @@ namespace TP_DDS.Model.Compras
             this.presupuestos = presupuestos;
             this.revisores = revisores;
             this.compraValidada = false;
+            Global.comprasNoValidadas.Add(this);
         }
 
 

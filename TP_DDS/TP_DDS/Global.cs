@@ -9,8 +9,9 @@ namespace TP_DDS
 {
     public static class Global
     {
-        public static List<Compra> comprasNoValidadas;
+        public static List<Compra> comprasNoValidadas = new List<Compra>();
 
+        
 
     }
 }

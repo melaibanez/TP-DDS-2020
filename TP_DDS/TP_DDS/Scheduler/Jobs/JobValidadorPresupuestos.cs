@@ -14,12 +14,16 @@ namespace TP_DDS.Scheduler.Jobs
     {
         public async Task Execute(IJobExecutionContext context)
         {
-            Compra compra = (Compra)context.JobDetail.JobDataMap.Get("compra");
-
-            if (!compra.compraValidada)
+            //Compra compra = (Compra)context.JobDetail.JobDataMap.Get("compra");
+            
+            foreach (Compra compra in Global.comprasNoValidadas)
             {
                 await ValidadorPresupuestosEgreso.validar(compra);
+                Global.comprasNoValidadas.Remove(compra);
+                Console.WriteLine("Compra validada");
             }
+
+            
         }
 
        
