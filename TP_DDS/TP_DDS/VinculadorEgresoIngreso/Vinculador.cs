@@ -46,20 +46,18 @@ namespace TP_DDS.VinculadorEgresoIngreso
 
         private static void OrdenValorPrimeroEgreso(Entidad entidad)
         {
-            List<Egreso> egresosSinVincular = entidad.GetComprasSinIngresoAsignado().Select(compra => compra.egreso).ToList();
-            List<Ingreso> ingresosDisponibles = entidad.GetIngresosDisponibles();
+            List<Egreso> egresosSinVincular = entidad.GetComprasSinIngresoAsignado().Select(compra => compra.egreso).OrderBy(egreso => egreso.montoTotal).ToList();
+            List<Ingreso> ingresosDisponibles = entidad.GetIngresosDisponibles().OrderBy(ingreso => ingreso.monto).ToList();
             int cantidadEgresos = egresosSinVincular.Count();
             int cantidadIngresosDisponibles = ingresosDisponibles.Count();
-
-            List<Egreso> egresosSinVincularOrder = egresosSinVincular.OrderByDescending(egreso => egreso.montoTotal).ToList();
 
             for (int i = 0; i < cantidadEgresos; i++)
             {
                 for (int j = 0; j < cantidadIngresosDisponibles; j++)
                 {
-                    if (cumpleCondiciones(egresosSinVincularOrder.ElementAt(i), ingresosDisponibles.ElementAt(j)))
+                    if (cumpleCondiciones(egresosSinVincular.ElementAt(i), ingresosDisponibles.ElementAt(j)))
                     {
-                        asignarEgresoIngreso(egresosSinVincularOrder.ElementAt(i), ingresosDisponibles.ElementAt(j));
+                        asignarEgresoIngreso(egresosSinVincular.ElementAt(i), ingresosDisponibles.ElementAt(j));
                         break; //si ya asigno un egreso a un ingreso pasa al siguiente. Y vuelve a cero J para empezar de nuevo.
                     }
                 }
@@ -68,15 +66,12 @@ namespace TP_DDS.VinculadorEgresoIngreso
 
         private static void OrdenValorPrimeroIngreso(Entidad entidad)
         {
-            List<Egreso> egresosSinVincular = entidad.GetComprasSinIngresoAsignado().Select(compra => compra.egreso).ToList();
-            List<Ingreso> ingresosDisponibles = entidad.GetIngresosDisponibles();
+            List<Egreso> egresosSinVincular = entidad.GetComprasSinIngresoAsignado().Select(compra => compra.egreso).OrderBy(egreso => egreso.montoTotal).ToList();
+            List<Ingreso> ingresosDisponibles = entidad.GetIngresosDisponibles().OrderBy(ingreso => ingreso.monto).ToList();
             int cantidadEgresos = egresosSinVincular.Count();
             int cantidadIngresosDisponibles = ingresosDisponibles.Count();
 
-            //List<Egreso> egresosSinVincularOrder = egresosSinVincular.OrderByDescending(egreso => egreso.montoTotal).ToList();
-
-            List<Ingreso> ingresosOrder = ingresosDisponibles.OrderByDescending(ingreso => ingreso.monto).ToList();
-
+      
             for (int i = 0; i < cantidadIngresosDisponibles; i++)
             {
                 for (int j = 0; j < cantidadEgresos; j++)
@@ -84,6 +79,8 @@ namespace TP_DDS.VinculadorEgresoIngreso
                     if (cumpleCondiciones(egresosSinVincular.ElementAt(j), ingresosDisponibles.ElementAt(i)))
                     {
                         asignarEgresoIngreso(egresosSinVincular.ElementAt(j), ingresosDisponibles.ElementAt(i));
+                        egresosSinVincular = entidad.GetComprasSinIngresoAsignado().Select(compra => compra.egreso).OrderBy(egreso => egreso.montoTotal).ToList();
+                        cantidadEgresos = egresosSinVincular.Count();
                         break;
                     }
                 }
@@ -128,6 +125,7 @@ namespace TP_DDS.VinculadorEgresoIngreso
         {
             egreso.ingresoAsociado = ingreso;
             ingreso.addEgresoAsociado(egreso);
+
         }
 
         /*
@@ -136,7 +134,7 @@ namespace TP_DDS.VinculadorEgresoIngreso
 
         private static bool cumpleCondiciones(Egreso egreso, Ingreso ingreso)
         {
-            return ingreso.EgresosNoTotalizanMonto() && EntraEnPeriodo(egreso, ingreso) && CubreMonto(egreso, ingreso);
+            return ingreso.EgresosNoTotalizanMonto() && /*EntraEnPeriodo(egreso, ingreso) &&*/ CubreMonto(egreso, ingreso);
         }
 
         private static bool EntraEnPeriodo(Egreso egreso, Ingreso ingreso)
