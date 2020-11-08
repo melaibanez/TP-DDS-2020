@@ -125,10 +125,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DB\MyDBContext.cs" />
     <Compile Include="DB\PersistenciaDireccionPostal.cs" />
     <Compile Include="Global.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Compras\Categoria.cs" />
     <Compile Include="Model\Compras\Compra.cs" />
     <Compile Include="Model\Compras\Criterio.cs" />
@@ -153,20 +151,13 @@
     <Compile Include="Model\Entidades\TiposEmpresa\Pequenia.cs" />
     <Compile Include="Model\Entidades\TiposEmpresa\TipoEmpresa.cs" />
     <Compile Include="Model\Ingresos\Ingreso.cs" />
-    <Compile Include="Otros\Ciudad.cs" />
-    <Compile Include="Otros\Notificacion.cs" />
-    <Compile Include="Otros\Pais.cs" />
-    <Compile Include="Otros\Provincia.cs" />
-    <Compile Include="Otros\Usuario.cs" />
+    <Compile Include="Model\Otros\Ciudad.cs" />
+    <Compile Include="Model\Otros\Notificacion.cs" />
+    <Compile Include="Model\Otros\Pais.cs" />
+    <Compile Include="Model\Otros\Provincia.cs" />
+    <Compile Include="Model\Otros\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scheduler\Jobs\JobValidadorPresupuestos.cs" />
-    <Compile Include="Scheduler\MyScheduler.cs" />
-    <Compile Include="Validadores\CategorizadorOrg.cs" />
-    <Compile Include="Validadores\ValidadorContrasenia.cs" />
-    <Compile Include="Validadores\ValidadorDireccionPostal.cs" />
-    <Compile Include="Validadores\ValidadorPresupuestosEgreso.cs" />
-    <Compile Include="VinculadorEgresoIngreso\Vinculador.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
