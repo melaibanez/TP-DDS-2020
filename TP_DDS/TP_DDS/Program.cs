@@ -17,25 +17,26 @@ namespace TP_DDS
     {
         static void Main(string[] args)
         {
-            //PersistenciaDireccionPostal.persistirDatosAPI();
+            /*
+            PersistenciaDireccionPostal.persistirDatosAPI();
 
-            //pruebaDB();
+            pruebaDB();
 
-            //pruebaSched();
+            pruebaSched();
 
             DireccionPostal dirPos = new DireccionPostal("calle falsa", "123", null, "Mar del Plata", "Bs.As. Costa Atlántica", "Argentina");
             Console.WriteLine( ValidadorDireccionPostal.validarDireccionPostal(dirPos));
             
 
 
-            //System.Threading.Thread.Sleep(2000);
+            System.Threading.Thread.Sleep(2000);
 
             Console.WriteLine("Fin");
             Console.ReadLine(); //para que no se salga la consola apenas ejecuta
 
-
+            */
         }
-
+        /*
         private static void pruebaDB()
         {
             using (MyDBContext context = new MyDBContext())
@@ -212,10 +213,11 @@ namespace TP_DDS
              foreach (Notificacion mensaje in eze.bandejaMensajes)
              {
                  Console.WriteLine(mensaje.ToString());
-             }*/
+             }
 
             //sched.stop();
 
         }
+    */
     }
 }

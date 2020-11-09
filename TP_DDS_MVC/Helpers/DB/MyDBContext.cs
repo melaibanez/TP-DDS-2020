@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using TP_DDS.Model.Compras;
 using TP_DDS.Model.Entidades;
-using TP_DDS.Model.Entidades.TiposEmpresa;
 using TP_DDS.Model.Ingresos;
 using TP_DDS.Model.Otros;
 

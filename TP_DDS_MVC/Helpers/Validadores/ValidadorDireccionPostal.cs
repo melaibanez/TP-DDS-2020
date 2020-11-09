@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using TP_DDS.Model.Entidades;
 using Newtonsoft.Json.Linq;
 using TP_DDS.Model.Otros;
+using TP_DDS_MVC.Helpers.DB;
 
 namespace TP_DDS_MVC.Helpers.Validadores
 {

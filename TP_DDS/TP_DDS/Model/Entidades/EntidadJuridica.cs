@@ -5,7 +5,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TP_DDS.Validadores;
 
 namespace TP_DDS.Model.Entidades
 {
@@ -51,7 +50,7 @@ namespace TP_DDS.Model.Entidades
             this.direccionPostal = direccionPostal;
             this.listaEntidadesBase = listaEntidadesBase;
             this.razonSocial = razonSocial;
-            this.tipoOrganizacion = CategorizadorOrg.categorizar(new Empresa(actividad, sector, promVentas, cantPersonal));
+            this.tipoOrganizacion = null;//CategorizadorOrg.categorizar(new Empresa(actividad, sector, promVentas, cantPersonal));
         }
     }
 }

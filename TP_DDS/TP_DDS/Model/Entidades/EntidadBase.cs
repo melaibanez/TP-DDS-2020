@@ -35,7 +35,7 @@ namespace TP_DDS.Model.Entidades
             this.descripcion = descripcion;
             this.entidadJuridica = entidadJuridica;
             this.nombreFicticio = nombreFicticio;
-            this.tipoOrganizacion = CategorizadorOrg.categorizar(new Empresa(actividad, sector, promVentas, cantPersonal));
+            this.tipoOrganizacion = null;//CategorizadorOrg.categorizar(new Empresa(actividad, sector, promVentas, cantPersonal));
         }
     }
 }

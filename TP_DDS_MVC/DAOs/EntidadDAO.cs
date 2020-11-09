@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using TP_DDS.Model.Entidades;
 using TP_DDS.Model.Entidades.TiposEmpresa;
-using TP_DDS.DB;
+using TP_DDS_MVC.Helpers.DB;
 
 namespace TP_DDS_MVC.DAOs
 {
@@ -26,9 +26,15 @@ namespace TP_DDS_MVC.DAOs
             return instancia;
         }
 
-        public EntidadDAO add()
+        public Entidad add(Entidad entidad)
         {
-            return this;
+            Entidad added;
+            using (MyDBContext context = new MyDBContext())
+            {
+                added = context.Entidades.Add(entidad);
+            }
+
+            return added;
         }
 
         public void getEntidadByUserID(int id)

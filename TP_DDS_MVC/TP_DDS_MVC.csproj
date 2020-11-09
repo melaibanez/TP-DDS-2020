@@ -181,6 +181,7 @@
     <Compile Include="Helpers\Validadores\ValidadorDireccionPostal.cs" />
     <Compile Include="Helpers\Validadores\ValidadorPresupuestosEgreso.cs" />
     <Compile Include="Helpers\VinculadorEgresoIngreso\Vinculador.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

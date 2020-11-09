@@ -8,7 +8,7 @@ using TP_DDS.Model.Compras;
 using TP_DDS_MVC.Helpers.Validadores;
 using TP_DDS;
 
-namespace TP_DDS_MVC.Scheduler.Jobs
+namespace TP_DDS_MVC.Helpers.Scheduler.Jobs
 {
     public class JobValidadorPresupuestos : IJob
     {
