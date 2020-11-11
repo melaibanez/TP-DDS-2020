@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TP_DDS_MVC.DAOs;
 
 namespace TP_DDS_MVC.Controllers
 {
@@ -11,6 +12,7 @@ namespace TP_DDS_MVC.Controllers
         // GET: Compra
         public ActionResult Index()
         {
+            ViewBag.compras = CompraDAO.getInstancia().getCompras();
             return View("ListCompras");
         }
 
@@ -18,17 +20,18 @@ namespace TP_DDS_MVC.Controllers
         // GET: Compra
         public ActionResult Presupuesto()
         {
-            return View("AddCompra.cshtml");
+            return View("Presupuesto");
         }
 
         // GET: Compra/Details/5
         public ActionResult Details(int id)
         {
+            ViewBag.compra = CompraDAO.getInstancia().getCompra(id);
             return View();
         }
 
         // GET: Compra/Create
-        public ActionResult Create()
+        public ActionResult AddCompra()
         {
             return View();
         }
