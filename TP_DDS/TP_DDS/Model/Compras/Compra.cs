@@ -16,6 +16,8 @@ namespace TP_DDS.Model.Compras
         [Key]
         public int idCompra { get; set; }
 
+        public string descripcion { get; set; }
+
         public int cantMinimaPresupuestos { get; set; }//a definir
         
         [NotMapped]

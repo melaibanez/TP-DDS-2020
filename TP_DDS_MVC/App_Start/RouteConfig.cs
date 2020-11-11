@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using TP_DDS_MVC.Controllers;
 
 namespace TP_DDS_MVC
 {
@@ -12,6 +13,17 @@ namespace TP_DDS_MVC
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            
+            
+            
+            routes.MapRoute(
+                name: "ListCompras",
+                url: "Presupuestos",
+                defaults: new { controller = "Compra", action = "Presupuestos" }
+            );
+
+            
 
             routes.MapRoute(
                 name: "Default",
