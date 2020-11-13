@@ -182,6 +182,7 @@
     <Compile Include="Helpers\Validadores\ValidadorContrasenia.cs" />
     <Compile Include="Helpers\Validadores\ValidadorDireccionPostal.cs" />
     <Compile Include="Helpers\Validadores\ValidadorPresupuestosEgreso.cs" />
+    <Compile Include="Helpers\VinculadorEgresoIngreso\EstrategiaVinculador.cs" />
     <Compile Include="Helpers\VinculadorEgresoIngreso\OF.cs" />
     <Compile Include="Helpers\VinculadorEgresoIngreso\OVPE.cs" />
     <Compile Include="Helpers\VinculadorEgresoIngreso\OVPI.cs" />
