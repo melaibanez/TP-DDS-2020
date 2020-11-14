@@ -55,7 +55,7 @@ namespace TP_DDS.Model.Entidades
 
         }
 
-        public void vincularIngresosEgresos() { }
+        public void vincularIngresosEgresos() 
         {
             vinculador.ejecutar(this);
         }
