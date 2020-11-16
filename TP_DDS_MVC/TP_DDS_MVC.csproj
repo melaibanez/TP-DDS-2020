@@ -169,8 +169,22 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CompraController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DAOs\CategoriaDAO.cs" />
+    <Compile Include="DAOs\CiudadDAO.cs" />
     <Compile Include="DAOs\CompraDAO.cs" />
+    <Compile Include="DAOs\CriterioDAO.cs" />
+    <Compile Include="DAOs\DireccionPostalDAO.cs" />
+    <Compile Include="DAOs\DocumentoComercialDAO.cs" />
+    <Compile Include="DAOs\EgresoDAO.cs" />
     <Compile Include="DAOs\EntidadDAO.cs" />
+    <Compile Include="DAOs\IngresoDAO.cs" />
+    <Compile Include="DAOs\ItemEgresoDAO.cs" />
+    <Compile Include="DAOs\MedioDePagoDAO.cs" />
+    <Compile Include="DAOs\OrganizacionDAO.cs" />
+    <Compile Include="DAOs\PaisDAO.cs" />
+    <Compile Include="DAOs\PrestadorDeServiciosDAO.cs" />
+    <Compile Include="DAOs\ProvinciaDAO.cs" />
+    <Compile Include="DAOs\UsuarioDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

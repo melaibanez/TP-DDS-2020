@@ -22,7 +22,7 @@ namespace TP_DDS_MVC.Helpers.VinculadorEgresoIngreso
                 {
                     if (cumpleCondiciones(egresos.ElementAt(i), ingresos.ElementAt(j)))
                     {
-                        asignarEgresoIngreso(egresosSinVincular.ElementAt(i), ingresosDisponibles.ElementAt(j));
+                        asignarEgresoIngreso(egresos.ElementAt(i), ingresos.ElementAt(j));
                         break; //si ya asigno un egreso a un ingreso pasa al siguiente. Y vuelve a cero J para empezar de nuevo.
                     }
                 }
