@@ -1,4 +1,4 @@
-﻿
+﻿@using TP_DDS
 @{
     ViewBag.Title = "ListCompras";
 }
@@ -20,7 +20,7 @@
                             <th scope="row">@compra.idCompra</th>
                             <td>Column content</td>
                             <td>Column content</td>
-                            <td>@Html.ActionLink("Ver Detalle", "Details", "Compra", compra.idCompra)</td>
+                            <td>@Html.ActionLink("Ver Detalle", "DetailCompra", "Compra", compra.idCompra)</td>
                         </tr>
                    }
                    }

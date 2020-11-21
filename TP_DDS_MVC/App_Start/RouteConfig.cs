@@ -18,12 +18,21 @@ namespace TP_DDS_MVC
             
             
             routes.MapRoute(
-                name: "ListCompras",
-                url: "Presupuestos",
-                defaults: new { controller = "Compra", action = "Presupuestos" }
+                name: "List Compras",
+                url: "compra",
+                defaults: new { controller = "Compra", action = "ListCompras" }
             );
 
-            
+            routes.MapRoute(
+                name: "List Compras",
+                url: "compra/add",
+                defaults: new { controller = "Compra", action = "AddCompra" }
+            );
+
+
+
+
+
 
             routes.MapRoute(
                 name: "Default",

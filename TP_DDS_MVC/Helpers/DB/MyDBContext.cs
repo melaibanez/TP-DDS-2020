@@ -37,19 +37,9 @@ namespace TP_DDS_MVC.Helpers.DB
 
 
         // El string "dbConn" es el nombre del connection string definido en App.config
-        public MyDBContext() : base("dbConn")
-        {
-
-            // Inicializacion seteada para que cada vez que se inicia borre la DB y la vuelva a crear
-            Database.SetInitializer(new CreateDatabaseIfNotExists<MyDBContext>());
-
-        }
+        public MyDBContext() : base("dbConn"){ }
 
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            
-
-        }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder) { }
     }
 }
