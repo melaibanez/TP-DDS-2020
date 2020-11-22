@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TP_DDS.Model.Compras;
 using TP_DDS.Model.Ingresos;
-//using TP_DDS_MVC.Helpers.VinculadorEgresoIngreso;
+using TP_DDS_MVC.Helpers.VinculadorEgresoIngreso;
 
 
 namespace TP_DDS.Model.Entidades
