@@ -188,7 +188,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AutenticacionController.cs" />
+    <Compile Include="Controllers\BandejaDeMjsController.cs" />
     <Compile Include="Controllers\CompraController.cs" />
+    <Compile Include="Controllers\EgresoController.cs" />
+    <Compile Include="Controllers\EgresosIngresosController.cs" />
+    <Compile Include="Controllers\EgresosPresupuestosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAOs\CategoriaDAO.cs" />
     <Compile Include="DAOs\CiudadDAO.cs" />
@@ -374,6 +379,12 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Compra\ListCompras.cshtml" />
     <Content Include="Views\Compra\AddCompra.cshtml" />
+    <Content Include="Views\Autenticacion\Autenticacion.cshtml" />
+    <Content Include="Views\Compra\Presupuesto.cshtml" />
+    <Content Include="Views\Egreso\AddEgreso.cshtml" />
+    <Content Include="Views\EgresosPresupuestos\EgresosPresupuestos.cshtml" />
+    <Content Include="Views\EgresosIngresos\EgresosIngresos.cshtml" />
+    <Content Include="Views\BandejaDeMjs\BandejaDeMjs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
