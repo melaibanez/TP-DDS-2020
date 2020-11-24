@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TP_DDS.Model.Compras;
 using TP_DDS.Model.Ingresos;
-using TP_DDS_MVC.Helpers.VinculadorEgresoIngreso;
+
 
 
 namespace TP_DDS.Model.Entidades
@@ -23,7 +23,7 @@ namespace TP_DDS.Model.Entidades
         public List<Compra> comprasRealizadas { get; set; }
         public List<Ingreso> ingresos { get; set; }
         public List<Criterio> criterios { get; set; }
-        private Vinculador vinculador;
+
 
         public Entidad() { }
 
@@ -55,9 +55,5 @@ namespace TP_DDS.Model.Entidades
 
         }
 
-        public void vincularIngresosEgresos() 
-        {
-            vinculador.ejecutar(this);
-        }
     }
 }
