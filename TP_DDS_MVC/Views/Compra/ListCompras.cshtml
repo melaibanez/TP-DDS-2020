@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "ListCompras";
+}
+
+    <div class="d-flex justify-content-start">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ foreach (TP_DDS.Model.Compras.Compra compra in ViewBag.compras)
+                   {
+                        <tr class="table-active">
+                            <th scope="row">@compra.idCompra</th>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>@Html.ActionLink("Ver Detalle", "Details", "Compra", compra.idCompra)</td>
+                        </tr>
+                   }
+                   }
+
+            </tbody>
+        </table>
+    </div>
