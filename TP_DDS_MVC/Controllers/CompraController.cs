@@ -22,6 +22,22 @@ namespace TP_DDS_MVC.Controllers
             return View();
         }
 
+        // POST: compra/add
+        [HttpPost]
+        public ActionResult AddCompra(FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+
+                return RedirectToAction("ListCompras");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
 
 
 
@@ -39,21 +55,7 @@ namespace TP_DDS_MVC.Controllers
         }
 
 
-        // POST: Compra/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
 
         // GET: Compra/Edit/5
         public ActionResult Edit(int id)

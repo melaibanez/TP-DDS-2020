@@ -24,7 +24,7 @@ namespace TP_DDS_MVC
             );
 
             routes.MapRoute(
-                name: "List Compras",
+                name: "Add Compra",
                 url: "compra/add",
                 defaults: new { controller = "Compra", action = "AddCompra" }
             );

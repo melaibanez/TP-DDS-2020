@@ -345,6 +345,8 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Compra\ListCompras.cshtml" />
     <Content Include="Views\Compra\AddCompra.cshtml" />
+    <Content Include="Views\Compra\AddPrestadorDeServicios.cshtml" />
+    <Content Include="Views\Home\EjemploModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
