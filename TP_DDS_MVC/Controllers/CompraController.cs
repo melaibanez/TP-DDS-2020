@@ -10,21 +10,21 @@ namespace TP_DDS_MVC.Controllers
     public class CompraController : Controller
     {
         // GET: Compra
-        public ActionResult Index()
+        public ActionResult ListCompras()
         {
             ViewBag.compras = CompraDAO.getInstancia().getCompras();
-            return View("ListCompras");
+            return View();
         }
 
 
-        // GET: Compra
+        // GET: Presupuestos
         public ActionResult Presupuesto()
         {
-            return View("Presupuesto");
+            return View();
         }
 
         // GET: Compra/Details/5
-        public ActionResult Details(int id)
+        public ActionResult DetailCompra(int id)
         {
             ViewBag.compra = CompraDAO.getInstancia().getCompra(id);
             return View();
@@ -33,17 +33,18 @@ namespace TP_DDS_MVC.Controllers
         // GET: Compra/Create
         public ActionResult AddCompra()
         {
+            
             return View();
         }
 
         // POST: Compra/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult AddCompra(FormCollection collection) // video 1:30:00
         {
             try
             {
-                // TODO: Add insert logic here
-
+               // Compra compra = new Compra(int cantMinimaPresupuestos, float criterio, Egreso egreso, List<Presupuesto> presupuestos, List<Usuario> revisores)
+               // ViewBag.compra = CompraDAO.getInstancia().add();
                 return RedirectToAction("Index");
             }
             catch
