@@ -23,6 +23,11 @@ namespace TP_DDS_MVC.Controllers
             return View();
         }
 
+        // Get: prestadorDeServicios
+
+        
+
+
         // GET: Compra/Details/5
         public ActionResult DetailCompra(int id)
         {

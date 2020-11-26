@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "AddPresupuesto";
+}
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/JavaScript.js"></script>
+}
+
+@using (Html.BeginForm("AddPresupuesto", "Compra", FormMethod.Post))
+{
+    <div>
+        <label>Prestador de Servicios</label>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalPS">Agregar prestador de servicios</button>
+        <div id="prestadorServicios"></div>
+    </div>
+
+    <label id=""></label>
+
+    <input type="text" name="montoTotal" placeholder="Monto total">
+    <input type="submit" value="Buscar usuario">
+}
+
+<div id="ModalPS" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title align-content-center">Agregar Prestador de Servicios</h4>
+                <button type="button" class="close align-content-end" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("AddPrestadorDeServicios")
+            </div>
+            <div class="modal-footer">
+                <span>
+                    <button type="button" id="agregarPS" class="btn btn-default" data-dismiss="modal">Agregar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </span>>
+            </div>
+        </div>
+    </div>
+</div>
+
