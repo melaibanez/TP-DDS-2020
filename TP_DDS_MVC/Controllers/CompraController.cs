@@ -39,12 +39,14 @@ namespace TP_DDS_MVC.Controllers
 
         // POST: Compra/Create
         [HttpPost]
-        public ActionResult AddCompra(FormCollection collection) // video 1:30:00
+        public ActionResult AddCompra(int cant) // video 1:30:00
         {
             try
             {
-               // Compra compra = new Compra(int cantMinimaPresupuestos, float criterio, Egreso egreso, List<Presupuesto> presupuestos, List<Usuario> revisores)
-               // ViewBag.compra = CompraDAO.getInstancia().add();
+                // Compra compra = new Compra(int cantMinimaPresupuestos, float criterio, Egreso egreso, List<Presupuesto> presupuestos, List<Usuario> revisores)
+                // ViewBag.compra = CompraDAO.getInstancia().add();
+                int cantidad = cant;
+               
                 return RedirectToAction("Index");
             }
             catch
