@@ -1,14 +1,97 @@
-﻿using System;
+﻿using Quartz.Logging;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TP_DDS.Model.Compras;
+using TP_DDS.Model.Entidades;
 using TP_DDS_MVC.DAOs;
+using TP_DDS_MVC.Helpers;
 
 namespace TP_DDS_MVC.Controllers
 {
     public class CompraController : Controller
     {
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        ///////////////////////////////////////////////
+        ///         Prestador de servicios          ///
+        ///////////////////////////////////////////////
+        public ActionResult AddPrestadorDeServicios()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddPrestadorDeServicios(PrestadorDeServicios PDS)
+        {
+            try
+            {
+                PDS.direccionPostal = new DireccionPostal();
+                PrestadorDeServiciosDAO.getInstancia().add(PDS);
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                MyLogger.log(e.Message);
+                return View();
+            }
+        }
+
+
+        ///////////////////////////////////////////////
+        ///             Medio de Pago               ///
+        ///////////////////////////////////////////////
+        public ActionResult AddMedioDePago()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddMedioDePago(MedioDePago MDP)
+        {
+            try
+            {
+                MedioDePagoDAO.getInstancia().add(MDP);
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                MyLogger.log(e.Message);
+                return View();
+            }
+        }
+
+        ///////////////////////////////////////////////
+        ///              Presupuesto                ///
+        ///////////////////////////////////////////////
+        public ActionResult AddPresupuesto()
+        {
+            ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddPresupuesto(Presupuesto pres)
+        {
+            try
+            {
+                PresupuestoDAO.getInstancia().add(pres);
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                MyLogger.log(e.Message);
+                return View();
+            }
+        }
+
+
         // GET: Compra
         public ActionResult ListCompras()
         {

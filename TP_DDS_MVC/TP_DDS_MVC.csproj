@@ -183,6 +183,7 @@
     <Compile Include="DAOs\OrganizacionDAO.cs" />
     <Compile Include="DAOs\PaisDAO.cs" />
     <Compile Include="DAOs\PrestadorDeServiciosDAO.cs" />
+    <Compile Include="DAOs\PresupuestoDAO.cs" />
     <Compile Include="DAOs\ProvinciaDAO.cs" />
     <Compile Include="DAOs\UsuarioDAO.cs" />
     <Compile Include="Global.asax.cs">
@@ -190,6 +191,7 @@
     </Compile>
     <Compile Include="Helpers\DB\MyDBContext.cs" />
     <Compile Include="Helpers\DB\PersistenciaDireccionPostal.cs" />
+    <Compile Include="Helpers\MyLogger.cs" />
     <Compile Include="Helpers\Scheduler\Jobs\JobValidadorPresupuestos.cs" />
     <Compile Include="Helpers\Scheduler\MyScheduler.cs" />
     <Compile Include="Helpers\Validadores\CategorizadorOrg.cs" />
@@ -347,7 +349,9 @@
     <Content Include="Views\Compra\ListCompras.cshtml" />
     <Content Include="Views\Compra\AddCompra.cshtml" />
     <Content Include="Views\Compra\AddPresupuesto.cshtml" />
+    <Content Include="Views\Compra\Index.cshtml" />
     <Content Include="Views\Compra\AddPrestadorDeServicios.cshtml" />
+    <Content Include="Views\Compra\AddMedioDePago.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

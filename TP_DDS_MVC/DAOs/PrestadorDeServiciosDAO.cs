@@ -46,8 +46,11 @@ namespace TP_DDS_MVC.DAOs
             PrestadorDeServicios added;
             using (MyDBContext context = new MyDBContext())
             {
+
                 added = context.PrestadoresDeServicios.Add(prestadorDeServicios);
+                context.SaveChanges();
             }
+            
 
             return added;
         }

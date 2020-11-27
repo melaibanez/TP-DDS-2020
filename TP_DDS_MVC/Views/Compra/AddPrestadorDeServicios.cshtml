@@ -1,0 +1,47 @@
+﻿@using TP_DDS
+@model TP_DDS.Model.Compras.PrestadorDeServicios
+@{
+    ViewBag.Title = "Agregar Prestador De Servicios";
+    var tiposDoc = new List<SelectListItem> { 
+        new SelectListItem() { Value = "DNI", Text = "DNI"},
+        new SelectListItem() { Value = "CUIT", Text = "CUIT"},
+        new SelectListItem() { Value = "CUIL", Text = "CUIL"}
+    };
+    
+}
+
+@using (Html.BeginForm("AddPrestadorDeServicios", "Compra", FormMethod.Post)){
+
+    <div class="container-md m-5">
+        <div class="row">
+            <label>Nombre o Razon Social</label>
+            &nbsp;&nbsp;
+            @Html.TextBoxFor(m => m.razonSocial)
+        </div>
+        <br />
+        <div class="row">
+            <span>
+                <label>Tipo de documento</label>
+                @Html.DropDownListFor(m => m.tipoDoc, tiposDoc)
+                &nbsp;&nbsp;&nbsp;
+                <label>Numero de documento</label>
+                @Html.TextBoxFor(m => m.numDoc)
+            </span>
+        </div>
+        <br />
+        <div class="row">
+            <label>Direccion postal</label>
+
+        </div>
+        <br />
+        <div class="row">
+            <span>
+                <input class="btn btn-success" type="submit" value="Agregar" />
+                &nbsp;&nbsp;&nbsp;
+                @Html.ActionLink("Cancelar", "Index", new { controller = "Compra"}, new { @class = "btn btn-secondary" })
+            </span>
+        </div>
+    </div>
+
+}
+

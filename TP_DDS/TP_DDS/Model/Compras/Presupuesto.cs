@@ -23,7 +23,7 @@ namespace TP_DDS.Model.Compras
         public float montoTotal { get; set; }
 
         [ForeignKey("compra")]
-        public int idCompra { get; set; }
+        public int? idCompra { get; set; }
         public Compra compra { get; set; }
 
         public List<ItemPresupuesto> items { get; set; }
