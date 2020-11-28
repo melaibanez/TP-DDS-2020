@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TP_DDS.Model.Entidades;
 
 namespace TP_DDS.Model.Compras
 {
@@ -21,8 +22,12 @@ namespace TP_DDS.Model.Compras
         public string tipo_enlace { get; set; }
 
         [ForeignKey("egreso")]
-        public int idEgreso { get; set; }
+        public int? idEgreso { get; set; }
         public Egreso egreso { get; set; }
+
+        [ForeignKey("entidad")]
+        public int? idEntidad { get; set; }
+        public Entidad entidad { get; set; }
 
         public DocumentoComercial() { }
         public DocumentoComercial(string nroIdentificacion, string tipo_enlace)

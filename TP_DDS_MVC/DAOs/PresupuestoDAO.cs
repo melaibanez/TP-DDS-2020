@@ -42,12 +42,12 @@ namespace TP_DDS_MVC.DAOs
             }
         }
 
-        public Presupuesto add(Presupuesto Presupuesto)
+        public Presupuesto add(Presupuesto presupuesto)
         {
             Presupuesto added;
             using (MyDBContext context = new MyDBContext())
             {
-                added = (Presupuesto)context.DocumentosComerciales.Add(Presupuesto);
+                added = (Presupuesto)context.DocumentosComerciales.Add(presupuesto);
                 context.SaveChanges();
             }
 

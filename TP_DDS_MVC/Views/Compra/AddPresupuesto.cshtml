@@ -2,19 +2,25 @@
 @using TP_DDS.Model.Compras
 @model TP_DDS.Model.Compras.Presupuesto
 @{
+    @section scripts {
+        <script type="text/javascript" src="~/Scripts/MyScripts/agregarPresupuestoScript.js"></script>
+    }
     ViewBag.Title = "AddPresupuesto";
     var compraId = ViewBag.compraId;
     if (compraId != null)
     {
         Model.idCompra = (int)compraId;
     }
+    var proveedores = ViewBag.proveedores;
+    var mediosDePago = ViewBag.mediosDePago;
 }
 
-<h2>Crear un Presupuesto</h2>
 
-@using (Html.BeginForm("AddPresupuesto", "Compra", FormMethod.Post))
-{
-    if (compraId == null)
+
+
+@*@using (Html.BeginForm("AddPresupuesto", "Compra", FormMethod.Post))*@
+
+@*if (compraId == null)
     {
         <label for="selectCompra">Seleccione la compra a la cual pertenece el presupuesto:</label>
         <input list="listCompras" id="selectCompra" name="selectCompra" />
@@ -24,13 +30,77 @@
                 <option value="@compra.idCompra">@compra.descripcion</option>
             }
         </datalist>
-    }
-    <div class="container-md m-3">
-        @ViewBag
+    }*@
+
+
+<div class="container-md m-3">
+    <h2>Crear un Presupuesto</h2>
+    <br />
+    <br />
+    <div>
+        <label for="nroIdentificacion">
+            Numero de Identificacion: <input id="nroIdentificacion" type="text" placeholder="Nro Identificacion">
+        </label>
+    </div>
+    <br />
+    <div>
+        <label for="proveedores">
+            Seleccione un proveedor: <input list="proveedores" id="proveedor" type="text">
+        </label>
+        <datalist id="proveedores">
+            @foreach (PrestadorDeServicios PDS in (List<PrestadorDeServicios>)proveedores)
+            {
+                <option value="@PDS.idPrestador">@PDS.razonSocial</option>
+            }
+        </datalist>
+    </div>
+    <br />
+    <div>
+        <label for="mediosDePago">
+            Seleccione un Medio de Pago: <input list="mediosDePago" id="medioDePago" type="text">
+        </label>
+        <datalist id="mediosDePago">
+            @foreach (MedioDePago MDP in (List<MedioDePago>)mediosDePago)
+            {
+                <option value="@MDP.idMedioPago">@MDP.instrumento</option>
+            }
+        </datalist>
+    </div>
+    <br />
+    <div>
+        <h3>Agregar items</h3>
+        <div>
+            <span>
+                <label>Descripcion: </label>
+                <input type="text" id="descripcionItem" placeholder="Descripcion" />
+                &nbsp;&nbsp;&nbsp;
+                <label>Valor: </label>
+                <input type="number" id="valorItem" placeholder="1" step="0.01" min="1" />
+                &nbsp;&nbsp;&nbsp;
+                <label>Cantidad: </label>
+                <input type="number" id="cantItem" placeholder="1" min="1" />
+                &nbsp;&nbsp;&nbsp;
+                <button class="btn btn-primary btn-sm" id="agregarItem">Agregar</button>
+            </span>
+        </div>
+        <br />
+        <div class="col-6">
+            <h4>Lista de Items</h4>
+            <ul class="list-group" id="listaItems">
+            </ul>
+        </div>
+        <br />
+        <span>
+            <button class="btn btn-success btn-lg" id="submit">Crear</button>
+            &nbsp;&nbsp;&nbsp;
+            @Html.ActionLink("Cancelar", "Index", new { controller = "Compra" }, new { @class = "btn btn-secondary" })
+        </span>
     </div>
 
+</div>
 
 
-}
+
+
 
 

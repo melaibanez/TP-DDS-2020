@@ -30,7 +30,11 @@ namespace TP_DDS.Model.Compras
 
         [ForeignKey("ingresoAsociado")]
         public int? idIngresoAsociado { get; set; }
-        public virtual Ingreso ingresoAsociado { get; set; }
+        public Ingreso ingresoAsociado { get; set; }
+
+        [ForeignKey("entidad")]
+        public int idEntidad { get; set; }
+        public Entidad entidad { get; set; }
 
         public List<ItemEgreso> detalle { get; set; }
         public List<DocumentoComercial> docsComerciales { get; set; }

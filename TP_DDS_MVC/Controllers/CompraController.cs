@@ -1,9 +1,12 @@
-﻿using Quartz.Logging;
+﻿using Microsoft.Ajax.Utilities;
+using Newtonsoft.Json;
+using Quartz.Logging;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using TP_DDS.Model.Compras;
 using TP_DDS.Model.Entidades;
@@ -22,6 +25,13 @@ namespace TP_DDS_MVC.Controllers
         ///////////////////////////////////////////////
         ///         Prestador de servicios          ///
         ///////////////////////////////////////////////
+        
+        public JsonResult PrestadorDeServicios()
+        {
+            List<PrestadorDeServicios> PDSs = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios();
+            return Json(JsonConvert.SerializeObject(PDSs));
+        }
+
         public ActionResult AddPrestadorDeServicios()
         {
             return View();
@@ -73,16 +83,18 @@ namespace TP_DDS_MVC.Controllers
         public ActionResult AddPresupuesto()
         {
             ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago();
+            ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios();
             return View();
         }
 
         [HttpPost]
         public ActionResult AddPresupuesto(Presupuesto pres)
         {
+
             try
             {
                 PresupuestoDAO.getInstancia().add(pres);
-                return RedirectToAction("Index");
+                return Json(Url.Action("Index", "Compra"));
             }
             catch (Exception e)
             {
