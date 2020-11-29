@@ -30,5 +30,6 @@ namespace TP_DDS.Model.Proyectos
                 ingresos.Add(ingreso);
             }
         }
+        //hola
     }
 }
