@@ -5,7 +5,7 @@
     @section scripts {
         <script type="text/javascript" src="~/Scripts/MyScripts/agregarPresupuestoScript.js"></script>
     }
-    ViewBag.Title = "AddPresupuesto";
+    ViewBag.Title = "Agregar Presupuesto";
     var compraId = ViewBag.compraId;
     if (compraId != null)
     {
@@ -33,7 +33,7 @@
     }*@
 
 
-<div class="container-md m-3">
+<div>
     <h2>Crear un Presupuesto</h2>
     <br />
     <br />
@@ -96,7 +96,6 @@
             @Html.ActionLink("Cancelar", "Index", new { controller = "Compra" }, new { @class = "btn btn-secondary" })
         </span>
     </div>
-
 </div>
 
 

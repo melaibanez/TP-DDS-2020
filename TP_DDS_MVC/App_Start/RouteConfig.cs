@@ -54,6 +54,12 @@ namespace TP_DDS_MVC
             );
 
             routes.MapRoute(
+                name: "Add Egreso",
+                url: "compra/egreso/add",
+                defaults: new { controller = "Compra", action = "AddEgreso" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

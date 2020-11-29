@@ -254,6 +254,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\MyScripts\agregarEgreso.js" />
     <Content Include="Scripts\MyScripts\agregarPresupuestoScript.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -356,6 +357,7 @@
     <Content Include="Views\Compra\Index.cshtml" />
     <Content Include="Views\Compra\AddPrestadorDeServicios.cshtml" />
     <Content Include="Views\Compra\AddMedioDePago.cshtml" />
+    <Content Include="Views\Compra\AddEgreso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

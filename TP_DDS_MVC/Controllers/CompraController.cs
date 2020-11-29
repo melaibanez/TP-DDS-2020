@@ -90,7 +90,6 @@ namespace TP_DDS_MVC.Controllers
         [HttpPost]
         public ActionResult AddPresupuesto(Presupuesto pres)
         {
-
             try
             {
                 PresupuestoDAO.getInstancia().add(pres);
@@ -101,6 +100,44 @@ namespace TP_DDS_MVC.Controllers
                 MyLogger.log(e.Message);
                 return View();
             }
+        }
+
+        ///////////////////////////////////////////////
+        ///              Egreso                     ///
+        ///////////////////////////////////////////////
+        public ActionResult AddEgreso()
+        {
+            ViewBag.docsComerciales = DocumentoComercialDAO.getInstancia().getDocumentosComerciales();
+            ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago();
+            ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddEgreso(JsonEgreso req)
+        {
+            
+            try
+            {
+                int idEgreso = EgresoDAO.getInstancia().add(req.model).idEgreso;
+                foreach (string nroId in req.docsComerciales)
+                {
+                    DocumentoComercialDAO.getInstancia().setEgresoId(idEgreso, nroId);
+                }
+
+                return Json(Url.Action("Index", "Compra"));
+            }
+            catch (Exception e)
+            {
+                MyLogger.log(e.Message);
+                return View();
+            }
+        }
+
+        public class JsonEgreso
+        {
+            public Egreso model { get; set; }
+            public string[] docsComerciales { get; set; }
         }
 
 
