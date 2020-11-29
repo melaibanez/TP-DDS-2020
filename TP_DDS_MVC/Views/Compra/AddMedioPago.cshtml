@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "AddMedioPago";
+}
+
+<h2>AddMedioPago</h2>
+
+@using (Html.BeginForm("AddMedioPago", "Compra", FormMethod.Post))
+{
+    <div>
+        <label>Medio de pago</label>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalMP">Agregar medio de pago</button>
+        <div id="medioPago"></div>
+    </div>
+
+    <label id=""></label>
+
+    <input type="text" name="instrumento" placeholder="instrumento">
+    <input type="submit" value="Agregar">
+}

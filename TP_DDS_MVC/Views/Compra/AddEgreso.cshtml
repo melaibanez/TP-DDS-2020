@@ -1,7 +1,66 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "AddEgreso";
 }
 
-<h2>AddEgreso</h2>
 
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Cargar Egreso</title>
+
+</head>
+<body>
+    <div class="form-group">
+        <label for="exampleSelect1">Seleccione un medio de pago.</label>
+        <select class="form-control" id="medioPago">
+            <!--@{/* foreach (TP_DDS.Model.Compras.MedioDePago mediopago in ViewBag.mediopago)
+        {
+            <option>@mediopago.instrumento</option>
+                  */
+        }
+    } -->
+            <option>MedioDePago1</option>
+            <option>MedioDePago2</option>
+            <option>MedioDePago3</option>
+        </select>
+        <p>@Html.ActionLink("Agregar Medio De Pago", "AddMedioPago", "Compra")</p>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleSelect1">Seleccione un prestador de servicios.</label>
+        <select class="form-control" id="prestadorServicio">
+            <!--   @{/* foreach (TP_DDS.Model.Compras.MedioDePago mediopago in ViewBag.mediopago) no se porque no funciona esto :c
+                {
+                    <option>@mediopago.instrumento</option>*/
+
+                }
+            } -->
+            <option>PrestadorDeServicio1</option>
+            <option>PrestadorDeServicio2</option>
+            <option>PrestadorDeServicio3</option>
+
+        </select>
+        <p>@Html.ActionLink("Agregar prestador de servicio", "AddMedioPago", "Compra")</p>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleSelect2">Seleccione documentos comerciales</label>
+        <select multiple="" class="form-control" id="docComercial">
+            <!--   @{/* foreach (TP_DDS.Model.Compras.MedioDePago mediopago in ViewBag.mediopago) no se porque no funciona esto :c
+                {
+                    <option>@mediopago.instrumento</option>*/
+
+                }
+            } -->
+
+            <option>DocComercial1</option>
+            <option>DocComercial2</option>
+            <option>DocComercial3</option>
+
+        </select>
+        <p>@Html.ActionLink("Agregar documento comercial", "AddMedioPago", "Compra")</p>
+    </div>
+
+</body>
+</html>

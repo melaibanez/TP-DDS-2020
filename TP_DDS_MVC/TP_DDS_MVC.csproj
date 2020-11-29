@@ -348,6 +348,8 @@
     <Content Include="Views\Compra\AddCompra.cshtml" />
     <Content Include="Views\Compra\AddPresupuesto.cshtml" />
     <Content Include="Views\Compra\AddPrestadorDeServicios.cshtml" />
+    <Content Include="Views\Compra\AddEgreso.cshtml" />
+    <Content Include="Views\Compra\AddMedioPago.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

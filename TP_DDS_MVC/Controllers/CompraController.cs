@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TP_DDS_MVC.DAOs;
+using TP_DDS.Model.Compras;
 
 namespace TP_DDS_MVC.Controllers
 {
@@ -38,7 +39,7 @@ namespace TP_DDS_MVC.Controllers
         // GET: Compra/Create
         public ActionResult AddCompra()
         {
-            
+           
             return View();
         }
 
@@ -52,6 +53,54 @@ namespace TP_DDS_MVC.Controllers
                 // ViewBag.compra = CompraDAO.getInstancia().add();
                 int cantidad = cant;
                
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult AddEgreso()
+        {
+            List<MedioDePago> mediosPago = MedioDePagoDAO.getInstancia().getMediosDePago();
+            ViewBag.mediosPago = mediosPago;
+            return View();
+        }
+
+        // POST: Egreso/Create
+        [HttpPost]
+        public ActionResult AddEgreso(int hola) 
+        {
+            try
+            {
+                // Compra compra = new Compra(int cantMinimaPresupuestos, float criterio, Egreso egreso, List<Presupuesto> presupuestos, List<Usuario> revisores)
+                // ViewBag.compra = CompraDAO.getInstancia().add();
+             
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult AddMedioPago()
+        {
+           
+
+            return View();
+        }
+
+        // POST: Egreso/Create
+        [HttpPost]
+        public ActionResult AddMedioPago(int hola)
+        {
+            try
+            {
+                // Compra compra = new Compra(int cantMinimaPresupuestos, float criterio, Egreso egreso, List<Presupuesto> presupuestos, List<Usuario> revisores)
+                // ViewBag.compra = CompraDAO.getInstancia().add();
+
                 return RedirectToAction("Index");
             }
             catch
