@@ -24,6 +24,18 @@ namespace TP_DDS_MVC.DAOs
             return instancia;
         }
 
+        public void setEgresoId(int idEgreso, string nroId)
+        {
+            DocumentoComercial doc;
+
+            using (MyDBContext context = new MyDBContext())
+            {
+                doc = context.DocumentosComerciales.Where(dc => dc.nroIdentificacion == nroId).FirstOrDefault();
+                doc.idEgreso = idEgreso;
+                context.SaveChanges();
+            }
+        }
+
         public List<DocumentoComercial> getDocumentosComerciales()
         {
 
@@ -47,6 +59,7 @@ namespace TP_DDS_MVC.DAOs
             using (MyDBContext context = new MyDBContext())
             {
                 added = context.DocumentosComerciales.Add(documentoComercial);
+                context.SaveChanges();
             }
 
             return added;

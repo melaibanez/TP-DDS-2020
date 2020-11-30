@@ -19,7 +19,7 @@ namespace TP_DDS.Model.Compras
         public int idDireccionPostal { get; set; }
         public DireccionPostal direccionPostal { get; set; }
 
-        [StringLength(10)]
+        [StringLength(11)]
         public string numDoc { get; set; }
         
         [StringLength(50)]
@@ -27,6 +27,8 @@ namespace TP_DDS.Model.Compras
 
         [StringLength(10)]
         public string tipoDoc { get; set; }
+
+        public PrestadorDeServicios() { }
 
         public PrestadorDeServicios(string razonSocial, DireccionPostal direccionPostal, string tipoDoc, string numDoc)
         {

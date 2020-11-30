@@ -29,6 +29,7 @@ namespace TP_DDS_MVC.DAOs
 
             using (MyDBContext context = new MyDBContext())
             {
+
                 return context.MediosDePago.ToList();
             }
         }
@@ -47,6 +48,7 @@ namespace TP_DDS_MVC.DAOs
             using (MyDBContext context = new MyDBContext())
             {
                 added = context.MediosDePago.Add(medioDePago);
+                context.SaveChanges();
             }
 
             return added;

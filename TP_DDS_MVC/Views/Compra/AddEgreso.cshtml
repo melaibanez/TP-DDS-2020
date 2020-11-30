@@ -1,66 +1,104 @@
 ﻿@{
-    ViewBag.Title = "AddEgreso";
+    Layout = "";
+}
+@using TP_DDS
+@using TP_DDS.Model.Compras
+@model TP_DDS.Model.Compras.Egreso
+@{
+    @section scripts {
+        <script type="text/javascript" src="~/Scripts/MyScripts/agregarEgreso.js"></script>
+    }
+    ViewBag.Title = "Agregar Egreso";
+
+    var documentos = ViewBag.docsComerciales;
+    var proveedores = ViewBag.proveedores;
+    var mediosDePago = ViewBag.mediosDePago;
 }
 
-
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Cargar Egreso</title>
-
-</head>
-<body>
-    <div class="form-group">
-        <label for="exampleSelect1">Seleccione un medio de pago.</label>
-        <select class="form-control" id="medioPago">
-            <!--@{/* foreach (TP_DDS.Model.Compras.MedioDePago mediopago in ViewBag.mediopago)
-        {
-            <option>@mediopago.instrumento</option>
-                  */
-        }
-    } -->
-            <option>MedioDePago1</option>
-            <option>MedioDePago2</option>
-            <option>MedioDePago3</option>
-        </select>
-        <p>@Html.ActionLink("Agregar Medio De Pago", "AddMedioPago", "Compra")</p>
+<div>
+    <h2>Crear un Egreso</h2>
+    <br />
+    <br />
+    <div>
+        <label for="fecha">
+            Fecha del egreso: <input id="fecha" type="date">
+        </label>
     </div>
-
-    <div class="form-group">
-        <label for="exampleSelect1">Seleccione un prestador de servicios.</label>
-        <select class="form-control" id="prestadorServicio">
-            <!--   @{/* foreach (TP_DDS.Model.Compras.MedioDePago mediopago in ViewBag.mediopago) no se porque no funciona esto :c
+    <br />
+    <div>
+        <label for="proveedores">
+            Seleccione un proveedor: <input list="proveedores" id="proveedor" type="text">
+        </label>
+        <datalist id="proveedores">
+            @foreach (PrestadorDeServicios PDS in (List<PrestadorDeServicios>)proveedores)
+            {
+                <option value="@PDS.idPrestador">@PDS.razonSocial</option>
+            }
+        </datalist>
+    </div>
+    <br />
+    <div>
+        <label for="mediosDePago">
+            Seleccione un Medio de Pago: <input list="mediosDePago" id="medioDePago" type="text">
+        </label>
+        <datalist id="mediosDePago">
+            @foreach (MedioDePago MDP in (List<MedioDePago>)mediosDePago)
+            {
+                <option value="@MDP.idMedioPago">@MDP.instrumento</option>
+            }
+        </datalist>
+    </div>
+    <div>
+        <h3>Agregar documentos</h3>
+        <div>
+            <label for="documentos">
+                Seleccione un Documento Comercial: <input list="documentos" id="documento" type="text">
+            </label>
+            <datalist id="documentos">
+                @foreach (DocumentoComercial DC in (List<DocumentoComercial>)documentos)
                 {
-                    <option>@mediopago.instrumento</option>*/
-
+                    <option value="@DC.nroIdentificacion">@DC.tipo_enlace</option>
                 }
-            } -->
-            <option>PrestadorDeServicio1</option>
-            <option>PrestadorDeServicio2</option>
-            <option>PrestadorDeServicio3</option>
-
-        </select>
-        <p>@Html.ActionLink("Agregar prestador de servicio", "AddMedioPago", "Compra")</p>
+            </datalist>
+            <button class="btn btn-primary btn-sm" id="agregarDoc">Agregar</button>
+        </div>
+        <br />
+        <div class="col-6">
+            <h4>Lista de documentos</h4>
+            <ul class="list-group" id="listaDocs">
+            </ul>
+        </div>
+        <br />
     </div>
-
-    <div class="form-group">
-        <label for="exampleSelect2">Seleccione documentos comerciales</label>
-        <select multiple="" class="form-control" id="docComercial">
-            <!--   @{/* foreach (TP_DDS.Model.Compras.MedioDePago mediopago in ViewBag.mediopago) no se porque no funciona esto :c
-                {
-                    <option>@mediopago.instrumento</option>*/
-
-                }
-            } -->
-
-            <option>DocComercial1</option>
-            <option>DocComercial2</option>
-            <option>DocComercial3</option>
-
-        </select>
-        <p>@Html.ActionLink("Agregar documento comercial", "AddMedioPago", "Compra")</p>
+    <br />
+    <div>
+        <h3>Agregar items</h3>
+        <div>
+            <span>
+                <label>Descripcion: </label>
+                <input type="text" id="descripcionItem" placeholder="Descripcion" />
+                &nbsp;&nbsp;&nbsp;
+                <label>Valor: </label>
+                <input type="number" id="valorItem" placeholder="1" step="0.01" min="1" />
+                &nbsp;&nbsp;&nbsp;
+                <label>Cantidad: </label>
+                <input type="number" id="cantItem" placeholder="1" min="1" />
+                &nbsp;&nbsp;&nbsp;
+                <button class="btn btn-primary btn-sm" id="agregarItem">Agregar</button>
+            </span>
+        </div>
+        <br />
+        <div class="col-6">
+            <h4>Lista de Items</h4>
+            <ul class="list-group" id="listaItems">
+            </ul>
+        </div>
+        <br />
     </div>
+    <span>
+        <button class="btn btn-success btn-lg" id="submit">Crear</button>
+        &nbsp;&nbsp;&nbsp;
+        @Html.ActionLink("Cancelar", "Index", new { controller = "Compra" }, new { @class = "btn btn-secondary" })
+    </span>
+</div>
 
-</body>
-</html>

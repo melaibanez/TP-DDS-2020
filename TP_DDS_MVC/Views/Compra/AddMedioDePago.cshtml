@@ -1,0 +1,39 @@
+﻿@using TP_DDS
+@model TP_DDS.Model.Compras.MedioDePago
+@{
+    ViewBag.Title = "Agregar Medio de Pago";
+
+    var metodosPago = new List<SelectListItem> {
+        new SelectListItem() { Value = "visa", Text = "Visa Credito"},
+        new SelectListItem() { Value = "master", Text = "Mastercard Credito"},
+        new SelectListItem() { Value = "devisa", Text = "Visa Debito"}
+    };
+
+}
+
+<h1>Agregar Medio de Pago</h1>
+
+@using (Html.BeginForm("AddMedioDePago", "Compra", FormMethod.Post))
+{
+
+    <div class="container-md my-5 mx-3">
+        <div class="row">
+            <span>
+                <label>Tipo de documento</label>
+                @Html.DropDownListFor(m => m.instrumento, metodosPago)
+                &nbsp;&nbsp;&nbsp;
+                <label>Numero de documento</label>
+                @Html.TextBoxFor(m => m.numInstrumento)
+            </span>
+        </div>
+        <br />
+        <div class="row">
+            <span>
+                <input class="btn btn-success" type="submit" value="Agregar" />
+                &nbsp;&nbsp;&nbsp;
+                @Html.ActionLink("Cancelar", "Index", new { controller = "Compra" }, new { @class = "btn btn-secondary" })
+            </span>
+        </div>
+    </div>
+
+}

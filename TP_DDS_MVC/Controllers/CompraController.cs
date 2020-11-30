@@ -1,15 +1,146 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using Newtonsoft.Json;
+using Quartz.Logging;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
-using TP_DDS_MVC.DAOs;
 using TP_DDS.Model.Compras;
+using TP_DDS.Model.Entidades;
+using TP_DDS_MVC.DAOs;
+using TP_DDS_MVC.Helpers;
 
 namespace TP_DDS_MVC.Controllers
 {
     public class CompraController : Controller
     {
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        ///////////////////////////////////////////////
+        ///         Prestador de servicios          ///
+        ///////////////////////////////////////////////
+        
+        public JsonResult PrestadorDeServicios()
+        {
+            List<PrestadorDeServicios> PDSs = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios();
+            return Json(JsonConvert.SerializeObject(PDSs));
+        }
+
+        public ActionResult AddPrestadorDeServicios()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddPrestadorDeServicios(PrestadorDeServicios PDS)
+        {
+            try
+            {
+                PDS.direccionPostal = new DireccionPostal();
+                PrestadorDeServiciosDAO.getInstancia().add(PDS);
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                MyLogger.log(e.Message);
+                return View();
+            }
+        }
+
+
+        ///////////////////////////////////////////////
+        ///             Medio de Pago               ///
+        ///////////////////////////////////////////////
+        public ActionResult AddMedioDePago()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddMedioDePago(MedioDePago MDP)
+        {
+            try
+            {
+                MedioDePagoDAO.getInstancia().add(MDP);
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                MyLogger.log(e.Message);
+                return View();
+            }
+        }
+
+        ///////////////////////////////////////////////
+        ///              Presupuesto                ///
+        ///////////////////////////////////////////////
+        public ActionResult AddPresupuesto()
+        {
+            ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago();
+            ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddPresupuesto(Presupuesto pres)
+        {
+            try
+            {
+                PresupuestoDAO.getInstancia().add(pres);
+                return Json(Url.Action("Index", "Compra"));
+            }
+            catch (Exception e)
+            {
+                MyLogger.log(e.Message);
+                return View();
+            }
+        }
+
+        ///////////////////////////////////////////////
+        ///              Egreso                     ///
+        ///////////////////////////////////////////////
+        public ActionResult AddEgreso()
+        {
+            ViewBag.docsComerciales = DocumentoComercialDAO.getInstancia().getDocumentosComerciales();
+            ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago();
+            ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddEgreso(JsonEgreso req)
+        {
+            
+            try
+            {
+                int idEgreso = EgresoDAO.getInstancia().add(req.model).idEgreso;
+                foreach (string nroId in req.docsComerciales)
+                {
+                    DocumentoComercialDAO.getInstancia().setEgresoId(idEgreso, nroId);
+                }
+
+                return Json(Url.Action("Index", "Compra"));
+            }
+            catch (Exception e)
+            {
+                MyLogger.log(e.Message);
+                return View();
+            }
+        }
+
+        public class JsonEgreso
+        {
+            public Egreso model { get; set; }
+            public string[] docsComerciales { get; set; }
+        }
+
+
         // GET: Compra
         public ActionResult ListCompras()
         {
@@ -39,68 +170,18 @@ namespace TP_DDS_MVC.Controllers
         // GET: Compra/Create
         public ActionResult AddCompra()
         {
-           
+            
             return View();
         }
 
         // POST: Compra/Create
         [HttpPost]
-        public ActionResult AddCompra(int cant) // video 1:30:00
+        public ActionResult AddCompra(FormCollection collection) // video 1:30:00
         {
             try
             {
-                // Compra compra = new Compra(int cantMinimaPresupuestos, float criterio, Egreso egreso, List<Presupuesto> presupuestos, List<Usuario> revisores)
-                // ViewBag.compra = CompraDAO.getInstancia().add();
-                int cantidad = cant;
-               
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        public ActionResult AddEgreso()
-        {
-            List<MedioDePago> mediosPago = MedioDePagoDAO.getInstancia().getMediosDePago();
-            ViewBag.mediosPago = mediosPago;
-            return View();
-        }
-
-        // POST: Egreso/Create
-        [HttpPost]
-        public ActionResult AddEgreso(int hola) 
-        {
-            try
-            {
-                // Compra compra = new Compra(int cantMinimaPresupuestos, float criterio, Egreso egreso, List<Presupuesto> presupuestos, List<Usuario> revisores)
-                // ViewBag.compra = CompraDAO.getInstancia().add();
-             
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        public ActionResult AddMedioPago()
-        {
-           
-
-            return View();
-        }
-
-        // POST: Egreso/Create
-        [HttpPost]
-        public ActionResult AddMedioPago(int hola)
-        {
-            try
-            {
-                // Compra compra = new Compra(int cantMinimaPresupuestos, float criterio, Egreso egreso, List<Presupuesto> presupuestos, List<Usuario> revisores)
-                // ViewBag.compra = CompraDAO.getInstancia().add();
-
+               // Compra compra = new Compra(int cantMinimaPresupuestos, float criterio, Egreso egreso, List<Presupuesto> presupuestos, List<Usuario> revisores)
+               // ViewBag.compra = CompraDAO.getInstancia().add();
                 return RedirectToAction("Index");
             }
             catch

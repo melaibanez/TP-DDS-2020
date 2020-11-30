@@ -183,6 +183,7 @@
     <Compile Include="DAOs\OrganizacionDAO.cs" />
     <Compile Include="DAOs\PaisDAO.cs" />
     <Compile Include="DAOs\PrestadorDeServiciosDAO.cs" />
+    <Compile Include="DAOs\PresupuestoDAO.cs" />
     <Compile Include="DAOs\ProvinciaDAO.cs" />
     <Compile Include="DAOs\UsuarioDAO.cs" />
     <Compile Include="Global.asax.cs">
@@ -190,6 +191,7 @@
     </Compile>
     <Compile Include="Helpers\DB\MyDBContext.cs" />
     <Compile Include="Helpers\DB\PersistenciaDireccionPostal.cs" />
+    <Compile Include="Helpers\MyLogger.cs" />
     <Compile Include="Helpers\Scheduler\Jobs\JobValidadorPresupuestos.cs" />
     <Compile Include="Helpers\Scheduler\MyScheduler.cs" />
     <Compile Include="Helpers\Validadores\CategorizadorOrg.cs" />
@@ -238,17 +240,22 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Scripts\JavaScript.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.flexdatalist.css" />
+    <Content Include="Scripts\jquery.flexdatalist.js" />
+    <Content Include="Scripts\jquery.flexdatalist.min.css" />
+    <Content Include="Scripts\jquery.flexdatalist.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\MyScripts\agregarEgreso.js" />
+    <Content Include="Scripts\MyScripts\agregarPresupuestoScript.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -347,9 +354,10 @@
     <Content Include="Views\Compra\ListCompras.cshtml" />
     <Content Include="Views\Compra\AddCompra.cshtml" />
     <Content Include="Views\Compra\AddPresupuesto.cshtml" />
+    <Content Include="Views\Compra\Index.cshtml" />
     <Content Include="Views\Compra\AddPrestadorDeServicios.cshtml" />
+    <Content Include="Views\Compra\AddMedioDePago.cshtml" />
     <Content Include="Views\Compra\AddEgreso.cshtml" />
-    <Content Include="Views\Compra\AddMedioPago.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
