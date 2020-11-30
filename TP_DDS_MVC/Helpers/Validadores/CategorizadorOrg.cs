@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TP_DDS.Model.Entidades;
-using TP_DDS.Model.Entidades.TiposEmpresa;
+using TP_DDS_MVC.Models.Entidades;
+using TP_DDS_MVC.Models.Entidades.TiposEmpresa;
 
 namespace TP_DDS_MVC.Helpers.Validadores
 {

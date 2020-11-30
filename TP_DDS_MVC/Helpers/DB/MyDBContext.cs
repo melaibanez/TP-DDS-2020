@@ -6,10 +6,10 @@ using System.Linq;
 using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
-using TP_DDS.Model.Compras;
-using TP_DDS.Model.Entidades;
-using TP_DDS.Model.Ingresos;
-using TP_DDS.Model.Otros;
+using TP_DDS_MVC.Models.Compras;
+using TP_DDS_MVC.Models.Entidades;
+using TP_DDS_MVC.Models.Ingresos;
+using TP_DDS_MVC.Models.Otros;
 
 namespace TP_DDS_MVC.Helpers.DB
 {

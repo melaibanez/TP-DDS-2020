@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TP_DDS.Model.Otros;
+using TP_DDS_MVC.Models.Otros;
 
 namespace TP_DDS_MVC.Helpers.DB
 {

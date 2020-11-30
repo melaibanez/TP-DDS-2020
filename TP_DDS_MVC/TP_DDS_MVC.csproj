@@ -205,6 +205,37 @@
     <Compile Include="Helpers\VinculadorEgresoIngreso\OVPI.cs" />
     <Compile Include="Helpers\VinculadorEgresoIngreso\Vinculador.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Compras\Categoria.cs" />
+    <Compile Include="Models\Compras\Compra.cs" />
+    <Compile Include="Models\Compras\Criterio.cs" />
+    <Compile Include="Models\Compras\DocumentoComercial.cs" />
+    <Compile Include="Models\Compras\Egreso.cs" />
+    <Compile Include="Models\Compras\Item.cs" />
+    <Compile Include="Models\Compras\ItemEgreso.cs" />
+    <Compile Include="Models\Compras\ItemPresupuesto.cs" />
+    <Compile Include="Models\Compras\MedioDePago.cs" />
+    <Compile Include="Models\Compras\PrestadorDeServicios.cs" />
+    <Compile Include="Models\Compras\Presupuesto.cs" />
+    <Compile Include="Models\Entidades\DireccionPostal.cs" />
+    <Compile Include="Models\Entidades\Empresa.cs" />
+    <Compile Include="Models\Entidades\Entidad.cs" />
+    <Compile Include="Models\Entidades\EntidadBase.cs" />
+    <Compile Include="Models\Entidades\EntidadJuridica.cs" />
+    <Compile Include="Models\Entidades\OSC.cs" />
+    <Compile Include="Models\Entidades\TipoOrganizacion.cs" />
+    <Compile Include="Models\Entidades\TiposEmpresa\MedianaTramo1.cs" />
+    <Compile Include="Models\Entidades\TiposEmpresa\MedianaTramo2.cs" />
+    <Compile Include="Models\Entidades\TiposEmpresa\Micro.cs" />
+    <Compile Include="Models\Entidades\TiposEmpresa\Pequenia.cs" />
+    <Compile Include="Models\Entidades\TiposEmpresa\TipoEmpresa.cs" />
+    <Compile Include="Models\Ingresos\Ingreso.cs" />
+    <Compile Include="Models\Otros\Ciudad.cs" />
+    <Compile Include="Models\Otros\Notificacion.cs" />
+    <Compile Include="Models\Otros\Pais.cs" />
+    <Compile Include="Models\Otros\Provincia.cs" />
+    <Compile Include="Models\Otros\Usuario.cs" />
+    <Compile Include="Models\Proyectos\Operacion.cs" />
+    <Compile Include="Models\Proyectos\ProyectoFinanciamiento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -363,18 +394,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TP_DDS\TP_DDS\TP_DDS.csproj">
-      <Project>{0b34e040-0e76-4cf9-ae00-489b19a15a3e}</Project>
-      <Name>TP_DDS</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

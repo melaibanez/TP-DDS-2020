@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using TP_DDS.Model.Ingresos;
+using TP_DDS_MVC.Models.Ingresos;
 using TP_DDS_MVC.Helpers.DB;
 
 namespace TP_DDS_MVC.DAOs

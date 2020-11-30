@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TP_DDS.Model.Compras;
+using TP_DDS_MVC.Models.Compras;
 using TP_DDS_MVC.Helpers.Validadores;
-using TP_DDS;
 
 namespace TP_DDS_MVC.Helpers.Scheduler.Jobs
 {
@@ -16,14 +15,12 @@ namespace TP_DDS_MVC.Helpers.Scheduler.Jobs
         {
             //Compra compra = (Compra)context.JobDetail.JobDataMap.Get("compra");
             
-            foreach (Compra compra in Global.comprasNoValidadas)
+            foreach (Compra compra in MvcApplication.comprasNoValidadas)
             {
                 await ValidadorPresupuestosEgreso.validar(compra);
-                Global.comprasNoValidadas.Remove(compra);
+                MvcApplication.comprasNoValidadas.Remove(compra);
                 Console.WriteLine("Compra validada");
             }
-
-            
         }
 
        

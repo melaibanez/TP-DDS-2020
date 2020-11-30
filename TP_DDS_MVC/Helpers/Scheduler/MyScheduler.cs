@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TP_DDS.Model.Compras;
+using TP_DDS_MVC.Models.Compras;
 using TP_DDS_MVC.Helpers.Scheduler.Jobs;
 
 namespace TP_DDS_MVC.Helpers.Scheduler
