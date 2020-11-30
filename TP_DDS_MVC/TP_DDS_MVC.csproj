@@ -168,6 +168,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CompraController.cs" />
+    <Compile Include="Controllers\EntidadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAOs\CategoriaDAO.cs" />
     <Compile Include="DAOs\CiudadDAO.cs" />
@@ -358,6 +359,7 @@
     <Content Include="Views\Compra\AddPrestadorDeServicios.cshtml" />
     <Content Include="Views\Compra\AddMedioDePago.cshtml" />
     <Content Include="Views\Compra\AddEgreso.cshtml" />
+    <Content Include="Views\Entidad\AddEntidadJuridica.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

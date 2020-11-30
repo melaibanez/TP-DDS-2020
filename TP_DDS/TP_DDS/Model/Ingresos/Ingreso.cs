@@ -52,7 +52,7 @@ namespace TP_DDS.Model.Ingresos
 
         public int montoTotalEgresosAsociados()
         {
-            //if (egresosAsociados.Count() == 0) return 0; 
+            //if (egresosAsociados.Count() == 0) return 0;
             List<float> montosEgresos = new List<float>();
             montosEgresos = egresosAsociados.Select(egreso => egreso.montoTotal).ToList();
             return montosEgresos.Sum(monto => Convert.ToInt32(monto));

@@ -13,6 +13,7 @@
 
 
 $("#agregarItem").click(function () {
+    $('#noItems').hide()
     
     data.model.items.push({
         cant: $("#cantItem").val(),
@@ -29,7 +30,7 @@ $("#agregarItem").click(function () {
 
     $("#descripcionItem").val('');
     $("#valorItem").val(1);
-    $("#cantItem").val = 1;
+    $("#cantItem").val(1);
 
     //idItem++;
 
@@ -40,6 +41,10 @@ $(document).on("click", "#eliminar", function () {
     const index = data.model.items.findIndex(i => i.descripcion === $(this).val());
     data.model.items.splice(parseInt(index), 1);
     $('[id="' + $(this).val() + '"]').remove();
+
+    if (data.model.items.length === 0) {
+        $('#noItems').show()
+    }
 
     console.log(data.model.items);
 })

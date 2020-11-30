@@ -60,6 +60,12 @@ namespace TP_DDS_MVC
             );
 
             routes.MapRoute(
+                name: "Add Entidad",
+                url: "entidad/entidad-juridica/add",
+                defaults: new { controller = "Entidad", action = "AddEntidadJuridica" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
