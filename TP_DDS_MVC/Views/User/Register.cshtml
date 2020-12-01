@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.title = "Inicio";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Sistema GEOC </h1>
+    <p>Inicie sesion para continuar</p>
+
+    @if (ViewBag.msg != null)
+    {
+        <p><b>@ViewBag.msg</b></p>
+    }
+
+    @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+    {
+        <input type="text" name="usuario" placeholder="Usuario" />
+        <input type="password" name="password" placeholder="Password" />
+        <p><br /><input type="submit" value="Iniciar sesión" /></p>
+    }
+
+    <p>O registrese si es su primera vez</p>
+
+    @using (Html.BeginForm("Register", "Home", FormMethod.Post))
+    {
+        <input type="text" name="usuario" placeholder="Usuario" />
+        <input type="password" name="password" placeholder="Password" />
+        <p> <input type="checkbox" name="esAdmin" value="administrador" /> ¿Es administrador? </p>
+        <input type="submit" value="Registrarse" />
+    }
+
+</div>

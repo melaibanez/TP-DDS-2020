@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using TP_DDS.Model.Otros;
+using TP_DDS_MVC.Models.Otros;
 using TP_DDS_MVC.Helpers.DB;
 
 namespace TP_DDS_MVC.DAOs
@@ -33,11 +33,12 @@ namespace TP_DDS_MVC.DAOs
             }
         }
 
-        public Usuario getUsuario(int id)
+        public Usuario getUsuario(string username, string password)
         {
+
             using (MyDBContext context = new MyDBContext())
             {
-                return context.Usuarios.Find(id);
+                return context.Usuarios.Where(usr => usr.nombreUsuario == username && usr.contrasenia == password).SingleOrDefault();
             }
         }
 

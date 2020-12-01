@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using TP_DDS.Model.Entidades;
-using TP_DDS.Model.Compras;
-using TP_DDS.Model.Ingresos;
+using TP_DDS_MVC.Models.Entidades;
+using TP_DDS_MVC.Models.Compras;
+using TP_DDS_MVC.Models.Ingresos;
 using TP_DDS_MVC.Helpers.VinculadorEgresoIngreso;
 
 namespace TP_DDS_MVC.Helpers.VinculadorEgresoIngreso

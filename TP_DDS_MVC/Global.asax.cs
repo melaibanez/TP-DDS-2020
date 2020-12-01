@@ -5,12 +5,16 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using TP_DDS.Model.Entidades;
+using TP_DDS_MVC.Models.Compras;
+using TP_DDS_MVC.Models.Entidades;
 
 namespace TP_DDS_MVC
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+
+        public static List<Compra> comprasNoValidadas = new List<Compra>();
+        public static List<Entidad> entidades { get; set; }
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();

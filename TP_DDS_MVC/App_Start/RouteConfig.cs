@@ -60,9 +60,20 @@ namespace TP_DDS_MVC
             );
 
             routes.MapRoute(
+                name: "Add Entidad",
+                url: "entidad/entidad-juridica/add",
+                defaults: new { controller = "Entidad", action = "AddEntidadJuridica" }
+            );
+
+            routes.MapRoute(
+                 name: "Panel Admin",
+                 url: "user/admin",
+                 defaults: new { controller = "User", action = "panelAdmin" }
+             );
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "User", action = "Register", id = UrlParameter.Optional }
             );
         }
     }

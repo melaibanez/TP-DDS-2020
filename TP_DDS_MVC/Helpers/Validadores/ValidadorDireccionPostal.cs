@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TP_DDS.Model.Entidades;
+using TP_DDS_MVC.Models.Entidades;
 using Newtonsoft.Json.Linq;
-using TP_DDS.Model.Otros;
+using TP_DDS_MVC.Models.Otros;
 using TP_DDS_MVC.Helpers.DB;
 
 namespace TP_DDS_MVC.Helpers.Validadores
