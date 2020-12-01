@@ -23,7 +23,7 @@ namespace TP_DDS_MVC.Helpers.DB
         public DbSet<DocumentoComercial> DocumentosComerciales { get; set; }
         public DbSet<DireccionPostal> DireccionesPostales { get; set; }
         public DbSet<Egreso> Egresos { get; set; }
-        public DbSet<Item> ItemsEgresos { get; set; }
+        public DbSet<Item> Items { get; set; }
         public DbSet<MedioDePago> MediosDePago { get; set; }
         public DbSet<PrestadorDeServicios> PrestadoresDeServicios { get; set; }
         public DbSet<Ingreso> Ingresos { get; set; }
