@@ -15,6 +15,7 @@ using TP_DDS_MVC.Helpers;
 
 namespace TP_DDS_MVC.Controllers
 {
+    [CustomAuthenticationFilter]
     public class CompraController : Controller
     {
         public ActionResult Index()

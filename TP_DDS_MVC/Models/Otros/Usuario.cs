@@ -28,9 +28,10 @@ namespace TP_DDS_MVC.Models.Otros
         public List<Notificacion> bandejaMensajes { get; set; }
 
         [ForeignKey("entidad")]
-        public int idEntidad { get; set; }
+        public int? idEntidad { get; set; }
         public Entidad entidad { get; set; }
 
+        public Usuario(){}
         public Usuario(string nombreUsuario, bool esAdmin, string contrasenia, Entidad entidad)
         {
             this.nombreUsuario = nombreUsuario;

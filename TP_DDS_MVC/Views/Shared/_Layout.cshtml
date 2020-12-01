@@ -47,7 +47,7 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Mi Perfil</a>
                 </li>
-                @if (user.esAdmin)
+                @if (user != null && user.esAdmin)
                 {
                     <li class="nav-item active">
                         <a class="nav-link" href="/user/admin">Panel de administrador</a>
