@@ -135,12 +135,6 @@ namespace TP_DDS_MVC.Controllers
             }
         }
 
-        public class JsonEgreso
-        {
-            public Egreso model { get; set; }
-            public string[] docsComerciales { get; set; }
-        }
-
 
         // GET: Compra
         public ActionResult ListCompras()

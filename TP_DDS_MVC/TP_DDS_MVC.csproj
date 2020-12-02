@@ -192,6 +192,7 @@
     <Compile Include="Helpers\CustomAuthenticationFilter.cs" />
     <Compile Include="Helpers\DB\MyDBContext.cs" />
     <Compile Include="Helpers\DB\PersistenciaDireccionPostal.cs" />
+    <Compile Include="Helpers\JsonEgreso.cs" />
     <Compile Include="Helpers\MyLogger.cs" />
     <Compile Include="Helpers\Scheduler\Jobs\JobValidadorPresupuestos.cs" />
     <Compile Include="Helpers\Scheduler\MyScheduler.cs" />

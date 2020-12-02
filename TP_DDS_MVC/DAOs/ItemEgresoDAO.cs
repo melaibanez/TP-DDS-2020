@@ -29,7 +29,7 @@ namespace TP_DDS_MVC.DAOs
 
             using (MyDBContext context = new MyDBContext())
             {
-                return context.ItemsEgresos.ToList();
+                return context.Items.ToList();
             }
         }
 
@@ -37,7 +37,7 @@ namespace TP_DDS_MVC.DAOs
         {
             using (MyDBContext context = new MyDBContext())
             {
-                return context.ItemsEgresos.Find(id);
+                return context.Items.Find(id);
             }
         }
 
@@ -46,7 +46,7 @@ namespace TP_DDS_MVC.DAOs
             Item added;
             using (MyDBContext context = new MyDBContext())
             {
-                added = context.ItemsEgresos.Add(itemEgreso);
+                added = context.Items.Add(itemEgreso);
             }
 
             return added;

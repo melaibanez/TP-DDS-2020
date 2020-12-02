@@ -1,5 +1,5 @@
 ﻿@using TP_DDS_MVC.Models.Compras
-@model TP_DDS_MVC.Models.Compras.Egreso
+@model TP_DDS_MVC.Helpers.JsonEgreso
 @{
     @section scripts {
         <script type="text/javascript" src="~/Scripts/MyScripts/agregarEgreso.js"></script>
@@ -11,20 +11,15 @@
     var mediosDePago = ViewBag.mediosDePago;
 }
 
-<div>
+<div class="container">
     <h2>Crear un Egreso</h2>
-    <br />
-    <br />
-    <div>
-        <label for="fecha">
-            Fecha del egreso: <input id="fecha" type="date">
-        </label>
+    <div class="form-group">
+        <label for="fecha">Fecha del egreso:</label>
+        <input class="form-control" id="fecha" type="date">
     </div>
-    <br />
-    <div>
-        <label for="proveedores">
-            Seleccione un proveedor: <input list="proveedores" id="proveedor" type="text">
-        </label>
+    <div class="form-group">
+        <label for="proveedores">Seleccione un proveedor:</label>
+        <input class="form-control" list="proveedores" id="proveedor" type="text" placeholder="Seleccionar...">
         <datalist id="proveedores">
             @foreach (PrestadorDeServicios PDS in (List<PrestadorDeServicios>)proveedores)
             {
@@ -32,11 +27,9 @@
             }
         </datalist>
     </div>
-    <br />
-    <div>
-        <label for="mediosDePago">
-            Seleccione un Medio de Pago: <input list="mediosDePago" id="medioDePago" type="text">
-        </label>
+    <div class="form-group">
+        <label for="mediosDePago">Seleccione un Medio de Pago:</label>
+        <input class="form-control" list="mediosDePago" id="medioDePago" type="text" placeholder="Seleccionar...">
         <datalist id="mediosDePago">
             @foreach (MedioDePago MDP in (List<MedioDePago>)mediosDePago)
             {
@@ -45,56 +38,58 @@
         </datalist>
     </div>
     <div>
-        <h3>Agregar documentos</h3>
-        <div>
-            <label for="documentos">
-                Seleccione un Documento Comercial: <input list="documentos" id="documento" type="text">
-            </label>
+        <h4>Agregar documentos</h4>
+        <div class="form-group">
+            <label for="documentos">Seleccione un Documento Comercial:</label>
+            <input class="form-control" list="documentos" id="documento" type="text" placeholder="Seleccionar...">
             <datalist id="documentos">
                 @foreach (DocumentoComercial DC in (List<DocumentoComercial>)documentos)
                 {
                     <option value="@DC.nroIdentificacion">@DC.tipo_enlace</option>
                 }
             </datalist>
-            <button class="btn btn-primary btn-sm" id="agregarDoc">Agregar</button>
         </div>
+        <button class="btn btn-primary btn-sm mb-1" id="agregarDoc">Agregar</button>
         <br />
+        <br />
+        <h5>Lista de documentos</h5>
         <div class="col-6">
-            <h4>Lista de documentos</h4>
-            <ul class="list-group" id="listaDocs">
+            <label id="noDocs">No hay documentos agregados</label>
+            <ul class="list-group list-group-flush pb-5" id="listaDocs">
             </ul>
         </div>
-        <br />
     </div>
     <br />
     <div>
-        <h3>Agregar items</h3>
-        <div>
-            <span>
-                <label>Descripcion: </label>
-                <input type="text" id="descripcionItem" placeholder="Descripcion" />
-                &nbsp;&nbsp;&nbsp;
-                <label>Valor: </label>
-                <input type="number" id="valorItem" placeholder="1" step="0.01" min="1" />
-                &nbsp;&nbsp;&nbsp;
-                <label>Cantidad: </label>
-                <input type="number" id="cantItem" placeholder="1" min="1" />
-                &nbsp;&nbsp;&nbsp;
-                <button class="btn btn-primary btn-sm" id="agregarItem">Agregar</button>
-            </span>
+        <h4>Agregar items</h4>
+        <div class="form-row">
+            <div class="form-group col-4">
+                <label for="descripcionItem">Descripcion</label>
+                <input type="text" class="form-control" id="descripcionItem" placeholder="Descripcion" />
+            </div>
+            <div class="form-group col-1">
+                <label for="valorItem">Valor </label>
+                <input type="number" class="form-control" id="valorItem" placeholder="1" step="0.01" min="1" />
+            </div>
+            <div class="form-group col-1">
+                <label for="cantItem">Cantidad</label>
+                <input type="number" class="form-control" id="cantItem" placeholder="1" min="1" />
+            </div>
         </div>
+        <button class="btn btn-primary btn-sm mb-1" id="agregarItem">Agregar</button>
         <br />
+        <br />
+        <h5>Lista de Items</h5>
         <div class="col-6">
-            <h4>Lista de Items</h4>
-            <ul class="list-group" id="listaItems">
+            <label id="noItems">No hay items agregados</label>
+            <ul class="list-group list-group-flush pb-5" id="listaItems">
             </ul>
         </div>
-        <br />
     </div>
     <span>
-        <button class="btn btn-success btn-lg" id="submit">Crear</button>
+        <button class="btn btn-success col-lg-2" id="submit">Crear</button>
         &nbsp;&nbsp;&nbsp;
-        @Html.ActionLink("Cancelar", "Index", new { controller = "Compra" }, new { @class = "btn btn-secondary" })
+        @Html.ActionLink("Cancelar", "Index", new { controller = "Compra" }, new { @class = "btn btn-secondary col-lg-1" })
     </span>
 </div>
 
