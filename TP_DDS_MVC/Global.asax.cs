@@ -16,7 +16,6 @@ namespace TP_DDS_MVC
     {
 
         public static List<Compra> comprasNoValidadas = new List<Compra>();
-        public static List<Entidad> entidades { get; set; }
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -24,7 +23,10 @@ namespace TP_DDS_MVC
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            //HttpContext.Current.Session["entidad"] = new EntidadJuridica();
+            using (MyDBContext context = new MyDBContext())
+            {
+                comprasNoValidadas = context.Compras.Where(c => !c.compraValidada).ToList();
+            }
             
         }
     }

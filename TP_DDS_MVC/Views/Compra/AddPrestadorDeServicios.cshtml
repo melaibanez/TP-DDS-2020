@@ -16,18 +16,18 @@
         <div class="form-group row">
             <label for="razonSocial">Nombre o Razon Social</label>
             <div class="col-10">
-                @Html.TextBoxFor(m => m.razonSocial)
+                @Html.TextBoxFor(m => m.razonSocial, new { @class = "form-control" })
             </div>
         </div>
         <br />
         <div class="form-group row">
             <div class="form-group col-md-6">
                 <label for="tipoDoc">Tipo de documento</label>
-                 @Html.DropDownListFor(m => m.tipoDoc, tiposDoc)
+                 @Html.DropDownListFor(m => m.tipoDoc, tiposDoc, new { @class = "form-control" })
             </div>
             <div class="form-group col-md-6">
                 <label for="numDoc">Numero de documento</label>
-                @Html.TextBoxFor(m => m.numDoc)
+                @Html.TextBoxFor(m => m.numDoc, new { @class = "form-control" })
             </div>
         </div>
         <br />
