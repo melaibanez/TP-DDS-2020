@@ -189,6 +189,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CustomAuthenticationFilter.cs" />
     <Compile Include="Helpers\DB\MyDBContext.cs" />
     <Compile Include="Helpers\DB\PersistenciaDireccionPostal.cs" />
     <Compile Include="Helpers\JsonEgreso.cs" />
@@ -392,6 +393,8 @@
     <Content Include="Views\Compra\AddEgreso.cshtml" />
     <Content Include="Views\Entidad\AddEntidadJuridica.cshtml" />
     <Content Include="Views\Compra\Home.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\panelAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

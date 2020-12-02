@@ -5,26 +5,49 @@ using System.Web;
 using System.Web.Mvc;
 using TP_DDS_MVC.Models.Otros;
 using TP_DDS_MVC.DAOs;
+using TP_DDS_MVC.Helpers;
 
 namespace TP_DDS_MVC.Controllers
 {
+
     public class UserController : Controller
     {
         public ActionResult Register()
         {
+            Usuario usuario = (Usuario)Session["usuario"];
 
-            var usuario = Session["usuario"];
-
-            if (usuario != null)
+            if(usuario != null && usuario.esAdmin)
+                 
             {
-                return Redirect("/Home/Index");
+
+                return View();
             }
             else
             {
-                return View();
+                return Redirect("/Home/Index");
             }
+               
+            
+            
 
         }
+
+        [HttpPost]
+        public ActionResult Register(string usuario, string password, string esAdmin)
+        {
+
+            UsuarioDAO.getInstancia().add(new Usuario(usuario, true, password, null));
+            ViewBag.msg = "El usuario fue creado correctamente";
+            return View("Register");
+
+        }
+
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
 
         [HttpPost]
         public ActionResult Login(string usuario, string password)
@@ -49,16 +72,7 @@ namespace TP_DDS_MVC.Controllers
 
         }
 
-        [HttpPost]
 
-        public ActionResult Register(string usuario, string password, string esAdmin)
-        {
-
-            UsuarioDAO.getInstancia().add(new Usuario(usuario,true, password, null));
-            ViewBag.msg = "El usuario fue creado correctamente";
-            return View("Register");
-
-        }
 
         public ActionResult Logout()
         {
