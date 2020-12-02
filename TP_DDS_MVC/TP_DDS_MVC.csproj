@@ -168,6 +168,7 @@
     <Compile Include="Controllers\CompraController.cs" />
     <Compile Include="Controllers\EntidadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAOs\CategoriaDAO.cs" />
     <Compile Include="DAOs\CiudadDAO.cs" />
     <Compile Include="DAOs\CompraDAO.cs" />
@@ -385,11 +386,12 @@
     <Content Include="Views\Compra\ListCompras.cshtml" />
     <Content Include="Views\Compra\AddCompra.cshtml" />
     <Content Include="Views\Compra\AddPresupuesto.cshtml" />
-    <Content Include="Views\Compra\Index.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\Compra\AddPrestadorDeServicios.cshtml" />
     <Content Include="Views\Compra\AddMedioDePago.cshtml" />
     <Content Include="Views\Compra\AddEgreso.cshtml" />
     <Content Include="Views\Entidad\AddEntidadJuridica.cshtml" />
+    <Content Include="Views\Compra\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

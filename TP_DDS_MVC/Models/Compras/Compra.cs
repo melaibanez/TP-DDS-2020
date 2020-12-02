@@ -20,7 +20,7 @@ namespace TP_DDS_MVC.Models.Compras
         public int cantMinimaPresupuestos { get; set; }//a definir
 
         [NotMapped]
-        private float criterio { get; set; }//a definir
+        private float criterio { get; set; }//a definir esto no deberia ser un float
 
         [ForeignKey("entidad")]
         public int idEntidad { get; set; }

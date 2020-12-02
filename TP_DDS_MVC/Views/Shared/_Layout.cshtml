@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using TP_DDS_MVC.Models.Otros;
+
+@{ 
+    Usuario user = (Usuario)Session["usuario"];
+}
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -42,7 +47,14 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Mi Perfil</a>
                 </li>
+                @if (user.esAdmin)
+                {
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/user/admin">Panel de administrador</a>
 
+                    </li>
+                }
+               
             </ul>
         </div>
     </nav>

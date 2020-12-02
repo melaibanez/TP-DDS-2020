@@ -18,8 +18,7 @@ namespace TP_DDS_MVC.Models.Otros
         [StringLength(50)]
         public string nombreUsuario { get; set; }
 
-        [StringLength(50)]
-        public string tipo { get; set; }
+        public bool esAdmin { get; set; }
 
         [StringLength(50)]
         public string contrasenia { get; set; }
@@ -32,10 +31,10 @@ namespace TP_DDS_MVC.Models.Otros
         public int idEntidad { get; set; }
         public Entidad entidad { get; set; }
 
-        public Usuario(string nombreUsuario, string tipo, string contrasenia, Entidad entidad)
+        public Usuario(string nombreUsuario, bool esAdmin, string contrasenia, Entidad entidad)
         {
             this.nombreUsuario = nombreUsuario;
-            this.tipo = tipo;
+            this.esAdmin = esAdmin;
             this.contrasenia = contrasenia;
             this.bandejaMensajes = new List<Notificacion>();
             this.entidad = entidad;
