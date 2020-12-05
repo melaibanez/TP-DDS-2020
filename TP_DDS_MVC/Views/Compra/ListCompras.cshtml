@@ -1,30 +1,33 @@
-﻿
+﻿@using TP_DDS_MVC.Models.Compras;
+@model List<Compra>
 @{
     ViewBag.Title = "ListCompras";
 }
 
-    <div class="d-flex justify-content-start">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Descripcion</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                @{ foreach (TP_DDS_MVC.Models.Compras.Compra compra in ViewBag.compras)
-                   {
-                        <tr class="table-active">
-                            <th scope="row">@compra.idCompra</th>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>@Html.ActionLink("Ver Detalle", "Details", "Compra", compra.idCompra)</td>
-                        </tr>
-                   }
-                   }
 
-            </tbody>
-        </table>
+<div class="alert alert-secondary my-4" role="alert">
+    <h2>Lista de compras</h2>
+</div>
+
+<div class="row">
+    <div class="justify-content-start">
+        <div class="shadow p-2 mb-3 bg-white rounded">
+            <div class="row">
+                <div class="col-lg-2 text-center">Descripcion</div>
+                <div class="col-lg-1 text-center">Presupuestos</div>
+            </div>
+        </div>
+        @foreach (Compra compra in Model)
+        {
+            <div class="shadow p-2 mb-2 bg-white rounded">
+                <div class="row">
+                    <div class="col-lg-3 text-center">@compra.descripcion</div>
+                    <div class="col-lg-1 text-center">@compra.presupuestos.Count</div>
+                    <div class="col-lg-1">@Html.ActionLink("Detalle", "ListCompras", "Compra", new { idCompra = compra.idCompra }, new { @class = "btn btn-info btn-sm" })</div>
+                    <div class="col-lg-1">@Html.ActionLink("Editar", "EditCompra", "Compra", new { idCompra = compra.idCompra }, new { @class = "btn btn-secondary btn-sm" })</div>
+                </div>
+            </div>
+        }
     </div>
+</div>
+

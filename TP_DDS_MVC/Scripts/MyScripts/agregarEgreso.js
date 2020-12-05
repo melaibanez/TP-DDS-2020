@@ -1,7 +1,7 @@
 ﻿var data = {
     model: {
         egreso: {
-            fecha: null,
+            fechaEgreso: null,
             idMedioDePago: null,
             montoTotal: 0,
             idPrestadorDeServicios: null,
@@ -88,7 +88,7 @@ $("#submit").click(function () {
         url: "/compra/egreso/add",
         contentType: "application/json",
         dataType: "json",
-        data: JSON.stringify(data.model.egreso),
+        data: JSON.stringify(data.model),
         crossDomain: true,
         success: function (data) {
             window.location.href = data;

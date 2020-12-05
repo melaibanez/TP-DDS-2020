@@ -36,8 +36,9 @@ namespace TP_DDS_MVC.Models.Compras
         public List<Presupuesto> presupuestos { get; set; }
 
         public Compra() { }
-        public Compra(int cantMinimaPresupuestos, float criterio, Egreso egreso, List<Presupuesto> presupuestos, List<Usuario> revisores)
+        public Compra(string descripcion, int cantMinimaPresupuestos, float criterio, Egreso egreso, List<Presupuesto> presupuestos, List<Usuario> revisores)
         {
+            this.descripcion = descripcion;
             this.cantMinimaPresupuestos = cantMinimaPresupuestos;
             this.criterio = criterio;
             this.egreso = egreso;

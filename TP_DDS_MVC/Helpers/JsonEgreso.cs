@@ -8,7 +8,7 @@ namespace TP_DDS_MVC.Helpers
 {
     public class JsonEgreso
     {
-        public Egreso model { get; set; }
+        public Egreso egreso { get; set; }
         public string[] docsComerciales { get; set; }
     }
 }

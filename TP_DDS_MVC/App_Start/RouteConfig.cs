@@ -14,13 +14,17 @@ namespace TP_DDS_MVC
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            
-            
-            
+
             routes.MapRoute(
-                name: "ListCompras",
+                name: "Compras index",
                 url: "compra",
                 defaults: new { controller = "Compra", action = "Index" }
+            );
+
+            routes.MapRoute(
+                name: "ListCompras",
+                url: "compra/list",
+                defaults: new { controller = "Compra", action = "ListCompras" }
             );
 
             routes.MapRoute(
@@ -66,9 +70,21 @@ namespace TP_DDS_MVC
             );
 
             routes.MapRoute(
+                name: "Logout",
+                url: "usuario/logout",
+                defaults: new { controller = "User", action = "Logout" }
+            );
+
+            routes.MapRoute(
+                name: "Bandeja de mensajes",
+                url: "usuario/mensajes",
+                defaults: new { controller = "User", action = "BandejaDeMensajes" }
+            );
+
+            routes.MapRoute(
                  name: "Panel Admin",
-                 url: "user/admin",
-                 defaults: new { controller = "User", action = "panelAdmin" }
+                 url: "usuario/admin",
+                 defaults: new { controller = "User", action = "PanelAdmin" }
              );
             routes.MapRoute(
                 name: "Default",

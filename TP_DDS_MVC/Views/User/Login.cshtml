@@ -1,25 +1,41 @@
 ﻿
 @{
     ViewBag.Title = "Login";
+    string errorMsg = ViewBag.msg;
+
 }
 
-<div class="text-center">
-    <h1 class="display-4">Sistema GEOC </h1>
-    <p>Inicie sesion para continuar</p>
+    <div class="row justify-content-xl-center">
+        <h1 class="display-4 ">Sistema GEOC </h1>
+    </div>
+        
 
-    @if (ViewBag.msg != null)
-    {
-        <p><b>@ViewBag.msg</b></p>
-    }
-
-    @using (Html.BeginForm("Login", "User", FormMethod.Post))
-    {
-        <input type="text" name="usuario" placeholder="Usuario" />
-        <input type="password" name="password" placeholder="Password" />
-        <p><br /><input type="submit" value="Iniciar sesión" /></p>
-    }
-
-
-
-</div>
+        
+    <div class="my-xl-5 row justify-content-center">
+        <div class="card col-xl-4">
+            <div class="row card-header justify-content-center">
+                <h4>Inicio de sesión</h4>
+            </div>
+            <div class="row card-body justify-content-center">
+                @if (errorMsg != null)
+                {
+                    <p class="text-danger">@errorMsg</p>
+                }
+                @using (Html.BeginForm("Login", "User", FormMethod.Post))
+                {
+                    <div class="from-row">
+                        <input class="form-control" type="text" name="usuario" placeholder="Usuario" />
+                    </div>
+                    <br />
+                    <div class="from-row">
+                        <input class="form-control" type="password" name="password" placeholder="Password" />
+                    </div>
+                    <br />
+                    <div class="from-row">
+                        <input class="btn btn-info" type="submit" value="Iniciar sesión" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
 

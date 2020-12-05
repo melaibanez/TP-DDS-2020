@@ -120,7 +120,7 @@ namespace TP_DDS_MVC.Controllers
             
             try
             {
-                int idEgreso = EgresoDAO.getInstancia().add(req.model).idEgreso;
+                int idEgreso = EgresoDAO.getInstancia().add(req.egreso).idEgreso;
                 foreach (string nroId in req.docsComerciales)
                 {
                     DocumentoComercialDAO.getInstancia().setEgresoId(idEgreso, nroId);
@@ -136,11 +136,16 @@ namespace TP_DDS_MVC.Controllers
         }
 
 
-        // GET: Compra
+        ///////////////////////////////////////////////
+        ///              Compra                     ///
+        ///////////////////////////////////////////////
+
+        // GET: Compras
         public ActionResult ListCompras()
         {
-            ViewBag.compras = CompraDAO.getInstancia().getCompras();
-            return View();
+            //List<Compra> compras = CompraDAO.getInstancia().getCompras();
+            List<Compra> compras = new List<Compra>() { new Compra("La compra del mes", 5, 235,null,new List<Presupuesto>(),null), new Compra("Otra compra", 12, 235, null, new List<Presupuesto>(), null), new Compra("La ultima compra", 20, 125, null, new List<Presupuesto>(), null) };
+            return View(compras);
         }
 
 

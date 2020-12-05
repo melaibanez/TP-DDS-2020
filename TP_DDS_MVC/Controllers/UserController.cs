@@ -17,19 +17,13 @@ namespace TP_DDS_MVC.Controllers
             Usuario usuario = (Usuario)Session["usuario"];
 
             if(usuario != null && usuario.esAdmin)
-                 
             {
-
                 return View();
             }
             else
             {
                 return Redirect("/Home/Index");
             }
-               
-            
-            
-
         }
 
         [HttpPost]
@@ -39,7 +33,6 @@ namespace TP_DDS_MVC.Controllers
             UsuarioDAO.getInstancia().add(new Usuario(usuario, true, password, null));
             ViewBag.msg = "El usuario fue creado correctamente";
             return View("Register");
-
         }
 
 
@@ -52,52 +45,44 @@ namespace TP_DDS_MVC.Controllers
         [HttpPost]
         public ActionResult Login(string usuario, string password)
         {
-
-            var usuarioEncontrado = UsuarioDAO.getInstancia().getUsuario(usuario, password);
+            //Usuario usuarioEncontrado = UsuarioDAO.getInstancia().getUsuario(usuario, password);
+            Usuario usuarioEncontrado = UsuarioDAO.getInstancia().getUsuario("eze", "1234");
 
             if (usuarioEncontrado != null)
             {
-
-                Session.Add("usuario", new Usuario(usuario, true, password, null));
-                return Redirect("/Home/Index");
-
+                Session.Add("usuario", usuarioEncontrado);
+                return RedirectToAction("Index", "Home");
             }
             else
             {
 
-                ViewBag.msg = "El usuario no existe";
-                return View("Register");
+                ViewBag.msg = "Nombre de usuario o contraseña incontrrecto";
+                return View();
 
             }
 
         }
-
-
 
         public ActionResult Logout()
         {
 
             Session.Clear();
-            return Redirect("/Home/Index");
-
+            return Redirect("/User/Login");
         }
 
 
-        public ActionResult panelAdmin()
+        public ActionResult PanelAdmin()
         {
 
             var usuario = (Usuario)Session["usuario"];
 
-            if (usuario != null)
+            if (usuario != null && usuario.esAdmin)
             {
-
-                ViewBag.usuario = usuario;
-                return View("Private");
-
+                return View();
             }
             else
             {
-                return View("Index");
+                return RedirectToAction("Index", "Home");
             }
 
         }

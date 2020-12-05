@@ -9,6 +9,7 @@ using System.Web.Routing;
 using TP_DDS_MVC.Helpers.DB;
 using TP_DDS_MVC.Models.Compras;
 using TP_DDS_MVC.Models.Entidades;
+using TP_DDS_MVC.Models.Otros;
 
 namespace TP_DDS_MVC
 {
@@ -23,10 +24,10 @@ namespace TP_DDS_MVC
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            using (MyDBContext context = new MyDBContext())
-            {
-                comprasNoValidadas = context.Compras.Where(c => !c.compraValidada).ToList();
-            }
+            //using (MyDBContext context = new MyDBContext())
+            //{
+            //    comprasNoValidadas = context.Compras.Where(c => !c.compraValidada).ToList();
+            //}
             
         }
     }
