@@ -10,6 +10,7 @@ using TP_DDS_MVC.Models.Entidades;
 
 namespace TP_DDS_MVC.Models.Proyectos
 {
+    [NotMapped]
    public class ProyectoFinanciamiento
     {
         public string propuesta { get; set; }

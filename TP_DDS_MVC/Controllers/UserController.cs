@@ -86,5 +86,22 @@ namespace TP_DDS_MVC.Controllers
             }
 
         }
+
+        public ActionResult ListarUsuarios()
+        {
+            var usuario = (Usuario)Session["usuario"];
+
+            if (usuario != null && usuario.esAdmin)
+            {
+                List<Usuario> usuarios = UsuarioDAO.getInstancia().getUsuarios();
+                return View(usuarios);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+
     }
 }

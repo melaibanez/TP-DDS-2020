@@ -86,6 +86,13 @@ namespace TP_DDS_MVC
                  url: "usuario/admin",
                  defaults: new { controller = "User", action = "PanelAdmin" }
              );
+
+            routes.MapRoute(
+                name: "registar usuario",
+                url: "usuario/registrar",
+                defaults: new { controller = "User", action = "Register" }
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

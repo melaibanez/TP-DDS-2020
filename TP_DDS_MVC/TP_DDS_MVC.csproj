@@ -393,6 +393,7 @@
     <Content Include="Views\Compra\DetalleCompra.cshtml" />
     <Content Include="Views\Compra\ListPresupuestos.cshtml" />
     <Content Include="Views\Compra\DetallePresupuesto.cshtml" />
+    <Content Include="Views\User\ListarUsuarios.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
