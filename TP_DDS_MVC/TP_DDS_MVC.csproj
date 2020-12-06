@@ -390,6 +390,9 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\panelAdmin.cshtml" />
     <Content Include="Web.config" />
+    <Content Include="Views\Compra\DetalleCompra.cshtml" />
+    <Content Include="Views\Compra\ListPresupuestos.cshtml" />
+    <Content Include="Views\Compra\DetallePresupuesto.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

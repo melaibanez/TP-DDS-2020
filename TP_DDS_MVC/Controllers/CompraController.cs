@@ -144,7 +144,9 @@ namespace TP_DDS_MVC.Controllers
         public ActionResult ListCompras()
         {
             //List<Compra> compras = CompraDAO.getInstancia().getCompras();
-            List<Compra> compras = new List<Compra>() { new Compra("La compra del mes", 5, 235,null,new List<Presupuesto>(),null), new Compra("Otra compra", 12, 235, null, new List<Presupuesto>(), null), new Compra("La ultima compra", 20, 125, null, new List<Presupuesto>(), null) };
+            Egreso e = new Egreso();
+            e.montoTotal = 214254;
+            List<Compra> compras = new List<Compra>() { new Compra("La compra del mes", 5, 235,e,new List<Presupuesto>(),null), new Compra("Otra compra", 12, 235, e, new List<Presupuesto>(), null), new Compra("La ultima compra", 20, 125, e, new List<Presupuesto>(), null) };
             return View(compras);
         }
 
