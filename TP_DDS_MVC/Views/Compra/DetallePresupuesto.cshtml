@@ -17,25 +17,25 @@
     <div class="form-row">
         <div class="form-group col-6">
             <label for="proveedores">Proveedor</label>
-            <input list="proveedores" class="form-control" id="proveedor" value=@Model.prestadorDeServicios.razonSocial type="text">
+            <input list="proveedores" class="form-control" id="proveedor" value=@Model.prestadorDeServicios.razonSocial type="text" disabled>
         </div>
         <div class="form-group col-6">
             <label for="mediosDePago">Medio de Pago</label>
-            <input list="mediosDePago" class="form-control" value=@Model.medioDePago.instrumento id="medioDePago" type="text">
+            <input list="mediosDePago" class="form-control" value=@Model.medioDePago.instrumento id="medioDePago" type="text" disabled>
         </div>
     </div>
     <h5>Lista de Items</h5>
-    <div class="col-6">
+    <div class="col-4">
         <ul class="list-group list-group-flush pb-5" id="listaItems">
             @foreach (Item i in Model.items)
             {
-            <li class="list-group-item">@i.descripcion&nbsp;-&nbsp;$@i.valor&nbsp;-&nbsp;@i.cant</li>
+            <li class="list-group-item">@i.descripcion&nbsp;-&nbsp;$@i.valor c/u&nbsp;-&nbsp;@i.cant unidades</li>
             }
         </ul>
     </div>
     <span>
-        <button class="btn btn-info col-lg-2" id="edit">Crear</button>
-        @Html.ActionLink("Cancelar", "Index", new { controller = "Compra" }, new { @class = "btn btn-secondary col-lg-1" })
+        <button class="btn btn-info col-lg-2" id="edit">Editar</button>
+        @Html.ActionLink("Cancelar", "ListPresupuestos", new { controller = "Compra" }, new { @class = "btn btn-secondary col-lg-1" })
     </span>
 </div>
 
