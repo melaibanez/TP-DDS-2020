@@ -10,7 +10,7 @@ using TP_DDS_MVC.Models.Entidades;
 
 namespace TP_DDS_MVC.Models.Proyectos
 {
-    class ProyectoFinanciamiento
+   public class ProyectoFinanciamiento
     {
         public string propuesta { get; set; }
         public int montoTotal { get; set; }
@@ -31,5 +31,9 @@ namespace TP_DDS_MVC.Models.Proyectos
                 ingresos.Add(ingreso);
             }
         }
+
+        public void altaProyecto() { }
+        public void bajaProyecto() { }
+        public void modificacionProyecto() { }
     }
 }

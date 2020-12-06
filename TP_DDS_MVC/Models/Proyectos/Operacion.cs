@@ -8,10 +8,17 @@ using TP_DDS_MVC.Models.Entidades;
 
 namespace TP_DDS_MVC.Models.Proyectos
 {
-    class Operacion
+    public class Operacion
     {
         public string tipoOperacion { get; set; }
-        public ProyectoFinanciamiento proyecto;
-        public Entidad entidad { get; set; }
+        public string descripcion { get; set; }
+
+        public void registrarOperacion(Entidad entidad, string tipoOperacion, string descripcion)
+        {
+            this.tipoOperacion = tipoOperacion;
+            this.descripcion = descripcion;
+            entidad.AgregarOperacion(this);
+
+        }
     }
 }
