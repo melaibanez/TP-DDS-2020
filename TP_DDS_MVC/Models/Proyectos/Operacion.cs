@@ -8,6 +8,7 @@ using TP_DDS_MVC.Models.Entidades;
 
 namespace TP_DDS_MVC.Models.Proyectos
 {
+    [NotMapped]
     public class Operacion
     {
         public string tipoOperacion { get; set; }

@@ -81,6 +81,14 @@ namespace TP_DDS_MVC.Controllers
         ///////////////////////////////////////////////
         ///              Presupuesto                ///
         ///////////////////////////////////////////////
+
+
+        public ActionResult ListPresupuestos()
+        {
+            List<Presupuesto> pres = PresupuestoDAO.getInstancia().getPresupuestos();
+            return View(pres);
+        }
+
         public ActionResult AddPresupuesto()
         {
             ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago();
@@ -101,6 +109,12 @@ namespace TP_DDS_MVC.Controllers
                 MyLogger.log(e.Message);
                 return View();
             }
+        }
+
+        public ActionResult DetallePresupuesto(int id)
+        {
+            Presupuesto pres = PresupuestoDAO.getInstancia().getPresupuesto(id);
+            return View(pres);
         }
 
         ///////////////////////////////////////////////

@@ -15,6 +15,8 @@ namespace TP_DDS_MVC
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
 
+            
+
             routes.MapRoute(
                 name: "Compras index",
                 url: "compra",
@@ -55,6 +57,18 @@ namespace TP_DDS_MVC
                 name: "Add Presupuesto",
                 url: "compra/presupuesto/add",
                 defaults: new { controller = "Compra", action = "AddPresupuesto" }
+            );
+
+            routes.MapRoute(
+                name: "List presupuesto",
+                url: "compra/presupuesto",
+                defaults: new { controller = "Compra", action = "ListPresupuestos", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Detalle presupuesto",
+                url: "compra/presupuesto/{id}",
+                defaults: new { controller = "Compra", action = "DetallePresupuesto", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(

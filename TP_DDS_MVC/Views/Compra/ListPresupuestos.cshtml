@@ -10,6 +10,12 @@
 </div>
 
 <div class="container-fluid">
+    @if (Model == null)
+    {
+        <h6>No hay presupuestos cargados</h6>
+    }
+    else
+    {
     <table class="table table-striped">
         <thead>
             <tr>
@@ -28,11 +34,12 @@
                     <th scope="row">@pres.idDocComercial</th>
                     <td>@pres.nroIdentificacion</td>
                     <td>@pres.montoTotal</td>
-                    <td>@Html.ActionLink("Detalle", "DetallePresupuesto", "Compra", new { idDoc = pres.idDocComercial }, new { @class = "btn btn-info btn-sm" })</td>
-                    <td>@Html.ActionLink("Editar", "EditPresupuesto", "Compra", new { idDoc = pres.idDocComercial }, new { @class = "btn btn-secondary btn-sm" })</td>
+                    <td><input type="button" class="btn btn-secondary btn-sm" value="Detalle" onclick="window.open('@Url.Action("DetallePresupuesto", "Compra", new { id = pres.idDocComercial })')" /></td>
+                    <td>@Html.ActionLink("Editar", "EditPresupuesto", "Compra", new { id = pres.idDocComercial }, new { @class = "btn btn-secondary btn-sm" })</td>
                 </tr>
             }
         </tbody>
     </table>
+    }
 </div>
 

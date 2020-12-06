@@ -29,8 +29,7 @@ namespace TP_DDS_MVC.DAOs
 
             using (MyDBContext context = new MyDBContext())
             {
-                //return context.DocumentosComerciales.ToList(); hay que ver como hacer para castear toda la lista al tipo Presupuesto porque esto devuelve una lista de documentos comerciales
-                return null;
+                return context.DocumentosComerciales.ToList().ConvertAll(x => (Presupuesto)x); ; //hay que ver como hacer para castear toda la lista al tipo Presupuesto porque esto devuelve una lista de documentos comerciales
             }
         }
 
@@ -38,7 +37,7 @@ namespace TP_DDS_MVC.DAOs
         {
             using (MyDBContext context = new MyDBContext())
             {
-                return (Presupuesto)context.DocumentosComerciales.Find(id);
+                return (Presupuesto)context.DocumentosComerciales.Include("Presupuesto.items").Where(p=>p.idDocComercial == id);
             }
         }
 
