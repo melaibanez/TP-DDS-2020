@@ -16,7 +16,7 @@ $("#agregarIng").click(function () {
     $('#noIng').hide()
 
     model.ingresos.push({
-        idIngreso: $("#ingreso").val().substring(1);
+        idIngreso: $("#ingreso").val().substring(1)
     })
 
     $("#listaIng").append('<li id="i' + $("#ingreso").val() + '" class="list-group-item">' +
@@ -42,7 +42,7 @@ $("#agregarDoc").click(function () {
     $('#noDocs').hide()
 
     data.model.presupuestos.push({
-        idDocComercial: $('#documento').val().substring(1);
+        idDocComercial: $('#documento').val().substring(1)
     })
 
     $("#listaDocs").append('<li id="d' + $("#documento").val() + '" class="list-group-item">' +
