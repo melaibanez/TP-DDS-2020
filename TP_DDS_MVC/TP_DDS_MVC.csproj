@@ -398,11 +398,13 @@
     <Content Include="Views\User\ListarUsuarios.cshtml" />
     <Content Include="Views\User\comprasRevisadas.cshtml" />
     <Content Include="Views\User\BandejaDeMensajes.cshtml" />
-    <Content Include="Views\Ingreso\CrearIngreso.cshtml" />
+    <Content Include="Views\Ingreso\AddIngreso.cshtml" />
     <Content Include="Views\ProyectoFinanciamiento\AddProyectoFinanciamiento.cshtml" />
     <Content Include="Views\Compra\ListPrestadorDeServicios.cshtml" />
     <Content Include="Views\Compra\DetallePrestadorDeServicios.cshtml" />
     <Content Include="Views\Compra\ListMedioDePago.cshtml" />
+    <Content Include="Views\Ingreso\ListIngresos.cshtml" />
+    <Content Include="Views\Ingreso\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -413,7 +415,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Data\" />
-    <Folder Include="Views\Ingreso\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

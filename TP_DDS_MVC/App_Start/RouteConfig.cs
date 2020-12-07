@@ -54,6 +54,12 @@ namespace TP_DDS_MVC
             );
 
             routes.MapRoute(
+                name: "List Medio de Pago",
+                url: "compra/medio-de-pago",
+                defaults: new { controller = "Compra", action = "ListMedioDePago" }
+            );
+
+            routes.MapRoute(
                 name: "Add Presupuesto",
                 url: "compra/presupuesto/add",
                 defaults: new { controller = "Compra", action = "AddPresupuesto" }
@@ -75,6 +81,24 @@ namespace TP_DDS_MVC
                 name: "Add Egreso",
                 url: "compra/egreso/add",
                 defaults: new { controller = "Compra", action = "AddEgreso" }
+            );
+
+            routes.MapRoute(
+                name: "Ingreso Index",
+                url: "ingreso",
+                defaults: new { controller = "Ingreso", action = "Index" }
+            );
+
+            routes.MapRoute(
+                name: "Add Ingreso",
+                url: "ingreso/add",
+                defaults: new { controller = "Ingreso", action = "AddIngreso" }
+            );
+
+            routes.MapRoute(
+                name: "List Ingreso",
+                url: "ingreso/list",
+                defaults: new { controller = "Ingreso", action = "ListIngreso" }
             );
 
             routes.MapRoute(
