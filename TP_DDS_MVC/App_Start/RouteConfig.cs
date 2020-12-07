@@ -34,13 +34,7 @@ namespace TP_DDS_MVC
                 url: "compra/add",
                 defaults: new { controller = "Compra", action = "AddCompra" }
             );
-
-            routes.MapRoute(
-                name: "Get Prestadores de servicios",
-                url: "compra/prestador-de-servicios",
-                defaults: new { controller = "Compra", action = "PrestadorDeServicios" }
-            );
-
+                       
             routes.MapRoute(
                 name: "Add Prestador de servicios",
                 url: "compra/prestador-de-servicios/add",
@@ -48,9 +42,21 @@ namespace TP_DDS_MVC
             );
 
             routes.MapRoute(
+                name: "List Prestador de servicios",
+                url: "compra/prestador-de-servicios",
+                defaults: new { controller = "Compra", action = "ListPrestadorDeServicios" }
+            );
+
+            routes.MapRoute(
                 name: "Add Medio de Pago",
                 url: "compra/medio-de-pago/add",
                 defaults: new { controller = "Compra", action = "AddMedioDePago" }
+            );
+
+            routes.MapRoute(
+                name: "List Medio de Pago",
+                url: "compra/medio-de-pago",
+                defaults: new { controller = "Compra", action = "ListMedioDePago" }
             );
 
             routes.MapRoute(
@@ -78,6 +84,19 @@ namespace TP_DDS_MVC
             );
 
             routes.MapRoute(
+                name: "List ingresos",
+                url: "ingreso",
+                defaults: new { controller = "Ingreso", action = "ListIngresos" }
+            );
+
+            routes.MapRoute(
+                name: "Add Ingreso",
+                url: "ingreso/add",
+                defaults: new { controller = "Ingreso", action = "AddIngreso" }
+            );
+
+
+            routes.MapRoute(
                 name: "Add Entidad",
                 url: "entidad/entidad-juridica/add",
                 defaults: new { controller = "Entidad", action = "AddEntidadJuridica" }
@@ -100,6 +119,19 @@ namespace TP_DDS_MVC
                  url: "usuario/admin",
                  defaults: new { controller = "User", action = "PanelAdmin" }
              );
+
+            routes.MapRoute(
+                name: "Registar usuario",
+                url: "usuario/registrar",
+                defaults: new { controller = "User", action = "Register" }
+            );
+
+            routes.MapRoute(
+                name: "Listar Usuarios",
+                url: "usuario/listaUsuarios",
+                defaults: new { controller = "User", action = "ListarUsuarios" }
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

@@ -25,6 +25,7 @@ namespace TP_DDS_MVC.Models.Compras
 
         public List<ItemPresupuesto> items { get; set; }
 
+
         public Presupuesto() { }
 
         public Presupuesto(string nroIdentificacion, string tipo_enlace, List<ItemPresupuesto> items, PrestadorDeServicios prestadorDeServicios, MedioDePago medioDePago) : base(nroIdentificacion, tipo_enlace)

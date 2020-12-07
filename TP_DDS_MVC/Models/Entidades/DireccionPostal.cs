@@ -38,6 +38,14 @@ namespace TP_DDS_MVC.Models.Entidades
             this.pais = pais;
         }
 
+        public void validarDireccion()
+        {
+            //validar direccion postal y si esta mal tirar una exep
+            if(this.calle==null)
+            {
+                throw new Exception("Hubo un error al validar la direccion postal");
+            }
+        }
 
     }
 }

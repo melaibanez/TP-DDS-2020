@@ -43,17 +43,23 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
-                PDS.direccionPostal = new DireccionPostal();
+                PDS.direccionPostal.validarDireccion();
                 PrestadorDeServiciosDAO.getInstancia().add(PDS);
                 return RedirectToAction("Index");
             }
             catch (Exception e)
             {
                 MyLogger.log(e.Message);
+                ViewBag.errorMsg = e.Message;
                 return View();
             }
         }
 
+        public ActionResult ListPrestadorDeServicios()
+        {
+            List<PrestadorDeServicios> pres = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios();
+            return View(pres);
+        }
 
         ///////////////////////////////////////////////
         ///             Medio de Pago               ///

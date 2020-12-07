@@ -29,7 +29,7 @@ namespace TP_DDS_MVC.DAOs
 
             using (MyDBContext context = new MyDBContext())
             {
-                return context.Usuarios.ToList();
+                return context.Usuarios.Include("comprasRevisadas").ToList();
             }
         }
 
@@ -39,6 +39,14 @@ namespace TP_DDS_MVC.DAOs
             using (MyDBContext context = new MyDBContext())
             {
                 return context.Usuarios.Where(usr => usr.nombreUsuario == username && usr.contrasenia == password).SingleOrDefault();
+            }
+        }
+
+        public Usuario getUsuario(int id)
+        {
+            using (MyDBContext context = new MyDBContext())
+            {
+                return context.Usuarios.Include("comprasRevisadas").Include("bandejaMensajes").Where(u=>u.idUsuario == id).SingleOrDefault();
             }
         }
 

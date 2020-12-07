@@ -3,11 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TP_DDS_MVC.DAOs;
+using TP_DDS_MVC.Helpers;
+using TP_DDS_MVC.Models.Ingresos;
 
 namespace TP_DDS_MVC.Controllers
 {
     public class IngresoController : Controller
     {
+
+
+        public ActionResult AddIngreso()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddIngreso(Ingreso ing)
+        {
+            try
+            {
+                IngresoDAO.getInstancia().add(ing);
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception e)
+            {
+                MyLogger.log(e.Message);
+                return View();
+            }
+        }
+
+
+
+
+
+
         // GET: Ingreso
         public ActionResult Index()
         {
@@ -23,6 +53,7 @@ namespace TP_DDS_MVC.Controllers
         // GET: Ingreso/Create
         public ActionResult Create()
         {
+            ViewBag.egresos = EgresoDAO.getInstancia().getEgresos();
             return View();
         }
 

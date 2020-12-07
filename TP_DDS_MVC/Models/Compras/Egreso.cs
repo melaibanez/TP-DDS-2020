@@ -15,7 +15,7 @@ namespace TP_DDS_MVC.Models.Compras
         [Key]
         public int idEgreso { get; set; }
 
-        public string fechaEgreso { get; set; }
+        public DateTime fechaEgreso { get; set; }
 
         [ForeignKey("medioDePago")]
         public int idMedioDePago { get; set; }
@@ -39,7 +39,7 @@ namespace TP_DDS_MVC.Models.Compras
         public List<DocumentoComercial> docsComerciales { get; set; }
 
         public Egreso() { }
-        public Egreso(List<ItemEgreso> detalle, List<DocumentoComercial> docsComerciales, Entidad entidad, string fechaEgreso, Ingreso ingresoAsociado)
+        public Egreso(List<ItemEgreso> detalle, List<DocumentoComercial> docsComerciales, Entidad entidad, DateTime fechaEgreso, Ingreso ingresoAsociado)
         {
             this.detalle = detalle;
             this.docsComerciales = docsComerciales;

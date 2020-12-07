@@ -1,0 +1,43 @@
+﻿
+@using TP_DDS_MVC.Models.Compras;
+@using TP_DDS_MVC.Models.Otros;
+@Model List<Usuario>
+    @{
+        ViewBag.Title = "ListarUsuarios";
+
+    }
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre de Usuario</th>
+                <th scope="col">Es admin</th>
+                <th scope="col">Compras Validadas</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Usuario usr in Model)
+            {
+            <tr>
+                <th scope="row">@usr.idUsuario</th>
+                <td>@usr.nombreUsuario</td>
+                @if (usr.esAdmin)
+                {
+                    <td>Si</td>
+                }
+                else
+                {
+                    <td>No</td>
+                }
+
+                <td><input type="button" class="btn btn-secondary btn-sm" value="ComprasRevisadas" onclick="window.open('@Url.Action("ComprasRevisadas", "User", new { id = usr.idUsuario })', '_blank')" /></td>
+
+            </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+

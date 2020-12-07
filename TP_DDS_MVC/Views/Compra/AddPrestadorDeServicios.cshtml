@@ -2,46 +2,65 @@
 @model TP_DDS_MVC.Models.Compras.PrestadorDeServicios
 @{
     ViewBag.Title = "Agregar Prestador De Servicios";
-    var tiposDoc = new List<SelectListItem> { 
+    var tiposDoc = new List<SelectListItem> {
         new SelectListItem() { Value = "DNI", Text = "DNI"},
         new SelectListItem() { Value = "CUIT", Text = "CUIT"},
         new SelectListItem() { Value = "CUIL", Text = "CUIL"}
     };
-    
+
 }
 
-@using (Html.BeginForm("AddPrestadorDeServicios", "Compra", FormMethod.Post)){
 
-    <div class="container-md">
-        <div class="form-group row">
-            <label for="razonSocial">Nombre o Razon Social</label>
-            <div class="col-10">
-                @Html.TextBoxFor(m => m.razonSocial, new { @class = "form-control" })
-            </div>
-        </div>
-        <br />
-        <div class="form-group row">
-            <div class="form-group col-md-6">
-                <label for="tipoDoc">Tipo de documento</label>
-                 @Html.DropDownListFor(m => m.tipoDoc, tiposDoc, new { @class = "form-control" })
-            </div>
-            <div class="form-group col-md-6">
-                <label for="numDoc">Numero de documento</label>
-                @Html.TextBoxFor(m => m.numDoc, new { @class = "form-control" })
-            </div>
-        </div>
-        <br />
-        <div class="form-group row">
-            <label for=" ">Direccion postal</label>
+<div class="mb-4">
+    <h2>Agregar un Prestador de Servicios</h2>
+</div>
+@if (ViewBag.errorMsg)
+{
+    <div class="alert alert-danger mb-3" role="alert">
+        @ViewBag.errorMsg
+    </div>
+}
+@using (Html.BeginForm("AddPrestadorDeServicios", "Compra", FormMethod.Post))
+{
 
+
+    <div class="form-row mb-3">
+        <label for="razonSocial">Nombre o Razon Social</label>
+        <div class="col-10">
+            @Html.TextBoxFor(m => m.razonSocial, new { @class = "form-control" })
         </div>
-        <br />
-        <div class="form-group row">
-            <div class="col-10">
-                <input class="btn btn-success" type="submit" value="Agregar" />
-                &nbsp;&nbsp;&nbsp;
-                @Html.ActionLink("Cancelar", "Index", new { controller = "Compra"}, new { @class = "btn btn-secondary" })
-            </div>
+    </div>
+    <div class="form-row mb-3">
+        <div class="form-group col">
+            <label for="tipoDoc">Tipo de documento</label>
+            @Html.DropDownListFor(m => m.tipoDoc, tiposDoc, new { @class = "form-control" })
+        </div>
+        <div class="form-group col">
+            <label for="numDoc">Numero de documento</label>
+            @Html.TextBoxFor(m => m.numDoc, new { @class = "form-control" })
+        </div>
+    </div>
+    <h4>Direccion Postal</h4>
+    <div class="form-row">
+        <div class="form-group col-4">
+            <label for="descripcionItem">Descripcion</label>
+            <input type="text" class="form-control" id="descripcionItem" placeholder="Descripcion" />
+        </div>
+        <div class="form-group col-3">
+            <label for="valorItem">Valor </label>
+            <input type="number" class="form-control" id="valorItem" placeholder="1" step="0.01" min="1" />
+        </div>
+        <div class="form-group col-3">
+            <label for="cantItem">Cantidad</label>
+            <input type="number" class="form-control" id="cantItem" placeholder="1" min="1" />
+        </div>
+    </div>
+    <br />
+    <div class="form-group row">
+        <div class="col-10">
+            <input class="btn btn-success" type="submit" value="Agregar" />
+            &nbsp;&nbsp;&nbsp;
+            @Html.ActionLink("Cancelar", "Index", new { controller = "Compra" }, new { @class = "btn btn-secondary" })
         </div>
     </div>
 

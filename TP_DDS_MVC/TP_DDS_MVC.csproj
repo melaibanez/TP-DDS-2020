@@ -169,6 +169,7 @@
     <Compile Include="Controllers\EntidadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IngresoController.cs" />
+    <Compile Include="Controllers\ProyectoFinanciamientoController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAOs\CategoriaDAO.cs" />
     <Compile Include="DAOs\CiudadDAO.cs" />
@@ -193,7 +194,7 @@
     <Compile Include="Helpers\CustomAuthenticationFilter.cs" />
     <Compile Include="Helpers\DB\MyDBContext.cs" />
     <Compile Include="Helpers\DB\PersistenciaDireccionPostal.cs" />
-    <Compile Include="Helpers\JsonEgreso.cs" />
+    <Compile Include="Helpers\JsonHelpers.cs" />
     <Compile Include="Helpers\MyLogger.cs" />
     <Compile Include="Helpers\Scheduler\Jobs\JobValidadorPresupuestos.cs" />
     <Compile Include="Helpers\Scheduler\MyScheduler.cs" />
@@ -289,7 +290,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\MyScripts\agregarEgreso.js" />
+    <Content Include="Scripts\MyScripts\agregarIngresoScript.js" />
     <Content Include="Scripts\MyScripts\agregarPresupuestoScript.js" />
+    <Content Include="Scripts\MyScripts\agregarProyecto.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -393,6 +396,16 @@
     <Content Include="Views\Compra\DetalleCompra.cshtml" />
     <Content Include="Views\Compra\ListPresupuestos.cshtml" />
     <Content Include="Views\Compra\DetallePresupuesto.cshtml" />
+    <Content Include="Views\User\ListarUsuarios.cshtml" />
+    <Content Include="Views\User\comprasRevisadas.cshtml" />
+    <Content Include="Views\User\BandejaDeMensajes.cshtml" />
+    <Content Include="Views\Ingreso\AddIngreso.cshtml" />
+    <Content Include="Views\ProyectoFinanciamiento\AddProyectoFinanciamiento.cshtml" />
+    <Content Include="Views\Compra\ListPrestadorDeServicios.cshtml" />
+    <Content Include="Views\Compra\DetallePrestadorDeServicios.cshtml" />
+    <Content Include="Views\Compra\ListMedioDePago.cshtml" />
+    <Content Include="Views\Ingreso\ListIngresos.cshtml" />
+    <Content Include="Views\Ingreso\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -402,7 +415,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Ingreso\" />
+    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

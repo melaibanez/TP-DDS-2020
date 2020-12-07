@@ -28,7 +28,8 @@ namespace TP_DDS_MVC
             //{
             //    comprasNoValidadas = context.Compras.Where(c => !c.compraValidada).ToList();
             //}
-            
+
+            PersistenciaDireccionPostal.persistirDatosAPI();
         }
     }
 }

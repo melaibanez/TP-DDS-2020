@@ -1,0 +1,32 @@
+﻿@using TP_DDS_MVC.Models.Otros;
+@using TP_DDS_MVC.Models.Compras;
+@Model Usuario
+@{
+    ViewBag.Title = "comprasRevisadas";
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ID compra</th>
+            <th scope="col">Descripcion</th>
+        </tr>
+    </thead>
+
+        <tbody>
+            @foreach (Compra compra in Model.comprasRevisadas)
+            {
+
+                <tr>
+                    <th scope="row">@compra.idCompra</th>
+                    <td>@compra.descripcion</td>
+
+                </tr>
+                
+            }
+
+
+        </tbody>
+    
+</table>
+
