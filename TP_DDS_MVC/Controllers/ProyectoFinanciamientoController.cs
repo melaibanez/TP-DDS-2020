@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using TP_DDS_MVC.DAOs;
 using TP_DDS_MVC.Models.Ingresos;
+using TP_DDS_MVC.Models.Proyectos;
 
 namespace TP_DDS_MVC.Controllers
 {
@@ -18,18 +19,27 @@ namespace TP_DDS_MVC.Controllers
 
         public ActionResult AddProyectoFinanciamiento()
         {
-            //public Ingreso(string descripcion, float montoTotal, List<Egreso> egresosAsociados)
-            /*ViewBag.docsComerciales = DocumentoComercialDAO.getInstancia().getDocumentosComerciales();
-            ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago();
-            ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios();*/
-
+            
             ViewBag.Ingreso = IngresoDAO.getInstancia().getIngresos();
 
-            /*Ingreso ingreso1 = new Ingreso("hola1", 1, null);
-            Ingreso ingreso2 = new Ingreso("hola2", 2, null);
-            Ingreso[] ingresos = { ingreso1, ingreso2 };
-            ViewBag.Ingreso = ingresos;*/
             return View();
         }
+
+        [HttpPost]
+        public ActionResult AddProyectoFinanciamiento(ProyectoFinanciamiento proyecto)
+        {
+            try
+            {
+                ProyectoFinanciamientoDAO.getInstancia().add(proyecto);
+                return Json(Url.Action("Index", "ProyectoFinanciamiento"));
+            }
+            catch (Exception e)
+            {
+                MyLogger.log(e.Message);
+                return View();
+            }
+        }
+
+
     }
 }

@@ -173,6 +173,7 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAOs\CategoriaDAO.cs" />
     <Compile Include="DAOs\CiudadDAO.cs" />
+    <Compile Include="DAOs\ProyectoFinanciamientoDAO.cs" />
     <Compile Include="DAOs\CompraDAO.cs" />
     <Compile Include="DAOs\CriterioDAO.cs" />
     <Compile Include="DAOs\DireccionPostalDAO.cs" />

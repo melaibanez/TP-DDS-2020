@@ -10,6 +10,7 @@ using TP_DDS_MVC.Models.Compras;
 using TP_DDS_MVC.Models.Entidades;
 using TP_DDS_MVC.Models.Ingresos;
 using TP_DDS_MVC.Models.Otros;
+using TP_DDS_MVC.Models.Proyectos;
 
 namespace TP_DDS_MVC.Helpers.DB
 {
@@ -33,6 +34,7 @@ namespace TP_DDS_MVC.Helpers.DB
         public DbSet<Pais> Paises { get; set; }
         public DbSet<Provincia> Provincias { get; set; }
         public DbSet<Ciudad> Ciudades { get; set; }
+        public DbSet<ProyectoFinanciamiento> Proyectos { get; set; }
 
 
 
