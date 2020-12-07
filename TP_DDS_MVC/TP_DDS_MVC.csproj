@@ -393,6 +393,9 @@
     <Content Include="Views\Compra\DetalleCompra.cshtml" />
     <Content Include="Views\Compra\ListPresupuestos.cshtml" />
     <Content Include="Views\Compra\DetallePresupuesto.cshtml" />
+    <Content Include="Views\Compra\ListPrestadorDeServicios.cshtml" />
+    <Content Include="Views\Compra\DetallePrestadorDeServicios.cshtml" />
+    <Content Include="Views\Compra\ListMedioDePago.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

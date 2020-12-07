@@ -1,0 +1,41 @@
+﻿@using TP_DDS_MVC.Models.Compras;
+@model List<MedioDePago>
+@{
+    ViewBag.Title = "Listado Medios de Pago";
+}
+
+<div class="alert alert-secondary my-4" role="alert">
+    <h2>Listado de Medios de Pago</h2>
+</div>
+
+<div class="container-fluid">
+    @if (Model == null)
+    {
+        <h6>No hay medios de pago cargados</h6>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Instrumento</th>
+                    <th scope="col">Número de Instrumento</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (MedioDePago pres in Model)
+                {
+                    <tr>
+                        <th scope="row">@pres.idMedioPago</th>
+                        <td>@pres.instrumento</td>
+                        <td>@pres.numInstrumento</td>
+                        <td>@Html.ActionLink("Editar", "EditPresupuesto", "Compra", new { id = pres.idDocComercial }, new { @class = "btn btn-secondary btn-sm" })</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
