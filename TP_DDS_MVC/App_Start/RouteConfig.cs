@@ -15,7 +15,11 @@ namespace TP_DDS_MVC
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
 
-            
+            routes.MapRoute(
+                name: "Add Proyecto",
+                url: "proyecto/add",
+                defaults: new { controller = "ProyectoFinanciamiento", action = "AddProyectoFinanciamiento" }
+            );
 
             routes.MapRoute(
                 name: "Compras index",

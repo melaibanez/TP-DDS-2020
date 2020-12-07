@@ -150,7 +150,11 @@ namespace TP_DDS_MVC.Controllers
             }
             catch (Exception e)
             {
+                ViewBag.docsComerciales = DocumentoComercialDAO.getInstancia().getDocumentosComerciales();
+                ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago();
+                ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios();
                 MyLogger.log(e.Message);
+                ViewBag.errorMsg = e.Message;
                 return View();
             }
         }
