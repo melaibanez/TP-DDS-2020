@@ -3,17 +3,55 @@
     ViewBag.Title = "Compras";
 }
 
-<div class="jumbotron">
+<div class="container pa0 flex justify-center">
+    <div class="listings card-columns">
+        
+        <div class="card-body">
+            <a class="btn btn-primary btn-lg" href="~/compra/add" role="button">Crear nueva compra</a>
+        </div>
+        
+        <div class="card-body">
+            <a class="btn btn-primary btn-lg" href="~/compra/prestador-de-servicios/add" role="button">Agregar prestador de servicios</a>
+        </div>
+        <div class="card-body">
+            <a class="btn btn-primary btn-lg" href="~/compra/medio-de-pago/add" role="button">Agregar metodo de pago</a>
+        </div>
+        <div class="card-body">
+            <a class="btn btn-primary btn-lg" href="~/compra/presupuesto/add" role="button">Agregar presupuesto</a>
+        </div>
+        <div class="card-body">
+            <a class="btn btn-primary btn-lg" href="~/compra/egreso/add" role="button">Agregar egreso</a>
+        </div>
+        <div class="card-body">
+            <a class="btn btn-primary btn-lg" href="~/compra/egreso/list" role="button">Listado de egresos</a>
+        </div>
+    </div>
+</div>
+
+<!--<div class="jumbotron">
     <h1 class="display-3">Compras</h1>
     <p class="lead">Carga de compras</p>
     <hr class="my-4">
-    <p class="lead">
-        <a class="btn btn-primary btn-lg" href="~/compra/add" role="button">Crear nueva compra</a>
-        <a class="btn btn-primary btn-lg" href="~/compra/prestador-de-servicios/add" role="button">Agregar prestador de servicios</a>
-        <a class="btn btn-primary btn-lg" href="~/compra/medio-de-pago/add" role="button">Agregar metodo de pago</a>
-        <a class="btn btn-primary btn-lg" href="~/compra/presupuesto/add" role="button">Agregar presupuesto</a>
-        <a class="btn btn-primary btn-lg" href="~/compra/egreso/add" role="button">Agregar egreso</a>
-        <a class="btn btn-primary btn-lg" href="~/compra/egreso/list" role="button">Listado de egresos</a>
-
-    </p>
-</div>
+    <div class="container pa0 flex justify-center">
+        <div class="row row-cols-4">
+            <div class="col">
+                <a class="btn btn-primary btn-lg" href="~/compra/add" role="button">Crear nueva compra</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-primary btn-lg" href="~/compra/prestador-de-servicios/add" role="button">Agregar prestador de servicios</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-primary btn-lg" href="~/compra/medio-de-pago/add" role="button">Agregar metodo de pago</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-primary btn-lg" href="~/compra/presupuesto/add" role="button">Agregar presupuesto</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-primary btn-lg" href="~/compra/egreso/add" role="button">Agregar egreso</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-primary btn-lg" href="~/compra/egreso/list" role="button">Listado de egresos</a>
+            </div>
+        </div>
+    </div>
+</div>-->
