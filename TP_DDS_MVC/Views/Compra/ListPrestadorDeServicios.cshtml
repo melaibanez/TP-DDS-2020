@@ -1,0 +1,42 @@
+﻿
+@using TP_DDS_MVC.Models.Compras;
+@model List<PrestadorDeServicios>
+@{
+    ViewBag.Title = "ListPrestadoresDeServicios";
+}
+
+<div class="alert alert-secondary my-4" role="alert">
+    <h2>Prestadores de Servicio</h2>
+</div>
+
+<div class="container-fluid">
+    @if (Model == null)
+    {
+        <h6>No hay Prestadores de Servicios en este momento.</h6>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Razón Social</th>
+                    <th scope="col">Dirección Postal</th> <!--Ver qué onda esto después-->
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (PrestadorDeServicios pres in Model)
+                {
+                <tr>
+                    <th scope="row">@pres.idPrestador</th>
+                    <td><input type="button" class="btn btn-secondary btn-sm" value="Detalle" onclick="window.open('@Url.Action("DetallePrestadorDeServicios", "Compra", new { id = pres.idPrestador })')" /></td>
+                    <td>@Html.ActionLink("Editar", "EditPrestadorDeServicio", "Compra", new { id = pres.idPrestador }, new { @class = "btn btn-secondary btn-sm" })</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+
