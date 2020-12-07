@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TP_DDS_MVC.DAOs;
 
 namespace TP_DDS_MVC.Controllers
 {
@@ -23,6 +24,7 @@ namespace TP_DDS_MVC.Controllers
         // GET: Ingreso/Create
         public ActionResult Create()
         {
+            ViewBag.egresos = EgresoDAO.getInstancia().getEgresos();
             return View();
         }
 

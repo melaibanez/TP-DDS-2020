@@ -10,12 +10,17 @@
 </div>
 
 <div class="container-fluid">
+    @if (Model == null)
+    {
+        <h6>No hay presupuestos cargados</h6>
+    }
+    else
+    {
     <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nro Identificacion</th>
-                <th scope="col">Cant Items</th>
                 <th scope="col">Total</th>
                 <th></th>
                 <th></th>
@@ -24,15 +29,16 @@
         <tbody>
             @foreach (Presupuesto pres in Model)
             {
-                <tr>
-                    <th scope="row">@pres.idDocComercial</th>
-                    <td>@pres.nroIdentificacion</td>
-                    <td>@pres.montoTotal</td>
-                    <td>@Html.ActionLink("Detalle", "DetallePresupuesto", "Compra", new { idDoc = pres.idDocComercial }, new { @class = "btn btn-info btn-sm" })</td>
-                    <td>@Html.ActionLink("Editar", "EditPresupuesto", "Compra", new { idDoc = pres.idDocComercial }, new { @class = "btn btn-secondary btn-sm" })</td>
-                </tr>
+            <tr>
+                <th scope="row">@pres.idDocComercial</th>
+                <td>@pres.nroIdentificacion</td>
+                <td>@pres.montoTotal</td>
+                <td><input type="button" class="btn btn-secondary btn-sm" value="Detalle" onclick="window.open('@Url.Action("DetallePresupuesto", "Compra", new { id = pres.idDocComercial })', '_blank')" /></td>
+                <td>@Html.ActionLink("Editar", "EditPresupuesto", "Compra", new { id = pres.idDocComercial }, new { @class = "btn btn-secondary btn-sm" })</td>
+            </tr>
             }
         </tbody>
     </table>
+    }
 </div>
 

@@ -1,48 +1,43 @@
-﻿@using TP_DDS_MVC.Models.Otros;
+﻿
+@using TP_DDS_MVC.Models.Compras;
+@using TP_DDS_MVC.Models.Otros;
 @Model List<Usuario>
-@{
-    ViewBag.Title = "ListarUsuarios";
-}
+    @{
+        ViewBag.Title = "ListarUsuarios";
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        
-    </tbody>
-    <tbody>
-        @foreach(Usuario usr in Model)
-        {
-        <tr>
-            <th scope="row">@usr.idUsuario</th>
-            <td>@usr.nombreUsuario</td>
-            @if (usr.esAdmin)
+    }
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre de Usuario</th>
+                <th scope="col">Es admin</th>
+                <th scope="col">Compras Validadas</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Usuario usr in Model)
             {
-                <td>Si</td>
-            }
-            else
-            {
-                <td>No</td>
+            <tr>
+                <th scope="row">@usr.idUsuario</th>
+                <td>@usr.nombreUsuario</td>
+                @if (usr.esAdmin)
+                {
+                    <td>Si</td>
+                }
+                else
+                {
+                    <td>No</td>
+                }
+
+                <td><input type="button" class="btn btn-secondary btn-sm" value="ComprasRevisadas" onclick="window.open('@Url.Action("ComprasRevisadas", "User", new { id = usr.idUsuario })', '_blank')" /></td>
+
+            </tr>
             }
 
-            <td>
-            <td>@Html.ActionLink("Compras Validadas", "Compras", "Compra", new { idDoc = pres.idDocComercial }, new { @class = "btn btn-info btn-sm" })</td></td>
-        </tr>
-        }
+        </tbody>
 
-    </tbody>
+    </table>
 
-</table>
 

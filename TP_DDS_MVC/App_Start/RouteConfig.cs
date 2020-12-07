@@ -15,6 +15,8 @@ namespace TP_DDS_MVC
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
 
+            
+
             routes.MapRoute(
                 name: "Compras index",
                 url: "compra",
@@ -58,6 +60,18 @@ namespace TP_DDS_MVC
             );
 
             routes.MapRoute(
+                name: "List presupuesto",
+                url: "compra/presupuesto",
+                defaults: new { controller = "Compra", action = "ListPresupuestos", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Detalle presupuesto",
+                url: "compra/presupuesto/{id}",
+                defaults: new { controller = "Compra", action = "DetallePresupuesto", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Add Egreso",
                 url: "compra/egreso/add",
                 defaults: new { controller = "Compra", action = "AddEgreso" }
@@ -88,9 +102,15 @@ namespace TP_DDS_MVC
              );
 
             routes.MapRoute(
-                name: "registar usuario",
+                name: "Registar usuario",
                 url: "usuario/registrar",
                 defaults: new { controller = "User", action = "Register" }
+            );
+
+            routes.MapRoute(
+                name: "Listar Usuarios",
+                url: "usuario/listaUsuarios",
+                defaults: new { controller = "User", action = "ListarUsuarios" }
             );
 
             routes.MapRoute(

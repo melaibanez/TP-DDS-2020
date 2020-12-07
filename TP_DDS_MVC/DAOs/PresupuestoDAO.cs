@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using TP_DDS_MVC.Models.Compras;
 using TP_DDS_MVC.Helpers.DB;
+using System.Data.Entity;
 
 namespace TP_DDS_MVC.DAOs
 {
@@ -29,8 +30,7 @@ namespace TP_DDS_MVC.DAOs
 
             using (MyDBContext context = new MyDBContext())
             {
-                //return context.DocumentosComerciales.ToList(); hay que ver como hacer para castear toda la lista al tipo Presupuesto porque esto devuelve una lista de documentos comerciales
-                return null;
+                return context.DocumentosComerciales.OfType<Presupuesto>().ToList();
             }
         }
 
@@ -38,7 +38,8 @@ namespace TP_DDS_MVC.DAOs
         {
             using (MyDBContext context = new MyDBContext())
             {
-                return (Presupuesto)context.DocumentosComerciales.Find(id);
+                return context.DocumentosComerciales.OfType<Presupuesto>().Include("items").Include("prestadorDeServicios").Include("medioDePago").Where(s => s.idDocComercial == id).FirstOrDefault<Presupuesto>();
+                //return (Presupuesto)context.DocumentosComerciales.OfType<Presupuesto>().Include(p => p.items).Where(p => p.idDocComercial == id);
             }
         }
 

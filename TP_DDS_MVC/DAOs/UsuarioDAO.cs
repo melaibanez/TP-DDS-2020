@@ -42,6 +42,14 @@ namespace TP_DDS_MVC.DAOs
             }
         }
 
+        public Usuario getUsuario(int id)
+        {
+            using (MyDBContext context = new MyDBContext())
+            {
+                return context.Usuarios.Include("comprasRevisadas").Include("bandejaMensajes").Where(u=>u.idUsuario == id).SingleOrDefault();
+            }
+        }
+
         public Usuario add(Usuario usuario)
         {
             Usuario added;

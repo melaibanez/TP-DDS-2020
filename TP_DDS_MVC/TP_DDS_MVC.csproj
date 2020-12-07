@@ -289,6 +289,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\MyScripts\agregarEgreso.js" />
+    <Content Include="Scripts\MyScripts\agregarIngresoScript.js" />
     <Content Include="Scripts\MyScripts\agregarPresupuestoScript.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -394,6 +395,9 @@
     <Content Include="Views\Compra\ListPresupuestos.cshtml" />
     <Content Include="Views\Compra\DetallePresupuesto.cshtml" />
     <Content Include="Views\User\ListarUsuarios.cshtml" />
+    <Content Include="Views\User\comprasRevisadas.cshtml" />
+    <Content Include="Views\User\BandejaDeMensajes.cshtml" />
+    <Content Include="Views\Ingreso\CrearIngreso.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -403,7 +407,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Ingreso\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

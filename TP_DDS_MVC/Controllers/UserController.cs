@@ -102,6 +102,18 @@ namespace TP_DDS_MVC.Controllers
             }
         }
 
+        public ActionResult comprasRevisadas(int id)
+        {
+            Usuario usr = UsuarioDAO.getInstancia().getUsuario(id);
+            return View(usr);
+        }
+
+        public ActionResult BandejaDeMensajes(int id)
+        {
+            Usuario usr = UsuarioDAO.getInstancia().getUsuario(id);
+            return View(usr);
+        }
+
 
     }
 }

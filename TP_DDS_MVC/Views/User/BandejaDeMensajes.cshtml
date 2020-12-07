@@ -1,0 +1,29 @@
+﻿@using TP_DDS_MVC.Models.Otros;
+@model Usuario
+@{
+    ViewBag.Title = "BandejaDeMensajes";
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Fecha</th>
+            <th scope="col">Mensaje</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Notificacion noti in Model.bandejaMensajes)
+        {
+            <tr>
+                <th scope="row">@noti.fecha</th>
+                <td>@noti.mensaje</td>
+  
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+

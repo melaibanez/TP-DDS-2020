@@ -14,7 +14,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="container-lg body-content">
+    <div class="container-lg body-content ">
         @if (user != null)
         {
             <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
@@ -38,7 +38,7 @@
                                 Perfil
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="/usuario/mensajes">Bandeja de mensajes</a>
+                                <a class="dropdown-item" href="@Url.Action("BandejaDeMensajes", "User", new { id = user.idUsuario })">Bandeja de mensajes</a>
                                 <a class="dropdown-item" href="/usuario/entidad">Mi entidad</a>
                                 <a class="dropdown-item" href="/usuario/logout">Cerrar sesión</a>
                             </div>

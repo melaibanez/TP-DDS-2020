@@ -1,0 +1,52 @@
+﻿<!-- EMPECE A HACERLO Y ME TRABE-->
+
+@using TP_DDS_MVC.Models.Compras;
+@using TP_DDS_MVC.Models.Ingresos;
+@model Ingreso
+@{
+    @section scripts {
+        <script type="text/javascript" src="~/Scripts/MyScripts/agregarPresupuestoScript.js"></script>
+    }
+    ViewBag.Title = "CrearIngreso";
+    var egresos = ViewBag.egresos;
+}
+
+<div class="container">
+    <div class="pb-3">
+        <h2>Crear un Presupuesto</h2>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-12">
+            <label for="descripcion">Descripcion</label>
+            <input id="descripcion" class="form-control" type="text" placeholder="Descripcion">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-12">
+            <label for="monto">Monto</label>
+            <input id="monto" class="form-control" type="text" placeholder="Monto">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="fecha">Fecha inicio:</label>
+        <input class="form-control" id="fechaInicio" type="date">
+    </div>
+    <div class="form-group">
+        <label for="fecha">Fecha final:</label>
+        <input class="form-control" id="fechaFin" type="date">
+    </div>
+
+    <select class="custom-select" multiple>
+        <option selected>Asociar egresos</option>
+        @foreach (Egreso egre in (List<Egreso>)egresos)
+        {
+            <option value="@egre.idEgreso">@egre.montoTotal</option>
+        }
+    </select>
+
+    <span>
+        <button class="btn btn-success col-lg-2" id="submit">Crear</button>
+        @Html.ActionLink("Cancelar", "Index", new { controller = "Compra" }, new { @class = "btn btn-secondary col-lg-1" })
+    </span>
+</div>
+
