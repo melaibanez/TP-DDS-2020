@@ -20,8 +20,7 @@ namespace TP_DDS_MVC.Models.Proyectos
         public List<Ingreso> ingresos { get; set; }
         public int limiteErrogacion { get; set; }
         public int cantidadPresupuestos { get; set; }
-        public DateTime apertura { get; set; }
-        public string evalucion { get; set; }
+        public string evaluacion { get; set; }
         public string resultado { get; set; }
         public DateTime fechaEjecucion { get; set; }
         public DateTime fechaCierre { get; set; }
@@ -34,8 +33,5 @@ namespace TP_DDS_MVC.Models.Proyectos
             }
         }
 
-        public void altaProyecto() { }
-        public void bajaProyecto() { }
-        public void modificacionProyecto() { }
     }
 }
