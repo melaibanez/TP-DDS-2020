@@ -169,6 +169,7 @@
     <Compile Include="Controllers\EntidadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IngresoController.cs" />
+    <Compile Include="Controllers\ProyectoFinanciamientoController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAOs\CategoriaDAO.cs" />
     <Compile Include="DAOs\CiudadDAO.cs" />
@@ -393,6 +394,7 @@
     <Content Include="Views\Compra\DetalleCompra.cshtml" />
     <Content Include="Views\Compra\ListPresupuestos.cshtml" />
     <Content Include="Views\Compra\DetallePresupuesto.cshtml" />
+    <Content Include="Views\ProyectoFinanciamiento\AddProyectoFinanciamiento.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -402,6 +404,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Data\" />
     <Folder Include="Views\Ingreso\" />
   </ItemGroup>
   <ItemGroup>
