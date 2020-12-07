@@ -1,0 +1,87 @@
+﻿@using TP_DDS_MVC.Models.Ingresos
+@model TP_DDS_MVC.Helpers.JsonEgreso
+
+@{
+    @section scripts {
+        <script type="text/javascript" src="~/Scripts/MyScripts/agregarEgreso.js"></script>
+    }
+
+    ViewBag.Title = "AddProyectoFinanciamiento";
+
+    var ingreso = ViewBag.ingreso;
+}
+
+<div class="container-fluid">
+    <div class="pb-3">
+        <h2>Crear un Proyecto de Financiamiento</h2>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="cantPresupuestos">Cantidad de Presupuestos exigibles:</label>
+            <input id="cantPresupuestos" type="number" class="form-control" placeholder="0" step="1" min="0">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="montoTotal">Ingrese el monto total asignado:</label>
+            <input id="montoTotal" type="number" class="form-control" placeholder="0" step="0.01" min="0">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="limiteErogacion">Ingrese el monto límite de erogación:</label>
+            <input id="limiteErogacion" type="number" class="form-control" placeholder="0" step="0.01" min="0">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="fechaCierre">Ingrese la fecha de cierre:</label>
+            <input id="fechaCierre" type="datetime-local" class="form-control" placeholder="Fecha de Cierre">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="fechaEjecucion">Ingrese la fecha de ejecución:</label>
+            <input id="fechaEjecucion" type="datetime-local" class="form-control" placeholder="Fecha de Ejecución">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="ingreso1">Asocie los ingresos correspondiente al proyecto:</label>
+            <input list="ingreso2" class="form-control" placeholder="Seleccionar..." id="ingreso1" type="text">
+            <datalist id="ingreso2">
+                @foreach (var ingreso4 in ViewBag.Ingreso)
+                {
+                    <option>@ingreso4.descripcion</option>
+                }
+            </datalist>
+        </div>
+    </div>
+
+    <div>
+        <h4>Agregar documentos</h4>
+        <div class="form-group">
+            <label for="documentos">Asocie los ingresos correspondiente al proyecto:</label>
+            <input class="form-control" list="documentos" id="documento" type="text" placeholder="Seleccionar...">
+            <datalist id="documentos">
+                @foreach (var ingreso4 in ViewBag.Ingreso)
+                {
+                    <option value="@ingreso4.idIngreso">@ingreso4.descripcion</option>
+                }
+            </datalist>
+        </div>
+        <button class="btn btn-primary btn-sm mb-1" id="agregarDoc">Agregar</button>
+        <br />
+        <br />
+        <h5>Lista de documentos</h5>
+        <div class="col-6">
+            <label id="noDocs">No hay documentos agregados</label>
+            <ul class="list-group list-group-flush pb-5" id="listaDocs">
+            </ul>
+        </div>
+    </div>
+    <br />
+
+
+
+
+
+    <span>
+        <button class="btn btn-success col-lg-2" id="submit">Crear</button>
+        @Html.ActionLink("Cancelar", "Index", new { controller = "Compra" }, new { @class = "btn btn-secondary col-lg-1" })
+    </span>
+</div>

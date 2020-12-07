@@ -34,17 +34,17 @@ namespace TP_DDS_MVC
                 url: "compra/add",
                 defaults: new { controller = "Compra", action = "AddCompra" }
             );
-
-            routes.MapRoute(
-                name: "Get Prestadores de servicios",
-                url: "compra/prestador-de-servicios",
-                defaults: new { controller = "Compra", action = "PrestadorDeServicios" }
-            );
-
+                       
             routes.MapRoute(
                 name: "Add Prestador de servicios",
                 url: "compra/prestador-de-servicios/add",
                 defaults: new { controller = "Compra", action = "AddPrestadorDeServicios" }
+            );
+
+            routes.MapRoute(
+                name: "List Prestador de servicios",
+                url: "compra/prestador-de-servicios",
+                defaults: new { controller = "Compra", action = "ListPrestadorDeServicios" }
             );
 
             routes.MapRoute(

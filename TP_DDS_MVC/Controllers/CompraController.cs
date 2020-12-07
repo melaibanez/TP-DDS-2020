@@ -54,6 +54,11 @@ namespace TP_DDS_MVC.Controllers
             }
         }
 
+        public ActionResult ListPrestadorDeServicios()
+        {
+            List<PrestadorDeServicios> pres = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios();
+            return View(pres);
+        }
 
         ///////////////////////////////////////////////
         ///             Medio de Pago               ///

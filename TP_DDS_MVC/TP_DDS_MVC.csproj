@@ -169,6 +169,7 @@
     <Compile Include="Controllers\EntidadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IngresoController.cs" />
+    <Compile Include="Controllers\ProyectoFinanciamientoController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAOs\CategoriaDAO.cs" />
     <Compile Include="DAOs\CiudadDAO.cs" />
@@ -398,6 +399,10 @@
     <Content Include="Views\User\comprasRevisadas.cshtml" />
     <Content Include="Views\User\BandejaDeMensajes.cshtml" />
     <Content Include="Views\Ingreso\CrearIngreso.cshtml" />
+    <Content Include="Views\ProyectoFinanciamiento\AddProyectoFinanciamiento.cshtml" />
+    <Content Include="Views\Compra\ListPrestadorDeServicios.cshtml" />
+    <Content Include="Views\Compra\DetallePrestadorDeServicios.cshtml" />
+    <Content Include="Views\Compra\ListMedioDePago.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -407,6 +412,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Data\" />
+    <Folder Include="Views\Ingreso\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

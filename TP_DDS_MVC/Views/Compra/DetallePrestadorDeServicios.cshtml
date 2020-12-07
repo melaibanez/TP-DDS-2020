@@ -1,0 +1,49 @@
+﻿@using TP_DDS_MVC.Models.Compras;
+@model PrestadorDeServicios
+    @{
+        ViewBag.Title = "DetallePrestadorDeServicios";
+    }
+
+<div class="alert alert-secondary my-4" role="alert">
+    <h2>Detalle del Prestador de Servicios: @Model.idPrestador</h2>
+</div>
+ <div class="container-md">
+     <div class="form-group row">
+         <label for="razonSocial">Nombre o Razon Social</label>
+         <div class="col-10">
+             <input class="form-control" id="razonSocial" value=@Model.razonSocial type="text" disabled>
+         </div>
+     </div>
+     <br />
+     <div class="form-group row">
+         <div class="form-group col-md-6">
+             <label for="tipoDoc">Tipo de documento</label>
+             <input class="form-control" id="tipoDoc" value=@Model.tipoDoc type="text" disabled>
+         </div>
+         <div class="form-group col-md-6">
+             <label for="numDoc">Numero de documento</label>
+             <input class="form-control" id="nroDoc" value=@Model.numDoc type="text" disabled>
+         </div>
+     </div>
+     <!--REVISAR DP-->
+     <br />
+     <div class="form-group row">
+         <label for="direcPostal">Direccion postal</label>
+         <input class="form-control" id="nroDoc" value=@Model.direccionPostal.pais type="text" disabled>
+         <input class="form-control" id="nroDoc" value=@Model.direccionPostal.provincia type="text" disabled>
+         <input class="form-control" id="nroDoc" value=@Model.direccionPostal.ciudad type="text" disabled>
+         <input class="form-control" id="nroDoc" value=@Model.direccionPostal.calle type="text" disabled>
+         <input class="form-control" id="nroDoc" value=@Model.direccionPostal.numero type="text" disabled>
+         <input class="form-control" id="nroDoc" value=@Model.direccionPostal.piso_depto type="text" disabled>
+     </div>
+     <br />
+     <div class="form-group row">
+         <div class="col-10">
+             <input class="btn btn-success" type="submit" value="Agregar" />
+             &nbsp;&nbsp;&nbsp;
+             @Html.ActionLink("Cancelar", "Index", new { controller = "Compra" }, new { @class = "btn btn-secondary" })
+         </div>
+     </div>
+ </div>
+            
+
