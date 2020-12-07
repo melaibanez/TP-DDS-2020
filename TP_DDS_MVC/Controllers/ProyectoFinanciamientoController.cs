@@ -35,7 +35,7 @@ namespace TP_DDS_MVC.Controllers
             }
             catch (Exception e)
             {
-                MyLogger.log(e.Message);
+                //MyLogger.log(e.Message);
                 return View();
             }
         }
