@@ -294,6 +294,7 @@
     <Content Include="Scripts\MyScripts\agregarIngresoScript.js" />
     <Content Include="Scripts\MyScripts\agregarPresupuestoScript.js" />
     <Content Include="Scripts\MyScripts\agregarProyecto.js" />
+    <Content Include="Scripts\MyScripts\tablasVinculador.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -407,6 +408,7 @@
     <Content Include="Views\Compra\ListMedioDePago.cshtml" />
     <Content Include="Views\Ingreso\ListIngresos.cshtml" />
     <Content Include="Views\Ingreso\Index.cshtml" />
+    <Content Include="Views\Ingreso\Vinculador.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

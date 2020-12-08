@@ -4,8 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TP_DDS_MVC.DAOs;
+using TP_DDS_MVC.Helpers.VinculadorEgresoIngreso;
 using TP_DDS_MVC.Helpers;
 using TP_DDS_MVC.Models.Ingresos;
+using TP_DDS_MVC.Models.Entidades;
 
 namespace TP_DDS_MVC.Controllers
 {
@@ -115,6 +117,34 @@ namespace TP_DDS_MVC.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult Vinculador()
+        {
+            ViewBag.egresos = EgresoDAO.getInstancia().getEgresos();
+            ViewBag.ingresos = IngresoDAO.getInstancia().getIngresos();
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Vinculador(int criterio)
+        {
+            Entidad entidad = EntidadDAO.getInstancia().getEntidad(1);
+            Vinculador vinculador = new Vinculador();
+
+            if(criterio == 1)
+            {
+                OVPE ovpe = new OVPE();
+                vinculador.AsignarCriterioAlVinculador(ovpe);
+                vinculador.ejecutar(entidad);
+            }
+
+
+            ViewBag.egresos = EgresoDAO.getInstancia().getEgresos();
+            ViewBag.ingresos = IngresoDAO.getInstancia().getIngresos();
+
+            return View();
         }
     }
 }

@@ -10,24 +10,26 @@ using TP_DDS_MVC.Helpers.VinculadorEgresoIngreso;
 
 namespace TP_DDS_MVC.Helpers.VinculadorEgresoIngreso
 {
-    public static class Vinculador
+    public class Vinculador
     {
         public static List<EstrategiaVinculador> estrategias;
+        public static EstrategiaVinculador estrategia {get; set; }
 
-        public static void ejecutar(Entidad entidad)
+        public void ejecutar(Entidad entidad)
         {
-            int cantCriterios = estrategias.Count();
-            for (int i = 1; i < cantCriterios; i++)
-            {
+            //int cantCriterios = estrategias.Count();
+           // for (int i = 1; i < cantCriterios; i++)
+            //{
                 List<Egreso> egresosSinVincular = entidad.GetComprasSinIngresoAsignado().Select(compra => compra.egreso).ToList();
                 List<Ingreso> ingresosDisponibles = entidad.GetIngresosDisponibles();
-                estrategias.ElementAt(i).vincularCompras(egresosSinVincular, ingresosDisponibles);
-            }
+            estrategia.vincularCompras(egresosSinVincular, ingresosDisponibles);
+               // estrategias.ElementAt(i).vincularCompras(egresosSinVincular, ingresosDisponibles);
+            //}
         }
 
-        public static void AsignarCriterioAlVinculador(List<EstrategiaVinculador> unCriterio)
+        public void AsignarCriterioAlVinculador(EstrategiaVinculador unCriterio)
         {
-            estrategias = unCriterio;
+            estrategia = unCriterio;
         }
     }
 }
