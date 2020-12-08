@@ -36,6 +36,9 @@ namespace TP_DDS_MVC.Controllers
 
         public ActionResult AddPrestadorDeServicios()
         {
+            ViewBag.paises = PaisDAO.getInstancia().getPaises();
+            ViewBag.provincias = ProvinciaDAO.getInstancia().getProvincias();
+            ViewBag.ciudades = CiudadDAO.getInstancia().getCiudades();
             return View();
         }
 
@@ -50,6 +53,9 @@ namespace TP_DDS_MVC.Controllers
             }
             catch (Exception e)
             {
+                ViewBag.paises = PaisDAO.getInstancia().getPaises();
+                ViewBag.provincias = ProvinciaDAO.getInstancia().getProvincias();
+                ViewBag.ciudades = CiudadDAO.getInstancia().getCiudades();
                 MyLogger.log(e.Message);
                 ViewBag.errorMsg = e.Message;
                 return View();

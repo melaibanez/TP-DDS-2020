@@ -41,5 +41,14 @@ namespace TP_DDS_MVC.DAOs
         {
             return;
         }
+
+        public Entidad getEntidad(int id)
+        {
+            using(MyDBContext context = new MyDBContext())
+            {
+                return context.Entidades.Find(id);
+            }
+           
+        }
     }
 }

@@ -1,0 +1,78 @@
+﻿@using TP_DDS_MVC.Models.Compras;
+@using TP_DDS_MVC.Models.Ingresos;
+@{
+    @section scripts {
+        <script type="text/javascript" src="~/Scripts/MyScripts/tablasVinculador.js"></script>
+    }
+    ViewBag.Title = "VinculadorEgresoIngreso";
+    var egresos = ViewBag.egresos;
+    var ingresos = ViewBag.ingresos;
+}
+
+<h4>Seleccione criterio de vinculacíon</h4>
+
+<div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-secondary" id="OVPE" value="1" onclick="mysortTable(), mysortTable2()">Valor-PrimeroEgreso</button>
+    <button type="button" class="btn btn-secondary" id="OVPI" onclick="mysortTable(), mysortTable2()">Valor-PrimeroIngreso</button>
+    <button type="button" class="btn btn-secondary" id="OF">Fecha</button>
+</div>
+
+<div class="mt-4 col-md-12">
+
+</div>
+
+<div class="row">
+    <div class="col-5">
+        <h3 class="sub-header">Egresos</h3>
+        <div class="table-responsive">
+            <table class="table table-striped" id="sortingTable">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Monto</th>
+                        <th scope="col">Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Egreso egre in egresos)
+                    {
+                        <tr>
+                            <th scope="row">@egre.idEgreso</th>
+                            <td>@egre.montoTotal</td>
+                            <td>@egre.fechaEgreso</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            </table>
+        </div>
+    </div>
+    <div class="col-5">
+        <h3 class="sub-header">Ingresos</h3>
+        <div class="table-responsive">
+            <table class="table table-striped" id="sortingTable2">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Monto</th>
+                        <th scope="col">FechaLimite</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Ingreso ingre in ingresos)
+                    {
+                        <tr>
+                            <th scope="row">@ingre.idIngreso</th>
+                            <td>@ingre.monto</td>
+                            <td>@ingre.fechaHasta</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<button type="button" class="btn btn-primary" id="vincular">Vincular</button>
+

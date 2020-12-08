@@ -137,6 +137,12 @@ namespace TP_DDS_MVC
             );
 
             routes.MapRoute(
+                name: "Vinculador",
+                url: "vinculador",
+                defaults: new { controller = "Ingreso", action = "Vinculador" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

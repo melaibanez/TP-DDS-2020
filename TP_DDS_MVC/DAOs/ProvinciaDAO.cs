@@ -41,6 +41,14 @@ namespace TP_DDS_MVC.DAOs
             }
         }
 
+        public Provincia getProvinciaByName(string nombre)
+        {
+            using (MyDBContext context = new MyDBContext())
+            {
+                return context.Provincias.Where(p=>p.nombre == nombre).FirstOrDefault<Provincia>();
+               
+            }
+        }
         public Provincia add(Provincia provincia)
         {
             Provincia added;
