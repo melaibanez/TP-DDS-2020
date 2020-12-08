@@ -14,12 +14,12 @@ namespace TP_DDS_MVC.Helpers.Scheduler.Jobs
         public async Task Execute(IJobExecutionContext context)
         {
             //Compra compra = (Compra)context.JobDetail.JobDataMap.Get("compra");
-            
+            MyLogger.log("COMPRAS VALIDADASSSSSSsmKJNGBRULHGBEWUOBGFEWUFBjhewbfuhbewf");
             foreach (Compra compra in MvcApplication.comprasNoValidadas)
             {
                 await ValidadorPresupuestosEgreso.validar(compra);
                 MvcApplication.comprasNoValidadas.Remove(compra);
-                Console.WriteLine("Compra validada");
+                
             }
         }
 

@@ -12,6 +12,7 @@ using TP_DDS_MVC.Models.Compras;
 using TP_DDS_MVC.Models.Entidades;
 using TP_DDS_MVC.DAOs;
 using TP_DDS_MVC.Helpers;
+using TP_DDS_MVC.Models.Otros;
 
 namespace TP_DDS_MVC.Controllers
 {
@@ -45,7 +46,7 @@ namespace TP_DDS_MVC.Controllers
             {
                 PDS.direccionPostal.validarDireccion();
                 PrestadorDeServiciosDAO.getInstancia().add(PDS);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
             catch (Exception e)
             {
@@ -75,7 +76,7 @@ namespace TP_DDS_MVC.Controllers
             try
             {
                 MedioDePagoDAO.getInstancia().add(MDP);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
             catch (Exception e)
             {
@@ -108,7 +109,7 @@ namespace TP_DDS_MVC.Controllers
             try
             {
                 PresupuestoDAO.getInstancia().add(pres);
-                return Json(Url.Action("Index", "Compra"));
+                return Json(Url.Action("Index", "Home"));
             }
             catch (Exception e)
             {
@@ -146,7 +147,7 @@ namespace TP_DDS_MVC.Controllers
                     DocumentoComercialDAO.getInstancia().setEgresoId(idEgreso, nroId);
                 }
 
-                return Json(Url.Action("Index", "Compra"));
+                return Json(Url.Action("Index", "Home"));
             }
             catch (Exception e)
             {
@@ -174,16 +175,52 @@ namespace TP_DDS_MVC.Controllers
             return View(compras);
         }
 
+        public ActionResult AddCompra()
+        {
+            ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago();
+            ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios();
+            ViewBag.usuarios = UsuarioDAO.getInstancia().getUsuarios();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddCompra(JsonCompra req)
+        {
+
+            try
+            {
+                foreach (int idUsuario in req.revisores)
+                {
+                    req.compra.revisores.Add(UsuarioDAO.getInstancia().getUsuario(idUsuario));
+                }
+
+                Compra compra = CompraDAO.getInstancia().add(req.compra);
+
+                return Json(Url.Action("Index", "Home"));
+            }
+            catch (Exception e)
+            {
+                ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago();
+                ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios();
+                ViewBag.usuarios = UsuarioDAO.getInstancia().getUsuarios();
+                MyLogger.log(e.Message);
+                ViewBag.errorMsg = e.Message;
+                return View();
+            }
+        }
+
+
+
+
+
+
+
 
         // GET: Presupuestos
         public ActionResult Presupuesto()
         {
             return View();
         }
-
-        // Get: prestadorDeServicios
-
-        
 
 
         // GET: Compra/Details/5
@@ -192,14 +229,6 @@ namespace TP_DDS_MVC.Controllers
             ViewBag.compra = CompraDAO.getInstancia().getCompra(id);
             return View();
         }
-
-        // GET: Compra/Create
-        public ActionResult AddCompra()
-        {
-            
-            return View();
-        }
-
         // POST: Compra/Create
         [HttpPost]
         public ActionResult AddCompra(FormCollection collection) // video 1:30:00

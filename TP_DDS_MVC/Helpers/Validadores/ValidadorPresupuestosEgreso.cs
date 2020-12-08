@@ -29,9 +29,7 @@ namespace TP_DDS_MVC.Helpers.Validadores
             {
                 Console.WriteLine("La compra no requiere presupuestos");
             }
-
-
-        }
+        }   
 
         public static void enviarMensajes(List<Usuario> usuarios, string mensaje)
         {
