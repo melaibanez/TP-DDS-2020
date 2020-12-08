@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TP_DDS_MVC.DAOs;
+using TP_DDS_MVC.Helpers;
 using TP_DDS_MVC.Models.Ingresos;
 using TP_DDS_MVC.Models.Proyectos;
 
@@ -19,8 +20,8 @@ namespace TP_DDS_MVC.Controllers
 
         public ActionResult AddProyectoFinanciamiento()
         {
-            
-            ViewBag.Ingreso = IngresoDAO.getInstancia().getIngresos();
+            ViewBag.ingresos = IngresoDAO.getInstancia().getIngresos();            
+            ViewBag.presupuestos = PresupuestoDAO.getInstancia().getPresupuestos();
 
             return View();
         }

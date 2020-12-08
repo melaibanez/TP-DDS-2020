@@ -35,6 +35,9 @@ namespace TP_DDS_MVC.Controllers
 
         public ActionResult AddPrestadorDeServicios()
         {
+            ViewBag.paises = PaisDAO.getInstancia().getPaises();
+            ViewBag.provincias = ProvinciaDAO.getInstancia().getProvincias();
+            ViewBag.ciudades = CiudadDAO.getInstancia().getCiudades();
             return View();
         }
 
@@ -43,13 +46,17 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
-                PDS.direccionPostal = new DireccionPostal();
+                PDS.direccionPostal.validarDireccion();
                 PrestadorDeServiciosDAO.getInstancia().add(PDS);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
             catch (Exception e)
             {
+                ViewBag.paises = PaisDAO.getInstancia().getPaises();
+                ViewBag.provincias = ProvinciaDAO.getInstancia().getProvincias();
+                ViewBag.ciudades = CiudadDAO.getInstancia().getCiudades();
                 MyLogger.log(e.Message);
+                ViewBag.errorMsg = e.Message;
                 return View();
             }
         }
@@ -149,7 +156,11 @@ namespace TP_DDS_MVC.Controllers
             }
             catch (Exception e)
             {
+                ViewBag.docsComerciales = DocumentoComercialDAO.getInstancia().getDocumentosComerciales();
+                ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago();
+                ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios();
                 MyLogger.log(e.Message);
+                ViewBag.errorMsg = e.Message;
                 return View();
             }
         }

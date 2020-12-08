@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using TP_DDS_MVC.Models.Proyectos;
 
 namespace TP_DDS_MVC.Models.Compras
 {
@@ -24,6 +25,11 @@ namespace TP_DDS_MVC.Models.Compras
         public Compra compra { get; set; }
 
         public List<ItemPresupuesto> items { get; set; }
+
+        [ForeignKey("proyecto")]
+        public int? idProyecto { get; set; }
+        public ProyectoFinanciamiento proyecto { get; set; }
+
 
         public Presupuesto() { }
 

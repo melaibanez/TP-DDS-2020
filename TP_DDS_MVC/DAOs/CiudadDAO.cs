@@ -40,7 +40,14 @@ namespace TP_DDS_MVC.DAOs
                 return context.Ciudades.Find(id);
             }
         }
+        public Ciudad getCiudadByName(string nombre)
+        {
+            using (MyDBContext context = new MyDBContext())
+            {
+                return context.Ciudades.Where(p => p.nombre == nombre).FirstOrDefault<Ciudad>();
 
+            }
+        }
         public Ciudad add(Ciudad ciudad)
         {
             Ciudad added;

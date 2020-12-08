@@ -41,6 +41,14 @@ namespace TP_DDS_MVC.DAOs
             }
         }
 
+        public Pais getPaisByName(string nombre)
+        {
+            using (MyDBContext context = new MyDBContext())
+            {
+                return context.Paises.Where(p=>p.nombre == nombre).FirstOrDefault<Pais>();
+            }
+        }
+
         public Pais add(Pais pais)
         {
             Pais added;

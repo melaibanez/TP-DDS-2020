@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using TP_DDS_MVC.Models.Otros;
+using TP_DDS_MVC.DAOs;
 
 namespace TP_DDS_MVC.Models.Entidades
 {
@@ -38,6 +40,39 @@ namespace TP_DDS_MVC.Models.Entidades
             this.pais = pais;
         }
 
+        public void validarDireccion()
+        {
+
+            Pais pais = PaisDAO.getInstancia().getPaisByName(this.pais);
+            Provincia provincia = ProvinciaDAO.getInstancia().getProvinciaByName(this.provincia);
+            Ciudad ciudad = CiudadDAO.getInstancia().getCiudadByName(this.ciudad);
+
+            //validar direccion postal y si esta mal tirar una exep
+            if (this.pais == null)
+            {
+                throw new Exception("Debe ingresar un país");
+            }
+            if (this.provincia == null )
+            {
+                throw new Exception("Debe ingresar un país");
+            }
+            if (provincia.idPais != pais.id)
+            {
+                throw new Exception("Seleccione una provincia del país seleccionado");
+            }
+            if (ciudad.idProvincia != provincia.id)
+            {
+                throw new Exception("Seleccione una ciudad de la provincia seleccionada");
+            }
+            if (this.calle==null)
+            {
+                throw new Exception("Debe ingresar una calle");
+            }
+            if (this.numero == null)
+            {
+                throw new Exception("Debe ingresar un número de calle");
+            }
+        }
 
     }
 }

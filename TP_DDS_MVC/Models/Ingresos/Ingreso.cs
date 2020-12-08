@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using TP_DDS_MVC.Models.Compras;
 using TP_DDS_MVC.Models.Entidades;
+using TP_DDS_MVC.Models.Proyectos;
 
 namespace TP_DDS_MVC.Models.Ingresos
 {
@@ -28,7 +29,11 @@ namespace TP_DDS_MVC.Models.Ingresos
         public int idEntidad { get; set; }
         public Entidad entidad { get; set; }
 
-        private List<Egreso> egresosAsociados;
+        public List<Egreso> egresosAsociados { get; set; }
+
+        [ForeignKey("proyecto")]
+        public int? idProyecto { get; set; }
+        public ProyectoFinanciamiento proyecto { get; set; }
 
         public Ingreso() { }
         public Ingreso(string descripcion, float montoTotal, List<Egreso> egresosAsociados)

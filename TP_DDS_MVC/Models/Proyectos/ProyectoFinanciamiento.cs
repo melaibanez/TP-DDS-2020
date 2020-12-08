@@ -7,13 +7,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 using TP_DDS_MVC.Models.Ingresos;
 using TP_DDS_MVC.Models.Otros;
 using TP_DDS_MVC.Models.Entidades;
+using TP_DDS_MVC.Models.Compras;
 
 namespace TP_DDS_MVC.Models.Proyectos
 {
-    [NotMapped]
+    [Table("proyecto_financiamiento")]
    public class ProyectoFinanciamiento
 
     {
+        [Key]
+        public int idProyecyo { get; set; }
         public string propuesta { get; set; }
         public int montoTotal { get; set; }
         public Usuario director { get; set; }
@@ -24,6 +27,11 @@ namespace TP_DDS_MVC.Models.Proyectos
         public string resultado { get; set; }
         public DateTime fechaEjecucion { get; set; }
         public DateTime fechaCierre { get; set; }
+        public List<Presupuesto> presupuestos { get; set; }
+
+        [ForeignKey("entidad")]
+        public int idEntidad { get; set; }
+        public Entidad entidad { get; set; }
 
         public void rendirCuenta(Entidad Entidad, Ingreso ingreso) //en cuotas supongo que es 1 ingreso a la vez
         {
