@@ -7,7 +7,7 @@
         cantidadPresupuestos: null,
         fechaEjecucion: null,
         fechaCierre: null,
-        presupuestos: null
+        presupuestos: []
     }
 }
 
@@ -16,10 +16,11 @@ $("#agregarIng").click(function () {
     $('#noIng').hide()
 
     model.ingresos.push({
-        idIngreso: $("#ingreso").val().substring(1)
+        idIngreso: $("#ingreso").val()
     })
 
     $("#listaIng").append('<li id="i' + $("#ingreso").val() + '" class="list-group-item">' +
+        $("#ingreso").val() + '&nbsp;-&nbsp;'+
         '<button id="eliminar" value="i' + $("#ingreso").val() + '" class="btn btn-outline-danger btn-sm" aria-label="Close">Eliminar</button ></li >');
 
     $("#ingreso").val('');
@@ -42,7 +43,7 @@ $("#agregarDoc").click(function () {
     $('#noDocs').hide()
 
     data.model.presupuestos.push({
-        idDocComercial: $('#documento').val().substring(1)
+        idDocComercial: $('#documento').val()
     })
 
     $("#listaDocs").append('<li id="d' + $("#documento").val() + '" class="list-group-item">' +
@@ -78,7 +79,7 @@ $("#submit").click(function () {
 
     $.ajax({
         type: "POST",
-        url: "/proyecto-financiamiento/add",
+        url: "/proyecto/add",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         data: JSON.stringify(data.model),

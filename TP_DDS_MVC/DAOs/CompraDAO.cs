@@ -48,6 +48,7 @@ namespace TP_DDS_MVC.DAOs
             using (MyDBContext context = new MyDBContext())
             {
                 added = context.Compras.Add(compra);
+                context.SaveChanges();
             }
 
             return added;

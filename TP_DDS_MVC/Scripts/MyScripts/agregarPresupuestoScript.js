@@ -1,13 +1,17 @@
 ﻿var data = {
     model: {
-        nroIdentificacion: null,
-        tipo_enlace: "Presupuesto",
-        idEgreso: null,
-        idMedioDePago: null,
-        idPrestadorDeServicios: null,
-        montoTotal: 0,
-        idCompra: null,
-        items: []
+        presupuesto: {
+            nroIdentificacion: null,
+            tipo_enlace: "Presupuesto",
+            idEgreso: null,
+            idMedioDePago: null,
+            idPrestadorDeServicios: null,
+            montoTotal: 0,
+            idCompra: null,
+            idProyecto: null,
+            items: []
+        },
+        setEgreso: false     
     }
 }
 
@@ -15,7 +19,7 @@
 $("#agregarItem").click(function () {
     $('#noItems').hide()
     
-    data.model.items.push({
+    data.model.presupuesto.items.push({
         cant: $("#cantItem").val(),
         descripcion: $("#descripcionItem").val(),
         valor: $("#valorItem").val(),
@@ -34,29 +38,33 @@ $("#agregarItem").click(function () {
 
     //idItem++;
 
-    console.log(data.model.items);
+    console.log(data.model.presupuesto.items);
 })
 
 $(document).on("click", "#eliminar", function () {
-    const index = data.model.items.findIndex(i => i.descripcion === $(this).val());
-    data.model.items.splice(parseInt(index), 1);
+    const index = data.model.presupuesto.items.findIndex(i => i.descripcion === $(this).val());
+    data.model.presupuesto.items.splice(parseInt(index), 1);
     $('[id="' + $(this).val() + '"]').remove();
 
-    if (data.model.items.length === 0) {
+    if (data.model.presupuesto.items.length === 0) {
         $('#noItems').show()
     }
 
-    console.log(data.model.items);
+    console.log(data.model.presupuesto.items);
 })
 
 
 
 $("#submit").click(function () {
 
-    data.model.nroIdentificacion = $(nroIdentificacion).val();
-    data.model.idMedioDePago = parseInt($("input[id=medioDePago]").val());
-    data.model.idPrestadorDeServicios = parseInt($("input[id=proveedor]").val());
-    data.model.montoTotal = data.model.items.reduce((a, b) => a + b.valor * b.cant, 0);
+    data.model.presupuesto.nroIdentificacion = $('#nroIdentificacion').val();
+    data.model.presupuesto.idMedioDePago = parseInt($("input[id=medioDePago]").val());
+    data.model.presupuesto.idPrestadorDeServicios = parseInt($("input[id=proveedor]").val());
+    data.model.presupuesto.montoTotal = data.model.presupuesto.items.reduce((a, b) => a + b.valor * b.cant, 0);
+    data.model.presupuesto.idCompra = $('#compra').val();
+    if ($('#checkEgreso').is(":checked")) {
+        data.model.setEgreso = true;
+    }
 
     console.log(data.model);
 

@@ -11,4 +11,17 @@ namespace TP_DDS_MVC.Helpers
         public Egreso egreso { get; set; }
         public string[] docsComerciales { get; set; }
     }
+
+
+    public class JsonCompra
+    {
+        public Compra compra { get; set; }
+        public int[] revisores { get; set; }
+    }
+
+    public class JsonPresupuesto
+    {
+        public Presupuesto presupuesto { get; set; }
+        public bool setEgreso { get; set; }
+    }
 }

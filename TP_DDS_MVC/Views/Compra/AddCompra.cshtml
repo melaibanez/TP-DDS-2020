@@ -1,93 +1,123 @@
-﻿
+﻿@using TP_DDS_MVC.Models.Otros
+@using TP_DDS_MVC.Models.Compras
 @{
-    ViewBag.Title = "AddCompra";
+    ViewBag.Title = "Cargar Compra";
+    @section scripts {
+        <script type="text/javascript" src="~/Scripts/MyScripts/agregarCompra.js"></script>
+    }
+
+    var proveedores = ViewBag.proveedores;
+    var mediosDePago = ViewBag.mediosDePago;
 }
 
-    <form>
-        <fieldset>
-            <legend>Agregar Compra <<<(form de ejemplo)>>> </(form></legend>
-            <div class="form-group row">
-                <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-                <div class="col-sm-10">
-                    <input type="text" readonly="" class="form-control-plaintext" id="staticEmail" value="email@example.com">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Cantidad minima de presupuestos</label>
-                <input type="email" class="form-control" name="cant" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Cantidad">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-            </div>
-            <div class="form-group">
-                <label for="exampleSelect1">Example select</label>
-                <select class="form-control" id="exampleSelect1">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="exampleSelect2">Example multiple select</label>
-                <select multiple="" class="form-control" id="exampleSelect2">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="exampleTextarea">Example textarea</label>
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputFile">File input</label>
-                <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
-                <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
-            </div>
-            <fieldset class="form-group">
-                <legend>Radio buttons</legend>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-                        Option one is this and that—be sure to include why it's great
-                    </label>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
-                        Option two can be something else and selecting it will deselect option one
-                    </label>
-                </div>
-                <div class="form-check disabled">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="option3" disabled="">
-                        Option three is disabled
-                    </label>
-                </div>
-            </fieldset>
-            <fieldset class="form-group">
-                <legend>Checkboxes</legend>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" value="" checked="">
-                        Option one is this and that—be sure to include why it's great
-                    </label>
-                </div>
-                <div class="form-check disabled">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" value="" disabled="">
-                        Option two is disabled
-                    </label>
-                </div>
-            </fieldset>
-            
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </fieldset>
-    </form>
+<div class="mb-3">
+    <h2>Cargar Compra</h2>
+</div>
+@if (ViewBag.errorMsg != null)
+{
+    <div class="alert alert-danger mb-3" role="alert">
+        @ViewBag.errorMsg
+    </div>
+}
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="descripcion">Descripcion</label>
+        <input id="descripcion" class="form-control" type="text" placeholder="Descripcion">
+    </div>
+    <div class="form-group col-md-6">
+        <label for="cantMinPres">Cantidad minima de presupuestos</label>
+        <input id="cantMinPres" class="form-control" type="number" placeholder="0" min="0">
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-group col">
+        <h4>Agregar revisores</h4>
+        <div class="form-group">
+            <label for="revisor">Seleccione un revisor</label>
+            <input list="revisores" class="form-control" placeholder="Seleccionar..." id="revisor" type="text">
+            <datalist id="revisores">
+                @foreach (Usuario usu in (List<Usuario>)ViewBag.usuarios)
+                {
+                    <option value=@usu.idUsuario>@usu.nombreUsuario</option>
+                }
+            </datalist>
+        </div>
+        <button class="btn btn-primary btn-sm mb-1" id="agregarUsu">Agregar</button>
+        <br />
+        <br />
+        <h5>Lista de revisores</h5>
+        <div class="col-6">
+            <label id="noUsu">No hay revisores agregados</label>
+            <ul class="list-group list-group-flush pb-5" id="listaUsu">
+            </ul>
+        </div>
+    </div>
+</div>
 
+<div class="mb-4">
+    <h3>Crear un Egreso</h3>
+</div>
+<div class="ml-4">
+    <div class="form-group mb-3">
+        <label for="fecha">Fecha del egreso:</label>
+        <input class="form-control" id="fecha" type="date">
+    </div>
+    <div class="form-row mb-3">
+        <div class="form-group col mr-5">
+            <label for="proveedores">Seleccione un proveedor:</label>
+            <input class="form-control" list="proveedores" id="proveedor" type="text" placeholder="Seleccionar...">
+            <datalist id="proveedores">
+                @foreach (PrestadorDeServicios PDS in (List<PrestadorDeServicios>)proveedores)
+                {
+                    <option value="@PDS.idPrestador">@PDS.razonSocial</option>
+                }
+            </datalist>
+        </div>
+        <div class="form-group col">
+            <label for="mediosDePago">Seleccione un Medio de Pago:</label>
+            <input class="form-control" list="mediosDePago" id="medioDePago" type="text" placeholder="Seleccionar...">
+            <datalist id="mediosDePago">
+                @foreach (MedioDePago MDP in (List<MedioDePago>)mediosDePago)
+                {
+                    <option value="@MDP.idMedioPago">@MDP.instrumento</option>
+                }
+            </datalist>
+        </div>
+    </div>
+
+
+    <div class="mb-3">
+        <h4>Agregar items</h4>
+        <div class="form-row">
+            <div class="form-group col-4">
+                <label for="descripcionItem">Descripcion</label>
+                <input type="text" class="form-control" id="descripcionItem" placeholder="Descripcion" />
+            </div>
+            <div class="form-group col-1">
+                <label for="valorItem">Valor </label>
+                <input type="number" class="form-control" id="valorItem" placeholder="1" step="0.01" min="1" />
+            </div>
+            <div class="form-group col-1">
+                <label for="cantItem">Cantidad</label>
+                <input type="number" class="form-control" id="cantItem" placeholder="1" min="1" />
+            </div>
+        </div>
+        <button class="btn btn-primary btn-sm mb-1" id="agregarItem">Agregar</button>
+        <br />
+        <br />
+        <h5>Lista de Items</h5>
+        <div class="col-4">
+            <label id="noItems">No hay items agregados</label>
+            <ul class="list-group list-group-flush pb-5" id="listaItems">
+            </ul>
+        </div>
+    </div>
+    <span>
+        <button class="btn btn-success col-lg-2" id="submit">Cargar</button>
+        @Html.ActionLink("Cancelar", "Index", new { controller = "Compra" }, new { @class = "btn btn-secondary col-lg-1" })
+    </span>
+</div>
+
+<div class="form-group">
+
+</div>

@@ -55,6 +55,7 @@ namespace TP_DDS_MVC.DAOs
             return added;
         }
 
+
         public void deletePresupuesto(int idPresupuesto)
         {
             using (MyDBContext context = new MyDBContext())
@@ -71,6 +72,19 @@ namespace TP_DDS_MVC.DAOs
                 {
                     throw new Exception("El presupuesto que quiere eliminar, no existe");
                 }
+            }
+
+
+        //public void setProyectoId(idProyecto, idDoc){}
+
+        public void setCompraId(int idCompra, int idPres) {
+            Presupuesto pres;
+
+            using (MyDBContext context = new MyDBContext())
+            {
+                pres = (Presupuesto)context.DocumentosComerciales.Where(dc => dc.idDocComercial == idPres).FirstOrDefault();
+                pres.idCompra = idCompra;
+                context.SaveChanges();
             }
 
         }

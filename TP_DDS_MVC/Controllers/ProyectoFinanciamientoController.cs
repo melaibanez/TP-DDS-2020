@@ -31,12 +31,13 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
-                ProyectoFinanciamientoDAO.getInstancia().add(proyecto);
-                return Json(Url.Action("Index", "ProyectoFinanciamiento"));
+                int proyId = ProyectoFinanciamientoDAO.getInstancia().add(proyecto).idProyecyo;
+                //falta vincular los ingresos y presupuestos al proyecto que se esta cargando!!
+                return Json(Url.Action("Index", "Home"));
             }
             catch (Exception e)
             {
-                //MyLogger.log(e.Message);
+                MyLogger.log(e.Message);
                 return View();
             }
         }
