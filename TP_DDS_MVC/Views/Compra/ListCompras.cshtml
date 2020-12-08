@@ -29,7 +29,7 @@
                 <td>@compra.egreso.montoTotal</td>
                 <td>@Html.ActionLink("Detalle", "DetalleCompra", "Compra", new { idCompra = compra.idCompra }, new { @class = "btn btn-info btn-sm" })</td>
                 <td>@Html.ActionLink("Editar", "EditCompra", "Compra", new { idCompra = compra.idCompra }, new { @class = "btn btn-secondary btn-sm" })</td>
-                <td>@Html.ActionLink("Borrar", "Delete", "Compra", new { idCompra = compra.idCompra }, new { @class = "btn btn-secondary btn-sm" })</td>
+                <td>@Html.ActionLink("Borrar", "DeleteCompra", "Compra", new { idCompra = compra.idCompra }, new { @class = "btn btn-secondary btn-sm" })</td>
             </tr>
             }
         </tbody>

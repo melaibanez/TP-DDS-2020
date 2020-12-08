@@ -31,7 +31,8 @@
                         <th scope="row">@pres.idMedioPago</th>
                         <td>@pres.instrumento</td>
                         <td>@pres.numInstrumento</td>
-                        <td>@Html.ActionLink("Editar", "EditPresupuesto", "Compra", new { id = pres.idDocComercial }, new { @class = "btn btn-secondary btn-sm" })</td>
+                        <td>@Html.ActionLink("Editar", "EditMedioDePago", "Compra", new { id = pres.idMedioPago }, new { @class = "btn btn-secondary btn-sm" })</td>
+                        <td>@Html.ActionLink("Borrar", "DeleteMedioDePago", "Compra", new { id = pres.idMedioPago }, new { @class = "btn btn-secondary btn-sm" })</td>
                     </tr>
                 }
             </tbody>

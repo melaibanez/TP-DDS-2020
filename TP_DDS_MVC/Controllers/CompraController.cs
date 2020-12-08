@@ -68,6 +68,20 @@ namespace TP_DDS_MVC.Controllers
             return View(pres);
         }
 
+        public ActionResult DeletePrestadorDeServicios(int idPrestador)
+        {
+            try
+            {
+                PrestadorDeServiciosDAO.getInstancia().deletePrestador(idPrestador);
+                return View("ListPrestadorDeServicios");
+            }
+            catch (Exception e)
+            {
+                MyLogger.log(e.Message);
+                ViewBag.errorMsg = e.Message;
+                return View("ListPrestadorDeServicios");
+            }
+        }
         ///////////////////////////////////////////////
         ///             Medio de Pago               ///
         ///////////////////////////////////////////////
@@ -88,6 +102,27 @@ namespace TP_DDS_MVC.Controllers
             {
                 MyLogger.log(e.Message);
                 return View();
+            }
+        }
+
+        public ActionResult ListMedioDePago()
+        {
+            List<MedioDePago> pres = MedioDePagoDAO.getInstancia().getMediosDePago();
+            return View(pres);
+        }
+
+        public ActionResult DeleteMedioDePago(int idMedioDePago)
+        {
+            try
+            {
+                MedioDePagoDAO.getInstancia().deleteMedioDePago(idMedioDePago);
+                return View("ListMedioDePago");
+            }
+            catch (Exception e)
+            {
+                MyLogger.log(e.Message);
+                ViewBag.errorMsg = e.Message;
+                return View("ListMedioDePago");
             }
         }
 
@@ -130,6 +165,21 @@ namespace TP_DDS_MVC.Controllers
                 MyLogger.log(e.Message);
                 ViewBag.errorMsg = e.Message;
                 return View();
+            }
+        }
+
+        public ActionResult DeletePresupuesto(int idPresupuesto)
+        {
+            try
+            {
+                PresupuestoDAO.getInstancia().deletePresupuesto(idPresupuesto);
+                return View("ListPresupuestos");
+            }
+            catch (Exception e)
+            {
+                MyLogger.log(e.Message);
+                ViewBag.errorMsg = e.Message;
+                return View("ListPresupuestos");
             }
         }
 
@@ -187,6 +237,7 @@ namespace TP_DDS_MVC.Controllers
             Egreso e = new Egreso();
             e.montoTotal = 214254;
             List<Compra> compras = new List<Compra>() { new Compra("La compra del mes", 5, 235,e,new List<Presupuesto>(),null), new Compra("Otra compra", 12, 235, e, new List<Presupuesto>(), null), new Compra("La ultima compra", 20, 125, e, new List<Presupuesto>(), null) };
+            
             return View(compras);
         }
 
@@ -195,6 +246,7 @@ namespace TP_DDS_MVC.Controllers
             ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago();
             ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios();
             ViewBag.usuarios = UsuarioDAO.getInstancia().getUsuarios();
+            //ViewBag.egreso = EgresoDAO.getInstancia().getEgresos();
             return View();
         }
 
@@ -229,19 +281,20 @@ namespace TP_DDS_MVC.Controllers
         }
 
         // GET: Compra/Delete/5
-        public ActionResult Delete(int idCompra)
+        public ActionResult DeleteCompra(int idCompra)
 
         {
             try
             {
                 CompraDAO.getInstancia().deleteCompra(idCompra);
-                return View("ListCompras");
+                return RedirectToAction("ListCompras");
             }
             catch (Exception e)
             {
                 MyLogger.log(e.Message);
                 ViewBag.errorMsg = e.Message;
-                return View("ListCompras");
+                return RedirectToAction("ListCompras");
+                 
             }
 
         }
