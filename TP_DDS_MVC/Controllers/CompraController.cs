@@ -245,9 +245,20 @@ namespace TP_DDS_MVC.Controllers
         }
 
         // GET: Compra/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int idCompra)
         {
-            return View();
+            try
+            {
+                CompraDAO.getInstancia().deleteCompra(idCompra);
+                return View("ListCompras");
+            }
+            catch (Exception e)
+            {
+                MyLogger.log(e.Message);
+                ViewBag.errorMsg = e.Message;
+                return View("ListCompras");
+            }
+
         }
 
         // POST: Compra/Delete/5

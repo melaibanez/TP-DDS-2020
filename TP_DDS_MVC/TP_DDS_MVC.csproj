@@ -409,6 +409,7 @@
     <Content Include="Views\Ingreso\ListIngresos.cshtml" />
     <Content Include="Views\Ingreso\Index.cshtml" />
     <Content Include="Views\Ingreso\Vinculador.cshtml" />
+    <Content Include="Views\ProyectoFinanciamiento\DefinirOperacion.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
