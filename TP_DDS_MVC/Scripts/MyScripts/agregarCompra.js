@@ -21,7 +21,7 @@ $("#agregarUsu").click(function () {
     $('#noUsu').hide()
 
     data.model.revisores.push({
-        idUsuario: $("#revisor").val()
+        idUsuario: parseInt($("#revisor").val())
     })
 
     $("#listaUsu").append('<li id="u' + $("#revisor").val() + '" class="list-group-item">' +
@@ -83,7 +83,7 @@ $(document).on("click", "#eliminarItem", function () {
 $("#submit").click(function () {
 
 
-    data.model.compra.egreso.fecha = $('#fecha').val();
+    data.model.compra.egreso.fechaEgreso = $('#fecha').val();
     data.model.compra.egreso.idMedioDePago = parseInt($("input[id=medioDePago]").val());
     data.model.compra.egreso.idPrestadorDeServicios = parseInt($("input[id=proveedor]").val());
     data.model.compra.egreso.montoTotal = data.model.compra.egreso.detalle.reduce((a, b) => a + b.valor * b.cant, 0);

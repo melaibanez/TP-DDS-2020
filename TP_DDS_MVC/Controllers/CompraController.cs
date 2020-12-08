@@ -47,7 +47,7 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
-                PDS.direccionPostal.validarDireccion();
+                //PDS.direccionPostal.validarDireccion();
                 PrestadorDeServiciosDAO.getInstancia().add(PDS);
                 return RedirectToAction("Index", "Home");
             }
@@ -106,20 +106,29 @@ namespace TP_DDS_MVC.Controllers
         {
             ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago();
             ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios();
+            ViewBag.compras = CompraDAO.getInstancia().getCompras();
             return View();
         }
 
         [HttpPost]
-        public ActionResult AddPresupuesto(Presupuesto pres)
+        public ActionResult AddPresupuesto(JsonPresupuesto req)
         {
             try
             {
-                PresupuestoDAO.getInstancia().add(pres);
+                if (req.setEgreso && req.presupuesto.idCompra != null)
+                {
+                    req.presupuesto.idEgreso = CompraDAO.getInstancia().getCompra(req.presupuesto.idCompra.Value).idEgreso;
+                }
+                PresupuestoDAO.getInstancia().add(req.presupuesto);
                 return Json(Url.Action("Index", "Home"));
             }
             catch (Exception e)
             {
+                ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago();
+                ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios();
+                ViewBag.compras = CompraDAO.getInstancia().getCompras();
                 MyLogger.log(e.Message);
+                ViewBag.errorMsg = e.Message;
                 return View();
             }
         }
@@ -192,14 +201,18 @@ namespace TP_DDS_MVC.Controllers
         [HttpPost]
         public ActionResult AddCompra(JsonCompra req)
         {
-
+            
             try
             {
-                foreach (int idUsuario in req.revisores)
+                if (req.revisores != null)
                 {
-                    req.compra.revisores.Add(UsuarioDAO.getInstancia().getUsuario(idUsuario));
+                    req.compra.revisores = new List<Usuario>();
+                    foreach (int idUsuario in req.revisores)
+                    {
+                        req.compra.revisores.Add(UsuarioDAO.getInstancia().getUsuario(idUsuario));
+                    }
                 }
-
+                
                 Compra compra = CompraDAO.getInstancia().add(req.compra);
 
                 return Json(Url.Action("Index", "Home"));
@@ -229,70 +242,57 @@ namespace TP_DDS_MVC.Controllers
         }
 
 
-        // GET: Compra/Details/5
-        public ActionResult DetailCompra(int id)
-        {
-            ViewBag.compra = CompraDAO.getInstancia().getCompra(id);
-            return View();
-        }
-        // POST: Compra/Create
-        [HttpPost]
-        public ActionResult AddCompra(FormCollection collection) // video 1:30:00
-        {
-            try
-            {
-               // Compra compra = new Compra(int cantMinimaPresupuestos, float criterio, Egreso egreso, List<Presupuesto> presupuestos, List<Usuario> revisores)
-               // ViewBag.compra = CompraDAO.getInstancia().add();
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+    //    // GET: Compra/Details/5
+    //    public ActionResult DetailCompra(int id)
+    //    {
+    //        ViewBag.compra = CompraDAO.getInstancia().getCompra(id);
+    //        return View();
+    //    }
+    //    // POST: Compra/Create
+       
 
-        // GET: Compra/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+    //    // GET: Compra/Edit/5
+    //    public ActionResult Edit(int id)
+    //    {
+    //        return View();
+    //    }
 
-        // POST: Compra/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
+    //    // POST: Compra/Edit/5
+    //    [HttpPost]
+    //    public ActionResult Edit(int id, FormCollection collection)
+    //    {
+    //        try
+    //        {
+    //            // TODO: Add update logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+    //            return RedirectToAction("Index");
+    //        }
+    //        catch
+    //        {
+    //            return View();
+    //        }
+    //    }
 
-        // GET: Compra/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+    //    // GET: Compra/Delete/5
+    //    public ActionResult Delete(int id)
+    //    {
+    //        return View();
+    //    }
 
-        // POST: Compra/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
+    //    // POST: Compra/Delete/5
+    //    [HttpPost]
+    //    public ActionResult Delete(int id, FormCollection collection)
+    //    {
+    //        try
+    //        {
+    //            // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+    //            return RedirectToAction("Index");
+    //        }
+    //        catch
+    //        {
+    //            return View();
+    //        }
+    //    }
     }
 }

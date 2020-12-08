@@ -18,4 +18,10 @@ namespace TP_DDS_MVC.Helpers
         public Compra compra { get; set; }
         public int[] revisores { get; set; }
     }
+
+    public class JsonPresupuesto
+    {
+        public Presupuesto presupuesto { get; set; }
+        public bool setEgreso { get; set; }
+    }
 }
