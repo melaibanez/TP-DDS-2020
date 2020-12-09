@@ -411,6 +411,7 @@
     <Content Include="Views\Ingreso\Index.cshtml" />
     <Content Include="Views\Ingreso\Vinculador.cshtml" />
     <Content Include="Views\ProyectoFinanciamiento\DefinirOperacion.cshtml" />
+    <Content Include="Views\Compra\EditCompra.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

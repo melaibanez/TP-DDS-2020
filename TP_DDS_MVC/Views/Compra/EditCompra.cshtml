@@ -1,0 +1,120 @@
+﻿@using TP_DDS_MVC.Models.Compras;
+@model Compra
+@{
+    ViewBag.Title = "Edit Compra";
+}
+
+<div class="mb-3">
+    <h2>Cargar Compra</h2>
+</div>
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="descripcion">Descripcion</label>
+        <input id="descripcion" class="form-control" type="text" value=@Model.descripcion disabled>
+    </div>
+    <div class="form-group col-md-6">
+        <label for="cantMinPres">Cantidad minima de presupuestos</label>
+        <input id="cantMinPres" class="form-control" type="text" value=@Model.cantMinimaPresupuestos disabled>
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-group col">
+        <div class="form-group">
+            <label for="revisor">Revisores</label>
+            <input id="revisores" class="form-control" type="text" value=@Model.revisores disabled>
+        </div>
+    </div>
+</div>
+
+<div class="mb-4">
+    </div>
+    <div class="ml-4">
+        <div class="form-group mb-3">
+            <label for="fecha">Fecha del egreso:</label>
+            <input id="fecha" class="form-control" type="text" value=@Model.egreso.fechaEgreso disabled>
+        </div>
+        <div class="form-row mb-3">
+            <div class="form-group col mr-5">
+                <label for="proveedores">Prestador de servicios:</label>
+                <input id="proveedores" class="form-control" type="text" value=@Model.egreso.prestadorDeServicios disabled>
+            </div>
+            <div class="form-group col">
+                <label for="mediosDePago">Medios de pago:</label>
+                <input id="revisores" class="form-control" type="text" value=@Model.egreso.medioDePago disabled>
+            </div>
+        </div>
+
+
+        <div class="mb-3">
+            <div class="form-row">
+                <div class="form-group col-4">
+                    <label for="descripcionItem">Descripcion</label>
+                    <input id="revisores" class="form-control" type="text" value=@Model.egreso.detalle disabled>
+                </div>
+                <!--<div class="form-group col-1">
+            <label for="valorItem">Valor </label>
+            <input type="number" class="form-control" id="valorItem" placeholder="1" step="0.01" min="1" />
+        </div>
+        <div class="form-group col-1">
+            <label for="cantItem">Cantidad</label>
+            <input type="number" class="form-control" id="cantItem" placeholder="1" min="1" />
+        </div>
+    </div>
+    <button class="btn btn-primary btn-sm mb-1" id="agregarItem">Agregar</button>
+    <br />-->
+                <br />
+                <h5>Lista de Items</h5>
+                <ul class="list-group list-group-flush pb-5" id="listaItems">
+                </ul>
+            </div>
+        </div>
+    <br />
+    <div class="form-group row">
+        <div class="col-10">
+            &nbsp;&nbsp;&nbsp;
+            @Html.ActionLink("Finalizar Edicion", "ListCompras", new { controller = "Compra" }, new { @class = "btn btn-secondary" })
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!--<div class="alert alert-secondary my-4" role="alert">
+    <h2>Detalle Compra: @Model.idCompra</h2>
+</div>
+<div class="container-md">
+    <div class="form-group row">
+        <div class="form-group col-md-6">
+            <label for="egresoAsociado">Egreso asociado</label>
+            <input class="form-control" id="egresoAsociado" value=@Model.idEgreso type="text" disabled><br />
+            <input class="form-control" id="egresoAsociado" value=@Model.egreso.montoTotal type="text" disabled>
+            <input class="form-control" id="egresoAsociado" value=@Model.egreso.montoTotal type="text" disabled>
+
+        </div>
+        <div class="form-group col-md-6">
+            <label for="entidad">Entidad asociada</label>
+            <input class="form-control" id="detalle" value=@Model.idEntidad type="text" disabled><br>
+            <input class="form-control" id="entidad" value=@Model.entidad type="text" disabled>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="presupuestos">Presupuestos</label>
+            <input class="form-control" id="presupuestos" value=@Model.presupuestos type="text" disabled>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="revisores">Revisores</label>
+            <div>
+                <input class="form-control" id="revisores" value=@Model.revisores type="text" disabled>
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <div class="form-group row">
+        <div class="col-10">
+            &nbsp;&nbsp;&nbsp;
+            @Html.ActionLink("Finalizar Edicion", "ListCompras", new { controller = "Compra" }, new { @class = "btn btn-secondary" })
+        </div>
+    </div>
+</div>-->
