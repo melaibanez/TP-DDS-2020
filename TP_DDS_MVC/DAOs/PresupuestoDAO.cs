@@ -55,6 +55,26 @@ namespace TP_DDS_MVC.DAOs
             return added;
         }
 
+
+        public void deletePresupuesto(int idPresupuesto)
+        {
+            using (MyDBContext context = new MyDBContext())
+            {
+                var itemToRemove = context.DocumentosComerciales.SingleOrDefault(x => x.idDocComercial == idPresupuesto); //returns a single item.
+
+                if (itemToRemove != null)
+                {
+                    context.DocumentosComerciales.Remove(itemToRemove);
+
+                    context.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("El presupuesto que quiere eliminar, no existe");
+                }
+            }
+        }
+
         //public void setProyectoId(idProyecto, idDoc){}
 
         public void setCompraId(int idCompra, int idPres) {
@@ -66,6 +86,7 @@ namespace TP_DDS_MVC.DAOs
                 pres.idCompra = idCompra;
                 context.SaveChanges();
             }
+
         }
     }
 }

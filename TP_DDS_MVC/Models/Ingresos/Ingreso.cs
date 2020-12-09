@@ -46,7 +46,11 @@ namespace TP_DDS_MVC.Models.Ingresos
 
         public List<Egreso> getEgresoAsociado() { return egresosAsociados; }
 
-        public void addEgresoAsociado(Egreso egreso) { this.egresosAsociados.Add(egreso); }
+        public void addEgresoAsociado(Egreso egreso) 
+        {
+            this.egresosAsociados = new List<Egreso>();
+            this.egresosAsociados.Add(egreso); 
+        }
 
         public bool EgresosNoTotalizanMonto()
         {
@@ -54,12 +58,13 @@ namespace TP_DDS_MVC.Models.Ingresos
 
         }
 
-        public int montoTotalEgresosAsociados()
+        public float montoTotalEgresosAsociados()
         {
-            //if (egresosAsociados.Count() == 0) return 0;
-            List<float> montosEgresos = new List<float>();
-            montosEgresos = egresosAsociados.Select(egreso => egreso.montoTotal).ToList();
-            return montosEgresos.Sum(monto => Convert.ToInt32(monto));
+            if (egresosAsociados == null) return 0;
+           // List<float> montosEgresos = new List<float>();
+           /// montosEgresos = egresosAsociados.Select(egreso => egreso.montoTotal).ToList();
+           return egresosAsociados.Sum(egreso=>egreso.montoTotal);
+           //return montosEgresos.Sum(monto => Convert.ToInt32(monto));
         }
     }
 }

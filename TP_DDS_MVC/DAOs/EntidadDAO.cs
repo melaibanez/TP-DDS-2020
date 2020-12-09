@@ -46,7 +46,7 @@ namespace TP_DDS_MVC.DAOs
         {
             using(MyDBContext context = new MyDBContext())
             {
-                return context.Entidades.Where(e=>e.idEntidad == id).FirstOrDefault();
+                return context.Entidades.Include("comprasRealizadas").Include("ingresos").Include("egresos").Where(e=>e.idEntidad == id).FirstOrDefault();
             }
            
         }

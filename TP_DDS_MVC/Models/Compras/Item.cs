@@ -20,11 +20,7 @@ namespace TP_DDS_MVC.Models.Compras
 
         public float valor { get; set; }
 
-        [NotMapped]
-        public int idJerarquiaCategorias { get; set; }
-
-        [NotMapped]
-        public Categoria categorias { get; set; }
+        public List<Categoria> categorias { get; set; }
 
         public Item() { }
 

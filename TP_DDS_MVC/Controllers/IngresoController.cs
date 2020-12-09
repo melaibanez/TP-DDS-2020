@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using TP_DDS_MVC.DAOs;
 using TP_DDS_MVC.Helpers.VinculadorEgresoIngreso;
 using TP_DDS_MVC.Helpers;
+using TP_DDS_MVC.Helpers.DB;
 using TP_DDS_MVC.Models.Ingresos;
 using TP_DDS_MVC.Models.Entidades;
 using Newtonsoft.Json;
@@ -122,7 +123,7 @@ namespace TP_DDS_MVC.Controllers
 
         public ActionResult Vinculador()
         {
-            ViewBag.egresos = EgresoDAO.getInstancia().getEgresos();
+            ViewBag.egresos = EgresoDAO.getInstancia().getEgresosSinVincular();
             ViewBag.ingresos = IngresoDAO.getInstancia().getIngresos();
 
             return View();
@@ -131,6 +132,7 @@ namespace TP_DDS_MVC.Controllers
         [HttpPost]
         public ActionResult Vinculador(JsonCriterio criterio)
         {
+    
             var entidad = EntidadDAO.getInstancia().getEntidad(1);
             Vinculador vinculador = new Vinculador();
 
@@ -139,13 +141,27 @@ namespace TP_DDS_MVC.Controllers
                 OVPE ovpe = new OVPE();
                 vinculador.AsignarCriterioAlVinculador(ovpe);
                 vinculador.ejecutar(entidad);
-            }
 
+            }
+            if (criterio.idCriterio == 2)
+            {
+                OVPI ovpi = new OVPI();
+                vinculador.AsignarCriterioAlVinculador(ovpi);
+                vinculador.ejecutar(entidad);
+
+            }
+            if (criterio.idCriterio == 3)
+            {
+                OF of = new OF();
+                vinculador.AsignarCriterioAlVinculador(of);
+                vinculador.ejecutar(entidad);
+
+            }
 
             ViewBag.egresos = EgresoDAO.getInstancia().getEgresos();
             ViewBag.ingresos = IngresoDAO.getInstancia().getIngresos();
 
-            return View();
+            return Json(Url.Action("Index", "Home"));
         }
     }
 }

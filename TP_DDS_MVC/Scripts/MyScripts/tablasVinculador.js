@@ -79,9 +79,9 @@ $("#vincular").click(function () {
         dataType: "json",
         data: JSON.stringify(json),
         crossDomain: true,
-        // success: function (data) {
-        //     window.location.href = data;
-        // },
+         success: function (data) {
+             window.location.href = data;
+         },
         error: function (err) {
             console.log(err)
         }

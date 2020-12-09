@@ -53,5 +53,24 @@ namespace TP_DDS_MVC.DAOs
 
             return added;
         }
+
+        public void deleteMedioDePago(int idMedioDePago)
+        {
+            using (MyDBContext context = new MyDBContext())
+            {
+                var itemToRemove = context.MediosDePago.SingleOrDefault(x => x.idMedioPago == idMedioDePago); //returns a single item.
+
+                if (itemToRemove != null)
+                {
+                    context.MediosDePago.Remove(itemToRemove);
+
+                    context.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("El medio de pago que quiere eliminar, no existe");
+                }
+            }
+        }
     }
 }

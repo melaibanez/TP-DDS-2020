@@ -12,21 +12,24 @@ namespace TP_DDS_MVC.Helpers.VinculadorEgresoIngreso
     {
         public override void vincularCompras(List<Egreso> egresos, List<Ingreso> ingresos)
         {
-         
-            int cantidadEgresos = egresos.Count();
-            int cantidadIngresosDisponibles = ingresos.Count();
 
-            for (int i = 0; i < cantidadEgresos; i++)
+            List<Egreso> egresosOrdenado = egresos.OrderBy(egre => egre.montoTotal).ToList();
+            List<Ingreso> ingresosOrdenado = ingresos.OrderBy(ingre => ingre.monto).ToList();
+
+            for (int j = 0; j < ingresosOrdenado.Count(); j++)    
             {
-                for (int j = 0; j < cantidadIngresosDisponibles; j++)
+                for (int i = 0; i < egresosOrdenado.Count(); i++)
                 {
-                    if (cumpleCondiciones(egresos.ElementAt(i), ingresos.ElementAt(j)))
+
+                    if (cumpleCondiciones(egresosOrdenado.ElementAt(i), ingresosOrdenado.ElementAt(j)))
                     {
-                        asignarEgresoIngreso(egresos.ElementAt(i), ingresos.ElementAt(j));
+                        asignarEgresoIngreso(egresosOrdenado.ElementAt(i), ingresosOrdenado.ElementAt(j));
+                        egresosOrdenado.RemoveAt(i);
                         break; //si ya asigno un egreso a un ingreso pasa al siguiente. Y vuelve a cero J para empezar de nuevo.
                     }
                 }
             }
+ 
         }
     }
 }

@@ -10,24 +10,26 @@ namespace TP_DDS_MVC.Helpers.VinculadorEgresoIngreso
 {
     public class OF : EstrategiaVinculador
     {
-         public override void vincularCompras(List<Egreso> egresos, List<Ingreso> ingresos)
+        public override void vincularCompras(List<Egreso> egresos, List<Ingreso> ingresos)
         {
-            int cantidadEgresos = egresos.Count();
-            int cantidadIngresosDisponibles = ingresos.Count();
 
-            List<Egreso> egresosSinVincularOrder = egresos.OrderBy(egreso => egreso.fechaEgreso).ToList();
-            List<Ingreso> ingresosDisponiblesOrder = ingresos.OrderBy(ingreso => ingreso.fechaDesde).ToList();
-            for (int i = 0; i < cantidadEgresos; i++)
+            List<Egreso> egresosOrdenado = egresos.OrderBy(egre => egre.fechaEgreso).ToList();
+            List<Ingreso> ingresosOrdenado = ingresos.OrderBy(ingre => ingre.fechaHasta).ToList();
+
+            for (int j = 0; j < ingresosOrdenado.Count(); j++)
             {
-                for (int j = 0; j < cantidadIngresosDisponibles; j++)
+                for (int i = 0; i < egresosOrdenado.Count(); i++)
                 {
-                    if (cumpleCondiciones(egresosSinVincularOrder.ElementAt(i), ingresosDisponiblesOrder.ElementAt(j)))
+
+                    if (cumpleCondiciones(egresosOrdenado.ElementAt(i), ingresosOrdenado.ElementAt(j)))
                     {
-                        asignarEgresoIngreso(egresosSinVincularOrder.ElementAt(i), ingresosDisponiblesOrder.ElementAt(j));
-                        break;
+                        asignarEgresoIngreso(egresosOrdenado.ElementAt(i), ingresosOrdenado.ElementAt(j));
+                        egresosOrdenado.RemoveAt(i);
+                        break; //si ya asigno un egreso a un ingreso pasa al siguiente. Y vuelve a cero J para empezar de nuevo.
                     }
                 }
             }
+
         }
     }
 }

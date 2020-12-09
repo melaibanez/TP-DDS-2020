@@ -33,6 +33,7 @@ namespace TP_DDS_MVC.DAOs
             }
         }
 
+
         public Ingreso getIngreso(int id)
         {
             using (MyDBContext context = new MyDBContext())

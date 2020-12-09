@@ -13,15 +13,20 @@ namespace TP_DDS_MVC.Models.Compras
         [Key]
         public int idCategoria { get; set; }
 
-        [NotMapped]
-        public Categoria subCategoria { get; set; }
-
         [ForeignKey("criterio")]
         public int idCriterio { get; set; }
         public Criterio criterio { get; set; }
 
         [StringLength(50)]
         public string nombre { get; set; }
+
+        public Categoria(string nombre)
+        {
+            //this.criterio = criterio;
+            this.nombre = nombre;
+        }
+
+        public Categoria() { }
 
     }
 }
