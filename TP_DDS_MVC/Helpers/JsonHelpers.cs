@@ -24,4 +24,9 @@ namespace TP_DDS_MVC.Helpers
         public Presupuesto presupuesto { get; set; }
         public bool setEgreso { get; set; }
     }
+
+    public class JsonCriterio
+    {
+        public int idCriterio { get; set; }
+    }
 }

@@ -9,9 +9,14 @@ namespace TP_DDS_MVC.Helpers.Validadores
 {
     public class ValidadorContrasenia
     {
-        public static bool validarContrasenia(string pass)
+        public void validarContrasenia(string pass)
         {
-            return checkLongitud(pass) && !estaEnArchivoDeContrasenias(pass) && checkCaracteresRepetidos(pass) && checkSiEsASCII(pass);
+            bool resultado = checkLongitud(pass) && !estaEnArchivoDeContrasenias(pass) && checkCaracteresRepetidos(pass) && checkSiEsASCII(pass);
+            if(resultado == false)
+            {
+                throw new Exception("Elija una contraseña mas segura");
+            }
+            
         }
 
 

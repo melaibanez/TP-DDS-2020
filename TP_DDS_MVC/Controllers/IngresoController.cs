@@ -8,6 +8,7 @@ using TP_DDS_MVC.Helpers.VinculadorEgresoIngreso;
 using TP_DDS_MVC.Helpers;
 using TP_DDS_MVC.Models.Ingresos;
 using TP_DDS_MVC.Models.Entidades;
+using Newtonsoft.Json;
 
 namespace TP_DDS_MVC.Controllers
 {
@@ -128,12 +129,12 @@ namespace TP_DDS_MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Vinculador(int criterio)
+        public ActionResult Vinculador(JsonCriterio criterio)
         {
-            Entidad entidad = EntidadDAO.getInstancia().getEntidad(1);
+            var entidad = EntidadDAO.getInstancia().getEntidad(1);
             Vinculador vinculador = new Vinculador();
 
-            if(criterio == 1)
+            if(criterio.idCriterio == 1)
             {
                 OVPE ovpe = new OVPE();
                 vinculador.AsignarCriterioAlVinculador(ovpe);

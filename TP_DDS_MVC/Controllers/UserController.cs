@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using TP_DDS_MVC.Models.Otros;
 using TP_DDS_MVC.DAOs;
-using TP_DDS_MVC.Helpers;
+using TP_DDS_MVC.Helpers.Validadores;
 
 namespace TP_DDS_MVC.Controllers
 {
@@ -29,10 +29,28 @@ namespace TP_DDS_MVC.Controllers
         [HttpPost]
         public ActionResult Register(string usuario, string password, string esAdmin)
         {
+            try
+            {
+                ValidadorContrasenia validador = new ValidadorContrasenia();
+                //validador.validarContrasenia(password);
 
-            UsuarioDAO.getInstancia().add(new Usuario(usuario, true, password, null));
-            ViewBag.msg = "El usuario fue creado correctamente";
-            return View("Register");
+                if (esAdmin == "administrador")
+                {
+                    UsuarioDAO.getInstancia().add(new Usuario(usuario, true, password, null));
+                }
+                else
+                {
+                    UsuarioDAO.getInstancia().add(new Usuario(usuario, false, password, null));
+                }
+
+                ViewBag.msg = "El usuario fue creado correctamente";
+                return View("Register");
+            }
+            catch(Exception e)
+            {
+                ViewBag.errorMsg = e.Message;
+                return View("Register");
+            }
         }
 
 

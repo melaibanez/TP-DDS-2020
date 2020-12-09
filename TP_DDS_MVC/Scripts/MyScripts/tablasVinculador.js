@@ -1,4 +1,6 @@
-﻿function mysortTable() {
+﻿
+
+function mysortTable() {
     var tables, rows, sorting, c, a, b, tblsort;
     tables = document.getElementById("sortingTable");
     sorting = true;
@@ -44,29 +46,45 @@ function mysortTable2() {
 }
 
 var criterio;
-var data = {criterio: null}
 
-$("#OVPE").click(function () {
+$("#ovpe").click(function () {
 
-    data.criterio = $(OVPE).val();
-    
+      criterio = parseInt($(ovpe).val());
+      console.log(criterio);
+
+})
+
+$("#ovpi").click(function () {
+
+    criterio = parseInt($(ovpi).val());
+    console.log(criterio);
+
+})
+
+$("#of").click(function () {
+
+    criterio = parseInt($(of).val());
+    console.log(criterio);
 })
 
 $("#vincular").click(function () {
 
+    var json = {}
+    json["idCriterio"] = criterio;
+
     $.ajax({
         type: "POST",
         url: "/vinculador",
-        contentType: "application/json",
+        contentType: "application/json; charset=utf-8",
         dataType: "json",
-        data: JSON.stringify(data.criterio),
+        data: JSON.stringify(json),
         crossDomain: true,
-        success: function (data) {
-            window.location.href = data;
-        },
+        // success: function (data) {
+        //     window.location.href = data;
+        // },
         error: function (err) {
             console.log(err)
         }
     })
-})
+});
 
