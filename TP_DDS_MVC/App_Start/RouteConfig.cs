@@ -32,7 +32,19 @@ namespace TP_DDS_MVC
                 url: "compra/add",
                 defaults: new { controller = "Compra", action = "AddCompra" }
             );
-                       
+
+            routes.MapRoute(
+                name: "Detalle Compra",
+                url: "compra/detalle",
+                defaults: new { controller = "Compra", action = "DetalleCompra" }
+            );
+
+            routes.MapRoute(
+               name: "Edit Compra",
+               url: "compra/edit",
+               defaults: new { controller = "Compra", action = "EditCompra" }
+           );
+
             routes.MapRoute(
                 name: "Add Prestador de servicios",
                 url: "compra/prestador-de-servicios/add",
