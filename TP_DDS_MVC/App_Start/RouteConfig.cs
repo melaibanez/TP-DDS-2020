@@ -93,11 +93,22 @@ namespace TP_DDS_MVC
                 defaults: new { controller = "Ingreso", action = "AddIngreso" }
             );
 
+            routes.MapRoute(
+                name: "Menu Cargar Entidad",
+                url: "entidad",
+                defaults: new { controller = "Entidad", action = "MenuCargarEntidad" }
+            );
 
             routes.MapRoute(
-                name: "Add Entidad",
+                name: "Add Entidad Juridica",
                 url: "entidad/entidad-juridica/add",
                 defaults: new { controller = "Entidad", action = "AddEntidadJuridica" }
+            );
+
+            routes.MapRoute(
+                name: "Add Entidad Base",
+                url: "entidad/entidad-base/add",
+                defaults: new { controller = "Entidad", action = "AddEntidadBaseAJuridica" }
             );
 
             routes.MapRoute(

@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Cargar Mi Entidad";
+}
+
+    <div class="alert alert-secondary mb-3" role="alert">
+        <h4>Primero, carge su Entidad</h4>
+    </div>
+    <div class="row d-flex justify-content-center mb-4">
+        <a class="btn btn-primary col-3 mr-3" href='@Url.Action("AddEntidadJuridica", "Entidad", new { cargarBase = 0})' role="button">Cargar solamente Entidad Juridica</a>
+        <a class="btn btn-primary col-3" href='@Url.Action("AddEntidadJuridica", "Entidad", new { cargarBase = 1})' role="button">Cargar Entidad Juridica y Entidad Base</a>
+    </div>
+    <div class="row d-flex justify-content-center">
+        <a class="btn btn-primary col-3 mr-3" href='@Url.Action("AddEntidadBaseAJuridica", "Entidad", new { conJuridica = 1})' role="button">Cargar Entidad Base a una Entidad Juridica ya existente</a>
+        <a class="btn btn-primary col-3" href='@Url.Action("AddEntidadBaseAJuridica", "Entidad", new { conJuridica = 0})' role="button">Cargar solamente Entidad Base</a>
+    </div>

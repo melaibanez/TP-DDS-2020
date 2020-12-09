@@ -1,0 +1,72 @@
+﻿@using TP_DDS_MVC.Models.Entidades
+@{
+    ViewBag.Title = "Cargar Entidad";
+    @section scripts {
+        <script type="text/javascript" src="~/Scripts/MyScripts/agregarEntidadBaseAJuridica.js"></script>
+    }
+}
+
+<div class="mb-3">
+    <h2>Cargar Entidad Base</h2>
+</div>
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="nombreFicticio">Nombre ficticio</label>
+        <input id="nombreFicticio" class="form-control" type="text" placeholder="Nombre ficticio">
+    </div>
+    <div class="form-group col-md-6">
+        <label for="descripcion">Descripcion</label>
+        <input id="descripcion" class="form-control" type="text" placeholder="Descripcion">
+    </div>
+</div>
+@if (ViewBag.conJuridica == 1)
+{
+<div class="form-group col-4">
+    <label for="entidad">Asociar a Entidad Juridica</label>
+    <input class="form-control" list="entidades" id="entidad" type="text" placeholder="Seleccionar...">
+    <datalist id="entidades">
+        @foreach (EntidadJuridica ent in (List<EntidadJuridica>)ViewBag.entidades)
+        {
+            <option value="@ent.idEntidad">@ent.nombreFicticio</option>
+        }
+    </datalist>
+</div>
+}
+<div class="form-group">
+    <label for="tipoOrg">Tipo de Organizacion</label>
+    <select id="tipoOrg" class="form-control">
+        <option value="Empresa">Empresa</option>
+        <option value="OSC">OSC</option>
+    </select>
+</div>
+<div class="form-group">
+    <label for="actividad">Actividad</label>
+    <input id="actividad" class="form-control" type="text" placeholder="Actividad">
+</div>
+<div id="formEmpresa" class="form-row">
+    <div class="form-group col-md-6">
+        <label for="sector">Sector</label>
+        <select id="sector" class="form-control">
+            <option value="Construccion">Construccion</option>
+            <option value="Servicios">Servicios</option>
+            <option value="Comercio">Comercio</option>
+            <option value="IndYMin">Industria y Mineria</option>
+            <option value="Agropecuario">Agropecuario</option>
+        </select>
+    </div>
+    <div class="form-group col-md-4">
+        <label for="promVentas">Promedio de ventas</label>
+        <input id="promVentas" type="number" class="form-control" placeholder="1" step="0.01" min="1">
+    </div>
+    <div class="form-group col-md-2">
+        <label for="cantPersonal">Cantidad de personal</label>
+        <input id="cantPersonal" type="number" class="form-control" placeholder="1" min="1">
+    </div>
+</div>
+<span>
+    <button class="btn btn-success col-lg-2" id="submit">Crear</button>
+    @Html.ActionLink("Cancelar", "Entidad", "MenuCargarEntidad", new { @class = "btn btn-secondary col-lg-1" })
+</span>
+
+
+

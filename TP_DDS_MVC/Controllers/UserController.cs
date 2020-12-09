@@ -45,8 +45,7 @@ namespace TP_DDS_MVC.Controllers
         [HttpPost]
         public ActionResult Login(string usuario, string password)
         {
-            //Usuario usuarioEncontrado = UsuarioDAO.getInstancia().getUsuario(usuario, password);
-            Usuario usuarioEncontrado = UsuarioDAO.getInstancia().getUsuario("eze", "1234");
+            Usuario usuarioEncontrado = UsuarioDAO.getInstancia().getUsuario(usuario, password);
 
             if (usuarioEncontrado != null)
             {

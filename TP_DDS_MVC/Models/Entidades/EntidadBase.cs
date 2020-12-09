@@ -16,7 +16,7 @@ namespace TP_DDS_MVC.Models.Entidades
 
         [ForeignKey("entidadJuridica")]
         public int? idEntidadJuridica { get; set; }
-        public virtual EntidadJuridica entidadJuridica { get; set; }
+        public virtual Entidad entidadJuridica { get; set; }
 
         [ForeignKey("tipoOrganizacion")]
         public int idTipoOrganizacion { get; set; }
