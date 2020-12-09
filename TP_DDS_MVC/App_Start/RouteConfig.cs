@@ -22,14 +22,8 @@ namespace TP_DDS_MVC
             );
 
             routes.MapRoute(
-                name: "Compras index",
-                url: "compra",
-                defaults: new { controller = "Compra", action = "Index" }
-            );
-
-            routes.MapRoute(
                 name: "ListCompras",
-                url: "compra/list",
+                url: "compra",
                 defaults: new { controller = "Compra", action = "ListCompras" }
             );
 
@@ -105,6 +99,12 @@ namespace TP_DDS_MVC
                 url: "entidad/entidad-juridica/add",
                 defaults: new { controller = "Entidad", action = "AddEntidadJuridica" }
             );
+
+            routes.MapRoute(
+              name: "Operaciones",
+              url: "entidad/entidad-juridica/add",
+              defaults: new { controller = "ProyectoFinanciamiento", action = "DefinirOperacion" }
+          );
 
             routes.MapRoute(
                 name: "Logout",

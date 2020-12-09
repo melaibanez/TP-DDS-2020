@@ -32,7 +32,7 @@ namespace TP_DDS_MVC.Models.Compras
         public Ingreso ingresoAsociado { get; set; }
 
         [ForeignKey("entidad")]
-        public int idEntidad { get; set; }
+        public int? idEntidad { get; set; }
         public Entidad entidad { get; set; }
 
         public List<ItemEgreso> detalle { get; set; }

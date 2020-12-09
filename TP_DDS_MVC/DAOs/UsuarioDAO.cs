@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using TP_DDS_MVC.Models.Otros;
 using TP_DDS_MVC.Helpers.DB;
+using TP_DDS_MVC.Models.Compras;
 
 namespace TP_DDS_MVC.DAOs
 {
@@ -59,6 +60,17 @@ namespace TP_DDS_MVC.DAOs
             }
 
             return added;
+        }
+
+        public void agregarCompraRevisada(Compra compra, int idUsuario)
+        {
+            Usuario usu;
+            using (MyDBContext context = new MyDBContext())
+            {
+                usu = context.Usuarios.Find(idUsuario);
+                usu.comprasRevisadas.Add(compra);
+                context.SaveChanges();
+            }
         }
     }
 }

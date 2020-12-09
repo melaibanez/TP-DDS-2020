@@ -32,6 +32,7 @@
                     <th scope="row">@pres.idPrestador</th>
                     <td><input type="button" class="btn btn-secondary btn-sm" value="Detalle" onclick="window.open('@Url.Action("DetallePrestadorDeServicios", "Compra", new { id = pres.idPrestador })')" /></td>
                     <td>@Html.ActionLink("Editar", "EditPrestadorDeServicio", "Compra", new { id = pres.idPrestador }, new { @class = "btn btn-secondary btn-sm" })</td>
+                    <td>@Html.ActionLink("Borrar", "DeletePrestadorDeServicio", "Compra", new { id = pres.idPrestador }, new { @class = "btn btn-secondary btn-sm" })</td>
                 </tr>
                 }
             </tbody>

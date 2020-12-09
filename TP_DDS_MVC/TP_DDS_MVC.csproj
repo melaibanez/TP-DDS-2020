@@ -351,6 +351,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\MyScripts\agregarCompra.js" />
     <Content Include="Scripts\MyScripts\agregarEgreso.js" />
     <Content Include="Scripts\MyScripts\agregarIngresoScript.js" />
     <Content Include="Scripts\MyScripts\agregarPresupuestoScript.js" />
@@ -472,6 +473,7 @@
     <Content Include="Views\Ingreso\Vinculador.cshtml" />
     <Content Include="Views\ProyectoFinanciamiento\VerOperaciones.cshtml" />
     <Content Include="Views\ProyectoFinanciamiento\ListOperaciones.cshtml" />
+    <Content Include="Views\ProyectoFinanciamiento\DefinirOperacion.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
