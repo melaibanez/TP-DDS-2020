@@ -54,5 +54,24 @@ namespace TP_DDS_MVC.DAOs
 
             return added;
         }
+
+        public void deletePrestador(int idPrestador)
+        {
+            using (MyDBContext context = new MyDBContext())
+            {
+                var itemToRemove = context.PrestadoresDeServicios.SingleOrDefault(x => x.idPrestador == idPrestador); //returns a single item.
+
+                if (itemToRemove != null)
+                {
+                    context.PrestadoresDeServicios.Remove(itemToRemove);
+
+                    context.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("El prestador de servicios que quiere eliminar, no está registrado");
+                }
+            }
+        }
     }
 }

@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "ListOperaciones";
+}
+
+    <div class="container-fluid">
+        <div class="pb-3">
+            <h2>Bitácora de Operaciones</h2>
+        </div>
+
+
+        
+            @if (ViewBag.c == 2)
+            {
+
+
+                int i = 0;
+                int d = ViewBag.d;
+                while (d > 0)
+                {
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="propuesta">@ViewBag.listaStrings[i]</label>
+                        </div>
+                        @{i++; }
+                        <div class="form-group col-md-4">
+                            <label for="propuesta">@ViewBag.listaStrings[i]</label>
+                        </div>
+                        @{i++; }
+                    </div>
+                    d = d - 1;
+                 }
+             }
+             else
+             {
+                 int i = 0;
+                 int d = ViewBag.d;
+                 while (d > 0)
+                 {
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="propuesta">@ViewBag.listaStrings[i]</label>
+                        </div>
+                        @{i++; }
+                        <div class="form-group col-md-4">
+                            <label for="propuesta">@ViewBag.listaStrings[i]</label>
+                        </div>
+                        @{i++; }
+                        <div class="form-group col-md-4">
+                            <label for="propuesta">@ViewBag.listaStrings[i]</label>
+                        </div>
+                        @{i++; }
+                    </div>
+                    d = d - 1;
+                }
+            }
+
+            @Html.ActionLink("Volver", "VerOperaciones", "ProyectoFinanciamiento", new { @class = "btn btn-secondary"})
+
+        
+            <br><br>
+
+
+    </div>
+

@@ -23,7 +23,6 @@ namespace TP_DDS_MVC.Models.Entidades
         public List<Criterio> criterios { get; set; }
         public List<DocumentoComercial> documentosComerciales { get; set; }
         public List<Egreso> egresos { get; set; }
-        public List<Operacion> Operaciones { get; set; }
 
         public Entidad() { }
 
@@ -53,11 +52,6 @@ namespace TP_DDS_MVC.Models.Entidades
         {
             ingresos.Add(ingreso);
 
-        }
-
-        public void AgregarOperacion(Operacion unaOperacion)
-        {
-            this.Operaciones.Add(unaOperacion);
         }
 
     }

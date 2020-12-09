@@ -34,12 +34,32 @@ namespace TP_DDS_MVC.DAOs
             }
         }
 
+        public List<Compra> getComprasConEgreso()
+        {
+
+            using (MyDBContext context = new MyDBContext())
+            {
+
+                return context.Compras.Include("egreso").ToList();
+            }
+        }
+
         public Compra getCompra(int id)
         {
             using (MyDBContext context = new MyDBContext())
             {
                 return context.Compras.Find(id);
             }
+        }
+
+        public Compra getCompraConEgreso(int idCompra)
+        {
+            using (MyDBContext context = new MyDBContext())
+            {
+
+                return context.Compras.Include("egreso.detalle").Where(x => x.idCompra == idCompra).FirstOrDefault();
+            }
+
         }
 
         public Compra add(Compra compra)
@@ -52,6 +72,26 @@ namespace TP_DDS_MVC.DAOs
             }
 
             return added;
+        }
+
+        public void deleteCompra(int idCompra)
+        {
+            using (MyDBContext context = new MyDBContext())
+            {
+                var itemToRemove = context.Compras.Include("egreso").SingleOrDefault(x => x.idCompra == idCompra); //returns a single item.
+
+                if (itemToRemove != null)
+                {
+                    context.Egresos.Remove(itemToRemove.egreso); //Elimino la compra y el egreso asociado
+                    context.Compras.Remove(itemToRemove);
+                   
+                    context.SaveChanges();
+                } else
+                {
+                    throw new Exception("La compra que quiere eliminar, no existe");
+                }
+            }
+            
         }
     }
 }

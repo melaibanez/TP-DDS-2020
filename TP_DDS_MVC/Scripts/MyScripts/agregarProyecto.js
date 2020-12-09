@@ -48,7 +48,7 @@ $("#agregarDoc").click(function () {
 
     $("#listaDocs").append('<li id="d' + $("#documento").val() + '" class="list-group-item">' +
         $("#documento").val() + '&nbsp;-&nbsp;' +
-        '<button id="eliminarDoc" value="d' + $("#documento").val() + '" class="btn btn-outline-danger btn-sm" aria-label="Close">Eliminar</button ></li >');
+        '<button id="eliminarDoc" value="' + $("#documento").val() + '" class="btn btn-outline-danger btn-sm" aria-label="Close">Eliminar</button ></li >');
 
     $("#documento").val('');
 
@@ -67,6 +67,23 @@ $(document).on("click", "#eliminarDoc", function () {
 })
 
 
+-------
+
+$(document).on("click", "#eliminarDoc", function () {
+    const index = data.model.docsComerciales.findIndex(i => i === $(this).val());
+    data.model.docsComerciales.splice(parseInt(index), 1);
+    $('[id="' + $(this).val() + '"]').remove();
+
+    if (data.model.docsComerciales.length === 0) {
+        $('#noDocs').show()
+    }
+
+    console.log(data.model.docsComerciales);
+})
+
+
+
+-------
 
 $("#submit").click(function () {
 
