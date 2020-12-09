@@ -19,8 +19,8 @@ namespace TP_DDS_MVC.Mongo
         public static void insertarDocumento(string tipoEntidad, string tipoOperacion, BsonDocument documento)
         {
             MongoClient dbClient = new MongoClient();
-            var database = dbClient.GetDatabase("holaaa");
-            var collection = database.GetCollection<BsonDocument>("im blue");
+            var database = dbClient.GetDatabase("logGeSoc");
+            var collection = database.GetCollection<BsonDocument>("operaciones");
 
             var doc = new BsonDocument { { "tipoEntidad", tipoEntidad }, { "tipoOperacion", tipoOperacion }, documento };
 
@@ -33,8 +33,8 @@ namespace TP_DDS_MVC.Mongo
             MongoClient dbClient = new MongoClient();
 
             var dbList = dbClient.ListDatabases().ToList();
-            var database = dbClient.GetDatabase("holaaa");
-            var collection = database.GetCollection<BsonDocument>("im blue");
+            var database = dbClient.GetDatabase("logGeSoc");
+            var collection = database.GetCollection<BsonDocument>("operaciones");
 
             var docs = collection.Find(new BsonDocument()).ToList();
 

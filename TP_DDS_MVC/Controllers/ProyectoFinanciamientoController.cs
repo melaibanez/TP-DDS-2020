@@ -37,8 +37,9 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
-                int proyId = ProyectoFinanciamientoDAO.getInstancia().add(proyecto).idProyecyo;
-                //falta vincular los ingresos y presupuestos al proyecto que se esta cargando!!
+                proyecto.idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+                proyecto.director = (Usuario)Session["usuario"];
+                ProyectoFinanciamientoDAO.getInstancia().add(proyecto);
                 return Json(Url.Action("Index", "Home"));
             }
             catch (Exception e)

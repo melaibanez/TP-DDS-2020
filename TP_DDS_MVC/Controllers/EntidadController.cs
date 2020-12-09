@@ -38,7 +38,8 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
-                if(req.tipoOrganizacion == "OSC"){
+                req.entidad.direccionPostal.validarDireccion();
+                if (req.tipoOrganizacion == "OSC"){
                     req.entidad.tipoOrganizacion = new OSC(req.actividad);
                 }
                 else if (req.tipoOrganizacion == "Empresa"){
@@ -83,17 +84,13 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
-                
-                if (req.tipoOrganizacion == "OSC")
-                {
+                if (req.tipoOrganizacion == "OSC"){
                     req.entidad.tipoOrganizacion = new OSC(req.actividad);
                 }
-                else if (req.tipoOrganizacion == "Empresa")
-                {
+                else if (req.tipoOrganizacion == "Empresa"){
                     req.entidad.tipoOrganizacion = CategorizadorOrg.categorizar(new Empresa(req.actividad, req.sector, req.promVentas, req.cantPersonal));
                 }
-                else
-                {
+                else{
                     throw new Exception("Tipo de organizacion no valido");
                 }
 

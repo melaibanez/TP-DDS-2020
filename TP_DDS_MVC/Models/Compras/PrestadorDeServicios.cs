@@ -27,6 +27,10 @@ namespace TP_DDS_MVC.Models.Compras
         [StringLength(10)]
         public string tipoDoc { get; set; }
 
+        [ForeignKey("entidad")]
+        public int? idEntidad { get; set; }
+        public Entidad entidad { get; set; }
+
         public PrestadorDeServicios() { }
 
         public PrestadorDeServicios(string razonSocial, DireccionPostal direccionPostal, string tipoDoc, string numDoc)

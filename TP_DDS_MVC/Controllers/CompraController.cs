@@ -31,11 +31,6 @@ namespace TP_DDS_MVC.Controllers
         ///         Prestador de servicios          ///
         ///////////////////////////////////////////////
         
-        public JsonResult PrestadorDeServicios()
-        {
-            List<PrestadorDeServicios> PDSs = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios();
-            return Json(JsonConvert.SerializeObject(PDSs));
-        }
 
         public ActionResult AddPrestadorDeServicios()
         {
@@ -50,7 +45,8 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
-                //PDS.direccionPostal.validarDireccion();
+                PDS.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
+                PDS.direccionPostal.validarDireccion();
                 PrestadorDeServiciosDAO.getInstancia().add(PDS);
                 return RedirectToAction("Index", "Home");
             }
@@ -98,6 +94,7 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
+                MDP.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
                 MedioDePagoDAO.getInstancia().add(MDP);
                 return RedirectToAction("Index", "Home");
             }
@@ -153,7 +150,7 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
-                
+                req.presupuesto.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
                 if (req.setEgreso && req.presupuesto.idCompra != null)
                 {
                     req.presupuesto.idEgreso = CompraDAO.getInstancia().getCompra(req.presupuesto.idCompra.Value).idEgreso;
@@ -307,6 +304,14 @@ namespace TP_DDS_MVC.Controllers
                      { "idCompra", req.compra.idCompra } };
 
                 Mongo.MongoDB.insertarDocumento("Compra", "alta", compra1 );
+
+                BsonDocument egreso = new BsonDocument {
+                     { "idEgreso", req.compra.egreso.idEgreso },
+                     { "montoTotal", req.compra.egreso.montoTotal },
+                     { "fechaEgreso", req.compra.egreso.fechaEgreso } };
+
+                Mongo.MongoDB.insertarDocumento("Egreso", "alta", egreso);
+
                 return Json(Url.Action("Index", "Home"));
             }
             catch (Exception e)
