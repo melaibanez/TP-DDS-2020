@@ -12,6 +12,10 @@ using TP_DDS_MVC.Models.Compras;
 using TP_DDS_MVC.Models.Entidades;
 using TP_DDS_MVC.DAOs;
 using TP_DDS_MVC.Helpers;
+using TP_DDS_MVC.Mongo;
+using MongoDB.Driver;
+using MongoDB.Bson;
+
 
 namespace TP_DDS_MVC.Controllers
 {
@@ -114,6 +118,7 @@ namespace TP_DDS_MVC.Controllers
             try
             {
                 PresupuestoDAO.getInstancia().add(pres);
+                Mongo.MongoDB.insertarDocumento("Presupuesto", "alta", pres.ToBsonDocument());
                 return Json(Url.Action("Index", "Compra"));
             }
             catch (Exception e)
@@ -151,7 +156,7 @@ namespace TP_DDS_MVC.Controllers
                 {
                     DocumentoComercialDAO.getInstancia().setEgresoId(idEgreso, nroId);
                 }
-
+                Mongo.MongoDB.insertarDocumento("Egreso", "alta", req.ToBsonDocument());
                 return Json(Url.Action("Index", "Compra"));
             }
             catch (Exception e)
@@ -212,8 +217,9 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
-               // Compra compra = new Compra(int cantMinimaPresupuestos, float criterio, Egreso egreso, List<Presupuesto> presupuestos, List<Usuario> revisores)
-               // ViewBag.compra = CompraDAO.getInstancia().add();
+                // Compra compra = new Compra(int cantMinimaPresupuestos, float criterio, Egreso egreso, List<Presupuesto> presupuestos, List<Usuario> revisores)
+                // ViewBag.compra = CompraDAO.getInstancia().add();
+                Mongo.MongoDB.insertarDocumento("Compra", "alta", collection.ToBsonDocument());
                 return RedirectToAction("Index");
             }
             catch

@@ -8,6 +8,9 @@ using TP_DDS_MVC.Helpers.VinculadorEgresoIngreso;
 using TP_DDS_MVC.Helpers;
 using TP_DDS_MVC.Models.Ingresos;
 using TP_DDS_MVC.Models.Entidades;
+using MongoDB.Driver;
+using MongoDB.Bson;
+using TP_DDS_MVC.Models.Proyectos;
 
 namespace TP_DDS_MVC.Controllers
 {
@@ -25,7 +28,8 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
-                IngresoDAO.getInstancia().add(ing);
+                IngresoDAO.getInstancia().add(ing);             
+                Mongo.MongoDB.insertarDocumento("Ingreso", "alta", ing.ToBsonDocument());
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception e)

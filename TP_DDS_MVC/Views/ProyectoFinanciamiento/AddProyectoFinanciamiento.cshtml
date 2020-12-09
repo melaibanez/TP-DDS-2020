@@ -39,6 +39,7 @@
             <input id="fechaEjecucion" type="date" class="form-control" placeholder="Fecha de Ejecución">
         </div>
     </div>
+    <!--
     <div class="form-row">
         <div class="form-group">
             <label for="ingreso">Asocie los ingresos correspondiente al proyecto:</label>
@@ -60,31 +61,31 @@
             </ul>
         </div>
     </div>
-
+    -->
     <div>
-        <h4>Agregar Presupuestos</h4>
+        <h4>Agregar Ingresos</h4>
         <div class="form-group">
-            <label for="documentos">Asocie los ingresos correspondientes al proyecto:</label>
-            <input class="form-control" list="documentos" id="documento" type="text" placeholder="Seleccionar...">
-            <datalist id="documentos">
-                @foreach (Presupuesto pres in ViewBag.presupuestos)
+            <label for="documentos">Asocie los ingresos correspondiente al proyecto:</label>
+            <input class="form-control" list="ingresos" id="ingreso" type="text" placeholder="Seleccionar...">
+            <datalist id="ingresos">
+                @foreach (Ingreso ingreso in (List<Ingreso>)ViewBag.ingresos)
                 {
-                    <option value="@pres.idDocComercial">@pres.nroIdentificacion</option>
+                    <option value=@ingreso.idIngreso>@ingreso.descripcion</option>
                 }
             </datalist>
         </div>
-        <button class="btn btn-primary btn-sm mb-1" id="agregarDoc">Agregar</button>
+        <button class="btn btn-primary btn-sm mb-1" id="agregarIng">Agregar</button>
         <br />
         <br />
-        <h5>Lista de presupuestos</h5>
+        <h5>Lista de ingresos</h5>
         <div class="col-6">
-            <label id="noDocs">No hay presupuestos agregados</label>
-            <ul class="list-group list-group-flush pb-5" id="listaDocs">
+            <label id="noDocs">No hay ingresos agregados</label>
+            <ul class="list-group list-group-flush pb-5" id="listaIng">
             </ul>
         </div>
     </div>
     <br />
-
+    
     <span>
         <button class="btn btn-success col-lg-2" id="submit">Crear</button>
         @Html.ActionLink("Cancelar", "Index", new { controller = "Compra" }, new { @class = "btn btn-secondary col-lg-1" })
