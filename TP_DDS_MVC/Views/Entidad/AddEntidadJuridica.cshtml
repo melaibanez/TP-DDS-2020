@@ -1,7 +1,15 @@
-﻿
+﻿@using TP_DDS_MVC.Models.Otros
 @{
-    ViewBag.Title = "Agregar Entidad";
+    ViewBag.Title = "Cargar Entidad";
+
+    @section scripts {
+        <script type="text/javascript" src="~/Scripts/MyScripts/agregarEntidadJuridica.js"></script>
+    }
+
 }
+<script>
+  var cargarBase = @(ViewBag.cargarBase);
+</script>
 
 
 
@@ -20,8 +28,8 @@
 </div>
 <div class="form-row">
     <div class="form-group col-md-6">
-        <label for="codIGJ">CUIT</label>
-        <input id="codIGJ" class="form-control" type="text" placeholder="CUIT">
+        <label for="CUIT">CUIT</label>
+        <input id="CUIT" class="form-control" type="text" placeholder="CUIT">
     </div>
     <div class="form-group col-md-6">
         <label for="codIGJ">Codigo de inscripcion definitiva (IGJ)</label>
@@ -29,28 +37,60 @@
     </div>
 </div>
 
-
+<h4>Direccion Postal</h4>
 <div class="form-row">
     <div class="form-group col-md-4">
-        <label for="ciudad">Ciudad</label>
-        <input type="text" class="form-control" id="ciudad">
+        <label for="calle">Calle</label>
+        <input type="text" class="form-control" id="calle">
     </div>
     <div class="form-group col-md-4">
-        <label for="estado">Estado/Provincia</label>
-        <input type="text" class="form-control" id="pais">
+        <label for="numero">Numero</label>
+        <input type="text" class="form-control" id="numero">
     </div>
     <div class="form-group col-md-4">
-        <label for="pais">Pais</label>
-        <input type="text" class="form-control" id="pais">
+        <label for="pisoDepto">Piso/Depto</label>
+        <input type="text" class="form-control" id="pisoDepto">
     </div>
 </div>
+<div class="form-row">
+    <div class="form-group col-4">
+        <label for="pais">Pais</label>
+        <input class="form-control" list="paises" id="pais" type="text" placeholder="Seleccionar...">
+        <datalist id="paises">
+            @foreach (Pais pais in (List<Pais>)ViewBag.paises)
+            {
+                <option value="@pais.nombre">@pais.nombre</option>
+            }
+        </datalist>
+    </div>
+    <div class="form-group col-4">
+        <label for="provincia">Provincia</label>
+        <input class="form-control" list="provincias" id="provincia" type="text" placeholder="Seleccionar...">
+        <datalist id="provincias">
+            @foreach (Provincia prov in (List<Provincia>)ViewBag.provincias)
+            {
+                <option value="@prov.nombre">@prov.nombre</option>
+            }
+        </datalist>
+    </div>
+    <div class="form-group col-4">
+        <label for="ciudad">Ciudad</label>
+        <input class="form-control" list="ciudades" id="ciudad" type="text" placeholder="Seleccionar...">
+        <datalist id="ciudades">
+            @foreach (Ciudad ciudad in (List<Ciudad>)ViewBag.ciudades)
+            {
+                <option value="@ciudad.nombre">@ciudad.nombre</option>
+            }
+        </datalist>
+    </div>
+</div>
+
 <div class="form-group">
     <label for="tipoOrg">Tipo de Organizacion</label>
-    <input list="tiposOrg" class="form-control" placeholder="Seleccionar..." id="tipoOrg" type="text">
-    <datalist id="tiposOrg">
-        <option value="Empresa"></option>
-        <option value="OSC"></option>
-    </datalist>
+    <select id="tipoOrg" class="form-control">
+        <option value="Empresa">Empresa</option>
+        <option value="OSC">OSC</option>
+    </select>
 </div>
 <div class="form-group">
     <label for="actividad">Actividad</label>
@@ -59,7 +99,13 @@
 <div id="formEmpresa" class="form-row">
     <div class="form-group col-md-6">
         <label for="sector">Sector</label>
-        <input id="secrot" class="form-control" type="text" placeholder="Sector">
+        <select id="sector" class="form-control">
+            <option value="Construccion">Construccion</option>
+            <option value="Servicios">Servicios</option>
+            <option value="Comercio">Comercio</option>
+            <option value="IndYMin">Industria y Mineria</option>
+            <option value="Agropecuario">Agropecuario</option>
+        </select>
     </div>
     <div class="form-group col-md-4">
         <label for="promVentas">Promedio de ventas</label>
@@ -67,11 +113,11 @@
     </div>
     <div class="form-group col-md-2">
         <label for="cantPersonal">Cantidad de personal</label>
-        <input id="cantPersonal" type="number" class="form-control" placeholder="1" min="1" >
+        <input id="cantPersonal" type="number" class="form-control" placeholder="1" min="1">
     </div>
 </div>
 <span>
     <button class="btn btn-success col-lg-2" id="submit">Crear</button>
-    @Html.ActionLink("Cancelar", "Index", "Compra", new { @class = "btn btn-secondary col-lg-1" })
+    @Html.ActionLink("Cancelar", "Entidad", "MenuCargarEntidad", new { @class = "btn btn-secondary col-lg-1" })
 </span>
 

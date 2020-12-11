@@ -72,6 +72,7 @@
                     <option value="@PDS.idPrestador">@PDS.razonSocial</option>
                 }
             </datalist>
+            <div class="form-row mt-2">@Html.ActionLink("Crear prestador de servicio", "AddPrestadorDeServicios", "Compra", new { target = "_blank" })</div>
         </div>
         <div class="form-group col">
             <label for="mediosDePago">Seleccione un Medio de Pago:</label>
@@ -82,6 +83,7 @@
                     <option value="@MDP.idMedioPago">@MDP.instrumento</option>
                 }
             </datalist>
+            <div class="form-row mt-2">@Html.ActionLink("Agregar medio de pago", "AddMedioDePago", "Compra", new { target = "_blank" })</div>
         </div>
     </div>
 

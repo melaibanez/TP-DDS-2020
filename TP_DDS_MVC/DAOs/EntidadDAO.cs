@@ -32,6 +32,7 @@ namespace TP_DDS_MVC.DAOs
             using (MyDBContext context = new MyDBContext())
             {
                 added = context.Entidades.Add(entidad);
+                context.SaveChanges();
             }
 
             return added;
@@ -49,6 +50,14 @@ namespace TP_DDS_MVC.DAOs
                 return context.Entidades.Include("comprasRealizadas").Include("ingresos").Include("egresos").Where(e=>e.idEntidad == id).FirstOrDefault();
             }
            
+        }
+
+        public List<EntidadJuridica> getEntidadesJuridicas()
+        {
+            using (MyDBContext context = new MyDBContext())
+            {
+                return context.Entidades.OfType<EntidadJuridica>().ToList();
+            }
         }
     }
 }

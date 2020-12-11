@@ -32,7 +32,19 @@ namespace TP_DDS_MVC
                 url: "compra/add",
                 defaults: new { controller = "Compra", action = "AddCompra" }
             );
-                       
+
+            routes.MapRoute(
+                name: "Detalle Compra",
+                url: "compra/detalle",
+                defaults: new { controller = "Compra", action = "DetalleCompra" }
+            );
+
+            routes.MapRoute(
+               name: "Edit Compra",
+               url: "compra/edit",
+               defaults: new { controller = "Compra", action = "EditCompra" }
+           );
+
             routes.MapRoute(
                 name: "Add Prestador de servicios",
                 url: "compra/prestador-de-servicios/add",
@@ -93,17 +105,22 @@ namespace TP_DDS_MVC
                 defaults: new { controller = "Ingreso", action = "AddIngreso" }
             );
 
+            routes.MapRoute(
+                name: "Menu Cargar Entidad",
+                url: "entidad",
+                defaults: new { controller = "Entidad", action = "MenuCargarEntidad" }
+            );
 
             routes.MapRoute(
-                name: "Add Entidad",
+                name: "Add Entidad Juridica",
                 url: "entidad/entidad-juridica/add",
                 defaults: new { controller = "Entidad", action = "AddEntidadJuridica" }
             );
 
             routes.MapRoute(
                name: "Add criterio",
-               url: "entidad/criterio",
-               defaults: new { controller = "Entidad", action = "criterios" }
+               url: "criterio",
+               defaults: new { controller = "Compra", action = "criterios" }
            );
 
             routes.MapRoute(
@@ -111,6 +128,12 @@ namespace TP_DDS_MVC
               url: "entidad/entidad-juridica/add",
               defaults: new { controller = "ProyectoFinanciamiento", action = "DefinirOperacion" }
           );
+
+            routes.MapRoute(
+                name: "Add Entidad Base",
+                url: "entidad/entidad-base/add",
+                defaults: new { controller = "Entidad", action = "AddEntidadBaseAJuridica" }
+            );
 
             routes.MapRoute(
                 name: "Logout",

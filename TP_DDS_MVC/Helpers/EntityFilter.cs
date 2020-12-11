@@ -9,22 +9,13 @@ using TP_DDS_MVC.Models.Otros;
 
 namespace TP_DDS_MVC.Helpers
 {
-    public class CustomAuthenticationFilter : ActionFilterAttribute, IAuthenticationFilter
+    public class EntityFilter : ActionFilterAttribute, IAuthenticationFilter
     {
         public void OnAuthentication(AuthenticationContext filterContext)
         {
-            if (string.IsNullOrEmpty(Convert.ToString(filterContext.HttpContext.Session["usuario"])))
+            if (((Usuario)filterContext.HttpContext.Session["usuario"]).idEntidad != null)
             {
                 filterContext.Result = new HttpUnauthorizedResult();
-            }
-            else if(((Usuario)filterContext.HttpContext.Session["usuario"]).idEntidad == null)
-            {
-                filterContext.Result = new RedirectToRouteResult(
-                new RouteValueDictionary
-                {
-                     { "controller", "Entidad" },
-                     { "action", "MenuCargarEntidad" }
-                });
             }
         }
         public void OnAuthenticationChallenge(AuthenticationChallengeContext filterContext)
@@ -35,11 +26,11 @@ namespace TP_DDS_MVC.Helpers
                 filterContext.Result = new RedirectToRouteResult(
                 new RouteValueDictionary
                 {
-                     { "controller", "User" },
-                     { "action", "Login" }
+                     { "controller", "Home" },
+                     { "action", "Index" }
                 });
             }
-            
+
         }
     }
 }

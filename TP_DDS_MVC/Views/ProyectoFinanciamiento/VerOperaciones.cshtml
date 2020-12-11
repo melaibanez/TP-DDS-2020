@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "VerOperaciones";
+}
+
+    <div class="container-fluid">
+        <div class="pb-3">
+            <h2>Bitácora de Operaciones</h2>
+        </div>
+        @using (Html.BeginForm("VerOperaciones", "ProyectoFinanciamiento", FormMethod.Post))
+        {
+            <p>Tipo de Operación:</p>
+            <input type="radio" id="alta" name="tipoOperacion" value="alta">
+            <label for="alta">Alta</label><br>
+            <input type="radio" id="modificacion" name="tipoOperacion" value="modificacion">
+            <label for="modificacion">Modificación</label><br>
+            <input type="radio" id="baja" name="tipoOperacion" value="baja">
+            <label for="baja">Baja</label>
+
+            <br><br>
+
+            <p>Entidad donde ocurrió:</p>
+            <input type="radio" id="ingreso" name="tipoEntidad" value="Ingreso">
+            <label for="ingreso">Ingreso</label><br>
+            <input type="radio" id="egreso" name="tipoEntidad" value="Egreso">
+            <label for="egreso">Egreso</label><br>
+            <input type="radio" id="presupuesto" name="tipoEntidad" value="Presupuesto">
+            <label for="presupuesto">Presupuesto</label><br>
+            <!--<input type="radio" id="compra" name="tipoEntidad" value="Compra">
+            <label for="compra">Compra</label><br><br>-->
+            <input type="submit" value="Submit">
+
+        }
+        <br><br>
+
+
+    </div>

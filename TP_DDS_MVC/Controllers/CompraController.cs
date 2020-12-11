@@ -12,6 +12,9 @@ using TP_DDS_MVC.Models.Compras;
 using TP_DDS_MVC.Models.Entidades;
 using TP_DDS_MVC.DAOs;
 using TP_DDS_MVC.Helpers;
+using TP_DDS_MVC.Mongo;
+using MongoDB.Driver;
+using MongoDB.Bson;
 using TP_DDS_MVC.Models.Otros;
 
 namespace TP_DDS_MVC.Controllers
@@ -28,11 +31,6 @@ namespace TP_DDS_MVC.Controllers
         ///         Prestador de servicios          ///
         ///////////////////////////////////////////////
         
-        public JsonResult PrestadorDeServicios()
-        {
-            List<PrestadorDeServicios> PDSs = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios();
-            return Json(JsonConvert.SerializeObject(PDSs));
-        }
 
         public ActionResult AddPrestadorDeServicios()
         {
@@ -47,7 +45,8 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
-                //PDS.direccionPostal.validarDireccion();
+                PDS.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
+                PDS.direccionPostal.validarDireccion();
                 PrestadorDeServiciosDAO.getInstancia().add(PDS);
                 return RedirectToAction("Index", "Home");
             }
@@ -95,6 +94,7 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
+                MDP.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
                 MedioDePagoDAO.getInstancia().add(MDP);
                 return RedirectToAction("Index", "Home");
             }
@@ -150,11 +150,19 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
+                req.presupuesto.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
                 if (req.setEgreso && req.presupuesto.idCompra != null)
                 {
                     req.presupuesto.idEgreso = CompraDAO.getInstancia().getCompra(req.presupuesto.idCompra.Value).idEgreso;
                 }
                 PresupuestoDAO.getInstancia().add(req.presupuesto);
+                
+                BsonDocument presupuesto = new BsonDocument {
+                     { "montoTotal", req.presupuesto.montoTotal },
+                     { "idPrestadorDeServicios", req.presupuesto.idPrestadorDeServicios } };
+
+                Mongo.MongoDB.insertarDocumento("Presupuesto", "alta", presupuesto);
+
                 return Json(Url.Action("Index", "Home"));
             }
             catch (Exception e)
@@ -212,6 +220,13 @@ namespace TP_DDS_MVC.Controllers
                     DocumentoComercialDAO.getInstancia().setEgresoId(idEgreso, nroId);
                 }
 
+                BsonDocument egreso = new BsonDocument {
+                     { "idEgreso", req.egreso.idEgreso },
+                     { "montoTotal", req.egreso.montoTotal },
+                     { "fechaEgreso", req.egreso.fechaEgreso } };
+
+                Mongo.MongoDB.insertarDocumento("Egreso", "alta", egreso);
+
                 return Json(Url.Action("Index", "Home"));
             }
             catch (Exception e)
@@ -233,13 +248,25 @@ namespace TP_DDS_MVC.Controllers
         // GET: Compras
         public ActionResult ListCompras()
         {
-            //List<Compra> compras = CompraDAO.getInstancia().getCompras();
-            Egreso e = new Egreso();
+            List<Compra> compras = CompraDAO.getInstancia().getComprasConEgreso();
+            /*Egreso e = new Egreso();
             e.montoTotal = 214254;
             List<Compra> compras = new List<Compra>() { new Compra("La compra del mes", 5, 235,e,new List<Presupuesto>(),null), new Compra("Otra compra", 12, 235, e, new List<Presupuesto>(), null), new Compra("La ultima compra", 20, 125, e, new List<Presupuesto>(), null) };
-            
+            */
             return View(compras);
         }
+
+        public ActionResult DetalleCompra(int idCompra)
+        {
+            Compra pres = CompraDAO.getInstancia().getCompraConEgreso(idCompra);
+            return View(pres);
+        }
+        /*
+        public ActionResult EditCompra(int idCompra)
+        {
+            Compra pres = CompraDAO.getInstancia().getCompraConEgreso(idCompra);
+            return View(pres);
+        }*/
 
         public ActionResult AddCompra()
         {
@@ -256,6 +283,10 @@ namespace TP_DDS_MVC.Controllers
             
             try
             {
+                // Compra compra = new Compra(int cantMinimaPresupuestos, float criterio, Egreso egreso, List<Presupuesto> presupuestos, List<Usuario> revisores)
+                // ViewBag.compra = CompraDAO.getInstancia().add();
+                
+                
                 if (req.revisores != null)
                 {
                     req.compra.revisores = new List<Usuario>();
@@ -266,6 +297,20 @@ namespace TP_DDS_MVC.Controllers
                 }
                 
                 Compra compra = CompraDAO.getInstancia().add(req.compra);
+                
+                BsonDocument compra1 = new BsonDocument {
+                     { "descripcion", req.compra.descripcion },
+                     { "cantMinimaPresupuestos", req.compra.cantMinimaPresupuestos },
+                     { "idCompra", req.compra.idCompra } };
+
+                Mongo.MongoDB.insertarDocumento("Compra", "alta", compra1 );
+
+                BsonDocument egreso = new BsonDocument {
+                     { "idEgreso", req.compra.egreso.idEgreso },
+                     { "montoTotal", req.compra.egreso.montoTotal },
+                     { "fechaEgreso", req.compra.egreso.fechaEgreso } };
+
+                Mongo.MongoDB.insertarDocumento("Egreso", "alta", egreso);
 
                 return Json(Url.Action("Index", "Home"));
             }
@@ -300,57 +345,92 @@ namespace TP_DDS_MVC.Controllers
         }
 
 
-    //    // GET: Compra/Details/5
-    //    public ActionResult DetailCompra(int id)
-    //    {
-    //        ViewBag.compra = CompraDAO.getInstancia().getCompra(id);
-    //        return View();
-    //    }
-    //    // POST: Compra/Create
-       
+        public ActionResult criterios()
+        {
+            ViewBag.criterios = CriterioDAO.getInstancia().getCriterios();
+            return View();
+        }
 
-    //    // GET: Compra/Edit/5
-    //    public ActionResult Edit(int id)
-    //    {
-    //        return View();
-    //    }
+        [HttpPost]
+        public ActionResult criterios(string criterio, int? idPadre, string categorias)
+        {
 
-    //    // POST: Compra/Edit/5
-    //    [HttpPost]
-    //    public ActionResult Edit(int id, FormCollection collection)
-    //    {
-    //        try
-    //        {
-    //            // TODO: Add update logic here
+            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+            //int idEntidad = 1;
 
-    //            return RedirectToAction("Index");
-    //        }
-    //        catch
-    //        {
-    //            return View();
-    //        }
-    //    }
+            string[] categoriasSeparadas = categorias.Split(',');
 
-    //    // GET: Compra/Delete/5
-    //    public ActionResult Delete(int id)
-    //    {
-    //        return View();
-    //    }
+            int cant = categorias.Split(',').ToList().Count();
 
-    //    // POST: Compra/Delete/5
-    //    [HttpPost]
-    //    public ActionResult Delete(int id, FormCollection collection)
-    //    {
-    //        try
-    //        {
-    //            // TODO: Add delete logic here
+            List<Categoria> categoriasNuevas = new List<Categoria>();
 
-    //            return RedirectToAction("Index");
-    //        }
-    //        catch
-    //        {
-    //            return View();
-    //        }
-    //    }
+            for (int i = 0; i < cant; i++)
+            {
+                Categoria categoriaNueva = new Categoria(categoriasSeparadas[i]);
+                categoriasNuevas.Add(categoriaNueva);
+            }
+
+            Criterio criterioNuevo = new Criterio(criterio, idEntidad, idPadre, categoriasNuevas);
+
+            var criterio1 = CriterioDAO.getInstancia().add(criterioNuevo);
+
+
+
+            return RedirectToAction("Index", "Home");
+        }
+
+
+        //    // GET: Compra/Details/5
+        //    public ActionResult DetailCompra(int id)
+        //    {
+        //        ViewBag.compra = CompraDAO.getInstancia().getCompra(id);
+        //        return View();
+        //    }
+        //    // POST: Compra/Create
+
+
+        //    // GET: Compra/Edit/5
+        //    public ActionResult Edit(int id)
+        //    {
+        //        return View();
+        //    }
+
+        //    // POST: Compra/Edit/5
+        //    [HttpPost]
+        //    public ActionResult Edit(int id, FormCollection collection)
+        //    {
+        //        try
+        //        {
+        //            // TODO: Add update logic here
+
+        //            return RedirectToAction("Index");
+        //        }
+        //        catch
+        //        {
+        //            return View();
+        //        }
+        //    }
+
+        //    // GET: Compra/Delete/5
+        //    public ActionResult Delete(int id)
+        //    {
+        //        return View();
+        //    }
+
+        //    // POST: Compra/Delete/5
+        //    [HttpPost]
+        //    public ActionResult Delete(int id, FormCollection collection)
+        //    {
+        //        try
+        //        {
+        //            // TODO: Add delete logic here
+
+        //            return RedirectToAction("Index");
+        //        }
+        //        catch
+        //        {
+        //            return View();
+        //        }
+        //    }
     }
 }

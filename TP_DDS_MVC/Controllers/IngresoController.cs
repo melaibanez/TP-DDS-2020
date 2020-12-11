@@ -10,6 +10,9 @@ using TP_DDS_MVC.Helpers.DB;
 using TP_DDS_MVC.Models.Ingresos;
 using TP_DDS_MVC.Models.Entidades;
 using Newtonsoft.Json;
+using MongoDB.Driver;
+using MongoDB.Bson;
+using TP_DDS_MVC.Models.Proyectos;
 
 namespace TP_DDS_MVC.Controllers
 {
@@ -25,10 +28,18 @@ namespace TP_DDS_MVC.Controllers
         [HttpPost]
         public ActionResult AddIngreso(Ingreso ing)
         {
+           /* Ingreso ingreso = new Ingreso();
+            ingreso.descripcion = ing.descripcion;
+            ingreso.monto = ing.monto;
+            ingreso.fechaDesde = ing.fechaDesde;
+            ingreso.fechaHasta = ing.fechaHasta;*/
+
+
             try
             {
-                IngresoDAO.getInstancia().add(ing);
-                return RedirectToAction("Index", "Home");
+                IngresoDAO.getInstancia().add(ing);             
+                Mongo.MongoDB.insertarDocumento("Ingreso", "alta", ing.ToBsonDocument());
+                return Json(Url.Action("Index", "Home"));
             }
             catch (Exception e)
             {

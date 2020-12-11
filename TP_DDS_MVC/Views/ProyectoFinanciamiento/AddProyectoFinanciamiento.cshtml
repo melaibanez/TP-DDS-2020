@@ -14,7 +14,7 @@
 <div class="pb-3">
     <h2>Crear un Proyecto de Financiamiento</h2>
 </div>
-<div class="form-row">
+<div class="form-row mb-3">
     <div class="form-group col-md-4">
         <label for="propuesta">Propuesta</label>
         <input id="propuesta" type="text" class="form-control" placeholder="Propuesta">
@@ -38,8 +38,13 @@
         <input id="fechaEjecucion" type="date" class="form-control" placeholder="Fecha de Ejecución">
     </div>
 </div>
+<span>
+    <button class="btn btn-success col-lg-2" id="submit">Crear</button>
+    @Html.ActionLink("Cancelar", "Index", new { controller = "Compra" }, new { @class = "btn btn-secondary col-lg-1" })
+</span>
 
-<div class="form-row">
+
+@*<div class="form-row">
     <div class="form-group col">
         <h4>Agregar Ingreso</h4>
         <div class="form-group">
@@ -85,13 +90,4 @@
             </ul>
         </div>
     </div>
-</div>
-
-
-<br />
-
-<span>
-    <button class="btn btn-success col-lg-2" id="submit">Crear</button>
-    @Html.ActionLink("Cancelar", "Index", new { controller = "Compra" }, new { @class = "btn btn-secondary col-lg-1" })
-</span>
-
+</div>*@

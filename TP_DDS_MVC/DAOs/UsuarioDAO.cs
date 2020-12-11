@@ -72,5 +72,17 @@ namespace TP_DDS_MVC.DAOs
                 context.SaveChanges();
             }
         }
+
+        public Usuario setIdEntidad(int idEntidad, int idUsuario)
+        {
+            Usuario usu;
+            using (MyDBContext context = new MyDBContext())
+            {
+                usu = context.Usuarios.Find(idUsuario);
+                usu.idEntidad = idEntidad;
+                context.SaveChanges();
+                return usu;
+            }
+        }
     }
 }
