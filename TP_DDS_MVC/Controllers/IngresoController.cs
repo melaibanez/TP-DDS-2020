@@ -28,7 +28,7 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
-                IngresoDAO.getInstancia().add(ing);             
+                IngresoDAO.getInstancia().add(ing);
                 Mongo.MongoDB.insertarDocumento("Ingreso", "alta", ing.ToBsonDocument());
                 return RedirectToAction("Index", "Home");
             }

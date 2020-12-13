@@ -70,7 +70,7 @@ $("#submit").click(function () {
 
     $.ajax({
         type: "POST",
-        url: "/compra/presupuesto/add",
+        url: "/presupuesto/add",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         data: JSON.stringify(data.model),

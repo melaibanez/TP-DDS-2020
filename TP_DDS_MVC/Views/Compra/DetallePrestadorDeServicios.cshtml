@@ -5,45 +5,62 @@
     }
 
 <div class="alert alert-secondary my-4" role="alert">
-    <h2>Detalle del Prestador de Servicios: @Model.idPrestador</h2>
+    <h3>Detalle del Prestador de Servicios: @Model.idPrestador</h3>
 </div>
- <div class="container-md">
-     <div class="form-group row">
-         <label for="razonSocial">Nombre o Razon Social</label>
-         <div class="col-10">
-             <input class="form-control" id="razonSocial" value=@Model.razonSocial type="text" disabled>
-         </div>
-     </div>
-     <br />
-     <div class="form-group row">
-         <div class="form-group col-md-6">
-             <label for="tipoDoc">Tipo de documento</label>
-             <input class="form-control" id="tipoDoc" value=@Model.tipoDoc type="text" disabled>
-         </div>
-         <div class="form-group col-md-6">
-             <label for="numDoc">Numero de documento</label>
-             <input class="form-control" id="nroDoc" value=@Model.numDoc type="text" disabled>
-         </div>
-     </div>
-     <!--REVISAR DP-->
-     <br />
-     <div class="form-group row">
-         <label for="direcPostal">Direccion postal</label>
-         <input class="form-control" id="nroDoc" value=@Model.direccionPostal.pais type="text" disabled>
-         <input class="form-control" id="nroDoc" value=@Model.direccionPostal.provincia type="text" disabled>
-         <input class="form-control" id="nroDoc" value=@Model.direccionPostal.ciudad type="text" disabled>
-         <input class="form-control" id="nroDoc" value=@Model.direccionPostal.calle type="text" disabled>
-         <input class="form-control" id="nroDoc" value=@Model.direccionPostal.numero type="text" disabled>
-         <input class="form-control" id="nroDoc" value=@Model.direccionPostal.piso_depto type="text" disabled>
-     </div>
-     <br />
-     <div class="form-group row">
-         <div class="col-10">
-             <input class="btn btn-success" type="submit" value="Agregar" />
-             &nbsp;&nbsp;&nbsp;
-             @Html.ActionLink("Cancelar", "Index", new { controller = "Compra" }, new { @class = "btn btn-secondary" })
-         </div>
-     </div>
- </div>
+
+<div class="form-group mb-2">
+    <label for="razonSocial">Nombre o Razon Social</label>
+    <input class="form-control" id="razonSocial" value="@Model.razonSocial" type="text" disabled>
+</div>
+<br />
+<div class="form-row mb-2">
+    <div class="form-group col">
+        <label for="tipoDoc">Tipo de documento</label>
+        <input class="form-control" id="tipoDoc" value="@Model.tipoDoc" type="text" disabled>
+    </div>
+    <div class="form-group col">
+        <label for="numDoc">Numero de documento</label>
+        <input class="form-control" id="nroDoc" value="@Model.numDoc" type="text" disabled>
+    </div>
+</div>
+
+
+<h5 class="mb-2">Direccion Postal</h5>
+<div class="form-row mb-2">
+    <div class="form-group col">
+        <label for="calle">Calle</label>
+        <input class="form-control" id="calle" value="@Model.direccionPostal.calle" type="text" disabled>
+    </div>
+    <div class="form-group col">
+        <label for="numero">Numero</label>
+        <input class="form-control" id="numero" value="@Model.direccionPostal.numero" type="text" disabled>
+    </div>
+    <div class="form-group col">
+        <label for="piso_depto">Piso/Depto</label>
+        <input class="form-control" id="piso_depto" value="@Model.direccionPostal.piso_depto" type="text" disabled>
+    </div>
+</div>
+<div class="form-row mb-2">
+    <div class="form-group col">
+        <label for="ciudad">Ciudad</label>
+        <input class="form-control" id="ciudad" value="@Model.direccionPostal.ciudad" type="text" disabled>
+    </div>
+    <div class="form-group col">
+        <label for="Provincia">Provincia</label>
+        <input class="form-control" id="provincia" value="@Model.direccionPostal.provincia" type="text" disabled>
+    </div>
+    <div class="form-group col">
+        <label for="pais">Pais</label>
+        <input class="form-control" id="pais" value="@Model.direccionPostal.pais" type="text" disabled>
+    </div>
+</div>
+<br />
+<div class="form-row">
+
+        @Html.ActionLink("Editar", "EditPrestadorDeServicios", "Compra", new { id = Model.idPrestador }, new { @class = "btn btn-secondary col-2 mr-3" })
+
+        @Html.ActionLink("Eliminar", "DeletePrestadorDeServicios", "Compra", new { id = Model.idPrestador }, new { @class = "btn btn-danger col-1" })
+</div>
+
             
 
