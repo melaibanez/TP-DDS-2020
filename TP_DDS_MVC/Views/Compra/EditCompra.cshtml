@@ -1,4 +1,5 @@
 ﻿@using TP_DDS_MVC.Models.Compras;
+@using TP_DDS_MVC.Models.Otros;
 @model Compra
 @{
     ViewBag.Title = "Editar Compra";
@@ -65,7 +66,7 @@
             <label for="proveedores">Seleccione un proveedor:</label>
             <input class="form-control" list="proveedores" id="proveedor" type="text" placeholder="Seleccionar...">
             <datalist id="proveedores">
-                @foreach (PrestadorDeServicios PDS in (List<PrestadorDeServicios>)proveedores)
+                @foreach (PrestadorDeServicios PDS in (List<PrestadorDeServicios>)ViewBag.proveedores)
                 {
                     <option value="@PDS.idPrestador">@PDS.razonSocial</option>
                 }
@@ -75,7 +76,7 @@
             <label for="mediosDePago">Seleccione un Medio de Pago:</label>
             <input class="form-control" list="mediosDePago" id="medioDePago" type="text" placeholder="Seleccionar...">
             <datalist id="mediosDePago">
-                @foreach (MedioDePago MDP in (List<MedioDePago>)mediosDePago)
+                @foreach (MedioDePago MDP in (List<MedioDePago>)ViewBag.mediosDePago)
                 {
                     <option value="@MDP.idMedioPago">@MDP.instrumento</option>
                 }

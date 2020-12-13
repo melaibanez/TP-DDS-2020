@@ -20,8 +20,7 @@ namespace TP_DDS_MVC.Models.Otros
 
         public bool esAdmin { get; set; }
 
-        [StringLength(50)]
-        public string contrasenia { get; set; }
+        public int contrasenia { get; set; }
 
         public List<Compra> comprasRevisadas { get; set; }
 
@@ -32,7 +31,7 @@ namespace TP_DDS_MVC.Models.Otros
         public Entidad entidad { get; set; }
 
         public Usuario(){}
-        public Usuario(string nombreUsuario, bool esAdmin, string contrasenia, Entidad entidad)
+        public Usuario(string nombreUsuario, bool esAdmin, int contrasenia, Entidad entidad)
         {
             this.nombreUsuario = nombreUsuario;
             this.esAdmin = esAdmin;

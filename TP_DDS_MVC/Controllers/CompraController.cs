@@ -393,25 +393,21 @@ namespace TP_DDS_MVC.Controllers
         {
 
             int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
-            //int idEntidad = 1;
-
-            string[] categoriasSeparadas = categorias.Split(',');
-
-            int cant = categorias.Split(',').ToList().Count();
+            
+            List<string> categoriasSeparadas = categorias.Split(',').ToList();
 
             List<Categoria> categoriasNuevas = new List<Categoria>();
 
-            for (int i = 0; i < cant; i++)
+            for (int i = 0; i < categoriasSeparadas.Count; i++)
             {
-                Categoria categoriaNueva = new Categoria(categoriasSeparadas[i]);
+                Categoria categoriaNueva = new Categoria(categoriasSeparadas[i].Trim());
                 categoriasNuevas.Add(categoriaNueva);
             }
 
             Criterio criterioNuevo = new Criterio(criterio, idEntidad, idPadre, categoriasNuevas);
 
             var criterio1 = CriterioDAO.getInstancia().add(criterioNuevo);
-
-
+            
 
             return RedirectToAction("Index", "Home");
         }

@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using MongoDB.Driver;
 using MongoDB.Bson;
 using TP_DDS_MVC.Models.Proyectos;
+using TP_DDS_MVC.Models.Otros;
 
 namespace TP_DDS_MVC.Controllers
 {
@@ -37,6 +38,7 @@ namespace TP_DDS_MVC.Controllers
 
             try
             {
+                ing.idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
                 IngresoDAO.getInstancia().add(ing);
                 Mongo.MongoDB.insertarDocumento("Ingreso", "alta", ing.ToBsonDocument());
                 return Json(Url.Action("Index", "Home"));
