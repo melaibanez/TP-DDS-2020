@@ -20,6 +20,8 @@ namespace TP_DDS_MVC.Models.Compras
         [StringLength(50)]
         public string nombre { get; set; }
 
+        public List<Item> itemsCategoria { get; set; }
+
         public Categoria(string nombre)
         {
             //this.criterio = criterio;

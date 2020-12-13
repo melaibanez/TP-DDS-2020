@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using TP_DDS_MVC.Models.Proyectos;
 using TP_DDS_MVC.Helpers.DB;
+using TP_DDS_MVC.Models.Otros;
 
 namespace TP_DDS_MVC.DAOs
 {
@@ -25,12 +26,12 @@ namespace TP_DDS_MVC.DAOs
             return instancia;
         }
 
-        public List<ProyectoFinanciamiento> getCategorias()
+        public List<ProyectoFinanciamiento> getProyectos(int idEntidad)
         {
 
             using (MyDBContext context = new MyDBContext())
             {
-                return context.Proyectos.ToList();
+                return context.Proyectos.Where(p => p.idEntidad == idEntidad).ToList();
             }
         }
 

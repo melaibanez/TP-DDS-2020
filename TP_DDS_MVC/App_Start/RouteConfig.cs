@@ -14,13 +14,14 @@ namespace TP_DDS_MVC
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-
+            /// Proyecto 
             routes.MapRoute(
                 name: "Add Proyecto",
                 url: "proyecto/add",
                 defaults: new { controller = "ProyectoFinanciamiento", action = "AddProyectoFinanciamiento" }
             );
 
+            /// Compra/egreso 
             routes.MapRoute(
                 name: "ListCompras",
                 url: "compra",
@@ -34,64 +35,107 @@ namespace TP_DDS_MVC
             );
 
             routes.MapRoute(
-                name: "Detalle Compra",
-                url: "compra/detalle",
-                defaults: new { controller = "Compra", action = "DetalleCompra" }
-            );
-
-            routes.MapRoute(
                name: "Edit Compra",
-               url: "compra/edit",
-               defaults: new { controller = "Compra", action = "EditCompra" }
+               url: "compra/edit/{id}",
+               defaults: new { controller = "Compra", action = "EditCompra", id = UrlParameter.Optional }
            );
 
             routes.MapRoute(
-                name: "Add Prestador de servicios",
-                url: "compra/prestador-de-servicios/add",
-                defaults: new { controller = "Compra", action = "AddPrestadorDeServicios" }
+                name: "Detalle Compra",
+                url: "compra/{id}",
+                defaults: new { controller = "Compra", action = "DetalleCompra", id = UrlParameter.Optional }
             );
+
+
+            /// prestador de servicios
 
             routes.MapRoute(
                 name: "List Prestador de servicios",
-                url: "compra/prestador-de-servicios",
+                url: "prestador-de-servicios",
                 defaults: new { controller = "Compra", action = "ListPrestadorDeServicios" }
             );
 
             routes.MapRoute(
-                name: "Add Medio de Pago",
-                url: "compra/medio-de-pago/add",
-                defaults: new { controller = "Compra", action = "AddMedioDePago" }
+                name: "Add Prestador de servicios",
+                url: "prestador-de-servicios/add",
+                defaults: new { controller = "Compra", action = "AddPrestadorDeServicios" }
             );
 
             routes.MapRoute(
+                name: "Editar Prestador de servicios",
+                url: "prestador-de-servicios/edit/{id}",
+                defaults: new { controller = "Compra", action = "EditPrestadorDeServicios", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Detalle Prestador de servicios",
+                url: "prestador-de-servicios/{id}",
+                defaults: new { controller = "Compra", action = "DetallePrestadorDeServicios", id = UrlParameter.Optional }
+            );
+
+            ///medio de pago
+
+            routes.MapRoute(
                 name: "List Medio de Pago",
-                url: "compra/medio-de-pago",
+                url: "medio-de-pago",
                 defaults: new { controller = "Compra", action = "ListMedioDePago" }
             );
 
             routes.MapRoute(
-                name: "Add Presupuesto",
-                url: "compra/presupuesto/add",
-                defaults: new { controller = "Compra", action = "AddPresupuesto" }
+                name: "Add Medio de Pago",
+                url: "medio-de-pago/add",
+                defaults: new { controller = "Compra", action = "AddMedioDePago" }
             );
 
             routes.MapRoute(
+                name: "Editar Medio de Pago",
+                url: "medio-de-pago/edit/{id}",
+                defaults: new { controller = "Compra", action = "EditMedioDePago", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Detalle Medio de Pago",
+                url: "medio-de-pago/{id}",
+                defaults: new { controller = "Compra", action = "DetalleMedioDePago", id = UrlParameter.Optional }
+            );
+
+
+            ///presupuesto 
+
+            routes.MapRoute(
                 name: "List presupuesto",
-                url: "compra/presupuesto",
+                url: "presupuesto",
                 defaults: new { controller = "Compra", action = "ListPresupuestos", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
-                name: "Detalle presupuesto",
-                url: "compra/presupuesto/{id}",
-                defaults: new { controller = "Compra", action = "DetallePresupuesto", id = UrlParameter.Optional }
+                name: "Add Presupuesto",
+                url: "presupuesto/add",
+                defaults: new { controller = "Compra", action = "AddPresupuesto" }
             );
 
             routes.MapRoute(
-                name: "Add Egreso",
-                url: "compra/egreso/add",
-                defaults: new { controller = "Compra", action = "AddEgreso" }
+                name: "Editar presupuesto",
+                url: "presupuesto/edit/{id}",
+                defaults: new { controller = "Compra", action = "EditPresupuesto", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "Detalle presupuesto",
+                url: "presupuesto/{id}",
+                defaults: new { controller = "Compra", action = "DetallePresupuesto", id = UrlParameter.Optional }
+            );
+
+            /////egreso
+
+            //routes.MapRoute(
+            //    name: "Add Egreso",
+            //    url: "compra/egreso/add",
+            //    defaults: new { controller = "Compra", action = "AddEgreso" }
+            //);
+
+
+            /// ingresos
 
             routes.MapRoute(
                 name: "List ingresos",
@@ -104,6 +148,9 @@ namespace TP_DDS_MVC
                 url: "ingreso/add",
                 defaults: new { controller = "Ingreso", action = "AddIngreso" }
             );
+
+
+            /// cargar entidad
 
             routes.MapRoute(
                 name: "Menu Cargar Entidad",
@@ -141,6 +188,8 @@ namespace TP_DDS_MVC
                 defaults: new { controller = "User", action = "Logout" }
             );
 
+            /// usuario
+
             routes.MapRoute(
                 name: "Bandeja de mensajes",
                 url: "usuario/mensajes",
@@ -164,6 +213,8 @@ namespace TP_DDS_MVC
                 url: "usuario/listaUsuarios",
                 defaults: new { controller = "User", action = "ListarUsuarios" }
             );
+
+            /// otros
 
             routes.MapRoute(
                 name: "Vinculador",

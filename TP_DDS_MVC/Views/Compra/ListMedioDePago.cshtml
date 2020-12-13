@@ -9,7 +9,7 @@
 </div>
 
 <div class="container-fluid">
-    @if (Model == null)
+    @if (Model == null || Model.Count == 0)
     {
         <h6>No hay medios de pago cargados</h6>
     }
@@ -32,7 +32,7 @@
                         <td>@pres.instrumento</td>
                         <td>@pres.numInstrumento</td>
                         <td>@Html.ActionLink("Editar", "EditMedioDePago", "Compra", new { id = pres.idMedioPago }, new { @class = "btn btn-secondary btn-sm" })</td>
-                        <td>@Html.ActionLink("Borrar", "DeleteMedioDePago", "Compra", new { id = pres.idMedioPago }, new { @class = "btn btn-secondary btn-sm" })</td>
+                        <td>@Html.ActionLink("Eliminar", "DeleteMedioDePago", "Compra", new { id = pres.idMedioPago }, new { @class = "btn btn-secondary btn-sm" })</td>
                     </tr>
                 }
             </tbody>
