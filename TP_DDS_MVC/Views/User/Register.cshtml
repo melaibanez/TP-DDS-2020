@@ -3,13 +3,18 @@
 }
 
 <div class="text-center">
-      
+
 
     @if (ViewBag.msg != null)
     {
         <p class="text-danger">@ViewBag.msg</p>
     }
-
+    @if (ViewBag.errorMsg != null)
+    {
+        <div class="alert alert-danger mb-3" role="alert">
+            @ViewBag.errorMsg
+        </div>
+    }
 
     <h3>Regristar usuario</h3>
 

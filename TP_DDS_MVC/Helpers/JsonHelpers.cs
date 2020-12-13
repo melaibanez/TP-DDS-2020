@@ -12,8 +12,13 @@ namespace TP_DDS_MVC.Helpers
         public Egreso egreso { get; set; }
         public string[] docsComerciales { get; set; }
     }
-
-
+    public class JsonIngreso
+    {
+        public string descripcion { get; set; }
+        public int monto { get; set; }
+        public DateTime fechaDesde { get; set; }
+        public DateTime fechaHasta { get; set; }
+    }
     public class JsonCompra
     {
         public Compra compra { get; set; }
@@ -26,6 +31,12 @@ namespace TP_DDS_MVC.Helpers
         public bool setEgreso { get; set; }
     }
 
+    public class JsonCriterio
+    {
+        public int idCriterio { get; set; }
+
+    }
+        
     public class JsonEntidad
     {
         public EntidadJuridica entidad { get; set; }

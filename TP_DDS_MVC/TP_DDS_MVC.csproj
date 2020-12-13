@@ -479,6 +479,7 @@
     <Content Include="Views\ProyectoFinanciamiento\VerOperaciones.cshtml" />
     <Content Include="Views\ProyectoFinanciamiento\ListOperaciones.cshtml" />
     <Content Include="Views\ProyectoFinanciamiento\DefinirOperacion.cshtml" />
+    <Content Include="Views\Compra\criterios.cshtml" />
     <Content Include="Views\Compra\EditCompra.cshtml" />
     <Content Include="Views\Compra\EditPrestadorDeServicios.cshtml" />
     <None Include="Web.Debug.config">

@@ -47,6 +47,7 @@ namespace TP_DDS_MVC.DAOs
             using (MyDBContext context = new MyDBContext())
             {
                 added = context.Criterios.Add(criterio);
+                context.SaveChanges();
             }
 
             return added;

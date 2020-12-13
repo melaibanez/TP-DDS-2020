@@ -382,57 +382,92 @@ namespace TP_DDS_MVC.Controllers
         }
 
 
-    //    // GET: Compra/Details/5
-    //    public ActionResult DetailCompra(int id)
-    //    {
-    //        ViewBag.compra = CompraDAO.getInstancia().getCompra(id);
-    //        return View();
-    //    }
-    //    // POST: Compra/Create
-       
+        public ActionResult criterios()
+        {
+            ViewBag.criterios = CriterioDAO.getInstancia().getCriterios();
+            return View();
+        }
 
-    //    // GET: Compra/Edit/5
-    //    public ActionResult Edit(int id)
-    //    {
-    //        return View();
-    //    }
+        [HttpPost]
+        public ActionResult criterios(string criterio, int? idPadre, string categorias)
+        {
 
-    //    // POST: Compra/Edit/5
-    //    [HttpPost]
-    //    public ActionResult Edit(int id, FormCollection collection)
-    //    {
-    //        try
-    //        {
-    //            // TODO: Add update logic here
+            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+            //int idEntidad = 1;
 
-    //            return RedirectToAction("Index");
-    //        }
-    //        catch
-    //        {
-    //            return View();
-    //        }
-    //    }
+            string[] categoriasSeparadas = categorias.Split(',');
 
-    //    // GET: Compra/Delete/5
-    //    public ActionResult Delete(int id)
-    //    {
-    //        return View();
-    //    }
+            int cant = categorias.Split(',').ToList().Count();
 
-    //    // POST: Compra/Delete/5
-    //    [HttpPost]
-    //    public ActionResult Delete(int id, FormCollection collection)
-    //    {
-    //        try
-    //        {
-    //            // TODO: Add delete logic here
+            List<Categoria> categoriasNuevas = new List<Categoria>();
 
-    //            return RedirectToAction("Index");
-    //        }
-    //        catch
-    //        {
-    //            return View();
-    //        }
-    //    }
+            for (int i = 0; i < cant; i++)
+            {
+                Categoria categoriaNueva = new Categoria(categoriasSeparadas[i]);
+                categoriasNuevas.Add(categoriaNueva);
+            }
+
+            Criterio criterioNuevo = new Criterio(criterio, idEntidad, idPadre, categoriasNuevas);
+
+            var criterio1 = CriterioDAO.getInstancia().add(criterioNuevo);
+
+
+
+            return RedirectToAction("Index", "Home");
+        }
+
+
+        //    // GET: Compra/Details/5
+        //    public ActionResult DetailCompra(int id)
+        //    {
+        //        ViewBag.compra = CompraDAO.getInstancia().getCompra(id);
+        //        return View();
+        //    }
+        //    // POST: Compra/Create
+
+
+        //    // GET: Compra/Edit/5
+        //    public ActionResult Edit(int id)
+        //    {
+        //        return View();
+        //    }
+
+        //    // POST: Compra/Edit/5
+        //    [HttpPost]
+        //    public ActionResult Edit(int id, FormCollection collection)
+        //    {
+        //        try
+        //        {
+        //            // TODO: Add update logic here
+
+        //            return RedirectToAction("Index");
+        //        }
+        //        catch
+        //        {
+        //            return View();
+        //        }
+        //    }
+
+        //    // GET: Compra/Delete/5
+        //    public ActionResult Delete(int id)
+        //    {
+        //        return View();
+        //    }
+
+        //    // POST: Compra/Delete/5
+        //    [HttpPost]
+        //    public ActionResult Delete(int id, FormCollection collection)
+        //    {
+        //        try
+        //        {
+        //            // TODO: Add delete logic here
+
+        //            return RedirectToAction("Index");
+        //        }
+        //        catch
+        //        {
+        //            return View();
+        //        }
+        //    }
     }
 }

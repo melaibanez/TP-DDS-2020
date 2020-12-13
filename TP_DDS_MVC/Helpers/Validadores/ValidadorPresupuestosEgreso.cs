@@ -18,7 +18,7 @@ namespace TP_DDS_MVC.Helpers.Validadores
 
                 if (cantidadIndicadaPresupuestos(compra) && esMenorPresupuesto(compra) && compraUsaPresupuesto(compra))
                 {
-                    enviarMensajes(compra.revisores, "Todo bien");
+                    enviarMensajes(compra.revisores, "La compra " + compra.descripcion +" fue validada");
                 }
                 else
                 {

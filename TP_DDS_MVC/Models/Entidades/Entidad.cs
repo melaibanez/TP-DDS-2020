@@ -38,6 +38,11 @@ namespace TP_DDS_MVC.Models.Entidades
             return comprasRealizadas.FindAll(compra => !compra.egreso.tieneIngresoAsociado());
         }
 
+        public List<Egreso> getEgresosSinVincular()
+        {
+            return egresos.Where(egre => !egre.tieneIngresoAsociado()).ToList();
+        }
+
         public List<Ingreso> GetIngresosDisponibles()
         {
             return ingresos.FindAll(ingreso => ingreso.EgresosNoTotalizanMonto());

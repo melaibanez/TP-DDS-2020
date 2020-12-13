@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using TP_DDS_MVC.DAOs;
 using TP_DDS_MVC.Helpers;
+using TP_DDS_MVC.Models.Compras;
+using TP_DDS_MVC.DAOs;
 using TP_DDS_MVC.Helpers.Validadores;
 using TP_DDS_MVC.Models.Entidades;
 using TP_DDS_MVC.Models.Otros;
@@ -70,6 +72,10 @@ namespace TP_DDS_MVC.Controllers
             }
         }
 
+       
+
+
+   
 
         public ActionResult AddEntidadBaseAJuridica(int conJuridica)
         {

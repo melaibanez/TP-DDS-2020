@@ -47,6 +47,7 @@ namespace TP_DDS_MVC.DAOs
             using (MyDBContext context = new MyDBContext())
             {
                 added = context.Categorias.Add(categoria);
+                context.SaveChanges();
             }
 
             return added;

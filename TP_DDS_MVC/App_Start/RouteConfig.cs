@@ -165,6 +165,18 @@ namespace TP_DDS_MVC
             );
 
             routes.MapRoute(
+               name: "Add criterio",
+               url: "criterio",
+               defaults: new { controller = "Compra", action = "criterios" }
+           );
+
+            routes.MapRoute(
+              name: "Operaciones",
+              url: "entidad/entidad-juridica/add",
+              defaults: new { controller = "ProyectoFinanciamiento", action = "DefinirOperacion" }
+          );
+
+            routes.MapRoute(
                 name: "Add Entidad Base",
                 url: "entidad/entidad-base/add",
                 defaults: new { controller = "Entidad", action = "AddEntidadBaseAJuridica" }

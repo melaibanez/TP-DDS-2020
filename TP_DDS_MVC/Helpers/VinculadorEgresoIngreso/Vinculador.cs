@@ -18,10 +18,11 @@ namespace TP_DDS_MVC.Helpers.VinculadorEgresoIngreso
         public void ejecutar(Entidad entidad)
         {
             //int cantCriterios = estrategias.Count();
-           // for (int i = 1; i < cantCriterios; i++)
+            // for (int i = 1; i < cantCriterios; i++)
             //{
-                List<Egreso> egresosSinVincular = entidad.GetComprasSinIngresoAsignado().Select(compra => compra.egreso).ToList();
-                List<Ingreso> ingresosDisponibles = entidad.GetIngresosDisponibles();
+            //List<Egreso> egresosSinVincular = entidad.GetComprasSinIngresoAsignado().Select(compra => compra.egreso).ToList();
+            List<Egreso> egresosSinVincular = entidad.getEgresosSinVincular();
+            List<Ingreso> ingresosDisponibles = entidad.GetIngresosDisponibles();
             estrategia.vincularCompras(egresosSinVincular, ingresosDisponibles);
                // estrategias.ElementAt(i).vincularCompras(egresosSinVincular, ingresosDisponibles);
             //}

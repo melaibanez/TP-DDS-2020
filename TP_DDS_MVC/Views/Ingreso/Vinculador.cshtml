@@ -2,7 +2,7 @@
 @using TP_DDS_MVC.Models.Ingresos;
 @{
     @section scripts {
-        <script type="text/javascript" src="~/Scripts/MyScripts/tablasVinculador.js"></script>
+        <script async type="text/javascript" src="~/Scripts/MyScripts/tablasVinculador.js"></script>
     }
     ViewBag.Title = "VinculadorEgresoIngreso";
     var egresos = ViewBag.egresos;
@@ -12,9 +12,9 @@
 <h4>Seleccione criterio de vinculacíon</h4>
 
 <div class="btn-group" role="group" aria-label="Basic example">
-    <button type="button" class="btn btn-secondary" id="OVPE" value="1" onclick="mysortTable(), mysortTable2()">Valor-PrimeroEgreso</button>
-    <button type="button" class="btn btn-secondary" id="OVPI" onclick="mysortTable(), mysortTable2()">Valor-PrimeroIngreso</button>
-    <button type="button" class="btn btn-secondary" id="OF">Fecha</button>
+    <button type="button" class="btn btn-secondary" id="ovpe" value="1" onclick="mysortTable(), mysortTable2()">Valor-PrimeroEgreso</button>
+    <button type="button" class="btn btn-secondary" id="ovpi" value="2" onclick="mysortTable(), mysortTable2()">Valor-PrimeroIngreso</button>
+    <button type="button" class="btn btn-secondary" id="of" value="3">Fecha</button>
 </div>
 
 <div class="mt-4 col-md-12">

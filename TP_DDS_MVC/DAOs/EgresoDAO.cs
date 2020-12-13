@@ -33,6 +33,14 @@ namespace TP_DDS_MVC.DAOs
             }
         }
 
+        public List<Egreso> getEgresosSinVincular()
+        {
+            using (MyDBContext context = new MyDBContext())
+            {
+                return context.Egresos.Where(e=>e.idIngresoAsociado == null).ToList();
+            }
+        }
+
         public Egreso getEgreso(int id)
         {
             using (MyDBContext context = new MyDBContext())

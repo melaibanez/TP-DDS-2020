@@ -33,6 +33,7 @@ namespace TP_DDS_MVC.DAOs
             }
         }
 
+
         public Ingreso getIngreso(int id)
         {
             using (MyDBContext context = new MyDBContext())
@@ -47,7 +48,7 @@ namespace TP_DDS_MVC.DAOs
             using (MyDBContext context = new MyDBContext())
             {
                 added = context.Ingresos.Add(ingreso);
-
+                context.SaveChanges();
             }
 
             return added;
