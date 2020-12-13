@@ -28,12 +28,11 @@ namespace TP_DDS_MVC.Controllers
         [HttpPost]
         public ActionResult AddIngreso(Ingreso ing)
         {
-           /* Ingreso ingreso = new Ingreso();
-            ingreso.descripcion = ing.descripcion;
-            ingreso.monto = ing.monto;
-            ingreso.fechaDesde = ing.fechaDesde;
-            ingreso.fechaHasta = ing.fechaHasta;*/
-
+            /* Ingreso ingreso = new Ingreso();
+             ingreso.descripcion = ing.descripcion;
+             ingreso.monto = ing.monto;
+             ingreso.fechaDesde = ing.fechaDesde;
+             ingreso.fechaHasta = ing.fechaHasta;*/
 
             try
             {
