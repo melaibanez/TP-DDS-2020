@@ -136,8 +136,9 @@ namespace TP_DDS_MVC.Controllers
 
         public ActionResult Vinculador()
         {
+            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
             ViewBag.egresos = EgresoDAO.getInstancia().getEgresosSinVincular();
-            ViewBag.ingresos = IngresoDAO.getInstancia().getIngresos();
+            ViewBag.ingresos = IngresoDAO.getInstancia().getIngresos(idEntidad);
 
             return View();
         }
@@ -145,8 +146,8 @@ namespace TP_DDS_MVC.Controllers
         [HttpPost]
         public ActionResult Vinculador(JsonCriterio criterio)
         {
-    
-            var entidad = EntidadDAO.getInstancia().getEntidad(1);
+            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+            var entidad = EntidadDAO.getInstancia().getEntidad(idEntidad);
             Vinculador vinculador = new Vinculador();
 
             if(criterio.idCriterio == 1)
@@ -172,7 +173,7 @@ namespace TP_DDS_MVC.Controllers
             }
 
             ViewBag.egresos = EgresoDAO.getInstancia().getEgresos();
-            ViewBag.ingresos = IngresoDAO.getInstancia().getIngresos();
+            ViewBag.ingresos = IngresoDAO.getInstancia().getIngresos(idEntidad);
 
             return Json(Url.Action("Index", "Home"));
         }

@@ -12,7 +12,8 @@
                 detalle: []
             }
         },
-        revisores: []
+        revisores: [],
+        itemsCategorias: []
     }
 }
 
@@ -20,9 +21,7 @@
 $("#agregarUsu").click(function () {
     $('#noUsu').hide()
 
-    data.model.revisores.push({
-        idUsuario: parseInt($("#revisor").val())
-    })
+    data.model.revisores.push(parseInt($("#revisor").val()))
 
     $("#listaUsu").append('<li id="u' + $("#revisor").val() + '" class="list-group-item">' +
         $("#revisor").val() + '&nbsp;-&nbsp;' +
@@ -51,8 +50,14 @@ $("#agregarItem").click(function () {
         cant: $("#cantItem").val(),
         descripcion: $("#descripcionItem").val(),
         valor: $("#valorItem").val(),
-
+        categorias: $('#categoria').val().map(idCat => {
+            return {
+                idCategoria: parseInt(idCat)
+            }
+        })
     })
+
+    //data.model.compra.egreso.categorias.push($('#categoria').val())
 
     $("#listaItems").append('<li id="' + $("#descripcionItem").val() + '" class="list-group-item">' +
         $("#descripcionItem").val() + '&nbsp;-&nbsp;' +
@@ -70,6 +75,7 @@ $("#agregarItem").click(function () {
 $(document).on("click", "#eliminarItem", function () {
     const index = data.model.compra.egreso.detalle.findIndex(i => i.descripcion === $(this).val());
     data.model.compra.egreso.detalle.splice(parseInt(index), 1);
+    //data.model.itemsCategorias.splice(parseInt(index), 1);
     $('[id="' + $(this).val() + '"]').remove();
 
     if (data.model.compra.egreso.detalle.length === 0) {

@@ -26,12 +26,12 @@ namespace TP_DDS_MVC.DAOs
             return instancia;
         }
 
-        public List<PrestadorDeServicios> getPrestadoresDeServicios()
+        public List<PrestadorDeServicios> getPrestadoresDeServicios(int idEntidad)
         {
 
             using (MyDBContext context = new MyDBContext())
             {
-                return context.PrestadoresDeServicios.Include("direccionPostal").ToList();
+                return context.PrestadoresDeServicios.Include("direccionPostal").Where(pds => pds.idEntidad == idEntidad).ToList();
             }
         }
 

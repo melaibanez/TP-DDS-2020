@@ -24,12 +24,12 @@ namespace TP_DDS_MVC.DAOs
             return instancia;
         }
 
-        public List<Criterio> getCriterios()
+        public List<Criterio> getCriterios(int idEntidad)
         {
 
             using (MyDBContext context = new MyDBContext())
             {
-                return context.Criterios.ToList();
+                return context.Criterios.Where(c=> c.idEntidad == idEntidad).ToList();
             }
         }
 

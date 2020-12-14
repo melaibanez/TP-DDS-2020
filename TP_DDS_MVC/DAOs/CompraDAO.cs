@@ -52,11 +52,18 @@ namespace TP_DDS_MVC.DAOs
             }
         }
 
+        public Compra getCompraConEgresoYDocumentos(int idCompra)
+        {
+            using (MyDBContext context = new MyDBContext())
+            {
+                return context.Compras.Include("egreso.docsComerciales").Where(x => x.idCompra == idCompra).FirstOrDefault();
+            }
+        }
+
         public Compra getCompraConEgreso(int idCompra)
         {
             using (MyDBContext context = new MyDBContext())
             {
-
                 return context.Compras.Include("egreso.detalle").Where(x => x.idCompra == idCompra).FirstOrDefault();
             }
 

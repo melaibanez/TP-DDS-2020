@@ -26,8 +26,6 @@ namespace TP_DDS_MVC.Controllers
 
         public ActionResult AddProyectoFinanciamiento()
         {
-            ViewBag.ingresos = IngresoDAO.getInstancia().getIngresos();            
-            ViewBag.presupuestos = PresupuestoDAO.getInstancia().getPresupuestos();
             return View();
         }
 
