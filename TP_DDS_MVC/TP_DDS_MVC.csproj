@@ -481,6 +481,7 @@
     <Content Include="Views\Compra\criterios.cshtml" />
     <Content Include="Views\Compra\EditCompra.cshtml" />
     <Content Include="Views\Compra\EditPrestadorDeServicios.cshtml" />
+    <Content Include="Views\ProyectoFinanciamiento\ListProyectos.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
