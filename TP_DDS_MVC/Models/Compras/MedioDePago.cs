@@ -5,6 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using TP_DDS_MVC.Models.Entidades;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace TP_DDS_MVC.Models.Compras
 {
@@ -20,7 +21,7 @@ namespace TP_DDS_MVC.Models.Compras
         [StringLength(50)]
         public string instrumento { get; set; }
 
-        [ForeignKey("entidad")]
+        [ForeignKey("entidad")] 
         public int? idEntidad { get; set; }
         public Entidad entidad { get; set; }
 
