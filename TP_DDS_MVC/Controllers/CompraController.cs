@@ -202,11 +202,13 @@ namespace TP_DDS_MVC.Controllers
                 }
                 PresupuestoDAO.getInstancia().add(req.presupuesto);
                 
-                BsonDocument presupuesto = new BsonDocument {
+                /*BsonDocument presupuesto = new BsonDocument {
                      { "montoTotal", req.presupuesto.montoTotal },
                      { "idPrestadorDeServicios", req.presupuesto.idPrestadorDeServicios } };
 
-                Mongo.MongoDB.insertarDocumento("Presupuesto", "alta", presupuesto);
+                Mongo.MongoDB.insertarDocumento("Egreso", "alta", req.presupuesto.ToBsonDocument());*/
+
+                Mongo.MongoDB.insertarDocumento("Presupuesto", "alta", req.presupuesto.ToBsonDocument());
 
                 return Json(Url.Action("Index", "Home"));
             }
@@ -267,12 +269,16 @@ namespace TP_DDS_MVC.Controllers
                     DocumentoComercialDAO.getInstancia().setEgresoId(idEgreso, nroId);
                 }
 
+                var dataJson = JsonConvert.SerializeObject(req);
+
                 BsonDocument egreso = new BsonDocument {
                      { "idEgreso", req.egreso.idEgreso },
                      { "montoTotal", req.egreso.montoTotal },
                      { "fechaEgreso", req.egreso.fechaEgreso } };
 
-                Mongo.MongoDB.insertarDocumento("Egreso", "alta", egreso);
+                BsonDocument document = BsonDocument.Parse(dataJson);
+
+                Mongo.MongoDB.insertarDocumento("Egreso", "alta", document);
 
                 return Json(Url.Action("Index", "Home"));
             }
@@ -345,11 +351,28 @@ namespace TP_DDS_MVC.Controllers
                 }
                 
                 Compra compra = CompraDAO.getInstancia().add(req.compra);
-                
-                //BsonDocument compra1 = new BsonDocument {
-                //     { "descripcion", req.compra.descripcion },
-                //     { "cantMinimaPresupuestos", req.compra.cantMinimaPresupuestos },
-                //     { "idCompra", req.compra.idCompra } };
+
+                Mongo.MongoDB.insertarDocumento("Compra", "alta", req.compra.ToBsonDocument());
+
+                /*BsonDocument compra1 = new BsonDocument {
+                     { "descripcion", req.compra.descripcion },
+                     { "cantMinimaPresupuestos", req.compra.cantMinimaPresupuestos },
+                     { "idCompra", req.compra.idCompra } };
+
+                var dataJson = JsonConvert.SerializeObject(req, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+
+                string json = JsonConvert.SerializeObject(joe, Formatting.Indented, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });*/
+
+                //BsonDocument document = BsonDocument.Parse(dataJson);
+
+                Mongo.MongoDB.insertarDocumento("Egreso", "alta", req.compra.egreso.ToBsonDocument());
+
 
                 //Mongo.MongoDB.insertarDocumento("Compra", "alta", compra1 );
 
