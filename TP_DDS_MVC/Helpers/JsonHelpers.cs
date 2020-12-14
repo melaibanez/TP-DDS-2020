@@ -22,7 +22,8 @@ namespace TP_DDS_MVC.Helpers
     public class JsonCompra
     {
         public Compra compra { get; set; }
-        public int[] revisores { get; set; }
+        public List<int> revisores { get; set; }
+        public List<List<string>> categorias { get; set; }
     }
 
     public class JsonPresupuesto

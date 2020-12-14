@@ -193,7 +193,12 @@ namespace TP_DDS_MVC.Controllers
                 req.presupuesto.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
                 if (req.setEgreso && req.presupuesto.idCompra != null)
                 {
-                    req.presupuesto.idEgreso = CompraDAO.getInstancia().getCompra(req.presupuesto.idCompra.Value).idEgreso;
+                    Compra comp = CompraDAO.getInstancia().getCompraConEgresoYDocumentos(req.presupuesto.idCompra.Value);
+                    if(comp.egreso.docsComerciales.Exists(dc => dc.tipo_enlace == "Presupuesto"))
+                    {
+                        throw new Exception("La compra seleccionada ya tiene un presupuesto elegido para el egreso");
+                    }
+                    req.presupuesto.idEgreso = comp.idEgreso;
                 }
                 PresupuestoDAO.getInstancia().add(req.presupuesto);
                 
@@ -323,8 +328,11 @@ namespace TP_DDS_MVC.Controllers
             
             try
             {
-                // Compra compra = new Compra(int cantMinimaPresupuestos, float criterio, Egreso egreso, List<Presupuesto> presupuestos, List<Usuario> revisores)
-                // ViewBag.compra = CompraDAO.getInstancia().add();
+
+                for (int i = 0; i < req.compra.egreso.detalle.Count(); i++)
+                {
+                    req.compra.egreso.detalle.ElementAt(i).categorias = req.compra.egreso.detalle.ElementAt(i).categorias.Select(c => CategoriaDAO.getInstancia().getCategoria(c.idCategoria)).ToList();
+                }
 
                 req.compra.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
                 if (req.revisores != null)
@@ -338,19 +346,19 @@ namespace TP_DDS_MVC.Controllers
                 
                 Compra compra = CompraDAO.getInstancia().add(req.compra);
                 
-                BsonDocument compra1 = new BsonDocument {
-                     { "descripcion", req.compra.descripcion },
-                     { "cantMinimaPresupuestos", req.compra.cantMinimaPresupuestos },
-                     { "idCompra", req.compra.idCompra } };
+                //BsonDocument compra1 = new BsonDocument {
+                //     { "descripcion", req.compra.descripcion },
+                //     { "cantMinimaPresupuestos", req.compra.cantMinimaPresupuestos },
+                //     { "idCompra", req.compra.idCompra } };
 
-                Mongo.MongoDB.insertarDocumento("Compra", "alta", compra1 );
+                //Mongo.MongoDB.insertarDocumento("Compra", "alta", compra1 );
 
-                BsonDocument egreso = new BsonDocument {
-                     { "idEgreso", req.compra.egreso.idEgreso },
-                     { "montoTotal", req.compra.egreso.montoTotal },
-                     { "fechaEgreso", req.compra.egreso.fechaEgreso } };
+                //BsonDocument egreso = new BsonDocument {
+                //     { "idEgreso", req.compra.egreso.idEgreso },
+                //     { "montoTotal", req.compra.egreso.montoTotal },
+                //     { "fechaEgreso", req.compra.egreso.fechaEgreso } };
 
-                Mongo.MongoDB.insertarDocumento("Egreso", "alta", egreso);
+                //Mongo.MongoDB.insertarDocumento("Egreso", "alta", egreso);
 
                 return Json(Url.Action("Index", "Home"));
             }
@@ -394,7 +402,8 @@ namespace TP_DDS_MVC.Controllers
 
         public ActionResult criterios()
         {
-            ViewBag.criterios = CriterioDAO.getInstancia().getCriterios();
+            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+            ViewBag.criterios = CriterioDAO.getInstancia().getCriterios(idEntidad);
             return View();
         }
 

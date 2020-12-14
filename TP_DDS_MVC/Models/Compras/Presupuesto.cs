@@ -26,10 +26,6 @@ namespace TP_DDS_MVC.Models.Compras
 
         public List<ItemPresupuesto> items { get; set; }
 
-        [ForeignKey("proyecto")]
-        public int? idProyecto { get; set; }
-        public ProyectoFinanciamiento proyecto { get; set; }
-
 
         public Presupuesto() { }
 

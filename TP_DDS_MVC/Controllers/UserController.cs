@@ -107,10 +107,10 @@ namespace TP_DDS_MVC.Controllers
         public ActionResult ListarUsuarios()
         {
             var usuario = (Usuario)Session["usuario"];
-
+            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
             if (usuario != null && usuario.esAdmin)
             {
-                List<Usuario> usuarios = UsuarioDAO.getInstancia().getUsuarios();
+                List<Usuario> usuarios = UsuarioDAO.getInstancia().getUsuarios(idEntidad);
                 return View(usuarios);
             }
             else

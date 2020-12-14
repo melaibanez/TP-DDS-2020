@@ -36,12 +36,12 @@ namespace TP_DDS_MVC.DAOs
             }
         }
 
-        public List<DocumentoComercial> getDocumentosComerciales()
+        public List<DocumentoComercial> getDocumentosComerciales(int idEntidad)
         {
 
             using (MyDBContext context = new MyDBContext())
             {
-                return context.DocumentosComerciales.ToList();
+                return context.DocumentosComerciales.Where(dc => dc.idEntidad == idEntidad).ToList();
             }
         }
 
