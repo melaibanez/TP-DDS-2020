@@ -34,12 +34,12 @@ namespace TP_DDS_MVC.DAOs
             }
         }
 
-        public Usuario getUsuario(string username, string password)
+        public Usuario getUsuario(string username, int hashedPass)
         {
 
             using (MyDBContext context = new MyDBContext())
             {
-                return context.Usuarios.Where(usr => usr.nombreUsuario == username && usr.contrasenia == password).SingleOrDefault();
+                return context.Usuarios.Where(usr => usr.nombreUsuario == username && usr.contrasenia == hashedPass).SingleOrDefault();
             }
         }
 

@@ -10,7 +10,7 @@
 </div>
 
 <div class="container-fluid">
-    @if (Model == null)
+    @if (Model == null || Model.Count == 0)
     {
         <h6>No hay presupuestos cargados</h6>
     }
@@ -35,7 +35,7 @@
                 <td>@pres.montoTotal</td>
                 <td><input type="button" class="btn btn-secondary btn-sm" value="Detalle" onclick="window.open('@Url.Action("DetallePresupuesto", "Compra", new { id = pres.idDocComercial })', '_blank')" /></td>
                 <td>@Html.ActionLink("Editar", "EditPresupuesto", "Compra", new { id = pres.idDocComercial }, new { @class = "btn btn-secondary btn-sm" })</td>
-                <td>@Html.ActionLink("Borrar", "DeletePresupuesto", "Compra", new { id = pres.idDocComercial }, new { @class = "btn btn-secondary btn-sm" })</td>
+                <td>@Html.ActionLink("Eliminar", "DeletePresupuesto", "Compra", new { id = pres.idDocComercial }, new { @class = "btn btn-secondary btn-sm" })</td>
             </tr>
             }
         </tbody>

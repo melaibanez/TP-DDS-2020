@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using TP_DDS_MVC.DAOs;
 using TP_DDS_MVC.Helpers.DB;
 using TP_DDS_MVC.Models.Compras;
 using TP_DDS_MVC.Models.Entidades;

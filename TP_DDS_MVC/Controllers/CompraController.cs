@@ -30,7 +30,12 @@ namespace TP_DDS_MVC.Controllers
         ///////////////////////////////////////////////
         ///         Prestador de servicios          ///
         ///////////////////////////////////////////////
-        
+
+        public ActionResult ListPrestadorDeServicios()
+        {
+            List<PrestadorDeServicios> pres = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios();
+            return View(pres);
+        }
 
         public ActionResult AddPrestadorDeServicios()
         {
@@ -61,26 +66,58 @@ namespace TP_DDS_MVC.Controllers
             }
         }
 
-        public ActionResult ListPrestadorDeServicios()
+
+        public ActionResult DetallePrestadorDeServicios(int id)
         {
-            List<PrestadorDeServicios> pres = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios();
+            PrestadorDeServicios pres = PrestadorDeServiciosDAO.getInstancia().getPrestadorDeServicios(id);
             return View(pres);
         }
 
-        public ActionResult DeletePrestadorDeServicios(int idPrestador)
+
+        public ActionResult DeletePrestadorDeServicios(int id)
         {
             try
             {
-                PrestadorDeServiciosDAO.getInstancia().deletePrestador(idPrestador);
+                PrestadorDeServiciosDAO.getInstancia().deletePrestador(id);
                 return View("ListPrestadorDeServicios");
             }
             catch (Exception e)
             {
                 MyLogger.log(e.Message);
-                ViewBag.errorMsg = e.Message;
+                ViewBag.errorMsg = "Hubo un error al intentar eliminar el prestador de servicios";
                 return View("ListPrestadorDeServicios");
             }
         }
+
+        public ActionResult EditPrestadorDeServicios(int id)
+        {
+            PrestadorDeServicios pres = PrestadorDeServiciosDAO.getInstancia().getPrestadorDeServicios(id);
+            ViewBag.paises = PaisDAO.getInstancia().getPaises();
+            ViewBag.provincias = ProvinciaDAO.getInstancia().getProvincias();
+            ViewBag.ciudades = CiudadDAO.getInstancia().getCiudades();
+            return View(pres);
+        }
+
+        [HttpPost]
+        public ActionResult EditPrestadorDeServicios(PrestadorDeServicios PDS)
+        {
+            try
+            {
+                PDS.direccionPostal.validarDireccion();
+                PrestadorDeServiciosDAO.getInstancia().updatePrestadorDeServicios(PDS);
+                return RedirectToAction("ListPrestadorDeServicios", "Compra");
+            }
+            catch (Exception e)
+            {
+                ViewBag.paises = PaisDAO.getInstancia().getPaises();
+                ViewBag.provincias = ProvinciaDAO.getInstancia().getProvincias();
+                ViewBag.ciudades = CiudadDAO.getInstancia().getCiudades();
+                MyLogger.log(e.Message);
+                ViewBag.errorMsg = e.Message;
+                return View();
+            }
+        }
+
         ///////////////////////////////////////////////
         ///             Medio de Pago               ///
         ///////////////////////////////////////////////
@@ -379,25 +416,21 @@ namespace TP_DDS_MVC.Controllers
         {
 
             int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
-            //int idEntidad = 1;
-
-            string[] categoriasSeparadas = categorias.Split(',');
-
-            int cant = categorias.Split(',').ToList().Count();
+            
+            List<string> categoriasSeparadas = categorias.Split(',').ToList();
 
             List<Categoria> categoriasNuevas = new List<Categoria>();
 
-            for (int i = 0; i < cant; i++)
+            for (int i = 0; i < categoriasSeparadas.Count; i++)
             {
-                Categoria categoriaNueva = new Categoria(categoriasSeparadas[i]);
+                Categoria categoriaNueva = new Categoria(categoriasSeparadas[i].Trim());
                 categoriasNuevas.Add(categoriaNueva);
             }
 
             Criterio criterioNuevo = new Criterio(criterio, idEntidad, idPadre, categoriasNuevas);
 
             var criterio1 = CriterioDAO.getInstancia().add(criterioNuevo);
-
-
+            
 
             return RedirectToAction("Index", "Home");
         }

@@ -13,7 +13,7 @@ namespace TP_DDS_MVC.Helpers
     {
         public void OnAuthentication(AuthenticationContext filterContext)
         {
-            if (((Usuario)filterContext.HttpContext.Session["usuario"]).idEntidad != null)
+            if (filterContext.HttpContext.Session["usuario"] == null || ((Usuario)filterContext.HttpContext.Session["usuario"]).idEntidad != null)
             {
                 filterContext.Result = new HttpUnauthorizedResult();
             }

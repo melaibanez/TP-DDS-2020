@@ -313,7 +313,6 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="mongocrypt.dll" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -481,6 +480,7 @@
     <Content Include="Views\ProyectoFinanciamiento\DefinirOperacion.cshtml" />
     <Content Include="Views\Compra\criterios.cshtml" />
     <Content Include="Views\Compra\EditCompra.cshtml" />
+    <Content Include="Views\Compra\EditPrestadorDeServicios.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
