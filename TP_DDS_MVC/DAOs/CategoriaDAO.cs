@@ -29,7 +29,7 @@ namespace TP_DDS_MVC.DAOs
 
             using (MyDBContext context = new MyDBContext())
             {
-                return context.Categorias.ToList();
+                return context.Categorias.Include("criterio").ToList();
             }
         }
 

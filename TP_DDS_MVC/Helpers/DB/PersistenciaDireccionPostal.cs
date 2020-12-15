@@ -6,12 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TP_DDS_MVC.Models.Otros;
+using TP_DDS_MVC.Helpers.DB;
 
 namespace TP_DDS_MVC.Helpers.DB
 {
-    public static class PersistenciaDireccionPostal
+    public class PersistenciaDireccionPostal
     {
-
         public static void persistirDatosAPI()
         {
             using (MyDBContext context = new MyDBContext())
