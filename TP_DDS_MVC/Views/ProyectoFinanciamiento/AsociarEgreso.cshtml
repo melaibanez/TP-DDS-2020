@@ -8,30 +8,17 @@
 
 <h2>AsociarEgreso</h2>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col"></th>
-            <th scope="col">#</th>
-            <th scope="col">Monto</th>
 
-        </tr>
-    </thead>
-    <tbody>
-        @if ((listaEgresos as List<Egreso>).Count != 0)
-        {
-            foreach (Egreso egreso in (List<Egreso>)listaEgresos)
-            {
-                <tr>
-                    <th scope="row"><input type="checkbox" checked="checked"></th>
-                    <td>@egreso.idEgreso</td>
-                    <td>@egreso.montoTotal</td>
-                </tr>
-            }
-        }
-        
-    </tbody>
-</table>
+
+@foreach (Compra egreso in (List<Compra>)listaEgresos)
+{
+    <tr>
+        <th scope="row"><input type="checkbox" checked="checked"></th>
+        <td>@egreso.idCompra</td>
+        <td>@egreso.descripcion</td>
+    </tr>
+}
+
 
 <span>
     @Html.ActionLink("Asociar", "Index", new { controller = "ProyectoFinanciamientoController" }, new { @class = "btn btn-secondary col-lg-1" })

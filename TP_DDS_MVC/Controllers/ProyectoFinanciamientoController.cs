@@ -172,22 +172,32 @@ namespace TP_DDS_MVC.Controllers
 
         public ActionResult AsociarEgreso(int id)
         {
+            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+            ProyectoFinanciamiento proyecto = ProyectoFinanciamientoDAO.getInstancia().getProyecto(id);
+            ViewBag.listaEgresos = CompraDAO.getInstancia().getCompras(idEntidad);
+            return View(proyecto);
+        }
+
+        [HttpPost]
+        public ActionResult AsociarEgreso(int idCompra, int idProyecto)
+        {
             try
             {
-                ProyectoFinanciamiento proyecto = ProyectoFinanciamientoDAO.getInstancia().getProyecto(id);
-                ViewBag.listaEgresos = EgresoDAO.getInstancia().getEgresos();
-                return View(proyecto);
+                
             }
             catch (Exception e)
             {
+                int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
                 MyLogger.log(e.Message);
-                ViewBag.listaEgresos = EgresoDAO.getInstancia().getEgresos();
+                ViewBag.listaEgresos = EgresoDAO.getInstancia().getEgresos(idEntidad);
                 ViewBag.errorMsg = e.Message;
                 return View("DetalleProyectos");
             }
-
         }
-        public ActionResult AsociarIngreso(int id)
+
+
+
+            public ActionResult AsociarIngreso(int id)
         {
             try
             {

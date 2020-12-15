@@ -32,7 +32,7 @@ namespace TP_DDS_MVC.Controllers
             try
             {
                 ValidadorContrasenia validador = new ValidadorContrasenia();
-                //validador.validarContrasenia(password);
+                validador.validarContrasenia(password);
 
                 if (esAdmin == "administrador")
                 {
