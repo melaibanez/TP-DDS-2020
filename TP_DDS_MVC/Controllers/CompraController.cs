@@ -16,6 +16,7 @@ using TP_DDS_MVC.Mongo;
 using MongoDB.Driver;
 using MongoDB.Bson;
 using TP_DDS_MVC.Models.Otros;
+using System.Net;
 
 namespace TP_DDS_MVC.Controllers
 {
@@ -63,7 +64,7 @@ namespace TP_DDS_MVC.Controllers
                 ViewBag.ciudades = CiudadDAO.getInstancia().getCiudades();
                 MyLogger.log(e.Message);
                 ViewBag.errorMsg = e.Message;
-                return View();
+                return View();            
             }
         }
 
@@ -386,8 +387,8 @@ namespace TP_DDS_MVC.Controllers
                 ViewBag.usuarios = UsuarioDAO.getInstancia().getUsuarios(idEntidad);
                 ViewBag.categorias = CategoriaDAO.getInstancia().getCategorias(idEntidad);
                 MyLogger.log(e.Message);
-                ViewBag.errorMsg = e.Message;
-                return View();
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json(e.Message);
             }
         }
 
