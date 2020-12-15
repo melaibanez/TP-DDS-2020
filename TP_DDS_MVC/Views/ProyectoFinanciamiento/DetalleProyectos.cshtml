@@ -1,0 +1,50 @@
+﻿@using TP_DDS_MVC.Models.Proyectos
+@model ProyectoFinanciamiento
+
+@{
+    ViewBag.Title = "DetalleProyectos";
+}
+
+    <label for="limiteErogacion">@Model.idProyecto</label>
+
+<h2>DetalleProyectos</h2>
+
+
+
+<div class="pb-3">
+    <h2>Proyecto de Financiamiento</h2>
+</div>
+<div class="form-row mb-3">
+    <div class="form-group col-md-4">
+        <label for="propuesta">Propuesta</label>
+        <input class="form-control" id="propuesta2" value="@Model.propuesta" type="text" disabled>
+    </div>
+    <div class="form-group col-md-4">
+        <label for="cantPresupuestos">Cantidad de Presupuestos exigibles (validador)</label>
+        <input class="form-control" id="cantidadPresupuestos" value="@Model.cantidadPresupuestos" type="text" disabled>
+    </div>
+    <div class="form-group col-md-4">
+        <label for="limiteErogacion">Ingrese el monto límite de erogación</label>
+        <input class="form-control" id="limiteErogacion2" value="@Model.limiteErogacion" type="text" disabled>
+    </div>
+</div>
+<div class="form-row mb-5">
+    <div class="form-group col-md-4">
+        <label for="fechaCierre">Ingrese la fecha de cierre</label>
+        <input class="form-control" id="fechaCierre2" value="@Model.fechaCierre" type="text" disabled>
+    </div>
+    <div class="form-group col-md-4">
+        <label for="fechaEjecucion">Ingrese la fecha de ejecución</label>
+        <input class="form-control" id="fechaEjecucion2" value="@Model.fechaEjecucion" type="text" disabled>
+    </div>
+</div>
+
+<div class="form-row mb-3">
+    <div class="form-group col-md-4">
+        @Html.ActionLink("Asociar Ingreso", "AsociarIngreso", "ProyectoFinanciamiento", new { id = Model.idProyecto }, new { @class = "btn btn-secondary btn-sm" })
+    </div>
+    <div class="form-group col-md-4">
+        @Html.ActionLink("Asociar Egreso", "AsociarEgreso", "ProyectoFinanciamiento", new { id = Model.idProyecto }, new { @class = "btn btn-secondary btn-sm" })
+    </div>
+</div>
+

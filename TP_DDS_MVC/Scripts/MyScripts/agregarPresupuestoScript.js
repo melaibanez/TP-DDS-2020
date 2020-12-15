@@ -20,17 +20,21 @@
     }
 }
 
+$(document).ready(function () {
+    $('#error').hide()
+});
+
 $("#tipoDoc").change(function () {
 
     if ($(this).val() === "DocumentoComercial") {
         $("#formDoc").show()
         $("#formPresupuesto").hide()
-        $('#tipo_enlace').val("")
+        $('#tipoEnlace').val("")
     }
     else if ($(this).val() === "Presupuesto") {
         $("#formPresupuesto").show()
         $("#formDoc").hide()
-        $('#tipo_enlace').val("Presupuesto")
+        $('#tipoEnlace').val("Presupuesto")
     }
 });
 
@@ -110,8 +114,9 @@ $("#submit").click(function () {
         success: function (data) {
             window.location.href = data;
         }, 
-        error: function (err) {
-            console.log(err)
+        error: function (data) {
+            $('#error').show();
+            $('#error').html(data.responseJSON);
         }
     })
 })

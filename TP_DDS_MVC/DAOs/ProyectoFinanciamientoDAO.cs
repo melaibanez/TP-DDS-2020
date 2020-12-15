@@ -35,6 +35,15 @@ namespace TP_DDS_MVC.DAOs
             }
         }
 
+        public ProyectoFinanciamiento getProyecto(int idProyecto)
+        {
+
+            using (MyDBContext context = new MyDBContext())
+            {
+                return context.Proyectos.Where(p => p.idProyecto == idProyecto).FirstOrDefault();
+            }
+        }
+
         public ProyectoFinanciamiento getCategoria(int id)
         {
             using (MyDBContext context = new MyDBContext())
@@ -53,6 +62,25 @@ namespace TP_DDS_MVC.DAOs
             }
 
             return added;
+        }
+
+        public void deleteProyecto (int idProyecto)
+        {
+            using (MyDBContext context = new MyDBContext())
+            {
+                var itemToRemove = context.Proyectos.SingleOrDefault(x => x.idProyecto == idProyecto); //returns a single item.
+
+                if (itemToRemove != null)
+                {
+                    context.Proyectos.Remove(itemToRemove);
+
+                    context.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("El proyecto que quiere eliminar, no existe");
+                }
+            }
         }
 
     }

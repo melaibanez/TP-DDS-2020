@@ -1,0 +1,21 @@
+﻿@using TP_DDS_MVC.Models.Ingresos;
+@model List<Ingreso>
+@{
+    ViewBag.Title = "AsociarIngreso";
+}
+
+    <h2>AsociarIngreso</h2>
+
+    @foreach (Ingreso ingreso in (List<Ingreso>)Model)
+    {
+        <label class="container">
+            @ingreso.idIngreso
+            <input type="checkbox" checked="checked">
+            <span class="checkmark"></span>
+        </label>
+    }
+
+<span>
+    <button class="btn btn-success col-lg-2" id="asociar">Asociar</button>
+    @Html.ActionLink("Cancelar", "Index", new { controller = "ProyectoFinanciamientoController" }, new { @class = "btn btn-secondary col-lg-1" })
+</span>

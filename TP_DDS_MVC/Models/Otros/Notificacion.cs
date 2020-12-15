@@ -19,9 +19,10 @@ namespace TP_DDS_MVC.Models.Otros
 
         [StringLength(300)]
         public string mensaje { get; set; }
-        [BsonIgnore]
+        
         [ForeignKey("usuario")]
         public int idUsuario { get; set; }
+        [BsonIgnore]
         public Usuario usuario { get; set; }
 
         public Notificacion() { }

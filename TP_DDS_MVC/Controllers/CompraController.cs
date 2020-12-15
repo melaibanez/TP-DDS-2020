@@ -205,37 +205,33 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
+                int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
                 if (req.presupuesto != null)
                 {
-                    req.presupuesto.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
+                    req.presupuesto.idEntidad = idEntidad; 
                     if (req.setEgreso && req.presupuesto.idCompra != null)
                     {
                         Compra comp = CompraDAO.getInstancia().getCompraConEgresoYDocumentos(req.presupuesto.idCompra.Value);
                         if (comp.egreso.docsComerciales.Exists(dc => dc.tipo_enlace == "Presupuesto"))
                         {
-                            throw new Exception("La compra seleccionada ya tiene un presupuesto elegido para el egreso");
+                            throw new Exception("La compra seleccionada ya tiene un presupuesto elegido para el egreso.");
                         }
                         req.presupuesto.idEgreso = comp.idEgreso;
                     }
                     PresupuestoDAO.getInstancia().add(req.presupuesto);
                 } else if(req.documentoComercial != null){
-                    req.documentoComercial.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
-                    if (req.setEgreso && req.documentoComercial.idEgreso != null)
-                    {
-                        Compra comp = CompraDAO.getInstancia().getCompraConEgresoYDocumentos(req.documentoComercial.idEgreso.Value);
-                        req.documentoComercial.idEgreso = comp.idEgreso;
-                    }
+                    if(req.documentoComercial.idEgreso == null )
+                        throw new Exception("Revise los datos ingresados y vuelva a intentarlo.");
+                    req.documentoComercial.idEntidad = idEntidad;
+                    DocumentoComercialDAO.getInstancia().add(req.documentoComercial);
                     
                 } else
                 {
-                    throw new Exception("Hay problemas con los documentos");
+                    throw new Exception("Hubo un problema cargando el documento. Recargue la pagina y vuelva a intentarlo.");
                 }
-                
-                /*BsonDocument presupuesto = new BsonDocument {
-                     { "montoTotal", req.presupuesto.montoTotal },
-                     { "idPrestadorDeServicios", req.presupuesto.idPrestadorDeServicios } };
 
-                Mongo.MongoDB.insertarDocumento("Egreso", "alta", req.presupuesto.ToBsonDocument());*/
+                PresupuestoDAO.getInstancia().add(req.presupuesto);
+
 
                 //Mongo.MongoDB.insertarDocumento("Presupuesto", "alta", req.presupuesto.ToBsonDocument());
                 //Mongo.MongoDB.insertarDocumento(req.documentoComercial.tipo_enlace, "alta", req.documentoComercial.ToBsonDocument()); //REVISAR
@@ -252,8 +248,8 @@ namespace TP_DDS_MVC.Controllers
                 ViewBag.categorias = CategoriaDAO.getInstancia().getCategorias(idEntidad);
                 ViewBag.egresos = EgresoDAO.getInstancia().getEgresos(idEntidad);
                 MyLogger.log(e.Message);
-                ViewBag.errorMsg = e.Message;
-                return View();
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json(e.Message);
             }
         }
 
@@ -352,11 +348,14 @@ namespace TP_DDS_MVC.Controllers
             
             try
             {
+
                 if (compra.revisores != null && compra.descripcion != null && compra.egreso != null)
                 {
                     compra.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
+                    compra.egreso.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
 
                     CompraDAO.getInstancia().add(compra);
+
 
                     // Mongo.MongoDB.insertarDocumento("Compra", "alta", compra.ToBsonDocument());
 
@@ -388,6 +387,10 @@ namespace TP_DDS_MVC.Controllers
                     //     { "fechaEgreso", req.compra.egreso.fechaEgreso } };
 
                     //Mongo.MongoDB.insertarDocumento("Egreso", "alta", egreso);
+
+                Mongo.MongoDB.insertarDocumento("Egreso", "alta", req.compra.egreso.ToBsonDocument());
+
+
 
                     return Json(Url.Action("Index", "Home"));
                 } else
@@ -443,25 +446,34 @@ namespace TP_DDS_MVC.Controllers
         [HttpPost]
         public ActionResult criterios(string criterio, int? idPadre, string categorias)
         {
-
-            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
-            
-            List<string> categoriasSeparadas = categorias.Split(',').ToList();
-
-            List<Categoria> categoriasNuevas = new List<Categoria>();
-
-            for (int i = 0; i < categoriasSeparadas.Count; i++)
+            try
             {
-                Categoria categoriaNueva = new Categoria(categoriasSeparadas[i].Trim());
-                categoriasNuevas.Add(categoriaNueva);
+                int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+
+                List<string> categoriasSeparadas = categorias.Split(',').ToList();
+
+                List<Categoria> categoriasNuevas = new List<Categoria>();
+
+                for (int i = 0; i < categoriasSeparadas.Count; i++)
+                {
+                    Categoria categoriaNueva = new Categoria(categoriasSeparadas[i].Trim());
+                    categoriasNuevas.Add(categoriaNueva);
+                }
+
+                Criterio criterioNuevo = new Criterio(criterio, idEntidad, idPadre, categoriasNuevas);
+
+                var criterio1 = CriterioDAO.getInstancia().add(criterioNuevo);
+
+
+                return RedirectToAction("Index", "Home");
             }
-
-            Criterio criterioNuevo = new Criterio(criterio, idEntidad, idPadre, categoriasNuevas);
-
-            var criterio1 = CriterioDAO.getInstancia().add(criterioNuevo);
-            
-
-            return RedirectToAction("Index", "Home");
+            catch(Exception e)
+            {
+                int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+                ViewBag.criterios = CriterioDAO.getInstancia().getCriterios(idEntidad);
+                ViewBag.errorMsg = e.Message;
+                return View();
+            }
         }
 
     }

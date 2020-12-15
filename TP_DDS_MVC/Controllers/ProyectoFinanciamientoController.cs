@@ -13,6 +13,7 @@ using TP_DDS_MVC.Models.Compras;
 using MongoDB.Driver;
 using MongoDB.Bson;
 using System.Security.Policy;
+using Antlr.Runtime.Tree;
 
 namespace TP_DDS_MVC.Controllers
 {
@@ -134,6 +135,77 @@ namespace TP_DDS_MVC.Controllers
         {
             
             return View();
+        }
+
+
+        public ActionResult ListProyectos()
+        {
+            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+            List<ProyectoFinanciamiento> listaProyectos = ProyectoFinanciamientoDAO.getInstancia().getProyectos(idEntidad);
+            return View(listaProyectos);
+        }
+
+        public ActionResult DeleteProyecto(int id)
+        {
+            try
+            {
+                ProyectoFinanciamientoDAO.getInstancia().deleteProyecto(id);
+                return View("ListProyectos");
+            }
+            catch (Exception e)
+            {
+                MyLogger.log(e.Message);
+                ViewBag.errorMsg = e.Message;
+                return View("ListProyectos");
+            }
+        }
+
+        public ActionResult DetalleProyectos(int id)
+        {
+            try
+            {
+                ProyectoFinanciamiento proyecto = ProyectoFinanciamientoDAO.getInstancia().getProyecto(id);
+                
+                return View(proyecto);
+            }
+            catch (Exception e)
+            {
+                MyLogger.log(e.Message);
+                ViewBag.errorMsg = e.Message;
+                return View("ListProyectos");
+            }
+        }
+
+        public ActionResult AsociarEgreso(int id)
+        {
+            try
+            {
+                ProyectoFinanciamiento proyecto = ProyectoFinanciamientoDAO.getInstancia().getProyecto(id);
+                ViewBag.listaEgresos = EgresoDAO.getInstancia().getEgresos();
+                return View(proyecto);
+            }
+            catch (Exception e)
+            {
+                MyLogger.log(e.Message);
+                ViewBag.listaEgresos = EgresoDAO.getInstancia().getEgresos();
+                ViewBag.errorMsg = e.Message;
+                return View("DetalleProyectos");
+            }
+
+        }
+        public ActionResult AsociarIngreso(int id)
+        {
+            try
+            {
+                ProyectoFinanciamiento proyecto = ProyectoFinanciamientoDAO.getInstancia().getProyecto(id);
+                return View(proyecto);
+            }
+            catch (Exception e)
+            {
+                MyLogger.log(e.Message);
+                ViewBag.errorMsg = e.Message;
+                return View("DetalleProyectos");
+            }
         }
 
         public ActionResult ListOperaciones()

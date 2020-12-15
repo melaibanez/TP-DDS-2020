@@ -1,0 +1,39 @@
+﻿@using TP_DDS_MVC.Models.Proyectos;
+@using TP_DDS_MVC.Models.Compras;
+@model ProyectoFinanciamiento
+@{
+    ViewBag.Title = "AsociarEgreso";
+    var listaEgresos = ViewBag.listaEgresos;
+}
+
+<h2>AsociarEgreso</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">#</th>
+            <th scope="col">Monto</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @if ((listaEgresos as List<Egreso>).Count != 0)
+        {
+            foreach (Egreso egreso in (List<Egreso>)listaEgresos)
+            {
+                <tr>
+                    <th scope="row"><input type="checkbox" checked="checked"></th>
+                    <td>@egreso.idEgreso</td>
+                    <td>@egreso.montoTotal</td>
+                </tr>
+            }
+        }
+        
+    </tbody>
+</table>
+
+<span>
+    @Html.ActionLink("Asociar", "Index", new { controller = "ProyectoFinanciamientoController" }, new { @class = "btn btn-secondary col-lg-1" })
+</span>
+

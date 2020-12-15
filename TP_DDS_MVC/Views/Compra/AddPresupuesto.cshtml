@@ -16,12 +16,10 @@
 <div class="pb-3">
     <h2>Agregar Documento Comercial</h2>
 </div>
-@if (ViewBag.errorMsg != null)
-{
-    <div class="alert alert-danger mb-3" role="alert">
-        @ViewBag.errorMsg
-    </div>
-}
+
+<div id="error" class="alert alert-danger mb-3" role="alert">
+</div>
+
 <div class="form-row">
     <div class="form-group col-12">
         <label for="nroIdentificacion">Numero de Identificacion</label>
@@ -119,11 +117,11 @@
     <div class="form-row">
         <div class="form-group col-12">
             <label for="asociarEgreso">Asociar a un egreso</label>
-            <input list="egresos" id="asociarEgreso" class="form-control" type="text" placeholder="Seleccionar...">
+            <input list="egresosAsociados" id="asociarEgreso" class="form-control" type="text" placeholder="Seleccionar...">
             <datalist id="egresosAsociados">
-                @foreach (Egreso E in (List<Egreso>)ViewBag.egresos) //Tira excepción por ViewBag.egreso
+                @foreach (Egreso E in (List<Egreso>)ViewBag.egresos)
                 {
-                    <option value="@E.idEgreso">@E.detalle</option> 
+                    <option value="@E.idEgreso">$@E.montoTotal</option>
                 }
             </datalist>
         </div>

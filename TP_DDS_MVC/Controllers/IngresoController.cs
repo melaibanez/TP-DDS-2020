@@ -53,13 +53,7 @@ namespace TP_DDS_MVC.Controllers
                 return View();
             }
         }
-
-
-
-
-
-
-        // GET: Ingreso
+                // GET: Ingreso
         public ActionResult Index()
         {
             return View();
