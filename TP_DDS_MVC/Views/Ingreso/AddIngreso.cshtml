@@ -1,4 +1,5 @@
 ﻿@using TP_DDS_MVC.Models.Ingresos;
+@using TP_DDS_MVC.Models.Compras;
 @model Ingreso
 @{
     @section scripts {
@@ -21,11 +22,11 @@
     </div>
 </div>
 <div class="form-row mb-4">
-    <div class="form-group">
+    <div class="form-group col">
         <label for="fecha">Fecha inicio:</label>
         <input class="form-control" id="fechaInicio" type="date">
     </div>
-    <div class="form-group">
+    <div class="form-group col">
         <label for="fecha">Fecha final:</label>
         <input class="form-control" id="fechaFin" type="date">
     </div>
@@ -34,7 +35,7 @@
 <div class="mb-3">
     <span>
         <button class="btn btn-success col-lg-2" id="submit">Cargar</button>
-        @Html.ActionLink("Cancelar", "Index", new { controller = "Home" }, new { @class = "btn btn-secondary col-lg-1" })
+        @Html.ActionLink("Cancelar", "Index", new { controller = "Ingreso" }, new { @class = "btn btn-secondary col-lg-1" })
     </span>
 </div>
 

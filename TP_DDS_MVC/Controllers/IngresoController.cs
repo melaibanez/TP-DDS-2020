@@ -69,7 +69,8 @@ namespace TP_DDS_MVC.Controllers
         // GET: Ingreso/Create
         public ActionResult Create()
         {
-            ViewBag.egresos = EgresoDAO.getInstancia().getEgresos();
+            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+            ViewBag.egresos = EgresoDAO.getInstancia().getEgresos(idEntidad);
             return View();
         }
 
@@ -89,47 +90,60 @@ namespace TP_DDS_MVC.Controllers
             }
         }
 
-        // GET: Ingreso/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult ListIngresos()
         {
-            return View();
+            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+            List<Ingreso> ingresos = IngresoDAO.getInstancia().getIngresos(idEntidad);
+            return View(ingresos);
+        }
+
+        public ActionResult DetalleIngreso (int id)
+        {
+            Ingreso ingreso = IngresoDAO.getInstancia().getIngreso(id);
+
+            return View(ingreso);
+        }
+
+        // GET: Ingreso/Edit/5
+        public ActionResult EditIngreso(int id)
+        {
+            Ingreso pres = IngresoDAO.getInstancia().getIngreso(id);
+            return View(pres);
         }
 
         // POST: Ingreso/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult EditIngreso(Ingreso ing)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                IngresoDAO.getInstancia().updateIngreso(ing);
+                return RedirectToAction("ListIngresos", "Ingreso");
             }
-            catch
+            catch (Exception e)
             {
+                //int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+                Ingreso pres = IngresoDAO.getInstancia().getIngreso(ing.idIngreso);
+                MyLogger.log(e.Message);
+                ViewBag.errorMsg = e.Message;
                 return View();
             }
         }
 
         // GET: Ingreso/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Ingreso/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult DeleteIngreso(int id)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                IngresoDAO.getInstancia().deleteIngreso(id);
+                return RedirectToAction("ListIngresos");
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                MyLogger.log(e.Message);
+                ViewBag.errorMsg = e.Message;
+                return RedirectToAction("ListIngresos");
+
             }
         }
 
@@ -171,7 +185,7 @@ namespace TP_DDS_MVC.Controllers
 
             }
 
-            ViewBag.egresos = EgresoDAO.getInstancia().getEgresos();
+            ViewBag.egresos = EgresoDAO.getInstancia().getEgresos(idEntidad);
             ViewBag.ingresos = IngresoDAO.getInstancia().getIngresos(idEntidad);
 
             return Json(Url.Action("Index", "Home"));

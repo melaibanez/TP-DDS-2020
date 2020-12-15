@@ -140,13 +140,25 @@ namespace TP_DDS_MVC
             routes.MapRoute(
                 name: "List ingresos",
                 url: "ingreso",
-                defaults: new { controller = "Ingreso", action = "ListIngresos" }
+                defaults: new { controller = "Ingreso", action = "ListIngresos"}
             );
 
             routes.MapRoute(
                 name: "Add Ingreso",
                 url: "ingreso/add",
                 defaults: new { controller = "Ingreso", action = "AddIngreso" }
+            );
+
+            routes.MapRoute(
+                name: "Detalle Ingreso",
+                url: "ingreso/{id}",
+                defaults: new { controller = "Ingreso", action = "DetalleIngreso", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Editar Ingreso",
+                url: "ingreso/edit/{id}",
+                defaults: new { controller = "Ingreso", action = "EditIngreso", id = UrlParameter.Optional }
             );
 
 

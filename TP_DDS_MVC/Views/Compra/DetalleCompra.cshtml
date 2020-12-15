@@ -1,6 +1,10 @@
 ﻿@using TP_DDS_MVC.Models.Compras;
+@using TP_DDS_MVC.Models.Otros;
 @model Compra
 @{
+    @section scripts {
+        <script type="text/javascript" src="~/Scripts/MyScripts/mostrarPorCriterios.js"></script>
+    }
     ViewBag.Title = "Detalle Compra";
 }
 
@@ -21,41 +25,58 @@
     <div class="form-group col">
         <div class="form-group">
             <label for="revisor">Revisores</label>
-            <input id="revisores" class="form-control" type="text" value=@Model.revisores disabled>
+            <ul class="list-group list-group-flush pb-2" id="listaRevisores">
+                @foreach (Usuario user in (List<Usuario>)Model.revisores)
+                {
+                    <li class="list-group-item">@user.nombreUsuario </li>
+                }
+            </ul>
+
         </div>
     </div>
 </div>
 
-<div class="mb-4">
+<div class="mb-2">
 </div>
 <div class="ml-4">
     <div class="form-group mb-3">
         <label for="fecha">Fecha del egreso:</label>
         <input id="fecha" class="form-control" type="text" value=@Model.egreso.fechaEgreso disabled>
     </div>
-    <div class="form-row mb-3">
+    <div class="form-row mb-2">
         <div class="form-group col mr-5">
             <label for="proveedores">Prestador de servicios:</label>
-            <input id="proveedores" class="form-control" type="text" value=@Model.egreso.prestadorDeServicios disabled>
+            <input id="proveedores" class="form-control" type="text" value=@Model.egreso.prestadorDeServicios.razonSocial disabled>
         </div>
         <div class="form-group col">
             <label for="mediosDePago">Medios de pago:</label>
-            <input id="revisores" class="form-control" type="text" value=@Model.egreso.medioDePago disabled>
+            <input id="revisores" class="form-control" type="text" value=@Model.egreso.medioDePago.instrumento disabled>
         </div>
     </div>
 
-
-    <div class="mb-3">
+    <div class="mb-2 mt-2">
+        <label for="categoria">Ver por categoría</label>
+        <input list="categorias" class="form-control" id="categoria" name="categorias" placeholder="Seleccionar..." type="text">
+        <datalist id="categorias">
+            @foreach (Categoria cat in (List<Categoria>)ViewBag.categorias)
+            {
+                <option value="@cat.nombre">@cat.criterio.nombre</option>
+            }
+        </datalist>
+    </div>
+    <div class="mb-2">
         <div class="form-row">
             <div class="form-group col-4">
                 <label for="items">Items</label>
-                @foreach (Item item in @Model.egreso.detalle)
-                {
-                    <input id="items" class="form-control" type="text" value="@item.descripcion, $@item.valor, @item.cant unidades" disabled>
-                }
+                <ul class="list-group list-group-flush pb-2" id="listaItems">
+                    @foreach (Item i in Model.egreso.detalle)
+                    {
+                        <li class="list-group-item">@i.descripcion&nbsp;-&nbsp;$@i.valor c/u&nbsp;-&nbsp;@i.cant unidades&nbsp;-&nbsp;@i.categoriasString()</li>
+                    }
+                </ul>
             </div>
             <br />
-            <ul class="list-group list-group-flush pb-5" id="listaItems">
+            <ul class="list-group list-group-flush pb-2" id="listaItems">
             </ul>
         </div>
     </div>
@@ -63,7 +84,7 @@
     <div class="form-group row">
         <div class="col-10">
             &nbsp;&nbsp;&nbsp;
-            @Html.ActionLink("Finalizar Edicion", "ListCompras", new { controller = "Compra" }, new { @class = "btn btn-secondary" })
+            @Html.ActionLink("Volver", "ListCompras", new { controller = "Compra" }, new { @class = "btn btn-secondary" })
         </div>
     </div>
 </div>

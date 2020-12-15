@@ -23,12 +23,14 @@ namespace TP_DDS_MVC.Helpers
     {
         public Compra compra { get; set; }
         public List<int> revisores { get; set; }
-        public List<List<string>> categorias { get; set; }
+
     }
 
     public class JsonPresupuesto
     {
         public Presupuesto presupuesto { get; set; }
+
+        public DocumentoComercial documentoComercial { get; set; }
         public bool setEgreso { get; set; }
     }
 
