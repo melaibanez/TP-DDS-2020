@@ -16,6 +16,7 @@ using TP_DDS_MVC.Mongo;
 using MongoDB.Driver;
 using MongoDB.Bson;
 using TP_DDS_MVC.Models.Otros;
+using System.Net;
 
 namespace TP_DDS_MVC.Controllers
 {
@@ -63,7 +64,7 @@ namespace TP_DDS_MVC.Controllers
                 ViewBag.ciudades = CiudadDAO.getInstancia().getCiudades();
                 MyLogger.log(e.Message);
                 ViewBag.errorMsg = e.Message;
-                return View();
+                return View();            
             }
         }
 
@@ -352,7 +353,7 @@ namespace TP_DDS_MVC.Controllers
                 
                 Compra compra = CompraDAO.getInstancia().add(req.compra);
 
-                Mongo.MongoDB.insertarDocumento("Compra", "alta", req.compra.ToBsonDocument());
+                //Mongo.MongoDB.insertarDocumento("Compra", "alta", req.compra.ToBsonDocument());
 
                 /*BsonDocument compra1 = new BsonDocument {
                      { "descripcion", req.compra.descripcion },
@@ -371,7 +372,7 @@ namespace TP_DDS_MVC.Controllers
 
                 //BsonDocument document = BsonDocument.Parse(dataJson);
 
-                Mongo.MongoDB.insertarDocumento("Egreso", "alta", req.compra.egreso.ToBsonDocument());
+                //Mongo.MongoDB.insertarDocumento("Egreso", "alta", req.compra.egreso.ToBsonDocument());
 
 
                 //Mongo.MongoDB.insertarDocumento("Compra", "alta", compra1 );
@@ -393,8 +394,8 @@ namespace TP_DDS_MVC.Controllers
                 ViewBag.usuarios = UsuarioDAO.getInstancia().getUsuarios(idEntidad);
                 ViewBag.categorias = CategoriaDAO.getInstancia().getCategorias(idEntidad);
                 MyLogger.log(e.Message);
-                ViewBag.errorMsg = e.Message;
-                return View();
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json(e.Message);
             }
         }
 

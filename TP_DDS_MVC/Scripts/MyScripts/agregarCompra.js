@@ -17,6 +17,9 @@
     }
 }
 
+$(document).ready(function () {
+    $('#error').hide()
+});
 
 $("#agregarUsu").click(function () {
     $('#noUsu').hide()
@@ -107,8 +110,9 @@ $("#submit").click(function () {
         success: function (data) {
             window.location.href = data;
         },
-        error: function (err) {
-            console.log(err)
+        error: function (data) {
+            $('#error').show();
+            $('#error').html(data.responseJSON);
         }
     })
 })
