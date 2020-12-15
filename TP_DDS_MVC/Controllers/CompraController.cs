@@ -172,7 +172,8 @@ namespace TP_DDS_MVC.Controllers
 
         public ActionResult ListPresupuestos()
         {
-            List<Presupuesto> pres = PresupuestoDAO.getInstancia().getPresupuestos();
+            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+            List<Presupuesto> pres = PresupuestoDAO.getInstancia().getPresupuestos(idEntidad);
             return View(pres);
         }
 
@@ -190,17 +191,31 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
-                req.presupuesto.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
-                if (req.setEgreso && req.presupuesto.idCompra != null)
+                if (req.presupuesto != null)
                 {
-                    Compra comp = CompraDAO.getInstancia().getCompraConEgresoYDocumentos(req.presupuesto.idCompra.Value);
-                    if(comp.egreso.docsComerciales.Exists(dc => dc.tipo_enlace == "Presupuesto"))
+                    req.presupuesto.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
+                    if (req.setEgreso && req.presupuesto.idCompra != null)
                     {
-                        throw new Exception("La compra seleccionada ya tiene un presupuesto elegido para el egreso");
+                        Compra comp = CompraDAO.getInstancia().getCompraConEgresoYDocumentos(req.presupuesto.idCompra.Value);
+                        if (comp.egreso.docsComerciales.Exists(dc => dc.tipo_enlace == "Presupuesto"))
+                        {
+                            throw new Exception("La compra seleccionada ya tiene un presupuesto elegido para el egreso");
+                        }
+                        req.presupuesto.idEgreso = comp.idEgreso;
                     }
-                    req.presupuesto.idEgreso = comp.idEgreso;
+                    PresupuestoDAO.getInstancia().add(req.presupuesto);
+                } else if(req.documentoComercial != null){
+                    req.documentoComercial.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
+                    if (req.setEgreso && req.documentoComercial.idEgreso != null)
+                    {
+                        Compra comp = CompraDAO.getInstancia().getCompraConEgresoYDocumentos(req.documentoComercial.idEgreso.Value);
+                        req.documentoComercial.idEgreso = comp.idEgreso;
+                    }
+                    
+                } else
+                {
+                    throw new Exception("Hay problemas con los documentos");
                 }
-                PresupuestoDAO.getInstancia().add(req.presupuesto);
                 
                 /*BsonDocument presupuesto = new BsonDocument {
                      { "montoTotal", req.presupuesto.montoTotal },
@@ -209,6 +224,8 @@ namespace TP_DDS_MVC.Controllers
                 Mongo.MongoDB.insertarDocumento("Egreso", "alta", req.presupuesto.ToBsonDocument());*/
 
                 Mongo.MongoDB.insertarDocumento("Presupuesto", "alta", req.presupuesto.ToBsonDocument());
+                Mongo.MongoDB.insertarDocumento(req.documentoComercial.tipo_enlace, "alta", req.documentoComercial.ToBsonDocument()); //REVISAR
+
 
                 return Json(Url.Action("Index", "Home"));
             }
@@ -301,13 +318,14 @@ namespace TP_DDS_MVC.Controllers
         // GET: Compras
         public ActionResult ListCompras()
         {
-            List<Compra> compras = CompraDAO.getInstancia().getComprasConEgreso();
+            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+            List<Compra> compras = CompraDAO.getInstancia().getComprasConEgreso(idEntidad);
             return View(compras);
         }
 
         public ActionResult DetalleCompra(int idCompra)
         {
-            Compra pres = CompraDAO.getInstancia().getCompraConEgreso(idCompra);
+            Compra pres = CompraDAO.getInstancia().getCompraConEgresoYDocumentos(idCompra);
             return View(pres);
         }
 

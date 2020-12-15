@@ -140,7 +140,7 @@ namespace TP_DDS_MVC
             routes.MapRoute(
                 name: "List ingresos",
                 url: "ingreso",
-                defaults: new { controller = "Ingreso", action = "ListIngresos" }
+                defaults: new { controller = "Ingreso", action = "ListIngresos"}
             );
 
             routes.MapRoute(
@@ -149,6 +149,11 @@ namespace TP_DDS_MVC
                 defaults: new { controller = "Ingreso", action = "AddIngreso" }
             );
 
+            routes.MapRoute(
+                name: "Detalle Ingreso",
+                url: "ingreso/{id}",
+                defaults: new { controller = "Ingreso", action = "DetalleIngreso", id = UrlParameter.Optional }
+            );
 
             /// cargar entidad
 

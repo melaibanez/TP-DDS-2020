@@ -1,7 +1,37 @@
-﻿
+﻿@using TP_DDS_MVC.Models.Ingresos;
+@model List<Ingreso>
 @{
     ViewBag.Title = "ListIngresos";
 }
 
-<h2>ListIngresos</h2>
 
+<div class="alert alert-secondary my-4" role="alert">
+    <h2>Listado de ingresos</h2>
+</div>
+
+<div class="container-fluid">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Total</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Ingreso ingreso in Model)
+            {
+            <tr>
+                <th scope="row">@ingreso.idIngreso</th>
+                <td>@ingreso.descripcion</td>
+                <td>@ingreso.monto</td>
+                <td>@Html.ActionLink("Detalle", "DetalleIngreso", "Ingreso", new { idIngreso = ingreso.idIngreso }, new { @class = "btn btn-info btn-sm" })</td>
+                <td>@Html.ActionLink("Editar", "EditIngreso", "Ingreso", new { idIngreso = ingreso.idIngreso }, new { @class = "btn btn-secondary btn-sm" })</td>
+                <td>@Html.ActionLink("Eliminar", "DeleteIngreso", "Ingreso", new { idIngreso = ingreso.idIngreso }, new { @class = "btn btn-secondary btn-sm" })</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

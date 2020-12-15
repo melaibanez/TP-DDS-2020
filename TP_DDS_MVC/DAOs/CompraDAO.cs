@@ -34,13 +34,13 @@ namespace TP_DDS_MVC.DAOs
             }
         }
 
-        public List<Compra> getComprasConEgreso()
+        public List<Compra> getComprasConEgreso(int idEntidad)
         {
 
             using (MyDBContext context = new MyDBContext())
             {
 
-                return context.Compras.Include("egreso").ToList();
+                return context.Compras.Include("egreso").Where(i => i.idEntidad == idEntidad).ToList();
             }
         }
 

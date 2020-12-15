@@ -25,12 +25,12 @@ namespace TP_DDS_MVC.DAOs
             return instancia;
         }
 
-        public List<Presupuesto> getPresupuestos()
+        public List<Presupuesto> getPresupuestos(int idEntidad)
         {
 
             using (MyDBContext context = new MyDBContext())
             {
-                return context.DocumentosComerciales.OfType<Presupuesto>().ToList();
+                return context.DocumentosComerciales.OfType<Presupuesto>().Where(x=>x.idEntidad == idEntidad).ToList();
             }
         }
 

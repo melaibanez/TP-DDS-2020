@@ -29,6 +29,8 @@ namespace TP_DDS_MVC.Helpers
     public class JsonPresupuesto
     {
         public Presupuesto presupuesto { get; set; }
+
+        public DocumentoComercial documentoComercial { get; set; }
         public bool setEgreso { get; set; }
     }
 
