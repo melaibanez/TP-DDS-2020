@@ -34,7 +34,7 @@ namespace TP_DDS_MVC.DAOs
             }
         }
 
-        public Usuario getUsuario(string username, int hashedPass)
+        public Usuario getUsuario(string username, string hashedPass)
         {
 
             using (MyDBContext context = new MyDBContext())

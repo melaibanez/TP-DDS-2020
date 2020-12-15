@@ -231,6 +231,7 @@ namespace TP_DDS_MVC.Controllers
         public ActionResult DetallePresupuesto(int id)
         {
             Presupuesto pres = PresupuestoDAO.getInstancia().getPresupuesto(id);
+            ViewBag.categorias = CategoriaDAO.getInstancia().getCategorias();
             return View(pres);
         }
 

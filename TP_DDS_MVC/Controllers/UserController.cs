@@ -36,11 +36,11 @@ namespace TP_DDS_MVC.Controllers
 
                 if (esAdmin == "administrador")
                 {
-                    UsuarioDAO.getInstancia().add(new Usuario(usuario, true, password.GetHashCode(), null));
+                    UsuarioDAO.getInstancia().add(new Usuario(usuario, true, password, null));
                 }
                 else
                 {
-                    UsuarioDAO.getInstancia().add(new Usuario(usuario, false, password.GetHashCode(), null));
+                    UsuarioDAO.getInstancia().add(new Usuario(usuario, false, password, null));
                 }
 
                 ViewBag.msg = "El usuario fue creado correctamente";
@@ -63,7 +63,7 @@ namespace TP_DDS_MVC.Controllers
         [HttpPost]
         public ActionResult Login(string usuario, string password)
         {
-            Usuario usuarioEncontrado = UsuarioDAO.getInstancia().getUsuario(usuario, password.GetHashCode());
+            Usuario usuarioEncontrado = UsuarioDAO.getInstancia().getUsuario(usuario, password);
 
             if (usuarioEncontrado != null)
             {

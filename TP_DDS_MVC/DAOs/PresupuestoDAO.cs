@@ -38,7 +38,7 @@ namespace TP_DDS_MVC.DAOs
         {
             using (MyDBContext context = new MyDBContext())
             {
-                return context.DocumentosComerciales.OfType<Presupuesto>().Include("items").Include("prestadorDeServicios").Include("medioDePago").Where(s => s.idDocComercial == id).FirstOrDefault<Presupuesto>();
+                return context.DocumentosComerciales.OfType<Presupuesto>().Include("items.categorias").Include("prestadorDeServicios").Include("medioDePago").Where(s => s.idDocComercial == id).FirstOrDefault<Presupuesto>();
                 //return (Presupuesto)context.DocumentosComerciales.OfType<Presupuesto>().Include(p => p.items).Where(p => p.idDocComercial == id);
             }
         }
