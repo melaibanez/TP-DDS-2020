@@ -89,6 +89,13 @@ namespace TP_DDS_MVC.Controllers
             }
         }
 
+        public ActionResult ListIngresos()
+        {
+            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+            List<Ingreso> ingresos = IngresoDAO.getInstancia().getIngresos(idEntidad);
+            return View(ingresos);
+        }
+
         // GET: Ingreso/Edit/5
         public ActionResult Edit(int id)
         {
