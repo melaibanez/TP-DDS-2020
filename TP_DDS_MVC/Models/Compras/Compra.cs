@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using TP_DDS_MVC.Models.Entidades;
 using TP_DDS_MVC.Models.Otros;
+using TP_DDS_MVC.Models.Proyectos;
 
 namespace TP_DDS_MVC.Models.Compras
 {
@@ -29,6 +30,11 @@ namespace TP_DDS_MVC.Models.Compras
         [ForeignKey("egreso")]
         public int idEgreso { get; set; }
         public Egreso egreso { get; set; }
+
+
+        [ForeignKey("proyecto")]
+        public int? idProyecto { get; set; }
+        public ProyectoFinanciamiento proyecto { get; set; }
 
         public bool compraValidada { get; set; }
 

@@ -4,13 +4,15 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace TP_DDS_MVC.Models.Compras
 {
     public class ItemPresupuesto : Item
     {
-        [ForeignKey("presupuesto")]
+        [ForeignKey("presupuesto")] 
         public int idPresupuesto { get; set; }
+        [BsonIgnore]
         public Presupuesto presupuesto { get; set; }
 
 

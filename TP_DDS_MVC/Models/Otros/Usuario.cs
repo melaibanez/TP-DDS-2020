@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using TP_DDS_MVC.Models.Compras;
 using TP_DDS_MVC.Models.Entidades;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace TP_DDS_MVC.Models.Otros
 {
@@ -19,14 +20,15 @@ namespace TP_DDS_MVC.Models.Otros
         public string nombreUsuario { get; set; }
 
         public bool esAdmin { get; set; }
-
+      
         public string contrasenia { get; set; }
-
+  
+        [BsonIgnore]
         public List<Compra> comprasRevisadas { get; set; }
 
         public List<Notificacion> bandejaMensajes { get; set; }
 
-        [ForeignKey("entidad")]
+        [ForeignKey("entidad")] 
         public int? idEntidad { get; set; }
         public Entidad entidad { get; set; }
 

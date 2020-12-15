@@ -33,7 +33,8 @@ namespace TP_DDS_MVC.Controllers
 
         public ActionResult ListPrestadorDeServicios()
         {
-            List<PrestadorDeServicios> pres = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios();
+            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+            List<PrestadorDeServicios> pres = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios(idEntidad);
             return View(pres);
         }
 
@@ -144,7 +145,8 @@ namespace TP_DDS_MVC.Controllers
 
         public ActionResult ListMedioDePago()
         {
-            List<MedioDePago> pres = MedioDePagoDAO.getInstancia().getMediosDePago();
+            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+            List<MedioDePago> pres = MedioDePagoDAO.getInstancia().getMediosDePago(idEntidad);
             return View(pres);
         }
 
@@ -176,9 +178,11 @@ namespace TP_DDS_MVC.Controllers
 
         public ActionResult AddPresupuesto()
         {
-            ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago();
-            ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios();
+            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+            ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago(idEntidad);
+            ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios(idEntidad);
             ViewBag.compras = CompraDAO.getInstancia().getCompras();
+            ViewBag.categorias = CategoriaDAO.getInstancia().getCategorias(idEntidad);
             return View();
         }
 
@@ -188,25 +192,37 @@ namespace TP_DDS_MVC.Controllers
             try
             {
                 req.presupuesto.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
+
+
+
                 if (req.setEgreso && req.presupuesto.idCompra != null)
                 {
-                    req.presupuesto.idEgreso = CompraDAO.getInstancia().getCompra(req.presupuesto.idCompra.Value).idEgreso;
+                    Compra comp = CompraDAO.getInstancia().getCompraConEgresoYDocumentos(req.presupuesto.idCompra.Value);
+                    if(comp.egreso.docsComerciales.Exists(dc => dc.tipo_enlace == "Presupuesto"))
+                    {
+                        throw new Exception("La compra seleccionada ya tiene un presupuesto elegido para el egreso");
+                    }
+                    req.presupuesto.idEgreso = comp.idEgreso;
                 }
                 PresupuestoDAO.getInstancia().add(req.presupuesto);
                 
-                BsonDocument presupuesto = new BsonDocument {
+                /*BsonDocument presupuesto = new BsonDocument {
                      { "montoTotal", req.presupuesto.montoTotal },
                      { "idPrestadorDeServicios", req.presupuesto.idPrestadorDeServicios } };
 
-                Mongo.MongoDB.insertarDocumento("Presupuesto", "alta", presupuesto);
+                Mongo.MongoDB.insertarDocumento("Egreso", "alta", req.presupuesto.ToBsonDocument());*/
+
+                //Mongo.MongoDB.insertarDocumento("Presupuesto", "alta", req.presupuesto.ToBsonDocument());
 
                 return Json(Url.Action("Index", "Home"));
             }
             catch (Exception e)
             {
-                ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago();
-                ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios();
+                int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+                ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago(idEntidad);
+                ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios(idEntidad);
                 ViewBag.compras = CompraDAO.getInstancia().getCompras();
+                ViewBag.categorias = CategoriaDAO.getInstancia().getCategorias(idEntidad);
                 MyLogger.log(e.Message);
                 ViewBag.errorMsg = e.Message;
                 return View();
@@ -230,53 +246,12 @@ namespace TP_DDS_MVC.Controllers
 
         public ActionResult DetallePresupuesto(int id)
         {
+            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
             Presupuesto pres = PresupuestoDAO.getInstancia().getPresupuesto(id);
-            ViewBag.categorias = CategoriaDAO.getInstancia().getCategorias();
+            ViewBag.categorias = CategoriaDAO.getInstancia().getCategorias(idEntidad);
             return View(pres);
         }
 
-        ///////////////////////////////////////////////
-        ///              Egreso                     ///
-        ///////////////////////////////////////////////
-        public ActionResult AddEgreso()
-        {
-            ViewBag.docsComerciales = DocumentoComercialDAO.getInstancia().getDocumentosComerciales();
-            ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago();
-            ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios();
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult AddEgreso(JsonEgreso req)
-        {
-            
-            try
-            {
-                int idEgreso = EgresoDAO.getInstancia().add(req.egreso).idEgreso;
-                foreach (string nroId in req.docsComerciales)
-                {
-                    DocumentoComercialDAO.getInstancia().setEgresoId(idEgreso, nroId);
-                }
-
-                BsonDocument egreso = new BsonDocument {
-                     { "idEgreso", req.egreso.idEgreso },
-                     { "montoTotal", req.egreso.montoTotal },
-                     { "fechaEgreso", req.egreso.fechaEgreso } };
-
-                Mongo.MongoDB.insertarDocumento("Egreso", "alta", egreso);
-
-                return Json(Url.Action("Index", "Home"));
-            }
-            catch (Exception e)
-            {
-                ViewBag.docsComerciales = DocumentoComercialDAO.getInstancia().getDocumentosComerciales();
-                ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago();
-                ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios();
-                MyLogger.log(e.Message);
-                ViewBag.errorMsg = e.Message;
-                return View();
-            }
-        }
 
 
         ///////////////////////////////////////////////
@@ -287,76 +262,112 @@ namespace TP_DDS_MVC.Controllers
         public ActionResult ListCompras()
         {
             List<Compra> compras = CompraDAO.getInstancia().getComprasConEgreso();
-            /*Egreso e = new Egreso();
-            e.montoTotal = 214254;
-            List<Compra> compras = new List<Compra>() { new Compra("La compra del mes", 5, 235,e,new List<Presupuesto>(),null), new Compra("Otra compra", 12, 235, e, new List<Presupuesto>(), null), new Compra("La ultima compra", 20, 125, e, new List<Presupuesto>(), null) };
-            */
             return View(compras);
         }
 
-        public ActionResult DetalleCompra(int idCompra)
+        public ActionResult DetalleCompra(int id)
         {
-            Compra pres = CompraDAO.getInstancia().getCompraConEgreso(idCompra);
+            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+            Compra pres = CompraDAO.getInstancia().getCompraConEgresoYDocumentos(id);
+            ViewBag.categorias = CategoriaDAO.getInstancia().getCategorias(idEntidad);
             return View(pres);
         }
-        /*
+
+       
         public ActionResult EditCompra(int idCompra)
         {
-            Compra pres = CompraDAO.getInstancia().getCompraConEgreso(idCompra);
+            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+            Compra pres = CompraDAO.getInstancia().getCompraConEgresoYDocumentos(idCompra);
+            ViewBag.usuarios = UsuarioDAO.getInstancia().getUsuarios(idEntidad);
+            ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios(idEntidad);
+            ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago(idEntidad);
+            ViewBag.items = pres.egreso.detalle;
             return View(pres);
-        }*/
+        }
+
+        [HttpPost]
+        public ActionResult EditCompra(Compra compra)
+        {
+            try
+            {
+                CompraDAO.getInstancia().updateCompra(compra);
+                return RedirectToAction("ListCompras", "Compra");
+            }
+            catch (Exception e)
+            {
+                int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+                Compra pres = CompraDAO.getInstancia().getCompraConEgresoYDocumentos(compra.idCompra);
+                ViewBag.usuarios = UsuarioDAO.getInstancia().getUsuarios(idEntidad);
+                ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios(idEntidad);
+                ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago(idEntidad);
+                ViewBag.items = pres.egreso.detalle;
+                MyLogger.log(e.Message);
+                ViewBag.errorMsg = e.Message;
+                return View();
+            }
+        }
 
         public ActionResult AddCompra()
         {
-            ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago();
-            ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios();
-            ViewBag.usuarios = UsuarioDAO.getInstancia().getUsuarios();
-            //ViewBag.egreso = EgresoDAO.getInstancia().getEgresos();
+            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+            ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago(idEntidad);
+            ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios(idEntidad);
+            ViewBag.usuarios = UsuarioDAO.getInstancia().getUsuarios(idEntidad);
+            ViewBag.categorias = CategoriaDAO.getInstancia().getCategorias(idEntidad);
             return View();
         }
 
         [HttpPost]
-        public ActionResult AddCompra(JsonCompra req)
+        public ActionResult AddCompra(Compra compra)
         {
             
             try
             {
-                // Compra compra = new Compra(int cantMinimaPresupuestos, float criterio, Egreso egreso, List<Presupuesto> presupuestos, List<Usuario> revisores)
-                // ViewBag.compra = CompraDAO.getInstancia().add();
-                
-                
-                if (req.revisores != null)
-                {
-                    req.compra.revisores = new List<Usuario>();
-                    foreach (int idUsuario in req.revisores)
-                    {
-                        req.compra.revisores.Add(UsuarioDAO.getInstancia().getUsuario(idUsuario));
-                    }
-                }
-                
-                Compra compra = CompraDAO.getInstancia().add(req.compra);
-                
-                BsonDocument compra1 = new BsonDocument {
+
+                compra.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
+
+                CompraDAO.getInstancia().add(compra);
+
+               // Mongo.MongoDB.insertarDocumento("Compra", "alta", compra.ToBsonDocument());
+
+                /*BsonDocument compra1 = new BsonDocument {
                      { "descripcion", req.compra.descripcion },
                      { "cantMinimaPresupuestos", req.compra.cantMinimaPresupuestos },
                      { "idCompra", req.compra.idCompra } };
 
-                Mongo.MongoDB.insertarDocumento("Compra", "alta", compra1 );
+                var dataJson = JsonConvert.SerializeObject(req, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
 
-                BsonDocument egreso = new BsonDocument {
-                     { "idEgreso", req.compra.egreso.idEgreso },
-                     { "montoTotal", req.compra.egreso.montoTotal },
-                     { "fechaEgreso", req.compra.egreso.fechaEgreso } };
+                string json = JsonConvert.SerializeObject(joe, Formatting.Indented, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });*/
 
-                Mongo.MongoDB.insertarDocumento("Egreso", "alta", egreso);
+                //BsonDocument document = BsonDocument.Parse(dataJson);
+
+                //Mongo.MongoDB.insertarDocumento("Egreso", "alta", compra.egreso.ToBsonDocument());
+
+
+                //Mongo.MongoDB.insertarDocumento("Compra", "alta", compra1 );
+
+                //BsonDocument egreso = new BsonDocument {
+                //     { "idEgreso", req.compra.egreso.idEgreso },
+                //     { "montoTotal", req.compra.egreso.montoTotal },
+                //     { "fechaEgreso", req.compra.egreso.fechaEgreso } };
+
+                //Mongo.MongoDB.insertarDocumento("Egreso", "alta", egreso);
 
                 return Json(Url.Action("Index", "Home"));
             }
             catch (Exception e)
             {
-                ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago();
-                ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios();
-                ViewBag.usuarios = UsuarioDAO.getInstancia().getUsuarios();
+                int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+                ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago(idEntidad);
+                ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios(idEntidad);
+                ViewBag.usuarios = UsuarioDAO.getInstancia().getUsuarios(idEntidad);
+                ViewBag.categorias = CategoriaDAO.getInstancia().getCategorias(idEntidad);
                 MyLogger.log(e.Message);
                 ViewBag.errorMsg = e.Message;
                 return View();
@@ -383,9 +394,15 @@ namespace TP_DDS_MVC.Controllers
         }
 
 
+        ///////////////////////////////////////////////
+        ///              Criterio                   ///
+        ///////////////////////////////////////////////
+
+
         public ActionResult criterios()
         {
-            ViewBag.criterios = CriterioDAO.getInstancia().getCriterios();
+            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+            ViewBag.criterios = CriterioDAO.getInstancia().getCriterios(idEntidad);
             return View();
         }
 
@@ -413,58 +430,5 @@ namespace TP_DDS_MVC.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-
-        //    // GET: Compra/Details/5
-        //    public ActionResult DetailCompra(int id)
-        //    {
-        //        ViewBag.compra = CompraDAO.getInstancia().getCompra(id);
-        //        return View();
-        //    }
-        //    // POST: Compra/Create
-
-
-        //    // GET: Compra/Edit/5
-        //    public ActionResult Edit(int id)
-        //    {
-        //        return View();
-        //    }
-
-        //    // POST: Compra/Edit/5
-        //    [HttpPost]
-        //    public ActionResult Edit(int id, FormCollection collection)
-        //    {
-        //        try
-        //        {
-        //            // TODO: Add update logic here
-
-        //            return RedirectToAction("Index");
-        //        }
-        //        catch
-        //        {
-        //            return View();
-        //        }
-        //    }
-
-        //    // GET: Compra/Delete/5
-        //    public ActionResult Delete(int id)
-        //    {
-        //        return View();
-        //    }
-
-        //    // POST: Compra/Delete/5
-        //    [HttpPost]
-        //    public ActionResult Delete(int id, FormCollection collection)
-        //    {
-        //        try
-        //        {
-        //            // TODO: Add delete logic here
-
-        //            return RedirectToAction("Index");
-        //        }
-        //        catch
-        //        {
-        //            return View();
-        //        }
-        //    }
     }
 }

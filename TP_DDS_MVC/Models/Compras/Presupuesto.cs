@@ -5,6 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using TP_DDS_MVC.Models.Proyectos;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace TP_DDS_MVC.Models.Compras
 {
@@ -20,15 +21,11 @@ namespace TP_DDS_MVC.Models.Compras
 
         public float montoTotal { get; set; }
 
-        [ForeignKey("compra")]
+        [ForeignKey("compra")] 
         public int? idCompra { get; set; }
         public Compra compra { get; set; }
 
         public List<ItemPresupuesto> items { get; set; }
-
-        [ForeignKey("proyecto")]
-        public int? idProyecto { get; set; }
-        public ProyectoFinanciamiento proyecto { get; set; }
 
 
         public Presupuesto() { }

@@ -25,12 +25,12 @@ namespace TP_DDS_MVC.DAOs
             return instancia;
         }
 
-        public List<Usuario> getUsuarios()
+        public List<Usuario> getUsuarios(int idEntidad)
         {
 
             using (MyDBContext context = new MyDBContext())
             {
-                return context.Usuarios.Include("comprasRevisadas").ToList();
+                return context.Usuarios.Include("comprasRevisadas").Where(u => u.idEntidad == idEntidad).ToList();
             }
         }
 

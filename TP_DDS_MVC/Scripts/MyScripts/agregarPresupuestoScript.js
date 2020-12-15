@@ -23,7 +23,11 @@ $("#agregarItem").click(function () {
         cant: $("#cantItem").val(),
         descripcion: $("#descripcionItem").val(),
         valor: $("#valorItem").val(),
-        
+        categorias: $('#categoria').val().map(idCat => {
+            return {
+                idCategoria: parseInt(idCat)
+            }
+        })
     })
 
     $("#listaItems").append('<li id="' + $("#descripcionItem").val() + '" class="list-group-item">' +

@@ -48,6 +48,12 @@ namespace TP_DDS_MVC.DAOs
             Presupuesto added;
             using (MyDBContext context = new MyDBContext())
             {
+                for (int i = 0; i < presupuesto.items.Count(); i++)
+                {
+                    if (presupuesto.items.ElementAt(i).categorias != null)
+                        presupuesto.items.ElementAt(i).categorias = presupuesto.items.ElementAt(i).categorias.Select(c =>  context.Categorias.Find(c.idCategoria)).ToList();
+                }
+
                 added = (Presupuesto)context.DocumentosComerciales.Add(presupuesto);
                 context.SaveChanges();
             }
