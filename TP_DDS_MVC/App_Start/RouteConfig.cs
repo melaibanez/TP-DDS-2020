@@ -155,6 +155,13 @@ namespace TP_DDS_MVC
                 defaults: new { controller = "Ingreso", action = "DetalleIngreso", id = UrlParameter.Optional }
             );
 
+            routes.MapRoute(
+                name: "Editar Ingreso",
+                url: "ingreso/edit/{id}",
+                defaults: new { controller = "Ingreso", action = "EditIngreso", id = UrlParameter.Optional }
+            );
+
+
             /// cargar entidad
 
             routes.MapRoute(

@@ -18,13 +18,13 @@ namespace TP_DDS_MVC.Mongo
 
         public static void insertarDocumento(string tipoEntidad, string tipoOperacion, BsonDocument documento)
         {
-            MongoClient dbClient = new MongoClient();
+            /*MongoClient dbClient = new MongoClient();
             var database = dbClient.GetDatabase("logGeSoc");
             var collection = database.GetCollection<BsonDocument>("operaciones");
 
             var doc = new BsonDocument { { "tipoEntidad", tipoEntidad }, { "tipoOperacion", tipoOperacion }, documento };
 
-            collection.InsertOne(doc);
+            collection.InsertOne(doc);*/
 
     }
 
