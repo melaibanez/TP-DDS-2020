@@ -15,103 +15,80 @@
         @ViewBag.errorMsg
     </div>
 }
-<div class="form-row">
-    <div class="form-group col-md-6">
-        <label for="descripcion">Descripcion</label>
-        <input id="descripcion" class="form-control" type="text" placeholder="Descripcion">
-    </div>
-    <div class="form-group col-md-6">
-        <label for="cantMinPres">Cantidad minima de presupuestos</label>
-        <input id="cantMinPres" class="form-control" type="number" placeholder="0" min="0">
-    </div>
-</div>
-<div class="form-row">
-    <div class="form-group col">
-        <h4>Agregar revisores</h4>
-        <div class="form-group">
-            <label for="revisor">Seleccione un revisor</label>
-            <input list="revisores" class="form-control" placeholder="Seleccionar..." id="revisor" type="text">
-            <datalist id="revisores">
-                @foreach (Usuario usu in (List<Usuario>)ViewBag.usuarios)
-                {
-                    <option value=@usu.idUsuario>@usu.nombreUsuario</option>
-                }
-            </datalist>
-        </div>
-        <button class="btn btn-primary btn-sm mb-1" id="agregarUsu">Agregar</button>
-        <br />
-        <br />
-        <h5>Lista de revisores</h5>
-        <div class="col-6">
-            <label id="noUsu">No hay revisores agregados</label>
-            <ul class="list-group list-group-flush pb-5" id="listaUsu">
-            </ul>
-        </div>
-    </div>
-</div>
 
-<div class="mb-4">
-    <h3>Editar Egreso</h3>
-</div>
-<div class="ml-4">
-    <div class="form-group mb-3">
-        <label for="fecha">Fecha del egreso:</label>
-        <input class="form-control" id="fecha" type="date">
-    </div>
-    <div class="form-row mb-3">
-        <div class="form-group col mr-5">
-            <label for="proveedores">Seleccione un proveedor:</label>
-            <input class="form-control" list="proveedores" id="proveedor" type="text" placeholder="Seleccionar...">
-            <datalist id="proveedores">
-                @foreach (PrestadorDeServicios PDS in (List<PrestadorDeServicios>)ViewBag.proveedores)
-                {
-                    <option value="@PDS.idPrestador">@PDS.razonSocial</option>
-                }
-            </datalist>
+@using (Html.BeginForm("EditCompra", "Compra", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.idEntidad)
+    @Html.HiddenFor(m => m.idEgreso)
+    @Html.HiddenFor(m => m.idCompra)
+    @Html.HiddenFor(m => m.idProyecto)
+    @Html.HiddenFor(m => m.egreso.montoTotal)
+    @Html.HiddenFor(m => m.egreso.detalle)
+    @Html.HiddenFor(m => m.egreso.idEgreso)
+    @Html.HiddenFor(m => m.egreso.idEntidad)
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="descripcion">Descripcion</label>
+            @Html.TextBoxFor(m => m.descripcion, new { @class = "form-control" })
         </div>
-        <div class="form-group col">
-            <label for="mediosDePago">Seleccione un Medio de Pago:</label>
-            <input class="form-control" list="mediosDePago" id="medioDePago" type="text" placeholder="Seleccionar...">
-            <datalist id="mediosDePago">
-                @foreach (MedioDePago MDP in (List<MedioDePago>)ViewBag.mediosDePago)
-                {
-                    <option value="@MDP.idMedioPago">@MDP.instrumento</option>
-                }
-            </datalist>
+        <div class="form-group col-md-6">
+            <label for="cantMinPres">Cantidad minima de presupuestos</label>
+            @Html.TextBoxFor(m => m.cantMinimaPresupuestos, new { @class = "form-control" })
         </div>
     </div>
 
 
-    <div class="mb-3">
-        <!-- <div class="form-row">
-            <div class="form-group col-4">
-                <label for="descripcionItem">Descripcion</label>
-                <input type="text" class="form-control" id="descripcionItem" placeholder="Descripcion" />
-            </div>
-            <div class="form-group col-1">
-                <label for="valorItem">Valor </label>
-                <input type="number" class="form-control" id="valorItem" placeholder="1" step="0.01" min="1" />
-            </div>
-            <div class="form-group col-1">
-                <label for="cantItem">Cantidad</label>
-                <input type="number" class="form-control" id="cantItem" placeholder="1" min="1" />
-            </div>
-        </div>
-        <button class="btn btn-primary btn-sm mb-1" id="agregarItem">Agregar</button>
-        <br />
-        <br /> -->
-        <h5>Lista de Items</h5>
-        <div class="col-4">
-            <ul class="list-group list-group-flush pb-5" id="listaItems">
-                @foreach (Item i in ViewBag.items)
-                {
-                    <li class="list-group-item">@i.descripcion&nbsp;-&nbsp;$@i.valor c/u&nbsp;-&nbsp;@i.cant unidades&nbsp;-&nbsp;@i.categoriasString()</li>
-                }
-            </ul>
-        </div>
+    <div class="mb-4">
+        <h3>Editar Egreso</h3>
     </div>
-    <span>
-        <button class="btn btn-success col-lg-2" id="submit">Aceptar</button>
-        @Html.ActionLink("Cancelar", "Index", new { controller = "Compra" }, new { @class = "btn btn-secondary col-lg-1" })
-    </span>
-</div>
+    <div class="ml-4">
+        <div class="form-group mb-3">
+            <label for="fecha">Fecha del egreso:</label>
+            @Html.TextBoxFor(m => m.egreso.fechaEgreso, new { @class = "form-control" })
+        </div>
+        <div class="form-row mb-3">
+            <div class="form-group col mr-5">
+                <label for="proveedores">Seleccione un proveedor:</label>
+                @Html.DropDownListFor(m => m.egreso.idPrestadorDeServicios, new SelectList(ViewBag.proveedores, "idPrestador", "razonSocial"), new { @class = "form-control" })
+            </div>
+            <div class="form-group col">
+                <label for="mediosDePago">Seleccione un Medio de Pago:</label>
+                @Html.DropDownListFor(m => m.egreso.idMedioDePago, new SelectList(ViewBag.mediosDePago, "idMedioPago", "instrumento"), new { @class = "form-control" })
+            </div>
+        </div>
+
+
+        <div class="mb-3">
+            <!-- <div class="form-row">
+                <div class="form-group col-4">
+                    <label for="descripcionItem">Descripcion</label>
+                    <input type="text" class="form-control" id="descripcionItem" placeholder="Descripcion" />
+                </div>
+                <div class="form-group col-1">
+                    <label for="valorItem">Valor </label>
+                    <input type="number" class="form-control" id="valorItem" placeholder="1" step="0.01" min="1" />
+                </div>
+                <div class="form-group col-1">
+                    <label for="cantItem">Cantidad</label>
+                    <input type="number" class="form-control" id="cantItem" placeholder="1" min="1" />
+                </div>
+            </div>
+            <button class="btn btn-primary btn-sm mb-1" id="agregarItem">Agregar</button>
+            <br />
+            <br /> -->
+            <h5>Lista de Items</h5>
+            <div class="col-4">
+                <ul class="list-group list-group-flush pb-5" id="listaItems">
+                    @foreach (Item i in ViewBag.items)
+                    {
+                        <li class="list-group-item">@i.descripcion&nbsp;-&nbsp;$@i.valor c/u&nbsp;-&nbsp;@i.cant unidades&nbsp;-&nbsp;@i.categoriasString()</li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <span>
+            <button class="btn btn-success col-lg-2" id="submit">Aceptar</button>
+            @Html.ActionLink("Cancelar", "Index", new { controller = "Compra" }, new { @class = "btn btn-secondary col-lg-1" })
+        </span>
+    </div>
+}

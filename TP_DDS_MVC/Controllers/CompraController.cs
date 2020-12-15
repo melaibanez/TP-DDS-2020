@@ -218,12 +218,9 @@ namespace TP_DDS_MVC.Controllers
                 {
                     throw new Exception("Hubo un problema cargando el documento. Recargue la pagina y vuelva a intentarlo.");
                 }
-                
-                /*BsonDocument presupuesto = new BsonDocument {
-                     { "montoTotal", req.presupuesto.montoTotal },
-                     { "idPrestadorDeServicios", req.presupuesto.idPrestadorDeServicios } };
 
-                Mongo.MongoDB.insertarDocumento("Egreso", "alta", req.presupuesto.ToBsonDocument());*/
+                PresupuestoDAO.getInstancia().add(req.presupuesto);
+
 
                 //Mongo.MongoDB.insertarDocumento("Presupuesto", "alta", req.presupuesto.ToBsonDocument());
                 //Mongo.MongoDB.insertarDocumento(req.documentoComercial.tipo_enlace, "alta", req.documentoComercial.ToBsonDocument()); //REVISAR
@@ -348,34 +345,8 @@ namespace TP_DDS_MVC.Controllers
 
                // Mongo.MongoDB.insertarDocumento("Compra", "alta", compra.ToBsonDocument());
 
-                /*BsonDocument compra1 = new BsonDocument {
-                     { "descripcion", req.compra.descripcion },
-                     { "cantMinimaPresupuestos", req.compra.cantMinimaPresupuestos },
-                     { "idCompra", req.compra.idCompra } };
+                Mongo.MongoDB.insertarDocumento("Egreso", "alta", req.compra.egreso.ToBsonDocument());
 
-                var dataJson = JsonConvert.SerializeObject(req, new JsonSerializerSettings
-                {
-                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                });
-
-                string json = JsonConvert.SerializeObject(joe, Formatting.Indented, new JsonSerializerSettings
-                {
-                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                });*/
-
-                //BsonDocument document = BsonDocument.Parse(dataJson);
-
-                //Mongo.MongoDB.insertarDocumento("Egreso", "alta", compra.egreso.ToBsonDocument());
-
-
-                //Mongo.MongoDB.insertarDocumento("Compra", "alta", compra1 );
-
-                //BsonDocument egreso = new BsonDocument {
-                //     { "idEgreso", req.compra.egreso.idEgreso },
-                //     { "montoTotal", req.compra.egreso.montoTotal },
-                //     { "fechaEgreso", req.compra.egreso.fechaEgreso } };
-
-                //Mongo.MongoDB.insertarDocumento("Egreso", "alta", egreso);
 
                 return Json(Url.Action("Index", "Home"));
             }
