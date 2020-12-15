@@ -59,7 +59,7 @@ namespace TP_DDS_MVC.Helpers.Scheduler
                  .WithIdentity("triggerValidador", "Triggers")
                  .StartNow()
                  .WithSimpleSchedule(x => x
-                     .WithIntervalInMinutes(1)
+                     .WithIntervalInMinutes(5)
                      .RepeatForever())
                  .Build();
 

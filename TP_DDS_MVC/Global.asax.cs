@@ -25,12 +25,9 @@ namespace TP_DDS_MVC
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            //using (MyDBContext context = new MyDBContext())
-            //{
-            //    comprasNoValidadas = context.Compras.Where(c => !c.compraValidada).ToList();
-            //}
+            
 
-            //PersistenciaDireccionPostal.persistirDatosAPI();
+            PersistenciaDireccionPostal.persistirDatosAPI();
         }
     }
 }

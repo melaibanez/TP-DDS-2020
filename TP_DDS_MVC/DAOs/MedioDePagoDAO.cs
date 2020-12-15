@@ -24,13 +24,13 @@ namespace TP_DDS_MVC.DAOs
             return instancia;
         }
 
-        public List<MedioDePago> getMediosDePago()
+        public List<MedioDePago> getMediosDePago(int idEntidad)
         {
 
             using (MyDBContext context = new MyDBContext())
             {
 
-                return context.MediosDePago.ToList();
+                return context.MediosDePago.Where(mdp => mdp.idEntidad == idEntidad).ToList();
             }
         }
 

@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using TP_DDS_MVC.Models.Compras;
 using TP_DDS_MVC.Models.Entidades;
 using TP_DDS_MVC.Models.Proyectos;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace TP_DDS_MVC.Models.Ingresos
 {
@@ -26,13 +27,16 @@ namespace TP_DDS_MVC.Models.Ingresos
         public DateTime fechaHasta { get; set; }
 
         [ForeignKey("entidad")]
+        [BsonIgnore]
         public int idEntidad { get; set; }
         public Entidad entidad { get; set; }
-
+        [BsonIgnore]
         public List<Egreso> egresosAsociados { get; set; }
 
         [ForeignKey("proyecto")]
+        [BsonIgnore]
         public int? idProyecto { get; set; }
+        [BsonIgnore]
         public ProyectoFinanciamiento proyecto { get; set; }
 
         public Ingreso() { }

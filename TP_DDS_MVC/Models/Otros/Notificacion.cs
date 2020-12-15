@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace TP_DDS_MVC.Models.Otros
 {
@@ -18,17 +19,18 @@ namespace TP_DDS_MVC.Models.Otros
 
         [StringLength(300)]
         public string mensaje { get; set; }
-
+        [BsonIgnore]
         [ForeignKey("usuario")]
         public int idUsuario { get; set; }
         public Usuario usuario { get; set; }
 
         public Notificacion() { }
 
-        public Notificacion(string mensaje, DateTime fecha)
+        public Notificacion(string mensaje, DateTime fecha, int idUsiario)
         {
             this.mensaje = mensaje;
             this.fecha = fecha;
+            this.idUsuario = idUsuario;
         }
 
         override

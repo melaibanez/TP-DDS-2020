@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using TP_DDS_MVC.Models.Compras;
 using TP_DDS_MVC.Models.Ingresos;
 using TP_DDS_MVC.Models.Proyectos;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace TP_DDS_MVC.Models.Entidades
 {
@@ -18,10 +19,15 @@ namespace TP_DDS_MVC.Models.Entidades
 
         [StringLength(50)]
         public string nombreFicticio { get; set; }
+        [BsonIgnore]
         public List<Compra> comprasRealizadas { get; set; }
+        [BsonIgnore]
         public List<Ingreso> ingresos { get; set; }
+        [BsonIgnore]
         public List<Criterio> criterios { get; set; }
+        [BsonIgnore]
         public List<DocumentoComercial> documentosComerciales { get; set; }
+        [BsonIgnore]
         public List<Egreso> egresos { get; set; }
 
         public Entidad() { }

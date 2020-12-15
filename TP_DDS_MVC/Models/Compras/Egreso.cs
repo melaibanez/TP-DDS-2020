@@ -6,36 +6,39 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using TP_DDS_MVC.Models.Ingresos;
 using TP_DDS_MVC.Models.Entidades;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace TP_DDS_MVC.Models.Compras
 {
     [Table("egresos")]
     public class Egreso
     {
-        [Key]
+        [Key] 
         public int idEgreso { get; set; }
 
         public DateTime fechaEgreso { get; set; }
 
-        [ForeignKey("medioDePago")]
+        [ForeignKey("medioDePago")] 
         public int idMedioDePago { get; set; }
         public MedioDePago medioDePago { get; set; }
 
         public float montoTotal { get; set; }
 
-        [ForeignKey("prestadorDeServicios")]
+        [ForeignKey("prestadorDeServicios")] 
         public int idPrestadorDeServicios { get; set; }
         public PrestadorDeServicios prestadorDeServicios { get; set; }
 
-        [ForeignKey("ingresoAsociado")]
+        [ForeignKey("ingresoAsociado")] 
         public int? idIngresoAsociado { get; set; }
+        [BsonIgnore]
         public Ingreso ingresoAsociado { get; set; }
 
-        [ForeignKey("entidad")]
+        [ForeignKey("entidad")] 
         public int? idEntidad { get; set; }
         public Entidad entidad { get; set; }
-
+        
         public List<ItemEgreso> detalle { get; set; }
+        
         public List<DocumentoComercial> docsComerciales { get; set; }
 
         public Egreso() { }

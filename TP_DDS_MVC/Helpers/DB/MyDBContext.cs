@@ -35,7 +35,7 @@ namespace TP_DDS_MVC.Helpers.DB
         public DbSet<Provincia> Provincias { get; set; }
         public DbSet<Ciudad> Ciudades { get; set; }
         public DbSet<ProyectoFinanciamiento> Proyectos { get; set; }
-
+        public DbSet<Notificacion> Notificaciones { get; set; }
 
 
         // El string "dbConn" es el nombre del connection string definido en App.config

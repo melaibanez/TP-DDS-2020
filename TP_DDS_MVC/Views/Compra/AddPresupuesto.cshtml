@@ -13,78 +13,84 @@
 }
 
 
-    <div class="pb-3">
-        <h2>Crear un Presupuesto</h2>
+<div class="pb-3">
+    <h2>Crear un Presupuesto</h2>
+</div>
+@if (ViewBag.errorMsg != null)
+{
+    <div class="alert alert-danger mb-3" role="alert">
+        @ViewBag.errorMsg
     </div>
-    <div class="form-row">
-        <div class="form-group col-12">
-            <label for="nroIdentificacion">Numero de Identificacion</label>
-            <input id="nroIdentificacion" class="form-control" type="text" placeholder="Nro Identificacion">
-        </div>
+}
+<div class="form-row">
+    <div class="form-group col-12">
+        <label for="nroIdentificacion">Numero de Identificacion</label>
+        <input id="nroIdentificacion" class="form-control" type="text" placeholder="Nro Identificacion">
     </div>
-    <div class="form-row">
-        <div class="form-group col">
-            <label for="proveedores">Proveedor</label>
-            <input list="proveedores" class="form-control" id="proveedor" placeholder="Seleccionar..." type="text">
-            <datalist id="proveedores">
-                @foreach (PrestadorDeServicios PDS in (List<PrestadorDeServicios>)proveedores)
-                {
-                    <option value="@PDS.idPrestador">@PDS.razonSocial</option>
-                }
-            </datalist>
-        </div>
-        <div class="form-group col">
-            <label for="mediosDePago">Medio de Pago</label>
-            <input list="mediosDePago" class="form-control" placeholder="Seleccionar..." id="medioDePago" type="text">
-            <datalist id="mediosDePago">
-                @foreach (MedioDePago MDP in (List<MedioDePago>)mediosDePago)
-                {
-                    <option value="@MDP.idMedioPago">@MDP.instrumento</option>
-                }
-            </datalist>
-        </div>
+</div>
+<div class="form-row">
+    <div class="form-group col">
+        <label for="proveedores">Proveedor</label>
+        <input list="proveedores" class="form-control" id="proveedor" placeholder="Seleccionar..." type="text">
+        <datalist id="proveedores">
+            @foreach (PrestadorDeServicios PDS in (List<PrestadorDeServicios>)proveedores)
+            {
+                <option value="@PDS.idPrestador">@PDS.razonSocial</option>
+            }
+        </datalist>
     </div>
-    <div class="form-row">
-        <div class="form-group col">
-            <label for="compra">Asociar a una compra</label>
-            <input list="compras" class="form-control" id="compra" placeholder="Seleccionar..." type="text">
-            <datalist id="compras">
-                @foreach (Compra comp in (List<Compra>)ViewBag.compras)
-                {
-                    <option value="@comp.idCompra">@comp.descripcion</option>
-                }
-            </datalist>
-        </div>
+    <div class="form-group col">
+        <label for="mediosDePago">Medio de Pago</label>
+        <input list="mediosDePago" class="form-control" placeholder="Seleccionar..." id="medioDePago" type="text">
+        <datalist id="mediosDePago">
+            @foreach (MedioDePago MDP in (List<MedioDePago>)mediosDePago)
+            {
+                <option value="@MDP.idMedioPago">@MDP.instrumento</option>
+            }
+        </datalist>
     </div>
-    <div class="mb-3">
-        <label><input type="checkbox" id="checkEgreso">Asociar como presupuesto elegido para el egreso&nbsp;</label><br>
+</div>
+<div class="form-row">
+    <div class="form-group col">
+        <label for="compra">Asociar a una compra</label>
+        <input list="compras" class="form-control" id="compra" placeholder="Seleccionar..." type="text">
+        <datalist id="compras">
+            @foreach (Compra comp in (List<Compra>)ViewBag.compras)
+            {
+                <option value="@comp.idCompra">@comp.descripcion</option>
+            }
+        </datalist>
     </div>
-    <h4>Agregar items</h4>
-    <div class="form-row">
-        <div class="form-group col-4">
-            <label for="descripcionItem">Descripcion</label>
-            <input type="text" class="form-control" id="descripcionItem" placeholder="Descripcion" />
-        </div>
-        <div class="form-group col-1">
-            <label for="valorItem">Valor </label>
-            <input type="number" class="form-control" id="valorItem" placeholder="1" step="0.01" min="1" />
-        </div>
-        <div class="form-group col-1">
-            <label for="cantItem">Cantidad</label>
-            <input type="number" class="form-control" id="cantItem" placeholder="1" min="1" />
-        </div>
+</div>
+<div class="mb-3">
+    <label><input type="checkbox" id="checkEgreso">Asociar como presupuesto elegido para el egreso&nbsp;</label><br>
+</div>
+<h4>Agregar items</h4>
+<div class="form-row">
+    <div class="form-group col-4">
+        <label for="descripcionItem">Descripcion</label>
+        <input type="text" class="form-control" id="descripcionItem" placeholder="Descripcion" />
     </div>
-    <button class="btn btn-primary btn-sm mb-2" id="agregarItem">Agregar</button>
-    <h5>Lista de Items</h5>
-    <div class="col-6">
-        <label id="noItems">No hay items agregados</label>
-        <ul class="list-group list-group-flush pb-5" id="listaItems">
-        </ul>
+    <div class="form-group col-1">
+        <label for="valorItem">Valor </label>
+        <input type="number" class="form-control" id="valorItem" placeholder="1" step="0.01" min="1" />
     </div>
-    <span>
-        <button class="btn btn-success col-lg-2" id="submit">Crear</button>
-        @Html.ActionLink("Cancelar", "Index", new { controller = "Compra" }, new { @class = "btn btn-secondary col-lg-1" })
-    </span>
+    <div class="form-group col-1">
+        <label for="cantItem">Cantidad</label>
+        <input type="number" class="form-control" id="cantItem" placeholder="1" min="1" />
+    </div>
+</div>
+<button class="btn btn-primary btn-sm mb-2" id="agregarItem">Agregar</button>
+<h5>Lista de Items</h5>
+<div class="col-6">
+    <label id="noItems">No hay items agregados</label>
+    <ul class="list-group list-group-flush pb-5" id="listaItems">
+    </ul>
+</div>
+<span>
+    <button class="btn btn-success col-lg-2" id="submit">Crear</button>
+    @Html.ActionLink("Cancelar", "Index", new { controller = "Compra" }, new { @class = "btn btn-secondary col-lg-1" })
+</span>
 
 
 
