@@ -24,12 +24,12 @@ namespace TP_DDS_MVC.DAOs
             return instancia;
         }
 
-        public List<Egreso> getEgresos()
+        public List<Egreso> getEgresos(int idEntidad)
         {
 
             using (MyDBContext context = new MyDBContext())
             {
-                return context.Egresos.ToList();
+                return context.Egresos.Where(e=>e.idEntidad == idEntidad).ToList();
             }
         }
 

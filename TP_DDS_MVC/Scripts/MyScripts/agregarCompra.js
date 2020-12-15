@@ -10,18 +10,24 @@
                 montoTotal: 0,
                 idPrestadorDeServicios: null,
                 detalle: []
-            }
-        },
-        revisores: [],
-        itemsCategorias: []
+
+            },
+            revisores: []
+        }
+
     }
 }
 
+$(document).ready(function () {
+    $('#error').hide()
+});
 
 $("#agregarUsu").click(function () {
     $('#noUsu').hide()
 
-    data.model.revisores.push(parseInt($("#revisor").val()))
+    data.model.compra.revisores.push({
+        idUsuario:parseInt($("#revisor").val())
+    })
 
     $("#listaUsu").append('<li id="u' + $("#revisor").val() + '" class="list-group-item">' +
         $("#revisor").val() + '&nbsp;-&nbsp;' +
@@ -107,8 +113,9 @@ $("#submit").click(function () {
         success: function (data) {
             window.location.href = data;
         },
-        error: function (err) {
-            console.log(err)
+        error: function (data) {
+            $('#error').show();
+            $('#error').html(data.responseJSON);
         }
     })
 })

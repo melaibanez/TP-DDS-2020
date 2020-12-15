@@ -31,5 +31,15 @@ namespace TP_DDS_MVC.Models.Compras
             this.valor = valor;
         }
 
+        public string categoriasString()
+        {
+            foreach(Categoria cat in categorias)
+            {
+                Console.WriteLine(cat.nombre);
+            }
+
+            return String.Join(", ", categorias.Select(c=>c.nombre));
+        }
+
     }
 }

@@ -1,0 +1,49 @@
+﻿@using TP_DDS_MVC.Models.Ingresos;
+@using TP_DDS_MVC.Models.Otros;
+@model Ingreso
+@{
+    ViewBag.Title = "Editar Ingreso";
+}
+
+
+<div class="mb-3">
+    <h2>Editar Ingreso</h2>
+</div>
+@if (ViewBag.errorMsg != null)
+{
+    <div class="alert alert-danger mb-3" role="alert">
+        @ViewBag.errorMsg
+    </div>
+}
+
+@using (Html.BeginForm("EditIngreso", "Ingreso", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.idEntidad)
+    @Html.HiddenFor(m => m.idProyecto)
+    @Html.HiddenFor(m => m.idIngreso)
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="descripcion">Descripcion</label>
+            @Html.TextBoxFor(m => m.descripcion, new { @class = "form-control" })
+        </div>
+        <div class="form-group col-md-6">
+            <label for="monto">Monto</label>
+            @Html.TextBoxFor(m => m.monto, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-row mb-4">
+        <div class="form-group col">
+            <label for="fecha">Fecha inicio:</label>
+            @Html.TextBoxFor(m => m.fechaDesde, new { @class = "form-control" })
+        </div>
+        <div class="form-group col">
+            <label for="fecha">Fecha final:</label>
+            @Html.TextBoxFor(m => m.fechaHasta, new { @class = "form-control" })
+        </div>
+    </div>
+    <span>
+        <button class="btn btn-success col-lg-2" id="submit">Aceptar</button>
+        @Html.ActionLink("Cancelar", "ListIngresos", new { controller = "Ingreso" }, new { @class = "btn btn-secondary col-lg-1" })
+    </span>
+}
+

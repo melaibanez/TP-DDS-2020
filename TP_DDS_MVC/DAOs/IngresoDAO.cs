@@ -38,7 +38,7 @@ namespace TP_DDS_MVC.DAOs
         {
             using (MyDBContext context = new MyDBContext())
             {
-                return context.Ingresos.Find(id);
+                return context.Ingresos.Include("egresosAsociados").Include("proyecto").Where(i=>i.idIngreso == id).FirstOrDefault();
             }
         }
 
@@ -52,6 +52,41 @@ namespace TP_DDS_MVC.DAOs
             }
 
             return added;
+        }
+
+        public void updateIngreso(Ingreso ingreso){
+            {
+                using (MyDBContext context = new MyDBContext())
+                {
+
+                    Ingreso ing = context.Ingresos.Single(p => p.idIngreso == ingreso.idIngreso);
+                    if (ing != null)
+                    {
+                        context.Entry(ing).CurrentValues.SetValues(ingreso);
+                        context.SaveChanges();
+                    }
+                }
+            }
+        }
+
+        public void deleteIngreso(int idIngreso)
+        {
+            using (MyDBContext context = new MyDBContext())
+            {
+                var itemToRemove = context.Ingresos.SingleOrDefault(x => x.idIngreso == idIngreso); //returns a single item.
+
+                if (itemToRemove != null)
+                {
+                    context.Ingresos.Remove(itemToRemove);
+
+                    context.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("El ingreso que quiere eliminar, no existe");
+                }
+            }
+
         }
     }
 }

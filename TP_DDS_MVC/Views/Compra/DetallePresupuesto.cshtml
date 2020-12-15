@@ -1,7 +1,11 @@
 ﻿@using TP_DDS_MVC.Models.Compras;
 @model Presupuesto
 @{
+    @section scripts {
+        <script type="text/javascript" src="~/Scripts/MyScripts/mostrarPorCriterios.js"></script>
+    }
     ViewBag.Title = "Detalle Presupuesto";
+    var categorias = ViewBag.categorias;
 }
 
 <div class="alert alert-secondary my-4" role="alert">
@@ -24,15 +28,26 @@
             <input list="mediosDePago" class="form-control" value=@Model.medioDePago.instrumento id="medioDePago" type="text" disabled>
         </div>
     </div>
+    <div class="mb-2 mt-2">
+        <label for="categoria">Ver por categoría</label>
+        <input list="categorias" class="form-control" id="categoria" name="categorias" placeholder="Seleccionar..." type="text">
+        <datalist id="categorias">
+            @foreach (Categoria cat in (List<Categoria>)categorias)
+            {
+                <option value="@cat.nombre">@cat.criterio.nombre</option>
+            }
+        </datalist>
+    </div>
     <h5>Lista de Items</h5>
-    <div class="col-4">
+    <div class="col-6">
         <ul class="list-group list-group-flush pb-5" id="listaItems">
             @foreach (Item i in Model.items)
             {
-            <li class="list-group-item">@i.descripcion&nbsp;-&nbsp;$@i.valor c/u&nbsp;-&nbsp;@i.cant unidades</li>
+                <li class="list-group-item">@i.descripcion&nbsp;-&nbsp;$@i.valor c/u&nbsp;-&nbsp;@i.cant unidades&nbsp;-&nbsp;@i.categoriasString()</li>
             }
         </ul>
     </div>
+
     <span>
         <button class="btn btn-info col-lg-2" id="edit">Editar</button>
         @Html.ActionLink("Cancelar", "ListPresupuestos", new { controller = "Compra" }, new { @class = "btn btn-secondary col-lg-1" })
