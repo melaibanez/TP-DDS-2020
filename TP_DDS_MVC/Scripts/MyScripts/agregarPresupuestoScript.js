@@ -21,7 +21,8 @@
 }
 
 $("#tipoDoc").change(function () {
-    if ($(this).val() === "Documento Comercial") {
+
+    if ($(this).val() === "DocumentoComercial") {
         $("#formDoc").show()
         $("#formPresupuesto").hide()
         $('#tipo_enlace').val("")

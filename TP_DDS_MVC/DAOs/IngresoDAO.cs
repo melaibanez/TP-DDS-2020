@@ -38,7 +38,7 @@ namespace TP_DDS_MVC.DAOs
         {
             using (MyDBContext context = new MyDBContext())
             {
-                return context.Ingresos.Find(id);
+                return context.Ingresos.Include("egresosAsociados").Include("proyecto").Where(i=>i.idIngreso == id).FirstOrDefault();
             }
         }
 

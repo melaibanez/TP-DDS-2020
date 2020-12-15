@@ -29,24 +29,24 @@
 </div>
 
     <div class="mb-3">
+        <h5>Egresos asociados</h5>
         <div class="form-row">
             <div class="form-group col-4">
-                <label for="egresos">Egresos Asociados</label>
-                @foreach (Egreso egreso in @Model.egresosAsociados)
-                {
-                    <input id="egresos" class="form-control" type="text" value="@egreso.detalle, $@egreso.montoTotal" disabled>
-                }
+                <ul>
+                    @foreach (Egreso egreso in @Model.egresosAsociados)
+                    {
+                    <li class="list-group-item">@egreso.idEgreso &nbsp;-&nbsp; $@egreso.montoTotal </li>
+                    }
+                </ul>
             </div>
-            <br />
-            <ul class="list-group list-group-flush pb-5" id="listaEgresos">
-            </ul>
+
         </div>
     </div>
     <br />
     <div class="form-group row">
         <div class="col-10">
             &nbsp;&nbsp;&nbsp;
-            @Html.ActionLink("Finalizar Edicion", "ListIngresos", new { controller = "Ingreso" }, new { @class = "btn btn-secondary" })
+            @Html.ActionLink("Volver", "ListIngresos", new { controller = "Ingreso" }, new { @class = "btn btn-secondary" })
         </div>
     </div>
-</div>
+

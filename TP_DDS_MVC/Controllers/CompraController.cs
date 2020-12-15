@@ -184,6 +184,7 @@ namespace TP_DDS_MVC.Controllers
             ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios(idEntidad);
             ViewBag.compras = CompraDAO.getInstancia().getCompras();
             ViewBag.categorias = CategoriaDAO.getInstancia().getCategorias(idEntidad);
+            ViewBag.egresos = EgresoDAO.getInstancia().getEgresos(idEntidad);
             return View();
         }
 
@@ -237,6 +238,7 @@ namespace TP_DDS_MVC.Controllers
                 ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios(idEntidad);
                 ViewBag.compras = CompraDAO.getInstancia().getCompras();
                 ViewBag.categorias = CategoriaDAO.getInstancia().getCategorias(idEntidad);
+                ViewBag.egresos = EgresoDAO.getInstancia().getEgresos(idEntidad);
                 MyLogger.log(e.Message);
                 ViewBag.errorMsg = e.Message;
                 return View();

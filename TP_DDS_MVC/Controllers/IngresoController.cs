@@ -69,7 +69,8 @@ namespace TP_DDS_MVC.Controllers
         // GET: Ingreso/Create
         public ActionResult Create()
         {
-            ViewBag.egresos = EgresoDAO.getInstancia().getEgresos();
+            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+            ViewBag.egresos = EgresoDAO.getInstancia().getEgresos(idEntidad);
             return View();
         }
 
@@ -94,6 +95,13 @@ namespace TP_DDS_MVC.Controllers
             int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
             List<Ingreso> ingresos = IngresoDAO.getInstancia().getIngresos(idEntidad);
             return View(ingresos);
+        }
+
+        public ActionResult DetalleIngreso (int id)
+        {
+            Ingreso ingreso = IngresoDAO.getInstancia().getIngreso(id);
+
+            return View(ingreso);
         }
 
         // GET: Ingreso/Edit/5
@@ -178,7 +186,7 @@ namespace TP_DDS_MVC.Controllers
 
             }
 
-            ViewBag.egresos = EgresoDAO.getInstancia().getEgresos();
+            ViewBag.egresos = EgresoDAO.getInstancia().getEgresos(idEntidad);
             ViewBag.ingresos = IngresoDAO.getInstancia().getIngresos(idEntidad);
 
             return Json(Url.Action("Index", "Home"));

@@ -27,9 +27,9 @@
                 <th scope="row">@ingreso.idIngreso</th>
                 <td>@ingreso.descripcion</td>
                 <td>@ingreso.monto</td>
-                <td>@Html.ActionLink("Detalle", "DetalleIngreso", "Ingreso", new { idIngreso = ingreso.idIngreso }, new { @class = "btn btn-info btn-sm" })</td>
-                <td>@Html.ActionLink("Editar", "EditIngreso", "Ingreso", new { idIngreso = ingreso.idIngreso }, new { @class = "btn btn-secondary btn-sm" })</td>
-                <td>@Html.ActionLink("Eliminar", "DeleteIngreso", "Ingreso", new { idIngreso = ingreso.idIngreso }, new { @class = "btn btn-secondary btn-sm" })</td>
+                <td>@Html.ActionLink("Detalle", "DetalleIngreso", "Ingreso", new { id = ingreso.idIngreso }, new { @class = "btn btn-info btn-sm" })</td>
+                <td>@Html.ActionLink("Editar", "EditIngreso", "Ingreso", new { id = ingreso.idIngreso }, new { @class = "btn btn-secondary btn-sm" })</td>
+                <td>@Html.ActionLink("Eliminar", "DeleteIngreso", "Ingreso", new { id = ingreso.idIngreso }, new { @class = "btn btn-secondary btn-sm" })</td>
             </tr>
             }
         </tbody>
