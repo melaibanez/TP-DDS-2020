@@ -29,8 +29,8 @@
                 <td>@compra.egreso.montoTotal</td>
 
                 <td><input type="button" class="btn btn-secondary btn-sm" value="Detalle" onclick="window.open('@Url.Action("DetalleCompra", "Compra", new { id = compra.idCompra })')" /></td>
-                <td>@Html.ActionLink("Editar", "EditCompra", "Compra", new { idCompra = compra.idCompra }, new { @class = "btn btn-secondary btn-sm" })</td>
-                <td>@Html.ActionLink("Eliminar", "DeleteCompra", "Compra", new { idCompra = compra.idCompra }, new { @class = "btn btn-secondary btn-sm" })</td>
+                <td>@Html.ActionLink("Editar", "EditCompra", "Compra", new { id = compra.idCompra }, new { @class = "btn btn-secondary btn-sm" })</td>
+                <td>@Html.ActionLink("Eliminar", "DeleteCompra", "Compra", new { id = compra.idCompra }, new { @class = "btn btn-secondary btn-sm" })</td>
             </tr>
             }
         </tbody>

@@ -51,11 +51,17 @@ namespace TP_DDS_MVC.Controllers
         public ActionResult AddPrestadorDeServicios(PrestadorDeServicios PDS)
         {
             try
-            {
-                PDS.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
-                PDS.direccionPostal.validarDireccion();
-                PrestadorDeServiciosDAO.getInstancia().add(PDS);
-                return RedirectToAction("Index", "Home");
+            {   if (PDS.razonSocial != null && PDS.numDoc != null)
+                {
+                    PDS.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
+                    PDS.direccionPostal.validarDireccion();
+                    PrestadorDeServiciosDAO.getInstancia().add(PDS);
+                    return RedirectToAction("Index", "Home");
+                } else
+                {
+                    throw new Exception("Debe completar todos los campos para continuar");
+                }
+  
             }
             catch (Exception e)
             {
@@ -132,10 +138,15 @@ namespace TP_DDS_MVC.Controllers
         public ActionResult AddMedioDePago(MedioDePago MDP)
         {
             try
-            {
-                MDP.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
-                MedioDePagoDAO.getInstancia().add(MDP);
-                return RedirectToAction("Index", "Home");
+            {   if (MDP.instrumento != null & MDP.numInstrumento != null)
+                {
+                    MDP.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
+                    MedioDePagoDAO.getInstancia().add(MDP);
+                    return RedirectToAction("Index", "Home");
+                } else
+                {
+                    throw new Exception("Debe completar todos los campos para continuar");
+                }
             }
             catch (Exception e)
             {
@@ -292,10 +303,10 @@ namespace TP_DDS_MVC.Controllers
         }
 
        
-        public ActionResult EditCompra(int idCompra)
+        public ActionResult EditCompra(int id)
         {
             int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
-            Compra pres = CompraDAO.getInstancia().getCompraConEgresoYDocumentos(idCompra);
+            Compra pres = CompraDAO.getInstancia().getCompraConEgresoYDocumentos(id);
             ViewBag.usuarios = UsuarioDAO.getInstancia().getUsuarios(idEntidad);
             ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios(idEntidad);
             ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago(idEntidad);
@@ -341,43 +352,48 @@ namespace TP_DDS_MVC.Controllers
             
             try
             {
-
-                compra.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
-
-                CompraDAO.getInstancia().add(compra);
-
-               // Mongo.MongoDB.insertarDocumento("Compra", "alta", compra.ToBsonDocument());
-
-                /*BsonDocument compra1 = new BsonDocument {
-                     { "descripcion", req.compra.descripcion },
-                     { "cantMinimaPresupuestos", req.compra.cantMinimaPresupuestos },
-                     { "idCompra", req.compra.idCompra } };
-
-                var dataJson = JsonConvert.SerializeObject(req, new JsonSerializerSettings
+                if (compra.revisores != null && compra.descripcion != null && compra.egreso != null)
                 {
-                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                });
+                    compra.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
 
-                string json = JsonConvert.SerializeObject(joe, Formatting.Indented, new JsonSerializerSettings
+                    CompraDAO.getInstancia().add(compra);
+
+                    // Mongo.MongoDB.insertarDocumento("Compra", "alta", compra.ToBsonDocument());
+
+                    /*BsonDocument compra1 = new BsonDocument {
+                         { "descripcion", req.compra.descripcion },
+                         { "cantMinimaPresupuestos", req.compra.cantMinimaPresupuestos },
+                         { "idCompra", req.compra.idCompra } };
+
+                    var dataJson = JsonConvert.SerializeObject(req, new JsonSerializerSettings
+                    {
+                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                    });
+
+                    string json = JsonConvert.SerializeObject(joe, Formatting.Indented, new JsonSerializerSettings
+                    {
+                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                    });*/
+
+                    //BsonDocument document = BsonDocument.Parse(dataJson);
+
+                    //Mongo.MongoDB.insertarDocumento("Egreso", "alta", compra.egreso.ToBsonDocument());
+
+
+                    //Mongo.MongoDB.insertarDocumento("Compra", "alta", compra1 );
+
+                    //BsonDocument egreso = new BsonDocument {
+                    //     { "idEgreso", req.compra.egreso.idEgreso },
+                    //     { "montoTotal", req.compra.egreso.montoTotal },
+                    //     { "fechaEgreso", req.compra.egreso.fechaEgreso } };
+
+                    //Mongo.MongoDB.insertarDocumento("Egreso", "alta", egreso);
+
+                    return Json(Url.Action("Index", "Home"));
+                } else
                 {
-                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                });*/
-
-                //BsonDocument document = BsonDocument.Parse(dataJson);
-
-                //Mongo.MongoDB.insertarDocumento("Egreso", "alta", compra.egreso.ToBsonDocument());
-
-
-                //Mongo.MongoDB.insertarDocumento("Compra", "alta", compra1 );
-
-                //BsonDocument egreso = new BsonDocument {
-                //     { "idEgreso", req.compra.egreso.idEgreso },
-                //     { "montoTotal", req.compra.egreso.montoTotal },
-                //     { "fechaEgreso", req.compra.egreso.fechaEgreso } };
-
-                //Mongo.MongoDB.insertarDocumento("Egreso", "alta", egreso);
-
-                return Json(Url.Action("Index", "Home"));
+                    throw new Exception("Es necesario completar todos los campos para continuar");
+                }
             }
             catch (Exception e)
             {
@@ -393,12 +409,12 @@ namespace TP_DDS_MVC.Controllers
         }
 
         // GET: Compra/Delete/5
-        public ActionResult DeleteCompra(int idCompra)
+        public ActionResult DeleteCompra(int id)
 
         {
             try
             {
-                CompraDAO.getInstancia().deleteCompra(idCompra);
+                CompraDAO.getInstancia().deleteCompra(id);
                 return RedirectToAction("ListCompras");
             }
             catch (Exception e)
