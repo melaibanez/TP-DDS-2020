@@ -35,10 +35,16 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
-                proyecto.idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
-                proyecto.director = (Usuario)Session["usuario"];
-                ProyectoFinanciamientoDAO.getInstancia().add(proyecto);
-                return Json(Url.Action("Index", "Home"));
+                if (proyecto.propuesta != null && proyecto.cantidadPresupuestos != 0 && proyecto.montoTotal != 0 && proyecto.fechaCierre != null)
+                {
+                    proyecto.idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+                    proyecto.director = (Usuario)Session["usuario"];
+                    ProyectoFinanciamientoDAO.getInstancia().add(proyecto);
+                    return Json(Url.Action("Index", "Home"));
+                } else
+                {
+                    throw new Exception("Debe completar todos los campos para continuar");
+                }
             }
             catch (Exception e)
             {
