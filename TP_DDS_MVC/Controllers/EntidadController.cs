@@ -71,11 +71,6 @@ namespace TP_DDS_MVC.Controllers
             }
         }
 
-       
-
-
-   
-
         public ActionResult AddEntidadBaseAJuridica(int conJuridica)
         {
             ViewBag.conJuridica = conJuridica;

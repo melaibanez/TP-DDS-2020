@@ -23,7 +23,6 @@ namespace TP_DDS_MVC.Models.Otros
       
         public int contrasenia { get; set; }
         [BsonIgnore]
-
         public List<Compra> comprasRevisadas { get; set; }
 
         public List<Notificacion> bandejaMensajes { get; set; }

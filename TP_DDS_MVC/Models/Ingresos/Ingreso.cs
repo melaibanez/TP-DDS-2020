@@ -27,8 +27,9 @@ namespace TP_DDS_MVC.Models.Ingresos
         public DateTime fechaHasta { get; set; }
 
         [ForeignKey("entidad")]
-        [BsonIgnore]
+        
         public int idEntidad { get; set; }
+        [BsonIgnore]
         public Entidad entidad { get; set; }
         [BsonIgnore]
         public List<Egreso> egresosAsociados { get; set; }

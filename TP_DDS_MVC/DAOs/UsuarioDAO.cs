@@ -39,7 +39,7 @@ namespace TP_DDS_MVC.DAOs
 
             using (MyDBContext context = new MyDBContext())
             {
-                return context.Usuarios.Where(usr => usr.nombreUsuario == username && usr.contrasenia == hashedPass).SingleOrDefault();
+                return context.Usuarios.Where(usr => usr.nombreUsuario == username && usr.contrasenia == hashedPass).FirstOrDefault();
             }
         }
 

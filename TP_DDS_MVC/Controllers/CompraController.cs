@@ -201,12 +201,6 @@ namespace TP_DDS_MVC.Controllers
                     req.presupuesto.idEgreso = comp.idEgreso;
                 }
                 PresupuestoDAO.getInstancia().add(req.presupuesto);
-                
-                /*BsonDocument presupuesto = new BsonDocument {
-                     { "montoTotal", req.presupuesto.montoTotal },
-                     { "idPrestadorDeServicios", req.presupuesto.idPrestadorDeServicios } };
-
-                Mongo.MongoDB.insertarDocumento("Egreso", "alta", req.presupuesto.ToBsonDocument());*/
 
                 Mongo.MongoDB.insertarDocumento("Presupuesto", "alta", req.presupuesto.ToBsonDocument());
 
@@ -354,34 +348,7 @@ namespace TP_DDS_MVC.Controllers
 
                 Mongo.MongoDB.insertarDocumento("Compra", "alta", req.compra.ToBsonDocument());
 
-                /*BsonDocument compra1 = new BsonDocument {
-                     { "descripcion", req.compra.descripcion },
-                     { "cantMinimaPresupuestos", req.compra.cantMinimaPresupuestos },
-                     { "idCompra", req.compra.idCompra } };
-
-                var dataJson = JsonConvert.SerializeObject(req, new JsonSerializerSettings
-                {
-                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                });
-
-                string json = JsonConvert.SerializeObject(joe, Formatting.Indented, new JsonSerializerSettings
-                {
-                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                });*/
-
-                //BsonDocument document = BsonDocument.Parse(dataJson);
-
                 Mongo.MongoDB.insertarDocumento("Egreso", "alta", req.compra.egreso.ToBsonDocument());
-
-
-                //Mongo.MongoDB.insertarDocumento("Compra", "alta", compra1 );
-
-                //BsonDocument egreso = new BsonDocument {
-                //     { "idEgreso", req.compra.egreso.idEgreso },
-                //     { "montoTotal", req.compra.egreso.montoTotal },
-                //     { "fechaEgreso", req.compra.egreso.fechaEgreso } };
-
-                //Mongo.MongoDB.insertarDocumento("Egreso", "alta", egreso);
 
                 return Json(Url.Action("Index", "Home"));
             }
@@ -393,7 +360,8 @@ namespace TP_DDS_MVC.Controllers
                 ViewBag.usuarios = UsuarioDAO.getInstancia().getUsuarios(idEntidad);
                 ViewBag.categorias = CategoriaDAO.getInstancia().getCategorias(idEntidad);
                 MyLogger.log(e.Message);
-                ViewBag.errorMsg = e.Message;
+                ViewBag.errorMsg = "holaaa";
+                //ViewBag.errorMsg = e.Message;
                 return View();
             }
         }

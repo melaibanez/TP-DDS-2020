@@ -482,6 +482,10 @@
     <Content Include="Views\Compra\EditCompra.cshtml" />
     <Content Include="Views\Compra\EditPrestadorDeServicios.cshtml" />
     <Content Include="Views\ProyectoFinanciamiento\ListProyectos.cshtml" />
+    <Content Include="Views\ProyectoFinanciamiento\DetalleProyectos.cshtml" />
+    <Content Include="Views\ProyectoFinanciamiento\AsociarIngresoYEgreso.cshtml" />
+    <Content Include="Views\ProyectoFinanciamiento\AsociarEgreso.cshtml" />
+    <Content Include="Views\ProyectoFinanciamiento\AsociarIngreso.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

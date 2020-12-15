@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "AsociarIngresoYEgreso";
+}
+
+<h2>AsociarIngresoYEgreso</h2>
+
+<span>
+    <button class="btn btn-success col-lg-2" id="asociarIngreso">Asociar Ingreso</button>
+    @Html.ActionLink("Cancelar", "Index", new { controller = "ProyectoFinanciamientoController" }, new { @class = "btn btn-secondary col-lg-1" })
+</span>
+
+<span>
+    <button class="btn btn-success col-lg-2" id="asociarEgreso">Asociar Egreso</button>
+    @Html.ActionLink("Cancelar", "Index", new { controller = "ProyectoFinanciamientoController" }, new { @class = "btn btn-secondary col-lg-1" })
+</span>

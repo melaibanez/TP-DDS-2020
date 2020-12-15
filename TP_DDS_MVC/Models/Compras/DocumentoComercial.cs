@@ -21,8 +21,9 @@ namespace TP_DDS_MVC.Models.Compras
         [StringLength(50)]
         public string tipo_enlace { get; set; }
 
-        [ForeignKey("egreso")] [BsonIgnore]
+        [ForeignKey("egreso")] 
         public int? idEgreso { get; set; }
+        [BsonIgnore]
         public Egreso egreso { get; set; }
 
         [ForeignKey("entidad")] 
