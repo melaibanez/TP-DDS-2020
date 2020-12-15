@@ -15,7 +15,8 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Descripcion</th>
-                <th scope="col">Total</th>
+                <th scope="col">Total egreso</th>
+                <th></th>
                 <th></th>
                 <th></th>
             </tr>
@@ -26,7 +27,7 @@
             <tr>
                 <th scope="row">@compra.idCompra</th>
                 <td>@compra.descripcion</td>
-                <td>@compra.egreso.montoTotal</td>
+                <td>$@compra.egreso.montoTotal</td>
 
                 <td><input type="button" class="btn btn-secondary btn-sm" value="Detalle" onclick="window.open('@Url.Action("DetalleCompra", "Compra", new { id = compra.idCompra })')" /></td>
                 <td>@Html.ActionLink("Editar", "EditCompra", "Compra", new { idCompra = compra.idCompra }, new { @class = "btn btn-secondary btn-sm" })</td>
