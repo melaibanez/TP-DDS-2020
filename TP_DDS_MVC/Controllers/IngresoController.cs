@@ -29,12 +29,11 @@ namespace TP_DDS_MVC.Controllers
         [HttpPost]
         public ActionResult AddIngreso(Ingreso ing)
         {
-           /* Ingreso ingreso = new Ingreso();
-            ingreso.descripcion = ing.descripcion;
-            ingreso.monto = ing.monto;
-            ingreso.fechaDesde = ing.fechaDesde;
-            ingreso.fechaHasta = ing.fechaHasta;*/
-
+            /* Ingreso ingreso = new Ingreso();
+             ingreso.descripcion = ing.descripcion;
+             ingreso.monto = ing.monto;
+             ingreso.fechaDesde = ing.fechaDesde;
+             ingreso.fechaHasta = ing.fechaHasta;*/
 
             try
             {
@@ -88,6 +87,13 @@ namespace TP_DDS_MVC.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult ListIngresos()
+        {
+            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+            List<Ingreso> ingresos = IngresoDAO.getInstancia().getIngresos(idEntidad);
+            return View(ingresos);
         }
 
         // GET: Ingreso/Edit/5

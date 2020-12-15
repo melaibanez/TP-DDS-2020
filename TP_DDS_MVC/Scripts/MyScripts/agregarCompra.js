@@ -10,10 +10,11 @@
                 montoTotal: 0,
                 idPrestadorDeServicios: null,
                 detalle: []
-            }
-        },
-        revisores: [],
-        itemsCategorias: []
+
+            },
+            revisores: []
+        }
+
     }
 }
 
@@ -24,7 +25,9 @@ $(document).ready(function () {
 $("#agregarUsu").click(function () {
     $('#noUsu').hide()
 
-    data.model.revisores.push(parseInt($("#revisor").val()))
+    data.model.compra.revisores.push({
+        idUsuario:parseInt($("#revisor").val())
+    })
 
     $("#listaUsu").append('<li id="u' + $("#revisor").val() + '" class="list-group-item">' +
         $("#revisor").val() + '&nbsp;-&nbsp;' +

@@ -307,9 +307,6 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Core\Compression\Snappy\lib\win\snappy32.dll" />
-    <Content Include="Core\Compression\Snappy\lib\win\snappy64.dll" />
-    <Content Include="Core\Compression\Zstandard\lib\win\libzstd.dll" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -336,6 +333,7 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -358,6 +356,7 @@
     <Content Include="Scripts\MyScripts\agregarIngresoScript.js" />
     <Content Include="Scripts\MyScripts\agregarPresupuestoScript.js" />
     <Content Include="Scripts\MyScripts\agregarProyecto.js" />
+    <Content Include="Scripts\MyScripts\mostrarPorCriterios.js" />
     <Content Include="Scripts\MyScripts\tablasVinculador.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -481,6 +480,8 @@
     <Content Include="Views\Compra\criterios.cshtml" />
     <Content Include="Views\Compra\EditCompra.cshtml" />
     <Content Include="Views\Compra\EditPrestadorDeServicios.cshtml" />
+    <Content Include="Views\Ingreso\DetalleIngreso.cshtml" />
+    <Content Include="Views\Ingreso\EditIngreso.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

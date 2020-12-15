@@ -25,12 +25,12 @@ namespace TP_DDS_MVC.DAOs
             return instancia;
         }
 
-        public List<Presupuesto> getPresupuestos()
+        public List<Presupuesto> getPresupuestos(int idEntidad)
         {
 
             using (MyDBContext context = new MyDBContext())
             {
-                return context.DocumentosComerciales.OfType<Presupuesto>().ToList();
+                return context.DocumentosComerciales.OfType<Presupuesto>().Where(x=>x.idEntidad == idEntidad).ToList();
             }
         }
 
@@ -38,7 +38,7 @@ namespace TP_DDS_MVC.DAOs
         {
             using (MyDBContext context = new MyDBContext())
             {
-                return context.DocumentosComerciales.OfType<Presupuesto>().Include("items").Include("prestadorDeServicios").Include("medioDePago").Where(s => s.idDocComercial == id).FirstOrDefault<Presupuesto>();
+                return context.DocumentosComerciales.OfType<Presupuesto>().Include("items.categorias").Include("prestadorDeServicios").Include("medioDePago").Where(s => s.idDocComercial == id).FirstOrDefault<Presupuesto>();
                 //return (Presupuesto)context.DocumentosComerciales.OfType<Presupuesto>().Include(p => p.items).Where(p => p.idDocComercial == id);
             }
         }
@@ -48,6 +48,12 @@ namespace TP_DDS_MVC.DAOs
             Presupuesto added;
             using (MyDBContext context = new MyDBContext())
             {
+                for (int i = 0; i < presupuesto.items.Count(); i++)
+                {
+                    if (presupuesto.items.ElementAt(i).categorias != null)
+                        presupuesto.items.ElementAt(i).categorias = presupuesto.items.ElementAt(i).categorias.Select(c =>  context.Categorias.Find(c.idCategoria)).ToList();
+                }
+
                 added = (Presupuesto)context.DocumentosComerciales.Add(presupuesto);
                 context.SaveChanges();
             }

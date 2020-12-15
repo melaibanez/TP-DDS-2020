@@ -26,9 +26,9 @@ namespace TP_DDS_MVC.Mongo
 
             collection.InsertOne(doc);
 
-        }
+    }
 
-        public static List<BsonDocument> leerDeMongo()
+    public static List<BsonDocument> leerDeMongo()
         {
             MongoClient dbClient = new MongoClient();
 

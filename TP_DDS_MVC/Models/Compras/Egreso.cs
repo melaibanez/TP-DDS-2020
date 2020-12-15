@@ -36,7 +36,8 @@ namespace TP_DDS_MVC.Models.Compras
         [ForeignKey("entidad")] 
         public int? idEntidad { get; set; }
         public Entidad entidad { get; set; }
-        
+      
+        [BsonIgnore]
         public List<ItemEgreso> detalle { get; set; }
         
         public List<DocumentoComercial> docsComerciales { get; set; }

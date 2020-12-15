@@ -5,12 +5,9 @@
     ViewBag.Title = "Editar Compra";
 }
 
-<script type="text/javascript">
-    var model = @Html.Raw(Json.Encode(Model));
-</script>
 
 <div class="mb-3">
-    <h2>Cargar Compra</h2>
+    <h2>Editar Compra</h2>
 </div>
 @if (ViewBag.errorMsg != null)
 {
@@ -54,7 +51,7 @@
 </div>
 
 <div class="mb-4">
-    <h3>Crear un Egreso</h3>
+    <h3>Editar Egreso</h3>
 </div>
 <div class="ml-4">
     <div class="form-group mb-3">
@@ -86,8 +83,7 @@
 
 
     <div class="mb-3">
-        <h4>Agregar items</h4>
-        <div class="form-row">
+        <!-- <div class="form-row">
             <div class="form-group col-4">
                 <label for="descripcionItem">Descripcion</label>
                 <input type="text" class="form-control" id="descripcionItem" placeholder="Descripcion" />
@@ -103,16 +99,19 @@
         </div>
         <button class="btn btn-primary btn-sm mb-1" id="agregarItem">Agregar</button>
         <br />
-        <br />
+        <br /> -->
         <h5>Lista de Items</h5>
         <div class="col-4">
-            <label id="noItems">No hay items agregados</label>
             <ul class="list-group list-group-flush pb-5" id="listaItems">
+                @foreach (Item i in ViewBag.items)
+                {
+                    <li class="list-group-item">@i.descripcion&nbsp;-&nbsp;$@i.valor c/u&nbsp;-&nbsp;@i.cant unidades&nbsp;-&nbsp;@i.categoriasString()</li>
+                }
             </ul>
         </div>
     </div>
     <span>
-        <button class="btn btn-success col-lg-2" id="submit">Cargar</button>
+        <button class="btn btn-success col-lg-2" id="submit">Aceptar</button>
         @Html.ActionLink("Cancelar", "Index", new { controller = "Compra" }, new { @class = "btn btn-secondary col-lg-1" })
     </span>
 </div>
