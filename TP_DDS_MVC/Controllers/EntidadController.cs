@@ -40,6 +40,8 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
+                if(req.entidad.nombreFicticio == null || req.entidad.razonSocial == null || req.entidad.CUIT == null || req.entidad.direccionPostal == null || req.actividad == null)
+                    throw new Exception("Es necesario completar todos los campos para continuar");
                 req.entidad.direccionPostal.validarDireccion();
                 if (req.tipoOrganizacion == "OSC"){
                     req.entidad.tipoOrganizacion = new OSC(req.actividad);
@@ -85,6 +87,8 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
+                if(req.entidad.nombreFicticio == null || req.entidad.descripcion == null || req.actividad == null)
+                    throw new Exception("Es necesario completar todos los campos para continuar");
                 if (req.tipoOrganizacion == "OSC"){
                     req.entidad.tipoOrganizacion = new OSC(req.actividad);
                 }
