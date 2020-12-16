@@ -18,35 +18,31 @@
         </tr>
     </thead>
     <tbody>
-        @if (listaEgresos != null)
+
+        @using (Html.BeginForm("Holaa", "ProyectoFinanciamiento", FormMethod.Post))
         {
-            foreach (Egreso egreso in (List<Egreso>)listaEgresos)
+            if (listaEgresos != null)
             {
-                <tr>
-                    <th scope="row"><input type="checkbox" checked="checked"></th>
-                    <td>egreso.idEgreso</td>
-                    <td>egreso.montoTotal</td>
-                </tr>
-            }
+                foreach (Egreso egreso in (List<Egreso>)listaEgresos)
+                {
+                    <tr>
+                        <th scope="row"><input type="checkbox" name="egresosAsociados" id="egresosAsociados" checked="checked">egreso.idEgreso</th>
+                        <td>egreso.idEgreso</td>
+                        <td>egreso.montoTotal</td>
+                    </tr>
+                }
 
-            <!--<input type="checkbox" name="bettingOfficeIDs" value="egreso.idEgreso">
-        <td>egreso.montoTotal</td>-->
-            if (listaEgresos.Count == 0)
-            {
-                <tr>
-                    <td></td>
-                    <td>No hay egresos</td>
-                    <td></td>
-                </tr>
+                if (listaEgresos.Count == 0)
+                {
+                    <tr>
+                        <td></td>
+                        <td>No hay egresos</td>
+                        <td></td>
+                    </tr>
+                }
             }
+            <input type="submit" value="Asociar">
         }
-
     </tbody>
 </table>
-
-
-
-<span>
-    @Html.ActionLink("Asociar", "Index", new { controller = "ProyectoFinanciamientoController" }, new { @class = "btn btn-secondary col-lg-1" })
-</span>
 

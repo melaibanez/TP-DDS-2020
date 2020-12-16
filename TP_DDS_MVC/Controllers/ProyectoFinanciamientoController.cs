@@ -30,6 +30,9 @@ namespace TP_DDS_MVC.Controllers
             return View();
         }
 
+        private int id_Entidad = 0;
+        private int id_Proyecto = 0;
+
         [HttpPost]
         public ActionResult AddProyectoFinanciamiento(ProyectoFinanciamiento proyecto)
         {
@@ -165,6 +168,7 @@ namespace TP_DDS_MVC.Controllers
             try
             {
                 ProyectoFinanciamiento proyecto = ProyectoFinanciamientoDAO.getInstancia().getProyecto(id);
+                id_Proyecto = id;
                 
                 return View(proyecto);
             }
@@ -181,6 +185,7 @@ namespace TP_DDS_MVC.Controllers
             int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
             ProyectoFinanciamiento proyecto = ProyectoFinanciamientoDAO.getInstancia().getProyecto(id);
             ViewBag.listaEgresos = EgresoDAO.getInstancia().getEgresos(id);
+            id_Entidad = id;
             return View(proyecto);
         }
 
@@ -202,9 +207,36 @@ namespace TP_DDS_MVC.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult Holaa(string[] egresosAsociados)
+        {
+            try
+            {
+                List<Egreso> listaEgresos = EgresoDAO.getInstancia().getEgresos(id_Entidad);
+                ProyectoFinanciamiento proyecto = ProyectoFinanciamientoDAO.getInstancia().getProyecto(id_Proyecto);
+                int i = 0;
+                foreach (string egreso in egresosAsociados)
+                {
+                    //proyecto.compras.egr
+                    
+                    //listaEgresos[i];
 
+                    
 
-            public ActionResult AsociarIngreso(int id)
+                }
+
+                return View();
+            }
+            catch (Exception e)
+            {
+                int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+                MyLogger.log(e.Message);
+                ViewBag.errorMsg = e.Message;
+                return View("AsociarEgreso");
+            }
+        }
+
+        public ActionResult AsociarIngreso(int id)
         {
             try
             {
@@ -223,6 +255,7 @@ namespace TP_DDS_MVC.Controllers
         {
             return View();
         }
+
         /*
         [HttpPost]
         public ActionResult ListOperaciones()
