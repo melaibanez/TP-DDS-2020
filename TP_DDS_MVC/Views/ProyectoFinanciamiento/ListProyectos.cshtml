@@ -4,36 +4,40 @@
     ViewBag.Title = "ListProyectos";
 }
 
-<h2>Lista de Proyectos</h2>
-
 <div class="alert alert-secondary my-4" role="alert">
     <h2>Listado de Proyectos</h2>
 </div>
 
 <div class="container-fluid">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Propuesta</th>
-                <th scope="col">Fecha de Ejecución</th>
+    @if (Model.Count != 0)
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Propuesta</th>
+                    <th scope="col">Fecha de Ejecución</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
 
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model.Count != 0)
-            {
-                foreach (ProyectoFinanciamiento proyecto in (List<ProyectoFinanciamiento>)Model)
+                @foreach (ProyectoFinanciamiento proyecto in (List<ProyectoFinanciamiento>)Model)
                 {
-                    <tr>
-                        <th scope="row">@proyecto.idProyecto</th>
-                        <td>@proyecto.propuesta</td>
-                        <td>@proyecto.fechaEjecucion</td>
-                        <td>@Html.ActionLink("Ver", "DetalleProyectos", "ProyectoFinanciamiento", new { id = proyecto.idProyecto }, new { @class = "btn btn-secondary btn-sm" })</td>
-                        <td>@Html.ActionLink("Eliminar", "DeleteProyecto", "ProyectoFinanciamiento", new { id = proyecto.idProyecto }, new { @class = "btn btn-secondary btn-sm" })</td>
-                    </tr>
+                <tr>
+                    <th scope="row">@proyecto.idProyecto</th>
+                    <td>@proyecto.propuesta</td>
+                    <td>@proyecto.fechaEjecucion</td>
+                    <td>@Html.ActionLink("Ver", "DetalleProyectos", "ProyectoFinanciamiento", new { id = proyecto.idProyecto }, new { @class = "btn btn-secondary btn-sm" })</td>
+                    <td>@Html.ActionLink("Eliminar", "DeleteProyecto", "ProyectoFinanciamiento", new { id = proyecto.idProyecto }, new { @class = "btn btn-secondary btn-sm" })</td>
+                </tr>
                 }
-            }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+     }
+    else
+    {
+        <p class="lead"> No hay proyectos de financiamento cargados.</p>
+    }
 </div>

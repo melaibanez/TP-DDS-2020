@@ -49,16 +49,16 @@ namespace TP_DDS_MVC.Models.Compras
             this.detalle = detalle;
             this.docsComerciales = docsComerciales;
             this.fechaEgreso = fechaEgreso;
-            this.medioDePago = ((Presupuesto)docsComerciales.Find(d => d.tipo_enlace == "Presupuesto")).medioDePago;
+            this.medioDePago = ((Presupuesto)docsComerciales.Find(d => d.tipo == "Presupuesto")).medioDePago;
             this.montoTotal = detalle.Sum(i => i.valor * i.cant);
-            this.prestadorDeServicios = ((Presupuesto)docsComerciales.Find(d => d.tipo_enlace == "Presupuesto")).prestadorDeServicios;
+            this.prestadorDeServicios = ((Presupuesto)docsComerciales.Find(d => d.tipo == "Presupuesto")).prestadorDeServicios;
             this.ingresoAsociado = ingresoAsociado;
         }
 
 
         public Presupuesto getPresupuestoElegido()
         {
-            return (Presupuesto)docsComerciales.Find(doc => doc.tipo_enlace == "Presupuesto");
+            return (Presupuesto)docsComerciales.Find(doc => doc.tipo == "Presupuesto");
         }
 
         public bool tieneIngresoAsociado()

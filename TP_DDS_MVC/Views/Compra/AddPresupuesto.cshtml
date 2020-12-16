@@ -20,6 +20,14 @@
 <div id="error" class="alert alert-danger mb-3" role="alert">
 </div>
 
+<div class="form-group">
+    <label for="tipoDoc">¿Que desea cargar?</label>
+    <select id="tipoDoc" class="form-control">
+        <option value="Presupuesto">Presupuesto</option>
+        <option value="DocumentoComercial">Documento Comercial</option>
+    </select>
+</div>
+
 <div class="form-row">
     <div class="form-group col-12">
         <label for="nroIdentificacion">Numero de Identificacion</label>
@@ -27,20 +35,6 @@
     </div>
 </div>
 
-<div class="form-row">
-    <div class="form-group col-12">
-        <label for="tipoEnlace">Tipo/enlace</label>
-        <input id="tipoEnlace" class="form-control" type="text" placeholder="Tipo/enlace">
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="tipoDoc">Tipo de Documento Comercial</label>
-    <select id="tipoDoc" class="form-control">
-        <option value="Presupuesto">Presupuesto</option>
-        <option value="DocumentoComercial">Documento Comercial</option>
-    </select>
-</div>
 
 <div id="formPresupuesto">
     <div class="form-row">
@@ -88,11 +82,20 @@
         </div>
         <div class="form-group col-1">
             <label for="valorItem">Valor </label>
-            <input type="number" class="form-control" id="valorItem" placeholder="1" step="0.01" min="1" />
+            <input type="number" class="form-control" id="valorItem" value=1 step="0.01" min="1" />
         </div>
         <div class="form-group col-1">
             <label for="cantItem">Cantidad</label>
-            <input type="number" class="form-control" id="cantItem" placeholder="1" min="1" />
+            <input type="number" class="form-control" id="cantItem" value=1 min="1" />
+        </div>
+        <div class="form-group col-4 ml-4">
+            <label for="categoria">Seleccione la/s categoria/s del item</label>
+            <select id="categoria" class="form-control" multiple>
+                @foreach (Categoria cat in (List<Categoria>)ViewBag.categorias)
+                {
+                    <option value=@cat.idCategoria>@cat.nombre (@cat.criterio.nombre)</option>
+                }
+            </select>
         </div>
     </div>
     <button class="btn btn-primary btn-sm mb-2" id="agregarItem">Agregar</button>
@@ -102,20 +105,24 @@
         <ul class="list-group list-group-flush pb-5" id="listaItems">
         </ul>
     </div>
-    <div class="form-group col-4 ml-4">
-        <label for="categoria">Seleccione la/s categoria/s del item</label>
-        <select id="categoria" class="form-control" multiple>
-            @foreach (Categoria cat in (List<Categoria>)ViewBag.categorias)
-            {
-                <option value=@cat.idCategoria>@cat.nombre (@cat.criterio.nombre)</option>
-            }
-        </select>
-    </div>
 </div>
 
 <div id="formDoc">
+
+
+
     <div class="form-row">
-        <div class="form-group col-12">
+        <div class="form-group col-6">
+            <label for="tipo">Tipo de Doc. Comercial</label>
+            <input id="tipo" class="form-control" type="text" placeholder="Tipo de Doc. Comercial">
+        </div>
+        <div class="form-group col-6">
+            <label for="enlace">Enlace</label>
+            <input id="enlace" class="form-control" type="text" placeholder="Enlace (opcional)">
+        </div>
+    </div>
+
+        <div class="form-group">
             <label for="asociarEgreso">Asociar a un egreso</label>
             <input list="egresosAsociados" id="asociarEgreso" class="form-control" type="text" placeholder="Seleccionar...">
             <datalist id="egresosAsociados">
@@ -125,11 +132,11 @@
                 }
             </datalist>
         </div>
-    </div>
 </div>
-<span>
+
+<span class="mt-5">
     <button class="btn btn-success col-lg-2" id="submit">Crear</button>
-    @Html.ActionLink("Cancelar", "Index", new { controller = "Compra" }, new { @class = "btn btn-secondary col-lg-1" })
+    @Html.ActionLink("Cancelar", "Index", new { controller = "Compra" }, new { @class = "btn btn-secondary col-lg-1 " })
 </span>
 
 

@@ -1,21 +1,27 @@
 ﻿@using TP_DDS_MVC.Models.Ingresos;
-@model List<Ingreso>
+
 @{
-    ViewBag.Title = "AsociarIngreso";
+    ViewBag.Title = "Asociar Ingreso";
 }
 
-    <h2>AsociarIngreso</h2>
+<div class="pb-3">
+    <h3>Asociar un ingreso</h3>
+</div>
 
-    @foreach (Ingreso ingreso in (List<Ingreso>)Model)
-    {
-        <label class="container">
-            @ingreso.idIngreso
-            <input type="checkbox" checked="checked">
-            <span class="checkmark"></span>
-        </label>
-    }
-
-<span>
-    <button class="btn btn-success col-lg-2" id="asociar">Asociar</button>
-    @Html.ActionLink("Cancelar", "Index", new { controller = "ProyectoFinanciamientoController" }, new { @class = "btn btn-secondary col-lg-1" })
-</span>
+@using (Html.BeginForm("AsociarIngreso", "ProyectoFinanciamiento", FormMethod.Post))
+{
+    <input hidden type="text" name="idProyecto" value=@ViewBag.idProyecto />
+    <div class="form-row col mr-5">
+        <div class="form-group">
+            <label for="compra">Seleccione un ingreso:</label>
+            <input class="form-control" list="compras" name="idIngreso" id="compra" type="text" placeholder="Seleccionar...">
+            <datalist id="copmras">
+                @foreach (Ingreso ing in (List<Ingreso>)ViewBag.ingresos)
+                {
+                    <option value="@ing.idIngreso">@ing.descripcion</option>
+                }
+            </datalist>
+        </div>
+        <input class="btn btn-success" type="submit" value="Asociar" />
+    </div>
+}

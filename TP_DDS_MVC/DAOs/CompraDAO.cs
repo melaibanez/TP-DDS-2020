@@ -26,13 +26,24 @@ namespace TP_DDS_MVC.DAOs
             return instancia;
         }
 
-        public List<Compra> getCompras()
+        public List<Compra> getCompras(int idEntidad)
         {
 
             using (MyDBContext context = new MyDBContext())
             {
 
-                return context.Compras.ToList();
+                return context.Compras.Where(i => i.idEntidad == idEntidad).ToList();
+            }
+        }
+
+        public void asociarCompraAProyecto(int idProyecto, int idCompra)
+        {
+
+            using (MyDBContext context = new MyDBContext())
+            {
+                Compra comp = context.Compras.Where(p => p.idCompra == idCompra).SingleOrDefault();
+                comp.idProyecto = idProyecto;
+                context.SaveChanges();
             }
         }
 

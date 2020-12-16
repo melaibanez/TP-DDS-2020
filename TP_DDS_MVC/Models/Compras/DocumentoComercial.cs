@@ -19,7 +19,10 @@ namespace TP_DDS_MVC.Models.Compras
         public string nroIdentificacion { get; set; }
 
         [StringLength(50)]
-        public string tipo_enlace { get; set; }
+        public string tipo { get; set; }
+
+        [StringLength(100)]
+        public string enlace { get; set; }
 
         [ForeignKey("egreso")] 
         public int? idEgreso { get; set; }
@@ -31,10 +34,10 @@ namespace TP_DDS_MVC.Models.Compras
         public Entidad entidad { get; set; }
 
         public DocumentoComercial() { }
-        public DocumentoComercial(string nroIdentificacion, string tipo_enlace)
+        public DocumentoComercial(string nroIdentificacion, string tipo)
         {
             this.nroIdentificacion = nroIdentificacion;
-            this.tipo_enlace = tipo_enlace;
+            this.tipo = tipo;
         }
     }
 }

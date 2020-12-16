@@ -42,6 +42,17 @@ namespace TP_DDS_MVC.DAOs
             }
         }
 
+        public void asociarIngresoAProyecto(int idProyecto, int idIngreso)
+        {
+
+            using (MyDBContext context = new MyDBContext())
+            {
+                Ingreso comp = context.Ingresos.Where(p => p.idIngreso == idIngreso).SingleOrDefault();
+                comp.idProyecto = idProyecto;
+                context.SaveChanges();
+            }
+        }
+
         public Ingreso add(Ingreso ingreso)
         {
             Ingreso added;

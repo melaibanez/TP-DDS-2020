@@ -194,7 +194,7 @@ namespace TP_DDS_MVC.Controllers
             int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
             ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago(idEntidad);
             ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios(idEntidad);
-            ViewBag.compras = CompraDAO.getInstancia().getCompras();
+            ViewBag.compras = CompraDAO.getInstancia().getCompras(idEntidad);
             ViewBag.categorias = CategoriaDAO.getInstancia().getCategorias(idEntidad);
             ViewBag.egresos = EgresoDAO.getInstancia().getEgresos(idEntidad);
             return View();
@@ -205,14 +205,20 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
+                
                 int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
                 if (req.presupuesto != null)
                 {
+                    if (req.presupuesto.idMedioDePago == 0 || req.presupuesto.idPrestadorDeServicios == 0 || req.presupuesto.items == null || req.presupuesto.idCompra == null || req.presupuesto.nroIdentificacion == null || req.presupuesto.tipo == null)
+                    {
+                        throw new Exception("Hubo un error. Revise los datos ingresados y vuelva a intentarlo.");
+                    }
+
                     req.presupuesto.idEntidad = idEntidad; 
                     if (req.setEgreso && req.presupuesto.idCompra != null)
                     {
                         Compra comp = CompraDAO.getInstancia().getCompraConEgresoYDocumentos(req.presupuesto.idCompra.Value);
-                        if (comp.egreso.docsComerciales.Exists(dc => dc.tipo_enlace == "Presupuesto"))
+                        if (comp.egreso.docsComerciales.Exists(dc => dc.tipo == "Presupuesto"))
                         {
                             throw new Exception("La compra seleccionada ya tiene un presupuesto elegido para el egreso.");
                         }
@@ -220,8 +226,8 @@ namespace TP_DDS_MVC.Controllers
                     }
                     PresupuestoDAO.getInstancia().add(req.presupuesto);
                 } else if(req.documentoComercial != null){
-                    if(req.documentoComercial.idEgreso == null )
-                        throw new Exception("Revise los datos ingresados y vuelva a intentarlo.");
+                    if(req.documentoComercial.idEgreso == 0 || req.documentoComercial.tipo == null || req.documentoComercial.nroIdentificacion == null)
+                        throw new Exception("Hubo un error. Revise los datos ingresados y vuelva a intentarlo.");
                     req.documentoComercial.idEntidad = idEntidad;
                     DocumentoComercialDAO.getInstancia().add(req.documentoComercial);
                     
@@ -229,8 +235,6 @@ namespace TP_DDS_MVC.Controllers
                 {
                     throw new Exception("Hubo un problema cargando el documento. Recargue la pagina y vuelva a intentarlo.");
                 }
-
-                PresupuestoDAO.getInstancia().add(req.presupuesto);
 
 
                 //Mongo.MongoDB.insertarDocumento("Presupuesto", "alta", req.presupuesto.ToBsonDocument());
@@ -244,7 +248,7 @@ namespace TP_DDS_MVC.Controllers
                 int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
                 ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago(idEntidad);
                 ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios(idEntidad);
-                ViewBag.compras = CompraDAO.getInstancia().getCompras();
+                ViewBag.compras = CompraDAO.getInstancia().getCompras(idEntidad);
                 ViewBag.categorias = CategoriaDAO.getInstancia().getCategorias(idEntidad);
                 ViewBag.egresos = EgresoDAO.getInstancia().getEgresos(idEntidad);
                 MyLogger.log(e.Message);
