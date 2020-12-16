@@ -23,12 +23,12 @@
         {
             if (listaEgresos != null)
             {
-                foreach (Egreso egreso in (List<Egreso>)listaEgresos)
+                foreach (Compra egreso in (List<Compra>)listaEgresos)
                 {
                     <tr>
-                        <th scope="row"><input type="checkbox" name="egresosAsociados" id="egresosAsociados" checked="checked">egreso.idEgreso</th>
-                        <td>egreso.idEgreso</td>
-                        <td>egreso.montoTotal</td>
+                        <th scope="row"><input type="checkbox" name="egresosAsociados" id="egresosAsociados" checked="checked"></th>
+                        <td>egreso.idCompra</td>
+                        <td>egreso.descripcion</td>
                     </tr>
                 }
 
@@ -36,13 +36,16 @@
                 {
                     <tr>
                         <td></td>
-                        <td>No hay egresos</td>
+                        <td>No hay compras</td>
                         <td></td>
                     </tr>
                 }
-            }
-            <input type="submit" value="Asociar">
+                @Html.Hidden("idProyecto", (string)ViewBag.id.ToString());
+                <th scope="row"><input type="checkbox" name="egresosAsociados" id="propuesta2" checked="checked" hidden></th>
         }
-    </tbody>
-</table>
+
+        <input type="submit" value="Asociar" id=@ViewBag.id>
+    }
+        </tbody>
+    </table>
 
