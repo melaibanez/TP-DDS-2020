@@ -35,7 +35,7 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
-                if (proyecto.propuesta != null && proyecto.cantidadPresupuestos != 0 && proyecto.montoTotal != 0 && proyecto.fechaCierre != null)
+                if (proyecto.propuesta != null && proyecto.cantidadPresupuestos != 0 && proyecto.limiteErogacion != 0 && proyecto.fechaCierre != null)
                 {
                     proyecto.idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
                     proyecto.director = (Usuario)Session["usuario"];
@@ -180,7 +180,7 @@ namespace TP_DDS_MVC.Controllers
         {
             int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
             ProyectoFinanciamiento proyecto = ProyectoFinanciamientoDAO.getInstancia().getProyecto(id);
-            ViewBag.listaEgresos = CompraDAO.getInstancia().getCompras(idEntidad);
+            ViewBag.listaEgresos = EgresoDAO.getInstancia().getEgresos(id);
             return View(proyecto);
         }
 
@@ -189,7 +189,8 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
-                
+                return View("DetalleProyectos");
+                // corregir esto después
             }
             catch (Exception e)
             {

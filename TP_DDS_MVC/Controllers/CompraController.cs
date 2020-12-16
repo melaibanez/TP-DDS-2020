@@ -356,41 +356,7 @@ namespace TP_DDS_MVC.Controllers
 
                     CompraDAO.getInstancia().add(compra);
 
-
-                    // Mongo.MongoDB.insertarDocumento("Compra", "alta", compra.ToBsonDocument());
-
-                    /*BsonDocument compra1 = new BsonDocument {
-                         { "descripcion", req.compra.descripcion },
-                         { "cantMinimaPresupuestos", req.compra.cantMinimaPresupuestos },
-                         { "idCompra", req.compra.idCompra } };
-
-                    var dataJson = JsonConvert.SerializeObject(req, new JsonSerializerSettings
-                    {
-                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                    });
-
-                    string json = JsonConvert.SerializeObject(joe, Formatting.Indented, new JsonSerializerSettings
-                    {
-                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                    });*/
-
-                    //BsonDocument document = BsonDocument.Parse(dataJson);
-
-                    //Mongo.MongoDB.insertarDocumento("Egreso", "alta", compra.egreso.ToBsonDocument());
-
-
-                    //Mongo.MongoDB.insertarDocumento("Compra", "alta", compra1 );
-
-                    //BsonDocument egreso = new BsonDocument {
-                    //     { "idEgreso", req.compra.egreso.idEgreso },
-                    //     { "montoTotal", req.compra.egreso.montoTotal },
-                    //     { "fechaEgreso", req.compra.egreso.fechaEgreso } };
-
-                    //Mongo.MongoDB.insertarDocumento("Egreso", "alta", egreso);
-
-                Mongo.MongoDB.insertarDocumento("Egreso", "alta", req.compra.egreso.ToBsonDocument());
-
-
+                    Mongo.MongoDB.insertarDocumento("Egreso", "alta", compra.egreso.ToBsonDocument());
 
                     return Json(Url.Action("Index", "Home"));
                 } else

@@ -482,7 +482,6 @@
     <Content Include="Views\Compra\EditPrestadorDeServicios.cshtml" />
     <Content Include="Views\ProyectoFinanciamiento\ListProyectos.cshtml" />
     <Content Include="Views\ProyectoFinanciamiento\DetalleProyectos.cshtml" />
-    <Content Include="Views\ProyectoFinanciamiento\AsociarIngresoYEgreso.cshtml" />
     <Content Include="Views\ProyectoFinanciamiento\AsociarEgreso.cshtml" />
     <Content Include="Views\ProyectoFinanciamiento\AsociarIngreso.cshtml" />
     <Content Include="Views\Ingreso\DetalleIngreso.cshtml" />

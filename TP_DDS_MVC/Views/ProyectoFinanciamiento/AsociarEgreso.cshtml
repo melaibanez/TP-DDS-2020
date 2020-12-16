@@ -6,18 +6,44 @@
     var listaEgresos = ViewBag.listaEgresos;
 }
 
-<h2>AsociarEgreso</h2>
+<h2>Asociar Egreso</h2>
 
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">#</th>
+            <th scope="col">Monto</th>
 
+        </tr>
+    </thead>
+    <tbody>
+        @if (listaEgresos != null)
+        {
+            foreach (Egreso egreso in (List<Egreso>)listaEgresos)
+            {
+                <tr>
+                    <th scope="row"><input type="checkbox" checked="checked"></th>
+                    <td>egreso.idEgreso</td>
+                    <td>egreso.montoTotal</td>
+                </tr>
+            }
 
-@foreach (Compra egreso in (List<Compra>)listaEgresos)
-{
-    <tr>
-        <th scope="row"><input type="checkbox" checked="checked"></th>
-        <td>@egreso.idCompra</td>
-        <td>@egreso.descripcion</td>
-    </tr>
-}
+            <!--<input type="checkbox" name="bettingOfficeIDs" value="egreso.idEgreso">
+        <td>egreso.montoTotal</td>-->
+            if (listaEgresos.Count == 0)
+            {
+                <tr>
+                    <td></td>
+                    <td>No hay egresos</td>
+                    <td></td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+
 
 
 <span>
