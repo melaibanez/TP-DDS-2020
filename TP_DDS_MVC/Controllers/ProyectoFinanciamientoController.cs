@@ -169,7 +169,7 @@ namespace TP_DDS_MVC.Controllers
             {
                 ProyectoFinanciamiento proyecto = ProyectoFinanciamientoDAO.getInstancia().getProyecto(id);
                 id_Proyecto = id;
-                
+                ViewBag.idProyecto = id;
                 return View(proyecto);
             }
             catch (Exception e)
@@ -184,8 +184,9 @@ namespace TP_DDS_MVC.Controllers
         {
             int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
             ProyectoFinanciamiento proyecto = ProyectoFinanciamientoDAO.getInstancia().getProyecto(id);
-            ViewBag.listaEgresos = EgresoDAO.getInstancia().getEgresos(id);
+            ViewBag.listaEgresos = CompraDAO.getInstancia().getCompras();
             id_Entidad = id;
+            ViewBag.id = id;
             return View(proyecto);
         }
 
@@ -212,16 +213,28 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
-                List<Egreso> listaEgresos = EgresoDAO.getInstancia().getEgresos(id_Entidad);
-                ProyectoFinanciamiento proyecto = ProyectoFinanciamientoDAO.getInstancia().getProyecto(id_Proyecto);
+                int propuesta2 = Int32.Parse(Request.Form["idProyecto"]);
+                //string name = Request["propuesta2"];
+
+                //string id = Request.Params.Cast<string>().Where(p => !p.StartsWith("egresosAsociados")).First();
+                //int idProyecto = Int32.Parse(name);
+                List<Compra> listaEgresos = CompraDAO.getInstancia().getCompras();
+                ProyectoFinanciamiento proyecto = ProyectoFinanciamientoDAO.getInstancia().getProyecto(propuesta2);
                 int i = 0;
+                if (proyecto.compras == null)
+                {
+                    proyecto.compras = new List<Compra>();
+                }
+
                 foreach (string egreso in egresosAsociados)
                 {
-                    //proyecto.compras.egr
-                    
-                    //listaEgresos[i];
+                    if (egreso == "on")
+                    {
+                        //proyecto.compras.
+                        proyecto.compras.Add(listaEgresos[i]);
+                    }
 
-                    
+                    i++;
 
                 }
 
