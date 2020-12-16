@@ -349,20 +349,17 @@ namespace TP_DDS_MVC.Controllers
             try
             {
 
-                if (compra.revisores != null && compra.descripcion != null && compra.egreso != null)
-                {
-                    compra.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
-                    compra.egreso.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
-
-                    CompraDAO.getInstancia().add(compra);
-
-                    Mongo.MongoDB.insertarDocumento("Egreso", "alta", compra.egreso.ToBsonDocument());
-
-                    return Json(Url.Action("Index", "Home"));
-                } else
-                {
+                if (compra.revisores == null || compra.descripcion == null || compra.egreso == null)
                     throw new Exception("Es necesario completar todos los campos para continuar");
-                }
+                
+                 compra.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
+                 compra.egreso.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
+
+                 CompraDAO.getInstancia().add(compra);
+
+                 Mongo.MongoDB.insertarDocumento("Egreso", "alta", compra.egreso.ToBsonDocument());
+
+                 return Json(Url.Action("Index", "Home"));
             }
             catch (Exception e)
             {
