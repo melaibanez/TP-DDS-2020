@@ -11,6 +11,7 @@ using TP_DDS_MVC.Models.Compras;
 using TP_DDS_MVC.Helpers.Validadores;
 using TP_DDS_MVC.Models.Entidades;
 using TP_DDS_MVC.Models.Otros;
+using System.Net;
 
 namespace TP_DDS_MVC.Controllers
 {
@@ -66,15 +67,10 @@ namespace TP_DDS_MVC.Controllers
                 ViewBag.paises = PaisDAO.getInstancia().getPaises();
                 ViewBag.provincias = ProvinciaDAO.getInstancia().getProvincias();
                 ViewBag.ciudades = CiudadDAO.getInstancia().getCiudades();
-                ViewBag.errorMsg = e.Message;
-                return View();
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json(e.Message);
             }
         }
-
-       
-
-
-   
 
         public ActionResult AddEntidadBaseAJuridica(int conJuridica)
         {
@@ -109,8 +105,8 @@ namespace TP_DDS_MVC.Controllers
             catch (Exception e)
             {
                 ViewBag.entidades = EntidadDAO.getInstancia().getEntidadesJuridicas();
-                ViewBag.errorMsg = e.Message;
-                return View();
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json(e.Message);
             }
         }
 

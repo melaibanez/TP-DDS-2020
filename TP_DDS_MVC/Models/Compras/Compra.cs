@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using TP_DDS_MVC.Models.Entidades;
 using TP_DDS_MVC.Models.Otros;
 using TP_DDS_MVC.Models.Proyectos;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace TP_DDS_MVC.Models.Compras
 {
@@ -29,6 +30,7 @@ namespace TP_DDS_MVC.Models.Compras
 
         [ForeignKey("egreso")]
         public int idEgreso { get; set; }
+        
         public Egreso egreso { get; set; }
 
 

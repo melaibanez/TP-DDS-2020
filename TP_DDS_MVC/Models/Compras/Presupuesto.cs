@@ -25,6 +25,9 @@ namespace TP_DDS_MVC.Models.Compras
         public int? idCompra { get; set; }
         public Compra compra { get; set; }
 
+        [ForeignKey("moneda")]
+        public string idMoneda { get; set; }
+        public Moneda moneda { get; set; }
         public List<ItemPresupuesto> items { get; set; }
 
 

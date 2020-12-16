@@ -26,6 +26,7 @@ namespace TP_DDS_MVC.Models.Compras
 
         [ForeignKey("prestadorDeServicios")] 
         public int idPrestadorDeServicios { get; set; }
+        
         public PrestadorDeServicios prestadorDeServicios { get; set; }
 
         [ForeignKey("ingresoAsociado")] 
@@ -36,7 +37,10 @@ namespace TP_DDS_MVC.Models.Compras
         [ForeignKey("entidad")] 
         public int? idEntidad { get; set; }
         public Entidad entidad { get; set; }
-      
+        [ForeignKey("moneda")]
+        public string idMoneda { get; set; }
+        public Moneda moneda { get; set; }
+
         [BsonIgnore]
         public List<ItemEgreso> detalle { get; set; }
         

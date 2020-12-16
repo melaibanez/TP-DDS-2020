@@ -23,6 +23,7 @@ namespace TP_DDS_MVC.Controllers
 
         public ActionResult AddIngreso()
         {
+            ViewBag.monedas = MonedaDAO.getInstancia().getMonedas();
             return View();
         }
 
@@ -48,13 +49,7 @@ namespace TP_DDS_MVC.Controllers
                 return View();
             }
         }
-
-
-
-
-
-
-        // GET: Ingreso
+                // GET: Ingreso
         public ActionResult Index()
         {
             return View();

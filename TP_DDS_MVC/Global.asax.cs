@@ -25,8 +25,9 @@ namespace TP_DDS_MVC
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            
 
+            //PersistenciaMedioDePago.persistirDatosMedioDePago();
+            PersistenciaMoneda.persistirMonedas();
             PersistenciaDireccionPostal.persistirDatosAPI();
         }
     }

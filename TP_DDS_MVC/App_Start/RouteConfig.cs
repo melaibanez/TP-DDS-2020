@@ -14,11 +14,36 @@ namespace TP_DDS_MVC
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            /// Proyecto 
+            /// Proyecto
+            /// 
+            routes.MapRoute(
+                name: "List Proyecto",
+                url: "proyecto",
+                defaults: new { controller = "ProyectoFinanciamiento", action = "ListProyectos" }
+            );
+
             routes.MapRoute(
                 name: "Add Proyecto",
                 url: "proyecto/add",
                 defaults: new { controller = "ProyectoFinanciamiento", action = "AddProyectoFinanciamiento" }
+            );
+
+            routes.MapRoute(
+                name: "Detalle Proyecto",
+                url: "proyecto/{id}",
+                defaults: new { controller = "ProyectoFinanciamiento", action = "DetalleProyectos", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Asociar Ingreso",
+                url: "proyecto/asociarIngreso/{id}",
+                defaults: new { controller = "ProyectoFinanciamiento", action = "AsociarIngreso", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Asociar Egreso",
+                url: "proyecto/asociarEgreso/{id}",
+                defaults: new { controller = "ProyectoFinanciamiento", action = "AsociarEgreso", id = UrlParameter.Optional }
             );
 
             /// Compra/egreso 
@@ -38,6 +63,12 @@ namespace TP_DDS_MVC
                name: "Edit Compra",
                url: "compra/edit/{id}",
                defaults: new { controller = "Compra", action = "EditCompra", id = UrlParameter.Optional }
+           );
+
+            routes.MapRoute(
+               name: "Delete Compra",
+               url: "compra/edit/{id}",
+               defaults: new { controller = "Compra", action = "DeleteCompra", id = UrlParameter.Optional }
            );
 
             routes.MapRoute(

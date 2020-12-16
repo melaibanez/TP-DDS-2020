@@ -22,13 +22,17 @@ namespace TP_DDS_MVC.Models.Ingresos
 
         public float monto { get; set; }
 
+        [ForeignKey("moneda")]
+        public string idMoneda { get; set; }
+        public Moneda moneda { get; set; }
         public DateTime fechaDesde { get; set; }
 
         public DateTime fechaHasta { get; set; }
 
         [ForeignKey("entidad")]
-        [BsonIgnore]
+        
         public int idEntidad { get; set; }
+        [BsonIgnore]
         public Entidad entidad { get; set; }
         [BsonIgnore]
         public List<Egreso> egresosAsociados { get; set; }

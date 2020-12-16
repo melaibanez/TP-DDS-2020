@@ -36,6 +36,8 @@ namespace TP_DDS_MVC.Helpers.DB
         public DbSet<Ciudad> Ciudades { get; set; }
         public DbSet<ProyectoFinanciamiento> Proyectos { get; set; }
         public DbSet<Notificacion> Notificaciones { get; set; }
+        public DbSet<TipoMedioDePago> TiposMediosDePago { get; set; }
+        public DbSet<Moneda> Moneda { get; set; }
 
 
         // El string "dbConn" es el nombre del connection string definido en App.config

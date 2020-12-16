@@ -24,10 +24,10 @@ namespace TP_DDS_MVC.Helpers.Scheduler.Jobs
             }
 
             MyLogger.log("COMPRAS VALIDADAS");
-            foreach (Compra compra in MvcApplication.comprasNoValidadas)
+            foreach (Compra compra in comprasNoValidadas)
             {
                 await ValidadorPresupuestosEgreso.validar(compra);
-                MvcApplication.comprasNoValidadas.Remove(compra);
+
                 
             }
         }

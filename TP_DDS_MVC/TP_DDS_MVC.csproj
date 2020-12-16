@@ -230,6 +230,7 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAOs\CategoriaDAO.cs" />
     <Compile Include="DAOs\CiudadDAO.cs" />
+    <Compile Include="DAOs\MonedaDAO.cs" />
     <Compile Include="DAOs\ProyectoFinanciamientoDAO.cs" />
     <Compile Include="DAOs\CompraDAO.cs" />
     <Compile Include="DAOs\CriterioDAO.cs" />
@@ -252,6 +253,8 @@
     <Compile Include="Helpers\CustomAuthenticationFilter.cs" />
     <Compile Include="Helpers\DB\MyDBContext.cs" />
     <Compile Include="Helpers\DB\PersistenciaDireccionPostal.cs" />
+    <Compile Include="Helpers\DB\PersistenciaMedioDePago.cs" />
+    <Compile Include="Helpers\DB\PersistenciaMoneda.cs" />
     <Compile Include="Helpers\EntityFilter.cs" />
     <Compile Include="Helpers\JsonHelpers.cs" />
     <Compile Include="Helpers\MyLogger.cs" />
@@ -276,8 +279,10 @@
     <Compile Include="Models\Compras\ItemEgreso.cs" />
     <Compile Include="Models\Compras\ItemPresupuesto.cs" />
     <Compile Include="Models\Compras\MedioDePago.cs" />
+    <Compile Include="Models\Compras\Moneda.cs" />
     <Compile Include="Models\Compras\PrestadorDeServicios.cs" />
     <Compile Include="Models\Compras\Presupuesto.cs" />
+    <Compile Include="Models\Compras\TipoMedioDePago.cs" />
     <Compile Include="Models\Entidades\DireccionPostal.cs" />
     <Compile Include="Models\Entidades\Empresa.cs" />
     <Compile Include="Models\Entidades\Entidad.cs" />
@@ -333,6 +338,7 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="worst-pass.txt" />
     <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -480,6 +486,11 @@
     <Content Include="Views\Compra\criterios.cshtml" />
     <Content Include="Views\Compra\EditCompra.cshtml" />
     <Content Include="Views\Compra\EditPrestadorDeServicios.cshtml" />
+    <Content Include="Views\ProyectoFinanciamiento\ListProyectos.cshtml" />
+    <Content Include="Views\ProyectoFinanciamiento\DetalleProyectos.cshtml" />
+    <Content Include="Views\ProyectoFinanciamiento\AsociarIngresoYEgreso.cshtml" />
+    <Content Include="Views\ProyectoFinanciamiento\AsociarEgreso.cshtml" />
+    <Content Include="Views\ProyectoFinanciamiento\AsociarIngreso.cshtml" />
     <Content Include="Views\Ingreso\DetalleIngreso.cshtml" />
     <Content Include="Views\Ingreso\EditIngreso.cshtml" />
     <None Include="Web.Debug.config">

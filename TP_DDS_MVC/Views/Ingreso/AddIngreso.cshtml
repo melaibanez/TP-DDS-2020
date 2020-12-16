@@ -5,6 +5,7 @@
     @section scripts {
         <script type="text/javascript" src="~/Scripts/MyScripts/agregarIngresoScript.js"></script>
     }
+    var monedas = ViewBag.monedas;
 }
 
 
@@ -19,6 +20,16 @@
     <div class="form-group col">
         <label for="monto">Monto</label>
         <input id="monto" class="form-control" type="number">
+    </div>
+    <div class="form-group col">
+        <label for="moneda">Seleccione una Moneda:</label>
+        <input class="form-control" list="monedas" id="moneda" type="text" placeholder="Seleccionar...">
+        <datalist id="monedas">
+            @foreach (Moneda mone in (List<Moneda>)monedas)
+            {
+                <option value="@mone.id">@mone.description</option>
+            }
+        </datalist>
     </div>
 </div>
 <div class="form-row mb-4">

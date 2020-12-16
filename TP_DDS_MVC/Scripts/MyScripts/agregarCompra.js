@@ -8,6 +8,7 @@
                 fechaEgreso: null,
                 idMedioDePago: null,
                 montoTotal: 0,
+                idMoneda: null;
                 idPrestadorDeServicios: null,
                 detalle: []
 
@@ -101,6 +102,7 @@ $("#submit").click(function () {
     data.model.compra.egreso.montoTotal = data.model.compra.egreso.detalle.reduce((a, b) => a + b.valor * b.cant, 0);
     data.model.compra.descripcion = $('#descripcion').val();
     data.model.compra.cantMinimaPresupuestos = $('#cantMinPres').val();
+    data.model.compra.egreso.idMoneda = $('#moneda').val();
 
 
     $.ajax({

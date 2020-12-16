@@ -8,6 +8,7 @@
 
     var proveedores = ViewBag.proveedores;
     var mediosDePago = ViewBag.mediosDePago;
+    var monedas = ViewBag.monedas;
 }
 
 
@@ -82,6 +83,16 @@
                 }
             </datalist>
             <div class="form-row mt-2">@Html.ActionLink("Agregar medio de pago", "AddMedioDePago", "Compra", new { target = "_blank" })</div>
+        </div>
+        <div class="form-group col">
+            <label for="moneda">Seleccione una Moneda:</label>
+            <input class="form-control" list="monedas" id="moneda" type="text" placeholder="Seleccionar...">
+            <datalist id="monedas">
+                @foreach (Moneda mone in (List<Moneda>)monedas)
+                {
+                    <option value="@mone.id">@mone.description</option>
+                }
+            </datalist>
         </div>
     </div>
 
