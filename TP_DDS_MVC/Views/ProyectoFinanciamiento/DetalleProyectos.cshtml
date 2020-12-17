@@ -1,4 +1,6 @@
 ﻿@using TP_DDS_MVC.Models.Proyectos
+@using TP_DDS_MVC.Models.Compras
+@using TP_DDS_MVC.Models.Ingresos
 @model ProyectoFinanciamiento
 
 @{
@@ -26,23 +28,58 @@
 <div class="form-row mb-2">
     <div class="form-group col-md-4">
         <label for="fechaCierre">Ingrese la fecha de cierre</label>
-        <input class="form-control" id="fechaCierre2" value="@Model.fechaCierre" type="text" disabled>
+        <input class="form-control" id="fechaCierre2" value=@Model.fechaCierre type="text" disabled>
     </div>
     <div class="form-group col-md-4">
         <label for="fechaEjecucion">Ingrese la fecha de ejecución</label>
-        <input class="form-control" id="fechaEjecucion2" value="@Model.fechaEjecucion" type="text" disabled>
+        <input class="form-control" id="fechaEjecucion2" value=@Model.fechaEjecucion type="text" disabled>
     </div>
 </div>
 
 <div class="form-row mb-5">
+    <div class="col-6">
+        <h5 class="mb-2">Egresos asociados</h5>
+        @Html.ActionLink("Asociar Egreso", "AsociarEgreso", "ProyectoFinanciamiento", new { idProyecto = Model.idProyecto }, new { @class = "btn btn-primary ml-3 btn-sm mb-3" })
+        @if (Model.compras.Count == 0)
+        {
+            <p class="lead ml-3">Este proyecto no tiene egresos asociados</p>
+        }
+        else
+        {
+            <ul class="col-10">
+                @foreach (Compra comp in Model.compras)
+                {
+                    <li class="list-group-item">@comp.idCompra&nbsp;-&nbsp;@comp.descripcion&nbsp;-&nbsp;$@comp.egreso.montoTotal <input type="button" class="btn btn-info btn-sm ml-1 col-2" value="Ver" onclick="window.open('@Url.Action("DetalleCompra", "Compra", new { id = comp.idCompra})', '_blank')" /></li>
+                }
+            </ul>
+        }
 
-    @Html.ActionLink("Asociar Ingreso", "AsociarIngreso", "ProyectoFinanciamiento", new { idProyecto = Model.idProyecto }, new { @class = "btn btn-primary btn-md mr-4 col-2" })
-    @Html.ActionLink("Asociar Egreso", "AsociarEgreso", "ProyectoFinanciamiento", new { idProyecto = Model.idProyecto }, new { @class = "btn btn-primary btn-md col-2" })
+
+    </div>
+
+    <div class="col-6">
+        <h5 class="mb-2">Ingresos asociados</h5>
+        @Html.ActionLink("Asociar Ingreso", "AsociarIngreso", "ProyectoFinanciamiento", new { idProyecto = Model.idProyecto }, new { @class = "btn btn-primary ml-3 btn-sm mb-3" })
+        @if (Model.ingresos.Count == 0)
+        {
+            <p class="lead ml-3">Este proyecto no tiene ingresos asociados</p>
+        }
+        else
+        {
+            <ul class="col-10">
+                @foreach (Ingreso ing in Model.ingresos)
+                {
+                    <li class="list-group-item">@ing.idIngreso&nbsp;-&nbsp;@ing.descripcion&nbsp;-&nbsp;$@ing.monto <input type="button" class="btn btn-info btn-sm ml-1 col-2" value="Ver" onclick="window.open('@Url.Action("DetalleIngreso", "Ingreso", new { id = ing.idIngreso})', '_blank')" /></li>
+                }
+            </ul>
+        }
+
+    </div>
+
+
 
 </div>
 <div class="form-row mb-3">
-
     @Html.ActionLink("Volver", "ListProyectos", "ProyectoFinanciamiento", new { @class = "btn btn-secondary btn-md mr-4 col-2" })
-
 </div>
 

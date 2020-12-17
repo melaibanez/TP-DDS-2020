@@ -11,7 +11,7 @@
 <div class="container-fluid">
     @if (Model == null || Model.Count == 0)
     {
-        <h6>No hay medios de pago cargados</h6>
+        <p class="ml-2 lead">No hay Medios de Pago cargados.</p>
     }
     else
     {
@@ -21,7 +21,8 @@
                     <th scope="col">#</th>
                     <th scope="col">Instrumento</th>
                     <th scope="col">Número de Instrumento</th>
-
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -31,8 +32,9 @@
                         <th scope="row">@pres.idMedioPago</th>
                         <td>@pres.instrumento</td>
                         <td>@pres.numInstrumento</td>
+                        aca falta detalle
                         <td>@Html.ActionLink("Editar", "EditMedioDePago", "Compra", new { id = pres.idMedioPago }, new { @class = "btn btn-secondary btn-sm" })</td>
-                        <td>@Html.ActionLink("Eliminar", "DeleteMedioDePago", "Compra", new { id = pres.idMedioPago }, new { @class = "btn btn-secondary btn-sm" })</td>
+                        <td>@Html.ActionLink("Eliminar", "DeleteMedioDePago", "Compra", new { id = pres.idMedioPago }, new { @class = "btn btn-danger btn-sm" })</td>
                     </tr>
                 }
             </tbody>

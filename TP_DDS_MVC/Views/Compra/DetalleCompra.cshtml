@@ -14,11 +14,11 @@
 <div class="form-row">
     <div class="form-group col-md-6">
         <label for="descripcion">Descripcion</label>
-        <input id="descripcion" class="form-control" type="text" value=@Model.descripcion disabled>
+        <input id="descripcion" class="form-control" type="text" value="@Model.descripcion" disabled>
     </div>
     <div class="form-group col-md-6">
         <label for="cantMinPres">Cantidad minima de presupuestos</label>
-        <input id="cantMinPres" class="form-control" type="text" value=@Model.cantMinimaPresupuestos disabled>
+        <input id="cantMinPres" class="form-control" type="text" value="@Model.cantMinimaPresupuestos" disabled>
     </div>
 </div>
 <div class="form-row">
@@ -28,7 +28,7 @@
             <ul class="list-group list-group-flush pb-2" id="listaRevisores">
                 @foreach (Usuario user in (List<Usuario>)Model.revisores)
                 {
-                    <li class="list-group-item">@user.nombreUsuario </li>
+                    <li class="list-group-item">"@user.nombreUsuario" </li>
                 }
             </ul>
 
@@ -46,11 +46,11 @@
     <div class="form-row mb-2">
         <div class="form-group col mr-5">
             <label for="proveedores">Prestador de servicios:</label>
-            <input id="proveedores" class="form-control" type="text" value=@Model.egreso.prestadorDeServicios.razonSocial disabled>
+            <input id="proveedores" class="form-control" type="text" value="@Model.egreso.prestadorDeServicios.razonSocial" disabled>
         </div>
         <div class="form-group col">
             <label for="mediosDePago">Medios de pago:</label>
-            <input id="revisores" class="form-control" type="text" value=@Model.egreso.medioDePago.instrumento disabled>
+            <input id="revisores" class="form-control" type="text" value="@Model.egreso.medioDePago.instrumento" disabled>
         </div>
     </div>
 
@@ -82,9 +82,6 @@
     </div>
     <br />
     <div class="form-group row">
-        <div class="col-10">
-            &nbsp;&nbsp;&nbsp;
-            @Html.ActionLink("Volver", "ListCompras", new { controller = "Compra" }, new { @class = "btn btn-secondary" })
-        </div>
+        @Html.ActionLink("Volver", "ListCompras", new { controller = "Compra" }, new { @class = "btn btn-secondary col-2" })
     </div>
 </div>

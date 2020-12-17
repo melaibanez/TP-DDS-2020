@@ -3,27 +3,44 @@
 
 @{
     ViewBag.Title = "Asociar Egreso";
-    var compras = ViewBag.listaEgresos;
 }
 
 <div class="pb-3">
     <h3>Asociar una compra</h3>
 </div>
-
-@using (Html.BeginForm("AsociarEgreso", "ProyectoFinanciamiento", FormMethod.Post))
-{
-<input hidden type="text" name="idProyecto" value=@ViewBag.idProyecto />
-<div class="form-row col mr-5">
-    <div class="form-group">
-        <label for="compra">Seleccione una compra:</label>
-        <input class="form-control" list="compras" name="idCompra" id="compra" type="text" placeholder="Seleccionar...">
-        <datalist id="copmras">
-            @foreach (Compra comp in (List<Compra>)compras)
+<div class="ml-lg-5">
+    @using (Html.BeginForm("AsociarEgreso", "ProyectoFinanciamiento", FormMethod.Post))
+    {
+        <input hidden type="text" name="idProyecto" value=@ViewBag.idProyecto />
+        <div class="row">
+            <div class="form-group">
+                <label for="compra">Seleccione una compra:</label>
+                @if (ViewBag.compras.Count == 0)
+                {
+                    <input class="form-control" type="text" placeholder="No hay compras para vincular" style="width:1000px" disabled>
+                }
+                else
+                {
+                    <input class="form-control" list="compras" name="idCompra" id="compra" type="text" placeholder="Seleccionar...">
+                    <datalist id="compras">
+                        @foreach (Compra comp in (List<Compra>)ViewBag.compras)
+                        {
+                            <option value="@comp.idCompra">@comp.descripcion</option>
+                        }
+                    </datalist>
+                }
+                </div>
+        </div>
+        <div class="row">
+            @if (ViewBag.compras.Count == 0)
             {
-                <option value="@comp.idCompra">@comp.descripcion</option>
+                <input class="btn btn-success col-2 mr-3" type="submit" value="Asociar" disabled />
             }
-        </datalist>
-    </div>
-    <input class="btn btn-success" type="submit" value="Asociar"/>
+            else
+            {
+                <input class="btn btn-success col-2 mr-3" type="submit" value="Asociar" />
+            }
+            @Html.ActionLink("Volver", "DetalleProyectos", "ProyectoFinanciamiento", new { id = ViewBag.idProyecto }, new { @class = "btn btn-secondary btn-md mr-4 col-1" })
+        </div>
+    }
 </div>
-}
