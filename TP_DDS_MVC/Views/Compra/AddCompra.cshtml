@@ -79,7 +79,7 @@
             <datalist id="mediosDePago">
                 @foreach (MedioDePago MDP in (List<MedioDePago>)mediosDePago)
                 {
-                    <option value="@MDP.idMedioPago">@MDP.instrumento</option>
+                    <option value="@MDP.idMedioPago">@MDP.tipo.name</option>
                 }
             </datalist>
             <div class="form-row mt-2">@Html.ActionLink("Agregar medio de pago", "AddMedioDePago", "Compra", new { target = "_blank" })</div>

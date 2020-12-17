@@ -14,23 +14,20 @@ namespace TP_DDS_MVC.Models.Compras
     {
         [Key]
         public int idMedioPago { get; set; }
-
-        [StringLength(50)]
-        public string numInstrumento { get; set; }
-
-        [StringLength(50)]
-        public string instrumento { get; set; }
-
+        [ForeignKey("tipo")]
+        public string idTipo {get;set;}
+        public TipoMedioDePago tipo { get; set; }
+        public string numero { get; set; }
         [ForeignKey("entidad")] 
         public int? idEntidad { get; set; }
         public Entidad entidad { get; set; }
 
         public MedioDePago() { }
 
-        public MedioDePago(string instrumento, string numInstrumento)
+        public MedioDePago(string name, string numero)
         {
-            this.instrumento = instrumento;
-            this.numInstrumento = numInstrumento;
+            this.tipo.name = name;
+            this.numero = numero;
         }
     }
 }

@@ -36,14 +36,14 @@ namespace TP_DDS_MVC
 
             routes.MapRoute(
                 name: "Asociar Ingreso",
-                url: "proyecto/asociarIngreso/{id}",
-                defaults: new { controller = "ProyectoFinanciamiento", action = "AsociarIngreso", id = UrlParameter.Optional }
+                url: "proyecto/asociarIngreso",
+                defaults: new { controller = "ProyectoFinanciamiento", action = "AsociarIngreso" }
             );
 
             routes.MapRoute(
                 name: "Asociar Egreso",
-                url: "proyecto/asociarEgreso/{id}",
-                defaults: new { controller = "ProyectoFinanciamiento", action = "AsociarEgreso", id = UrlParameter.Optional }
+                url: "proyecto/asociar-egreso",
+                defaults: new { controller = "ProyectoFinanciamiento", action = "AsociarEgreso" }
             );
 
             /// Compra/egreso 
@@ -208,28 +208,28 @@ namespace TP_DDS_MVC
             );
 
             routes.MapRoute(
-               name: "Add criterio",
-               url: "criterio",
-               defaults: new { controller = "Compra", action = "criterios" }
-           );
-
-            routes.MapRoute(
-              name: "Operaciones",
-              url: "entidad/entidad-juridica/add",
-              defaults: new { controller = "ProyectoFinanciamiento", action = "DefinirOperacion" }
-          );
-
-            routes.MapRoute(
                 name: "Add Entidad Base",
                 url: "entidad/entidad-base/add",
                 defaults: new { controller = "Entidad", action = "AddEntidadBaseAJuridica" }
             );
 
             routes.MapRoute(
-                name: "Logout",
-                url: "usuario/logout",
-                defaults: new { controller = "User", action = "Logout" }
-            );
+               name: "Add criterio",
+               url: "criterio",
+               defaults: new { controller = "Compra", action = "criterios" }
+           );
+
+
+
+            routes.MapRoute(
+              name: "Operaciones",
+              url: "bitacora-de-operaciones",
+              defaults: new { controller = "ProyectoFinanciamiento", action = "DefinirOperacion" }
+          );
+
+            
+
+            
 
             /// usuario
 
@@ -255,6 +255,12 @@ namespace TP_DDS_MVC
                 name: "Listar Usuarios",
                 url: "usuario/listaUsuarios",
                 defaults: new { controller = "User", action = "ListarUsuarios" }
+            );
+
+            routes.MapRoute(
+                name: "Logout",
+                url: "usuario/logout",
+                defaults: new { controller = "User", action = "Logout" }
             );
 
             /// otros

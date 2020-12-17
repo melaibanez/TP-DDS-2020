@@ -246,6 +246,7 @@
     <Compile Include="DAOs\PrestadorDeServiciosDAO.cs" />
     <Compile Include="DAOs\PresupuestoDAO.cs" />
     <Compile Include="DAOs\ProvinciaDAO.cs" />
+    <Compile Include="DAOs\TipoMedioDePagoDAO.cs" />
     <Compile Include="DAOs\UsuarioDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -488,11 +489,11 @@
     <Content Include="Views\Compra\EditPrestadorDeServicios.cshtml" />
     <Content Include="Views\ProyectoFinanciamiento\ListProyectos.cshtml" />
     <Content Include="Views\ProyectoFinanciamiento\DetalleProyectos.cshtml" />
-    <Content Include="Views\ProyectoFinanciamiento\AsociarIngresoYEgreso.cshtml" />
     <Content Include="Views\ProyectoFinanciamiento\AsociarEgreso.cshtml" />
     <Content Include="Views\ProyectoFinanciamiento\AsociarIngreso.cshtml" />
     <Content Include="Views\Ingreso\DetalleIngreso.cshtml" />
     <Content Include="Views\Ingreso\EditIngreso.cshtml" />
+    <Content Include="Views\ProyectoFinanciamiento\Holaa.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

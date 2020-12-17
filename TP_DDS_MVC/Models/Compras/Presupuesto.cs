@@ -33,7 +33,7 @@ namespace TP_DDS_MVC.Models.Compras
 
         public Presupuesto() { }
 
-        public Presupuesto(string nroIdentificacion, string tipo_enlace, List<ItemPresupuesto> items, PrestadorDeServicios prestadorDeServicios, MedioDePago medioDePago) : base(nroIdentificacion, tipo_enlace)
+        public Presupuesto(string nroIdentificacion, string tipo, List<ItemPresupuesto> items, PrestadorDeServicios prestadorDeServicios, MedioDePago medioDePago) : base(nroIdentificacion, tipo)
         {
             this.items = items;
             this.prestadorDeServicios = prestadorDeServicios;

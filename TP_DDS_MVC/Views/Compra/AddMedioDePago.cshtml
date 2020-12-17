@@ -2,7 +2,7 @@
 @model TP_DDS_MVC.Models.Compras.MedioDePago
 @{
     ViewBag.Title = "Agregar Medio de Pago";
-
+    var mediosDePago = ViewBag.mediosDePago;
 }
 
 <h1>Agregar Medio de Pago</h1>
@@ -17,13 +17,13 @@
 
     <div class="container-md my-5 mx-3">
         <div class="row">
-            <span>
-                <label>Instrumento</label>
-                @Html.TextBoxFor(m => m.instrumento)
-                &nbsp;&nbsp;&nbsp;
-                <label>Numero del instrumento</label>
-                @Html.TextBoxFor(m => m.numInstrumento)
-            </span>
+
+            <label for="medio">Instrumento</label>
+            @Html.DropDownListFor(m=>m.tipo.id, new SelectList(mediosDePago, "id", "name"), "Medio De Pago...", new { @class = "form-control" })
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label>Numero del instrumento</label>
+            @Html.TextBoxFor(m => m.numero)
+
         </div>
         <br />
         <div class="row">

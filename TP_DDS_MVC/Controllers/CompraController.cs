@@ -51,11 +51,17 @@ namespace TP_DDS_MVC.Controllers
         public ActionResult AddPrestadorDeServicios(PrestadorDeServicios PDS)
         {
             try
-            {
-                PDS.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
-                PDS.direccionPostal.validarDireccion();
-                PrestadorDeServiciosDAO.getInstancia().add(PDS);
-                return RedirectToAction("Index", "Home");
+            {   if (PDS.razonSocial != null && PDS.numDoc != null)
+                {
+                    PDS.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
+                    PDS.direccionPostal.validarDireccion();
+                    PrestadorDeServiciosDAO.getInstancia().add(PDS);
+                    return RedirectToAction("Index", "Home");
+                } else
+                {
+                    throw new Exception("Debe completar todos los campos para continuar");
+                }
+  
             }
             catch (Exception e)
             {
@@ -125,6 +131,8 @@ namespace TP_DDS_MVC.Controllers
         ///////////////////////////////////////////////
         public ActionResult AddMedioDePago()
         {
+            
+            ViewBag.mediosDePago = (List<TipoMedioDePago>)TipoMedioDePagoDAO.getInstancia().getMediosDePago();
             return View();
         }
 
@@ -132,14 +140,21 @@ namespace TP_DDS_MVC.Controllers
         public ActionResult AddMedioDePago(MedioDePago MDP)
         {
             try
-            {
-                MDP.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
-                MedioDePagoDAO.getInstancia().add(MDP);
-                return RedirectToAction("Index", "Home");
+            {   if (MDP.tipo != null & MDP.numero != null)
+                {
+                    MDP.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
+                    MDP.tipo = TipoMedioDePagoDAO.getInstancia().getMedioDePago(MDP.tipo.id);
+                    MedioDePagoDAO.getInstancia().add(MDP);
+                    return RedirectToAction("Index", "Home");
+                } else
+                {
+                    throw new Exception("Debe completar todos los campos para continuar");
+                }
             }
             catch (Exception e)
             {
                 MyLogger.log(e.Message);
+                ViewBag.mediosDePago = TipoMedioDePagoDAO.getInstancia().getMediosDePago();
                 return View();
             }
         }
@@ -183,9 +198,10 @@ namespace TP_DDS_MVC.Controllers
             int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
             ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago(idEntidad);
             ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios(idEntidad);
-            ViewBag.compras = CompraDAO.getInstancia().getCompras();
+            ViewBag.compras = CompraDAO.getInstancia().getCompras(idEntidad);
             ViewBag.categorias = CategoriaDAO.getInstancia().getCategorias(idEntidad);
             ViewBag.egresos = EgresoDAO.getInstancia().getEgresos(idEntidad);
+            ViewBag.monedas = MonedaDAO.getInstancia().getMonedas();
             return View();
         }
 
@@ -194,14 +210,20 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
+                
                 int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
                 if (req.presupuesto != null)
                 {
+                    if (req.presupuesto.idMedioDePago == null || req.presupuesto.idPrestadorDeServicios == 0 || req.presupuesto.items == null || req.presupuesto.idCompra == null || req.presupuesto.nroIdentificacion == null || req.presupuesto.tipo == null)
+                    {
+                        throw new Exception("Hubo un error. Revise los datos ingresados y vuelva a intentarlo.");
+                    }
+
                     req.presupuesto.idEntidad = idEntidad; 
                     if (req.setEgreso && req.presupuesto.idCompra != null)
                     {
                         Compra comp = CompraDAO.getInstancia().getCompraConEgresoYDocumentos(req.presupuesto.idCompra.Value);
-                        if (comp.egreso.docsComerciales.Exists(dc => dc.tipo_enlace == "Presupuesto"))
+                        if (comp.egreso.docsComerciales.Exists(dc => dc.tipo == "Presupuesto"))
                         {
                             throw new Exception("La compra seleccionada ya tiene un presupuesto elegido para el egreso.");
                         }
@@ -209,8 +231,8 @@ namespace TP_DDS_MVC.Controllers
                     }
                     PresupuestoDAO.getInstancia().add(req.presupuesto);
                 } else if(req.documentoComercial != null){
-                    if(req.documentoComercial.idEgreso == null )
-                        throw new Exception("Revise los datos ingresados y vuelva a intentarlo.");
+                    if(req.documentoComercial.idEgreso == 0 || req.documentoComercial.tipo == null || req.documentoComercial.nroIdentificacion == null)
+                        throw new Exception("Hubo un error. Revise los datos ingresados y vuelva a intentarlo.");
                     req.documentoComercial.idEntidad = idEntidad;
                     DocumentoComercialDAO.getInstancia().add(req.documentoComercial);
                     
@@ -218,8 +240,6 @@ namespace TP_DDS_MVC.Controllers
                 {
                     throw new Exception("Hubo un problema cargando el documento. Recargue la pagina y vuelva a intentarlo.");
                 }
-
-                PresupuestoDAO.getInstancia().add(req.presupuesto);
 
 
                 //Mongo.MongoDB.insertarDocumento("Presupuesto", "alta", req.presupuesto.ToBsonDocument());
@@ -233,9 +253,10 @@ namespace TP_DDS_MVC.Controllers
                 int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
                 ViewBag.mediosDePago = MedioDePagoDAO.getInstancia().getMediosDePago(idEntidad);
                 ViewBag.proveedores = PrestadorDeServiciosDAO.getInstancia().getPrestadoresDeServicios(idEntidad);
-                ViewBag.compras = CompraDAO.getInstancia().getCompras();
+                ViewBag.compras = CompraDAO.getInstancia().getCompras(idEntidad);
                 ViewBag.categorias = CategoriaDAO.getInstancia().getCategorias(idEntidad);
                 ViewBag.egresos = EgresoDAO.getInstancia().getEgresos(idEntidad);
+                ViewBag.monedas = MonedaDAO.getInstancia().getMonedas();
                 MyLogger.log(e.Message);
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return Json(e.Message);
@@ -344,18 +365,18 @@ namespace TP_DDS_MVC.Controllers
             
             try
             {
-                int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
-                compra.idEntidad = idEntidad;
-                compra.egreso.idEntidad = idEntidad;
 
-                CompraDAO.getInstancia().add(compra);
+                if (compra.revisores == null || compra.descripcion == null || compra.egreso == null)
+                    throw new Exception("Es necesario completar todos los campos para continuar");
+                
+                 compra.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
+                 compra.egreso.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
 
-               // Mongo.MongoDB.insertarDocumento("Compra", "alta", compra.ToBsonDocument());
+                 CompraDAO.getInstancia().add(compra);
 
                 //Mongo.MongoDB.insertarDocumento("Egreso", "alta", req.compra.egreso.ToBsonDocument());
 
-
-                return Json(Url.Action("Index", "Home"));
+                 return Json(Url.Action("Index", "Home"));
             }
             catch (Exception e)
             {

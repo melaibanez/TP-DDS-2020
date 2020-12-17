@@ -1,39 +1,29 @@
 ﻿@using TP_DDS_MVC.Models.Proyectos;
 @using TP_DDS_MVC.Models.Compras;
-@model ProyectoFinanciamiento
+
 @{
-    ViewBag.Title = "AsociarEgreso";
-    var listaEgresos = ViewBag.listaEgresos;
+    ViewBag.Title = "Asociar Egreso";
+    var compras = ViewBag.listaEgresos;
 }
 
-<h2>AsociarEgreso</h2>
+<div class="pb-3">
+    <h3>Asociar una compra</h3>
+</div>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col"></th>
-            <th scope="col">#</th>
-            <th scope="col">Monto</th>
-
-        </tr>
-    </thead>
-    <tbody>
-        @if ((listaEgresos as List<Egreso>).Count != 0)
-        {
-            foreach (Egreso egreso in (List<Egreso>)listaEgresos)
+@using (Html.BeginForm("AsociarEgreso", "ProyectoFinanciamiento", FormMethod.Post))
+{
+<input hidden type="text" name="idProyecto" value=@ViewBag.idProyecto />
+<div class="form-row col mr-5">
+    <div class="form-group">
+        <label for="compra">Seleccione una compra:</label>
+        <input class="form-control" list="compras" name="idCompra" id="compra" type="text" placeholder="Seleccionar...">
+        <datalist id="copmras">
+            @foreach (Compra comp in (List<Compra>)compras)
             {
-                <tr>
-                    <th scope="row"><input type="checkbox" checked="checked"></th>
-                    <td>@egreso.idEgreso</td>
-                    <td>@egreso.montoTotal</td>
-                </tr>
+                <option value="@comp.idCompra">@comp.descripcion</option>
             }
-        }
-        
-    </tbody>
-</table>
-
-<span>
-    @Html.ActionLink("Asociar", "Index", new { controller = "ProyectoFinanciamientoController" }, new { @class = "btn btn-secondary col-lg-1" })
-</span>
-
+        </datalist>
+    </div>
+    <input class="btn btn-success" type="submit" value="Asociar"/>
+</div>
+}

@@ -5,11 +5,6 @@
     ViewBag.Title = "DetalleProyectos";
 }
 
-    <label for="limiteErogacion">@Model.idProyecto</label>
-
-<h2>DetalleProyectos</h2>
-
-
 
 <div class="pb-3">
     <h2>Proyecto de Financiamiento</h2>
@@ -28,7 +23,7 @@
         <input class="form-control" id="limiteErogacion2" value="@Model.limiteErogacion" type="text" disabled>
     </div>
 </div>
-<div class="form-row mb-5">
+<div class="form-row mb-2">
     <div class="form-group col-md-4">
         <label for="fechaCierre">Ingrese la fecha de cierre</label>
         <input class="form-control" id="fechaCierre2" value="@Model.fechaCierre" type="text" disabled>
@@ -39,12 +34,15 @@
     </div>
 </div>
 
+<div class="form-row mb-5">
+
+    @Html.ActionLink("Asociar Ingreso", "AsociarIngreso", "ProyectoFinanciamiento", new { idProyecto = Model.idProyecto }, new { @class = "btn btn-primary btn-md mr-4 col-2" })
+    @Html.ActionLink("Asociar Egreso", "AsociarEgreso", "ProyectoFinanciamiento", new { idProyecto = Model.idProyecto }, new { @class = "btn btn-primary btn-md col-2" })
+
+</div>
 <div class="form-row mb-3">
-    <div class="form-group col-md-4">
-        @Html.ActionLink("Asociar Ingreso", "AsociarIngreso", "ProyectoFinanciamiento", new { id = Model.idProyecto }, new { @class = "btn btn-secondary btn-sm" })
-    </div>
-    <div class="form-group col-md-4">
-        @Html.ActionLink("Asociar Egreso", "AsociarEgreso", "ProyectoFinanciamiento", new { id = Model.idProyecto }, new { @class = "btn btn-secondary btn-sm" })
-    </div>
+
+    @Html.ActionLink("Volver", "ListProyectos", "ProyectoFinanciamiento", new { @class = "btn btn-secondary btn-md mr-4 col-2" })
+
 </div>
 

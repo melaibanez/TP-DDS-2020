@@ -38,10 +38,15 @@ namespace TP_DDS_MVC.Controllers
 
             try
             {
-                ing.idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
-                IngresoDAO.getInstancia().add(ing);
-                Mongo.MongoDB.insertarDocumento("Ingreso", "alta", ing.ToBsonDocument());
-                return Json(Url.Action("Index", "Home"));
+                if (ing.descripcion != null && ing.fechaDesde != null && ing.fechaHasta != null && ing.monto != 0) { 
+                    ing.idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+                    IngresoDAO.getInstancia().add(ing);
+                    Mongo.MongoDB.insertarDocumento("Ingreso", "alta", ing.ToBsonDocument());
+                    return Json(Url.Action("Index", "Home"));
+                } else
+                {
+                    throw new Exception("Necesita completar todos los campos para continuar");
+                }
             }
             catch (Exception e)
             {

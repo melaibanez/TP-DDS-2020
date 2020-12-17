@@ -26,7 +26,7 @@ namespace TP_DDS_MVC
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
 
-            //PersistenciaMedioDePago.persistirDatosMedioDePago();
+            PersistenciaMedioDePago.persistirDatosMedioDePago();
             PersistenciaMoneda.persistirMonedas();
             PersistenciaDireccionPostal.persistirDatosAPI();
         }

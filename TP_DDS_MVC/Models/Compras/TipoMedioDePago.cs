@@ -14,9 +14,7 @@ namespace TP_DDS_MVC.Models.Compras
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string id { get; set; }
         public string name { get; set; }
-        public string payment_type_id { get; set; }
-        public string status { get; set; }
-        public string deferred_capture { get; set; }
+
         
 
     }
