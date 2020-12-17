@@ -8,6 +8,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using TP_DDS_MVC.DAOs;
 using TP_DDS_MVC.Helpers.DB;
+using TP_DDS_MVC.Helpers.Scheduler;
 using TP_DDS_MVC.Models.Compras;
 using TP_DDS_MVC.Models.Entidades;
 using TP_DDS_MVC.Models.Otros;
@@ -29,6 +30,10 @@ namespace TP_DDS_MVC
             PersistenciaMedioDePago.persistirDatosMedioDePago();
             PersistenciaMoneda.persistirMonedas();
             PersistenciaDireccionPostal.persistirDatosAPI();
+
+            MyScheduler sched = MyScheduler.getInstance();
+            sched.run();
+            sched.agregarJobValidador();
         }
     }
 }

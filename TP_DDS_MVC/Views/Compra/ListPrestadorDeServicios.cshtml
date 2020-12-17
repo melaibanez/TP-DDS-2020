@@ -12,7 +12,7 @@
 <div class="container-fluid">
     @if (Model == null || Model.Count == 0)
     {
-        <h6>No hay Prestadores de Servicios en este momento.</h6>
+        <p class="ml-2 lead">No hay Prestadores de Servicios cargados.</p>
     }
     else
     {
@@ -21,7 +21,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Razón Social</th>
-                    <th scope="col">Dirección Postal</th> <!--Ver qué onda esto después-->
+                    <th scope="col">Dirección Postal</th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -34,7 +34,7 @@
                     <th scope="row">@pres.idPrestador</th>
                     <td scope="row">@pres.razonSocial</td>
                     <td scope="row">@pres.direccionPostal.calle @pres.direccionPostal.numero @pres.direccionPostal.piso_depto, @pres.direccionPostal.ciudad,@pres.direccionPostal.provincia, @pres.direccionPostal.pais</td>
-                    <td><input type="button" class="btn btn-secondary btn-sm" value="Detalle" onclick="window.open('@Url.Action("DetallePrestadorDeServicios", "Compra", new { id = pres.idPrestador })')" /></td>
+                    <td><input type="button" class="btn btn-info btn-sm" value="Detalle" onclick="window.open('@Url.Action("DetallePrestadorDeServicios", "Compra", new { id = pres.idPrestador })')" /></td>
                     <td>@Html.ActionLink("Editar", "EditPrestadorDeServicios", "Compra", new { id = pres.idPrestador }, new { @class = "btn btn-secondary btn-sm" })</td>
                     <td>@Html.ActionLink("Eliminar", "DeletePrestadorDeServicios", "Compra", new { id = pres.idPrestador }, new { @class = "btn btn-danger btn-sm" })</td>
                 </tr>

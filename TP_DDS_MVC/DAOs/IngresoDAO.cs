@@ -33,6 +33,14 @@ namespace TP_DDS_MVC.DAOs
             }
         }
 
+        public List<Ingreso> getIngresosSinProyecto(int idEntidad)
+        {
+
+            using (MyDBContext context = new MyDBContext())
+            {
+                return context.Ingresos.Where(i => i.idEntidad == idEntidad && i.idProyecto==null).ToList();
+            }
+        }
 
         public Ingreso getIngreso(int id)
         {

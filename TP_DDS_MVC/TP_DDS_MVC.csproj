@@ -493,7 +493,6 @@
     <Content Include="Views\ProyectoFinanciamiento\AsociarIngreso.cshtml" />
     <Content Include="Views\Ingreso\DetalleIngreso.cshtml" />
     <Content Include="Views\Ingreso\EditIngreso.cshtml" />
-    <Content Include="Views\ProyectoFinanciamiento\Holaa.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

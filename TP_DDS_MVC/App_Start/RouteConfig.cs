@@ -34,16 +34,11 @@ namespace TP_DDS_MVC
                 defaults: new { controller = "ProyectoFinanciamiento", action = "DetalleProyectos", id = UrlParameter.Optional }
             );
 
-            routes.MapRoute(
-                name: "Asociar Ingreso",
-                url: "proyecto/asociarIngreso",
-                defaults: new { controller = "ProyectoFinanciamiento", action = "AsociarIngreso" }
-            );
 
             routes.MapRoute(
-                name: "Asociar Egreso",
-                url: "proyecto/asociar-egreso",
-                defaults: new { controller = "ProyectoFinanciamiento", action = "AsociarEgreso" }
+                name: "Bitácora de Operaciones",
+                url: "bitacora",
+                defaults: new { controller = "ProyectoFinanciamiento", action = "VerOperaciones" }
             );
 
             /// Compra/egreso 
@@ -77,6 +72,12 @@ namespace TP_DDS_MVC
                 defaults: new { controller = "Compra", action = "DetalleCompra", id = UrlParameter.Optional }
             );
 
+            routes.MapRoute(
+                name: "delete Compra",
+                url: "compra/delete/{id}",
+                defaults: new { controller = "Compra", action = "DeleteCompra", id = UrlParameter.Optional }
+            );
+
 
             /// prestador de servicios
 
@@ -102,6 +103,12 @@ namespace TP_DDS_MVC
                 name: "Detalle Prestador de servicios",
                 url: "prestador-de-servicios/{id}",
                 defaults: new { controller = "Compra", action = "DetallePrestadorDeServicios", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "delete Prestador de servicios",
+                url: "prestador-de-servicios/delete/{id}",
+                defaults: new { controller = "Compra", action = "DeletePrestadorDeServicios", id = UrlParameter.Optional }
             );
 
             ///medio de pago
@@ -130,6 +137,12 @@ namespace TP_DDS_MVC
                 defaults: new { controller = "Compra", action = "DetalleMedioDePago", id = UrlParameter.Optional }
             );
 
+            routes.MapRoute(
+                name: "delete medio de pago",
+                url: "medio-de-pago/delete/{id}",
+                defaults: new { controller = "Compra", action = "DeleteMedioDePago", id = UrlParameter.Optional }
+            );
+
 
             ///presupuesto 
 
@@ -155,6 +168,12 @@ namespace TP_DDS_MVC
                 name: "Detalle presupuesto",
                 url: "presupuesto/{id}",
                 defaults: new { controller = "Compra", action = "DetallePresupuesto", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "delete presupuesto",
+                url: "presupuesto/delete/{id}",
+                defaults: new { controller = "Compra", action = "DeletePresupuesto", id = UrlParameter.Optional }
             );
 
             /////egreso
@@ -192,6 +211,12 @@ namespace TP_DDS_MVC
                 defaults: new { controller = "Ingreso", action = "EditIngreso", id = UrlParameter.Optional }
             );
 
+            routes.MapRoute(
+                name: "delete ingreso",
+                url: "ingreso/delete/{id}",
+                defaults: new { controller = "Compra", action = "DeleteIngreso", id = UrlParameter.Optional }
+            );
+
 
             /// cargar entidad
 
@@ -220,16 +245,12 @@ namespace TP_DDS_MVC
            );
 
 
-
             routes.MapRoute(
               name: "Operaciones",
-              url: "bitacora-de-operaciones",
+              url: "bitacora",
               defaults: new { controller = "ProyectoFinanciamiento", action = "DefinirOperacion" }
-          );
+            );
 
-            
-
-            
 
             /// usuario
 
@@ -255,6 +276,12 @@ namespace TP_DDS_MVC
                 name: "Listar Usuarios",
                 url: "usuario/listaUsuarios",
                 defaults: new { controller = "User", action = "ListarUsuarios" }
+            );
+
+            routes.MapRoute(
+                name: "login",
+                url: "usuario/login",
+                defaults: new { controller = "User", action = "Login" }
             );
 
             routes.MapRoute(

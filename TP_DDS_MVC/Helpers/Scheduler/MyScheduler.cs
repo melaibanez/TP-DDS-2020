@@ -47,7 +47,7 @@ namespace TP_DDS_MVC.Helpers.Scheduler
         }
 
 
-        public static void agregarJobValidador() 
+        public void agregarJobValidador() 
         {
            
 

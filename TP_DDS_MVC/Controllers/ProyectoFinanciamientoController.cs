@@ -62,6 +62,7 @@ namespace TP_DDS_MVC.Controllers
 
                 foreach (var doc in docs)
                 {
+
                     if (tipoOperacion == doc["tipoOperacion"].AsString)
                     {
                         if (tipoEntidad == doc["tipoEntidad"].AsString)
@@ -79,7 +80,7 @@ namespace TP_DDS_MVC.Controllers
                                     d++;
                                     break;
                                 case "Presupuesto":
-                                    listaStrings[i] = doc["idPrestadorDeServicios"].ToInt32().ToString();
+                                    listaStrings[i] = doc["idCompra"].ToInt32().ToString();
                                     i++;
                                     listaStrings[i] = doc["montoTotal"].ToDouble().ToString();
                                     i++;
@@ -110,6 +111,23 @@ namespace TP_DDS_MVC.Controllers
                             }
                         }
                     }
+                }
+
+                if (tipoEntidad == "Egreso")
+                {
+                    ViewBag.entidad = "Egreso";
+                }
+                if (tipoEntidad == "Ingreso")
+                {
+                    ViewBag.entidad = "Ingreso";
+                }
+                if (tipoEntidad == "Presupuesto")
+                {
+                    ViewBag.entidad = "Presupuesto";
+                }
+                if (tipoEntidad == "Compra")
+                {
+                    ViewBag.entidad = "Compra";
                 }
 
                 ViewBag.listaStrings = listaStrings;
@@ -173,7 +191,7 @@ namespace TP_DDS_MVC.Controllers
         public ActionResult AsociarEgreso(int idProyecto)
         {
             int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
-            ViewBag.listaEgresos = CompraDAO.getInstancia().getCompras(idEntidad);
+            ViewBag.compras = CompraDAO.getInstancia().getComprasSinProyecto(idEntidad);
             ViewBag.idProyecto = idProyecto;
             return View();
         }
@@ -206,7 +224,7 @@ namespace TP_DDS_MVC.Controllers
         public ActionResult AsociarIngreso(int idProyecto)
         {
             int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
-            ViewBag.ingresos = IngresoDAO.getInstancia().getIngresos(idEntidad);
+            ViewBag.ingresos = IngresoDAO.getInstancia().getIngresosSinProyecto(idEntidad);
             ViewBag.idProyecto = idProyecto;
             return View();
         }
