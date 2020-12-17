@@ -46,6 +46,12 @@ namespace TP_DDS_MVC
                 defaults: new { controller = "ProyectoFinanciamiento", action = "AsociarEgreso" }
             );
 
+            routes.MapRoute(
+                name: "Bitácora de Operaciones",
+                url: "bitacora",
+                defaults: new { controller = "ProyectoFinanciamiento", action = "VerOperaciones" }
+            );
+
             /// Compra/egreso 
             routes.MapRoute(
                 name: "ListCompras",

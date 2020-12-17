@@ -8,59 +8,137 @@
             <h2>Bitácora de Operaciones</h2>
         </div>
 
+        @if (ViewBag.entidad == "Presupuesto")
+        {
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="propuesta">#</label>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="propuesta">Monto</label>
+                </div>
+            </div>
+            if (ViewBag.c == 0)
+            {
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="propuesta">No hay presupuestos</label>
+                    </div>
+                </div>
+            }
+        }
+        @if (ViewBag.entidad == "Compra")
+        {
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="propuesta">#</label>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="propuesta">Descripción</label>
+                </div>
+            </div>
+            if (ViewBag.c == 0)
+            {
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="propuesta">No hay compras</label>
+                    </div>
+                </div>
+            }
+        }
+        @if (ViewBag.entidad == "Egreso")
+        {
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="propuesta">#</label>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="propuesta">Monto</label>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="propuesta">Fecha de Egreso</label>
+                </div>
+            </div>
+            if (ViewBag.c == 0)
+            {
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="propuesta">No hay egresos</label>
+                    </div>
+                </div>
+            }
+        }
+        @if (ViewBag.entidad == "Ingreso")
+        {
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="propuesta">#</label>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="propuesta">Descripción</label>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="propuesta">Monto</label>
+                </div>
+            </div>
+            if (ViewBag.c == 0)
+            {
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="propuesta">No hay ingresos</label>
+                    </div>
+                </div>
+            }
+        }
 
-        
-            @if (ViewBag.c == 2)
+        @if (ViewBag.c == 2)
+        {
+
+            int i = 0;
+            int d = ViewBag.d;
+            while (d > 0)
             {
 
-
-                int i = 0;
-                int d = ViewBag.d;
-                while (d > 0)
-                {
-
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="propuesta">@ViewBag.listaStrings[i]</label>
-                        </div>
-                        @{i++; }
-                        <div class="form-group col-md-4">
-                            <label for="propuesta">@ViewBag.listaStrings[i]</label>
-                        </div>
-                        @{i++; }
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="propuesta">@ViewBag.listaStrings[i]</label>
                     </div>
-                    d = d - 1;
-                 }
-             }
-             else
-             {
-                 int i = 0;
-                 int d = ViewBag.d;
-                 while (d > 0)
-                 {
-
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="propuesta">@ViewBag.listaStrings[i]</label>
-                        </div>
-                        @{i++; }
-                        <div class="form-group col-md-4">
-                            <label for="propuesta">@ViewBag.listaStrings[i]</label>
-                        </div>
-                        @{i++; }
-                        <div class="form-group col-md-4">
-                            <label for="propuesta">@ViewBag.listaStrings[i]</label>
-                        </div>
-                        @{i++; }
+                    <div class="form-group col-md-4">
+                        <label for="propuesta">@ViewBag.listaStrings[i]</label>
                     </div>
-                    d = d - 1;
-                }
+                </div>
+                d = d - 1;
             }
+        }
+        else
+        {
+            int i = 0;
+            int d = ViewBag.d;
+            while (d > 0)
+            {
 
-            @Html.ActionLink("Volver", "VerOperaciones", "ProyectoFinanciamiento", new { @class = "btn btn-secondary"})
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="propuesta">@ViewBag.listaStrings[i]</label>
+                    </div>
+                    @{i++; }
+                    <div class="form-group col-md-4">
+                        <label for="propuesta">@ViewBag.listaStrings[i]</label>
+                    </div>
+                    @{i++; }
+                    <div class="form-group col-md-4">
+                        <label for="propuesta">@ViewBag.listaStrings[i]</label>
+                    </div>
+                    @{i++; }
+                </div>
+                d = d - 1;
+            }
+        }
 
-        
-            <br><br>
+        @Html.ActionLink("Volver", "VerOperaciones", "ProyectoFinanciamiento", new { @class = "btn btn-secondary" })
+
+
+        <br><br>
 
 
     </div>
