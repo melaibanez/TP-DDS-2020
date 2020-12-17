@@ -38,9 +38,5 @@ namespace TP_DDS_MVC.Models.Compras
             this.medioDePago = medioDePago;
         }
 
-        public void altaPresupuesto() { }
-        public void bajaPresupuesto() { }
-        public void modificacionPresupuesto() { }
-
     }
 }

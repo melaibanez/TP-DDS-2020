@@ -36,6 +36,16 @@ namespace TP_DDS_MVC.DAOs
             }
         }
 
+        public List<Compra> getComprasSinProyecto(int idEntidad)
+        {
+
+            using (MyDBContext context = new MyDBContext())
+            {
+
+                return context.Compras.Where(i => i.idEntidad == idEntidad && i.idProyecto==null).ToList();
+            }
+        }
+
         public void asociarCompraAProyecto(int idProyecto, int idCompra)
         {
 

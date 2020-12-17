@@ -1,18 +1,18 @@
 ﻿@using TP_DDS_MVC.Models.Compras;
 @model List<Presupuesto>
 @{
-    ViewBag.Title = "Listado Presupuestos";
+    ViewBag.Title = "Listado Documentos Comerciales";
 }
 
 
 <div class="alert alert-secondary my-4" role="alert">
-    <h2>Listado de Presupuestos</h2>
+    <h2>Listado de Documentos Comerciales</h2>
 </div>
 
 <div class="container-fluid">
     @if (Model == null || Model.Count == 0)
     {
-        <h6>No hay presupuestos cargados</h6>
+        <p class="ml-2 lead">No hay Documentos Comerciales cargados</p>
     }
     else
     {
@@ -21,7 +21,8 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nro Identificacion</th>
-                <th scope="col">Total</th>
+                <th scope="col">Tipo</th>
+                <th></th>
                 <th></th>
                 <th></th>
             </tr>
@@ -32,10 +33,10 @@
             <tr>
                 <th scope="row">@pres.idDocComercial</th>
                 <td>@pres.nroIdentificacion</td>
-                <td>@pres.montoTotal</td>
+                <td>@pres.tipo</td>
                 <td><input type="button" class="btn btn-secondary btn-sm" value="Detalle" onclick="window.open('@Url.Action("DetallePresupuesto", "Compra", new { id = pres.idDocComercial })', '_blank')" /></td>
                 <td>@Html.ActionLink("Editar", "EditPresupuesto", "Compra", new { id = pres.idDocComercial }, new { @class = "btn btn-secondary btn-sm" })</td>
-                <td>@Html.ActionLink("Eliminar", "DeletePresupuesto", "Compra", new { id = pres.idDocComercial }, new { @class = "btn btn-secondary btn-sm" })</td>
+                <td>@Html.ActionLink("Eliminar", "DeletePresupuesto", "Compra", new { id = pres.idDocComercial }, new { @class = "btn btn-danger btn-sm" })</td>
             </tr>
             }
         </tbody>

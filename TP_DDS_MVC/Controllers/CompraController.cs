@@ -257,11 +257,11 @@ namespace TP_DDS_MVC.Controllers
             }
         }
 
-        public ActionResult DeletePresupuesto(int idPresupuesto)
+        public ActionResult DeletePresupuesto(int id)
         {
             try
             {
-                PresupuestoDAO.getInstancia().deletePresupuesto(idPresupuesto);
+                PresupuestoDAO.getInstancia().deletePresupuesto(id);
                 return View("ListPresupuestos");
             }
             catch (Exception e)

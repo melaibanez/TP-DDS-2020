@@ -173,7 +173,7 @@ namespace TP_DDS_MVC.Controllers
         public ActionResult AsociarEgreso(int idProyecto)
         {
             int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
-            ViewBag.listaEgresos = CompraDAO.getInstancia().getCompras(idEntidad);
+            ViewBag.compras = CompraDAO.getInstancia().getComprasSinProyecto(idEntidad);
             ViewBag.idProyecto = idProyecto;
             return View();
         }
@@ -205,7 +205,7 @@ namespace TP_DDS_MVC.Controllers
         public ActionResult AsociarIngreso(int idProyecto)
         {
             int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
-            ViewBag.ingresos = IngresoDAO.getInstancia().getIngresos(idEntidad);
+            ViewBag.ingresos = IngresoDAO.getInstancia().getIngresosSinProyecto(idEntidad);
             ViewBag.idProyecto = idProyecto;
             return View();
         }

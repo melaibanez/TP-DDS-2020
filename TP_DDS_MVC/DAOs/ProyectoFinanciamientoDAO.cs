@@ -42,7 +42,7 @@ namespace TP_DDS_MVC.DAOs
 
             using (MyDBContext context = new MyDBContext())
             {
-                return context.Proyectos.Where(p => p.idProyecto == idProyecto).FirstOrDefault();
+                return context.Proyectos.Include("ingresos").Include("compras.egreso").Where(p => p.idProyecto == idProyecto).FirstOrDefault();
             }
         }
 
