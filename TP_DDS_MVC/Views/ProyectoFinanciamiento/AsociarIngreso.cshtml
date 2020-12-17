@@ -1,21 +1,46 @@
 ﻿@using TP_DDS_MVC.Models.Ingresos;
-@model List<Ingreso>
+
 @{
-    ViewBag.Title = "AsociarIngreso";
+    ViewBag.Title = "Asociar Ingreso";
 }
 
-    <h2>AsociarIngreso</h2>
-
-    @foreach (Ingreso ingreso in (List<Ingreso>)Model)
+<div class="pb-3">
+    <h3>Asociar un ingreso</h3>
+</div>
+<div class="ml-lg-5">
+    @using (Html.BeginForm("AsociarIngreso", "ProyectoFinanciamiento", FormMethod.Post))
     {
-        <label class="container">
-            @ingreso.idIngreso
-            <input type="checkbox" checked="checked">
-            <span class="checkmark"></span>
-        </label>
-    }
+        <input hidden type="text" name="idProyecto" value=@ViewBag.idProyecto />
+        <div class="row">
+            <div class="form-group">
+                <label for="compra">Seleccione un ingreso:</label>
+                @if (ViewBag.ingresos.Count == 0)
+                {
+                    <input class="form-control" type="text" placeholder="No hay ingresos para vincular" style="width:1000px" disabled>
+                }
+                else
+                {
+                    <input class="form-control" list="compras" name="idIngreso" id="compra" type="text" placeholder="Seleccionar...">
+                    <datalist id="compras">
+                        @foreach (Ingreso ing in (List<Ingreso>)ViewBag.ingresos)
+                        {
+                            <option value="@ing.idIngreso">@ing.descripcion</option>
+                        }
+                    </datalist>
+                }
+            </div>
 
-<span>
-    <button class="btn btn-success col-lg-2" id="asociar">Asociar</button>
-    @Html.ActionLink("Cancelar", "Index", new { controller = "ProyectoFinanciamientoController" }, new { @class = "btn btn-secondary col-lg-1" })
-</span>
+        </div>
+        <div class="row">
+            @if (ViewBag.ingresos.Count == 0)
+            {
+                <input class="btn btn-success col-2 mr-3" type="submit" value="Asociar" disabled />
+            }
+            else
+            {
+                <input class="btn btn-success col-2 mr-3" type="submit" value="Asociar" />
+            }
+            @Html.ActionLink("Volver", "DetalleProyectos", "ProyectoFinanciamiento", new { id = ViewBag.idProyecto}, new { @class = "btn btn-secondary btn-md mr-4 col-1" })
+        </div>
+    }
+</div>

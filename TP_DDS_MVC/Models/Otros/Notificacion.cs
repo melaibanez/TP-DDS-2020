@@ -27,10 +27,11 @@ namespace TP_DDS_MVC.Models.Otros
 
         public Notificacion() { }
 
-        public Notificacion(string mensaje, DateTime fecha)
+        public Notificacion(string mensaje, DateTime fecha, int idUsiario)
         {
             this.mensaje = mensaje;
             this.fecha = fecha;
+            this.idUsuario = idUsuario;
         }
 
         override

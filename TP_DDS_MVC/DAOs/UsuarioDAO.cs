@@ -84,5 +84,14 @@ namespace TP_DDS_MVC.DAOs
                 return usu;
             }
         }
+
+        public void enviarNotificacion(Notificacion Noti)
+        {
+            using(MyDBContext context = new MyDBContext())
+            {
+                context.Notificaciones.Add(Noti);
+                context.SaveChanges();
+            }
+        }
     }
 }

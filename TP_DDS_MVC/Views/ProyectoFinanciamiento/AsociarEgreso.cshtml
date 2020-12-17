@@ -1,51 +1,46 @@
 ﻿@using TP_DDS_MVC.Models.Proyectos;
 @using TP_DDS_MVC.Models.Compras;
-@model ProyectoFinanciamiento
+
 @{
-    ViewBag.Title = "AsociarEgreso";
-    var listaEgresos = ViewBag.listaEgresos;
+    ViewBag.Title = "Asociar Egreso";
 }
 
-<h2>Asociar Egreso</h2>
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col"></th>
-            <th scope="col">#</th>
-            <th scope="col">Monto</th>
-
-        </tr>
-    </thead>
-    <tbody>
-
-        @using (Html.BeginForm("Holaa", "ProyectoFinanciamiento", FormMethod.Post))
-        {
-            if (listaEgresos != null)
+<div class="pb-3">
+    <h3>Asociar una compra</h3>
+</div>
+<div class="ml-lg-5">
+    @using (Html.BeginForm("AsociarEgreso", "ProyectoFinanciamiento", FormMethod.Post))
+    {
+        <input hidden type="text" name="idProyecto" value=@ViewBag.idProyecto />
+        <div class="row">
+            <div class="form-group">
+                <label for="compra">Seleccione una compra:</label>
+                @if (ViewBag.compras.Count == 0)
+                {
+                    <input class="form-control" type="text" placeholder="No hay compras para vincular" style="width:1000px" disabled>
+                }
+                else
+                {
+                    <input class="form-control" list="compras" name="idCompra" id="compra" type="text" placeholder="Seleccionar...">
+                    <datalist id="compras">
+                        @foreach (Compra comp in (List<Compra>)ViewBag.compras)
+                        {
+                            <option value="@comp.idCompra">@comp.descripcion</option>
+                        }
+                    </datalist>
+                }
+                </div>
+        </div>
+        <div class="row">
+            @if (ViewBag.compras.Count == 0)
             {
-                foreach (Compra egreso in (List<Compra>)listaEgresos)
-                {
-                    <tr>
-                        <th scope="row"><input type="checkbox" name="egresosAsociados" id="egresosAsociados" checked="checked"></th>
-                        <td>egreso.idCompra</td>
-                        <td>egreso.descripcion</td>
-                    </tr>
-                }
-
-                if (listaEgresos.Count == 0)
-                {
-                    <tr>
-                        <td></td>
-                        <td>No hay compras</td>
-                        <td></td>
-                    </tr>
-                }
-                @Html.Hidden("idProyecto", (string)ViewBag.id.ToString());
-                <th scope="row"><input type="checkbox" name="egresosAsociados" id="propuesta2" checked="checked" hidden></th>
-        }
-
-        <input type="submit" value="Asociar" id=@ViewBag.id>
+                <input class="btn btn-success col-2 mr-3" type="submit" value="Asociar" disabled />
+            }
+            else
+            {
+                <input class="btn btn-success col-2 mr-3" type="submit" value="Asociar" />
+            }
+            @Html.ActionLink("Volver", "DetalleProyectos", "ProyectoFinanciamiento", new { id = ViewBag.idProyecto }, new { @class = "btn btn-secondary btn-md mr-4 col-1" })
+        </div>
     }
-        </tbody>
-    </table>
-
+</div>

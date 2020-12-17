@@ -35,12 +35,14 @@ namespace TP_DDS_MVC.DAOs
             }
         }
 
+        
+
         public ProyectoFinanciamiento getProyecto(int idProyecto)
         {
 
             using (MyDBContext context = new MyDBContext())
             {
-                return context.Proyectos.Where(p => p.idProyecto == idProyecto).FirstOrDefault();
+                return context.Proyectos.Include("ingresos").Include("compras.egreso").Where(p => p.idProyecto == idProyecto).FirstOrDefault();
             }
         }
 

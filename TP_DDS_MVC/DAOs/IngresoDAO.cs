@@ -33,12 +33,31 @@ namespace TP_DDS_MVC.DAOs
             }
         }
 
+        public List<Ingreso> getIngresosSinProyecto(int idEntidad)
+        {
+
+            using (MyDBContext context = new MyDBContext())
+            {
+                return context.Ingresos.Where(i => i.idEntidad == idEntidad && i.idProyecto==null).ToList();
+            }
+        }
 
         public Ingreso getIngreso(int id)
         {
             using (MyDBContext context = new MyDBContext())
             {
                 return context.Ingresos.Include("egresosAsociados").Include("proyecto").Where(i=>i.idIngreso == id).FirstOrDefault();
+            }
+        }
+
+        public void asociarIngresoAProyecto(int idProyecto, int idIngreso)
+        {
+
+            using (MyDBContext context = new MyDBContext())
+            {
+                Ingreso comp = context.Ingresos.Where(p => p.idIngreso == idIngreso).SingleOrDefault();
+                comp.idProyecto = idProyecto;
+                context.SaveChanges();
             }
         }
 

@@ -2,6 +2,7 @@
     model: {
         descripcion: null,
         monto: null,
+        idMoneda: null,
         fechaDesde: null,
         fechaHasta: null,
     }
@@ -17,6 +18,7 @@ $("#submit").click(function () {
     data.model.monto = $(monto).val();
     data.model.fechaDesde = $(fechaInicio).val();
     data.model.fechaHasta = $(fechaFin).val();
+    data.model.idMoneda = $(moneda).val();
   
 
     console.log(data.model);

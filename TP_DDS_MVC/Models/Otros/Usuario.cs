@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using TP_DDS_MVC.Models.Compras;
 using TP_DDS_MVC.Models.Entidades;
 using MongoDB.Bson.Serialization.Attributes;
+using TP_DDS_MVC.Helpers.DB;
 
 namespace TP_DDS_MVC.Models.Otros
 {
@@ -42,10 +43,7 @@ namespace TP_DDS_MVC.Models.Otros
             this.entidad = entidad;
         }
 
-        public void recibirMensaje(Notificacion noti)
-        {
-            this.bandejaMensajes.Add(noti);
-        }
+
 
     }
 }

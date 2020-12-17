@@ -5,32 +5,46 @@ using System.Text;
 using System.Threading.Tasks;
 using TP_DDS_MVC.Models.Compras;
 using TP_DDS_MVC.Models.Otros;
+
 using TP_DDS_MVC.Models.Proyectos;
+
+using TP_DDS_MVC.Helpers.DB;
+using TP_DDS_MVC.DAOs;
+
 
 namespace TP_DDS_MVC.Helpers.Validadores
 {
     public class ValidadorPresupuestosEgreso
     {
-        public static async Task validar(Compra compra)
+        public static async Task validar(Compra comp)
         {
-            compra.compraValidada = true;
-            if (compra.cantMinimaPresupuestos > 0)
-            {
 
-                if (cantidadIndicadaPresupuestos(compra) && esMenorPresupuesto(compra) && compraUsaPresupuesto(compra))
+            using (MyDBContext context = new MyDBContext())
+            {
+                Compra compra = CompraDAO.getInstancia().getCompraConEgresoYDocumentos(comp.idCompra);
+                if (compra.cantMinimaPresupuestos > 0)
                 {
-                    enviarMensajes(compra.revisores, "La compra " + compra.descripcion +" fue validada");
+                    compra.compraValidada = true;
+                    if (cantidadIndicadaPresupuestos(compra) && esMenorPresupuesto(compra) && compraUsaPresupuesto(compra))
+                    {
+
+                        enviarMensajes(compra.revisores, "La compra: " + compra.descripcion + " , fue validada");
+
+                    }
+                    else
+                    {
+
+                        enviarMensajes(compra.revisores, "Hubo un error con la validacion de la compra: " + compra.descripcion);
+                    }
+                    context.SaveChanges();
                 }
                 else
                 {
-                    enviarMensajes(compra.revisores, "Hubo un error");
+                    Console.WriteLine("La compra no requiere presupuestos");
                 }
             }
-            else
-            {
-                Console.WriteLine("La compra no requiere presupuestos");
-            }
         }
+
 
         public static async Task validar(ProyectoFinanciamiento proyecto)
         {
@@ -51,7 +65,8 @@ namespace TP_DDS_MVC.Helpers.Validadores
             float montoIngresos = proyecto.ingresos.Sum(x => x.monto);
             return montoEgresos <= montoIngresos;
 
-        }
+        }   
+
 
         public static bool esMenorALimite(ProyectoFinanciamiento proyecto)
         {
@@ -69,12 +84,12 @@ namespace TP_DDS_MVC.Helpers.Validadores
         {
             foreach (Usuario usuario in usuarios)
             {
-                usuario.recibirMensaje(new Notificacion(mensaje, DateTime.Now));
+                UsuarioDAO.getInstancia().enviarNotificacion(new Notificacion(mensaje, DateTime.Now, usuario.idUsuario));
             }
         }
 
         public static void enviarMensajes(Usuario usuario, string mensaje) { //sobrecarga 1 usuario
-        usuario.recibirMensaje(new Notificacion(mensaje, DateTime.Now));
+        UsuarioDAO.getInstancia().enviarNotificacion(new Notificacion(mensaje, DateTime.Now, usuario.idUsuario));
         }
 
         private static bool cantidadIndicadaPresupuestos(Compra compra)

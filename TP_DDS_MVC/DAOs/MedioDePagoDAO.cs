@@ -34,7 +34,7 @@ namespace TP_DDS_MVC.DAOs
             }
         }
 
-        public MedioDePago getMedioDePago(int id)
+        public MedioDePago getMedioDePago(string id)
         {
             using (MyDBContext context = new MyDBContext())
             {

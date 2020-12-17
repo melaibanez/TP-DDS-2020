@@ -25,22 +25,21 @@ namespace TP_DDS_MVC.Models.Compras
         public int? idCompra { get; set; }
         public Compra compra { get; set; }
 
+        [ForeignKey("moneda")]
+        public string idMoneda { get; set; }
+        public Moneda moneda { get; set; }
         public List<ItemPresupuesto> items { get; set; }
 
 
         public Presupuesto() { }
 
-        public Presupuesto(string nroIdentificacion, string tipo_enlace, List<ItemPresupuesto> items, PrestadorDeServicios prestadorDeServicios, MedioDePago medioDePago) : base(nroIdentificacion, tipo_enlace)
+        public Presupuesto(string nroIdentificacion, string tipo, List<ItemPresupuesto> items, PrestadorDeServicios prestadorDeServicios, MedioDePago medioDePago) : base(nroIdentificacion, tipo)
         {
             this.items = items;
             this.prestadorDeServicios = prestadorDeServicios;
             this.montoTotal = items.Sum(i => i.valor * i.cant);
             this.medioDePago = medioDePago;
         }
-
-        public void altaPresupuesto() { }
-        public void bajaPresupuesto() { }
-        public void modificacionPresupuesto() { }
 
     }
 }

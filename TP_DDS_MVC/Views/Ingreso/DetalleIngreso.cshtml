@@ -11,7 +11,7 @@
 <div class="form-row">
     <div class="form-group col-md-6">
         <label for="descripcion">Descripcion</label>
-        <input id="descripcion" class="form-control" type="text" value=@Model.descripcion disabled>
+        <input id="descripcion" class="form-control" type="text" value="@Model.descripcion" disabled>
     </div>
     <div class="form-group col-md-6">
         <label for="monto">Monto total</label>
@@ -20,32 +20,40 @@
 </div>
 <div class="form-row">
     <div class="form-group col">
-        <div class="form-group">
-            <label for="fechas">Fechas</label>
-            <input id="fechaDesde" class="form-control" type="text" value=@Model.fechaDesde disabled><br />
-            <input id="fechaHasta" class="form-control" type="text" value=@Model.fechaHasta disabled>
-        </div>
+        <label for="fechaDesde">Fecha de inicio de utilizacion</label>
+        <input id="fechaDesde" class="form-control" type="text" value=@Model.fechaDesde disabled>
+    </div>
+    <div class="form-group col">
+        <label for="fechaHasta">Fecha fin de utilizacion</label>
+        <input id="fechaHasta" class="form-control" type="text" value=@Model.fechaHasta disabled>
     </div>
 </div>
 
     <div class="mb-3">
         <h5>Egresos asociados</h5>
+        
         <div class="form-row">
+            @if (Model.egresosAsociados.Count == 0)
+            {
+                <p class="lead ml-3">Este ingreso no tiene egresos asociados</p>
+            }
+            else
+            {
             <div class="form-group col-4">
                 <ul>
-                    @foreach (Egreso egreso in @Model.egresosAsociados)
+                    @foreach (Egreso egreso in Model.egresosAsociados)
                     {
-                    <li class="list-group-item">@egreso.idEgreso &nbsp;-&nbsp; $@egreso.montoTotal </li>
+                        <li class="list-group-item">@egreso.idEgreso &nbsp;-&nbsp; $@egreso.montoTotal </li>
                     }
                 </ul>
             </div>
+            }
 
         </div>
     </div>
     <br />
     <div class="form-group row">
         <div class="col-10">
-            &nbsp;&nbsp;&nbsp;
             @Html.ActionLink("Volver", "ListIngresos", new { controller = "Ingreso" }, new { @class = "btn btn-secondary" })
         </div>
     </div>

@@ -19,19 +19,11 @@ namespace TP_DDS_MVC.Controllers
 {
     public class ProyectoFinanciamientoController : Controller
     {
-        // GET: ProyectoFinanciamiento
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         public ActionResult AddProyectoFinanciamiento()
         {
             return View();
         }
-
-        private int id_Entidad = 0;
-        private int id_Proyecto = 0;
 
         [HttpPost]
         public ActionResult AddProyectoFinanciamiento(ProyectoFinanciamiento proyecto)
@@ -70,6 +62,7 @@ namespace TP_DDS_MVC.Controllers
 
                 foreach (var doc in docs)
                 {
+
                     if (tipoOperacion == doc["tipoOperacion"].AsString)
                     {
                         if (tipoEntidad == doc["tipoEntidad"].AsString)
@@ -87,7 +80,7 @@ namespace TP_DDS_MVC.Controllers
                                     d++;
                                     break;
                                 case "Presupuesto":
-                                    listaStrings[i] = doc["idPrestadorDeServicios"].ToInt32().ToString();
+                                    listaStrings[i] = doc["idCompra"].ToInt32().ToString();
                                     i++;
                                     listaStrings[i] = doc["montoTotal"].ToDouble().ToString();
                                     i++;
@@ -118,6 +111,23 @@ namespace TP_DDS_MVC.Controllers
                             }
                         }
                     }
+                }
+
+                if (tipoEntidad == "Egreso")
+                {
+                    ViewBag.entidad = "Egreso";
+                }
+                if (tipoEntidad == "Ingreso")
+                {
+                    ViewBag.entidad = "Ingreso";
+                }
+                if (tipoEntidad == "Presupuesto")
+                {
+                    ViewBag.entidad = "Presupuesto";
+                }
+                if (tipoEntidad == "Compra")
+                {
+                    ViewBag.entidad = "Compra";
                 }
 
                 ViewBag.listaStrings = listaStrings;
@@ -168,8 +178,6 @@ namespace TP_DDS_MVC.Controllers
             try
             {
                 ProyectoFinanciamiento proyecto = ProyectoFinanciamientoDAO.getInstancia().getProyecto(id);
-                id_Proyecto = id;
-                ViewBag.idProyecto = id;
                 return View(proyecto);
             }
             catch (Exception e)
@@ -180,89 +188,128 @@ namespace TP_DDS_MVC.Controllers
             }
         }
 
-        public ActionResult AsociarEgreso(int id)
+        public ActionResult AsociarEgreso(int idProyecto)
         {
             int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
-            ProyectoFinanciamiento proyecto = ProyectoFinanciamientoDAO.getInstancia().getProyecto(id);
-            ViewBag.listaEgresos = CompraDAO.getInstancia().getCompras();
-            id_Entidad = id;
-            ViewBag.id = id;
-            return View(proyecto);
+            ViewBag.compras = CompraDAO.getInstancia().getComprasSinProyecto(idEntidad);
+            ViewBag.idProyecto = idProyecto;
+            return View();
         }
 
         [HttpPost]
         public ActionResult AsociarEgreso(int idCompra, int idProyecto)
         {
+            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
             try
             {
-                return View("DetalleProyectos");
-                // corregir esto después
+                if(idCompra == 0)
+                {
+                    throw new Exception("Seleccione una compra");
+                }
+                CompraDAO.getInstancia().asociarCompraAProyecto(idProyecto, idCompra);
+                return RedirectToAction("DetalleProyectos", "ProyectoFinanciamiento", new {id=idProyecto });
             }
             catch (Exception e)
             {
-                int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+               
                 MyLogger.log(e.Message);
-                ViewBag.listaEgresos = EgresoDAO.getInstancia().getEgresos(idEntidad);
+                ViewBag.idProyecto = idProyecto;
+                ViewBag.listaEgresos = CompraDAO.getInstancia().getCompras(idEntidad);
                 ViewBag.errorMsg = e.Message;
-                return View("DetalleProyectos");
+                return View();
             }
+        }
+
+
+        public ActionResult AsociarIngreso(int idProyecto)
+        {
+            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+            ViewBag.ingresos = IngresoDAO.getInstancia().getIngresosSinProyecto(idEntidad);
+            ViewBag.idProyecto = idProyecto;
+            return View();
         }
 
         [HttpPost]
-        public ActionResult Holaa(string[] egresosAsociados)
+        public ActionResult AsociarIngreso(int idIngreso, int idProyecto)
         {
             try
             {
-                int propuesta2 = Int32.Parse(Request.Form["idProyecto"]);
-                //string name = Request["propuesta2"];
-
-                //string id = Request.Params.Cast<string>().Where(p => !p.StartsWith("egresosAsociados")).First();
-                //int idProyecto = Int32.Parse(name);
-                List<Compra> listaEgresos = CompraDAO.getInstancia().getCompras();
-                ProyectoFinanciamiento proyecto = ProyectoFinanciamientoDAO.getInstancia().getProyecto(propuesta2);
-                int i = 0;
-                if (proyecto.compras == null)
+                if (idIngreso == 0)
                 {
-                    proyecto.compras = new List<Compra>();
+                    throw new Exception("Seleccione un ingreso");
                 }
-
-                foreach (string egreso in egresosAsociados)
-                {
-                    if (egreso == "on")
-                    {
-                        //proyecto.compras.
-                        proyecto.compras.Add(listaEgresos[i]);
-                    }
-
-                    i++;
-
-                }
-
-                return View();
+                IngresoDAO.getInstancia().asociarIngresoAProyecto(idProyecto, idIngreso);
+                return RedirectToAction("DetalleProyectos", "ProyectoFinanciamiento", new { id = idProyecto });
             }
             catch (Exception e)
             {
                 int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
                 MyLogger.log(e.Message);
+                ViewBag.ingresos = IngresoDAO.getInstancia().getIngresos(idEntidad);
+                ViewBag.idProyecto = idProyecto;
                 ViewBag.errorMsg = e.Message;
-                return View("AsociarEgreso");
+                return View();
             }
         }
 
-        public ActionResult AsociarIngreso(int id)
-        {
-            try
-            {
-                ProyectoFinanciamiento proyecto = ProyectoFinanciamientoDAO.getInstancia().getProyecto(id);
-                return View(proyecto);
-            }
-            catch (Exception e)
-            {
-                MyLogger.log(e.Message);
-                ViewBag.errorMsg = e.Message;
-                return View("DetalleProyectos");
-            }
-        }
+
+
+
+        //[HttpPost]
+        //public ActionResult Holaa(string[] egresosAsociados)
+        //{
+        //    try
+        //    {
+        //        int propuesta2 = Int32.Parse(Request.Form["idProyecto"]);
+        //        //string name = Request["propuesta2"];
+
+        //        //string id = Request.Params.Cast<string>().Where(p => !p.StartsWith("egresosAsociados")).First();
+        //        //int idProyecto = Int32.Parse(name);
+        //        List<Compra> listaEgresos = CompraDAO.getInstancia().getCompras();
+        //        ProyectoFinanciamiento proyecto = ProyectoFinanciamientoDAO.getInstancia().getProyecto(propuesta2);
+        //        int i = 0;
+        //        if (proyecto.compras == null)
+        //        {
+        //            proyecto.compras = new List<Compra>();
+        //        }
+
+        //        foreach (string egreso in egresosAsociados)
+        //        {
+        //            if (egreso == "on")
+        //            {
+        //                //proyecto.compras.
+        //                proyecto.compras.Add(listaEgresos[i]);
+        //            }
+
+        //            i++;
+
+        //        }
+
+        //        return View();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+        //        MyLogger.log(e.Message);
+        //        ViewBag.errorMsg = e.Message;
+        //        return View("AsociarEgreso");
+        //    }
+        //}
+
+        //public ActionResult AsociarIngreso(int id)
+        //{
+        //    try
+        //    {
+        //        ProyectoFinanciamiento proyecto = ProyectoFinanciamientoDAO.getInstancia().getProyecto(id);
+        //        return View(proyecto);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        MyLogger.log(e.Message);
+        //        ViewBag.errorMsg = e.Message;
+        //        return View("DetalleProyectos");
+        //    }
+        //}
 
         public ActionResult ListOperaciones()
         {
