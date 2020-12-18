@@ -28,14 +28,13 @@
             <tbody>
                 @foreach (MedioDePago pres in Model)
                 {
-                    <tr>
-                        <th scope="row">@pres.idMedioPago</th>
-                        <td>@pres.tipo.name</td>
-                        <td>@pres.numero</td>
-                        aca falta detalle
-                        <td>@Html.ActionLink("Editar", "EditMedioDePago", "Compra", new { id = pres.idMedioPago }, new { @class = "btn btn-secondary btn-sm" })</td>
-                        <td>@Html.ActionLink("Eliminar", "DeleteMedioDePago", "Compra", new { id = pres.idMedioPago }, new { @class = "btn btn-danger btn-sm" })</td>
-                    </tr>
+                <tr>
+                    <th scope="row">@pres.idMedioPago</th>
+                    <td>@pres.tipo.name</td>
+                    <td>@pres.numero</td>
+                    <!-- <td>Html.ActionLink("Editar", "EditMedioDePago", "Compra", new { id = pres.idMedioPago }, new { class = "btn btn-secondary btn-sm" })</td>-->
+                    <td>@Html.ActionLink("Eliminar", "DeleteMedioDePago", "Compra", new { id = pres.idMedioPago }, new { @class = "btn btn-danger btn-sm" })</td>
+                </tr>
                 }
             </tbody>
         </table>

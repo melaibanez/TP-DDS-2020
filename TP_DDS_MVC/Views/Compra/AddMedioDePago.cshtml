@@ -17,20 +17,22 @@
 
     <div class="container-md my-5 mx-3">
         <div class="row">
-
-            <label for="medio">Instrumento</label>
-            @Html.DropDownListFor(m=>m.idTipo, new SelectList(mediosDePago, "id", "name"), "Medio De Pago...", new { @class = "form-control" })
+            <div class="col-sm">
+                <label for="medio">Instrumento</label>
+                @Html.DropDownListFor(m => m.idTipo, new SelectList(mediosDePago, "id", "name"), "Medio De Pago...", new { @class = "form-control" })
+            </div>        
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <label>Numero del instrumento</label>
-            @Html.TextBoxFor(m => m.numero)
-
+            <div class="col-sm">
+                <label>Numero del instrumento</label><br />
+                @Html.TextBoxFor(m => m.numero, new { @class = "form-control" })
+            </div>
         </div>
         <br />
         <div class="row">
             <span>
                 <input class="btn btn-success" type="submit" value="Agregar" />
                 &nbsp;&nbsp;&nbsp;
-                @Html.ActionLink("Cancelar", "Index", new { controller = "Compra" }, new { @class = "btn btn-secondary" })
+                @Html.ActionLink("Cancelar", "ListMedioDePago", new { controller = "Compra" }, new { @class = "btn btn-secondary" })
             </span>
         </div>
     </div>
