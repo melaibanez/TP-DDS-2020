@@ -52,6 +52,10 @@ namespace TP_DDS_MVC.DAOs
             using (MyDBContext context = new MyDBContext())
             {
                 Compra comp = context.Compras.Where(p => p.idCompra == idCompra).SingleOrDefault();
+                if(comp.idProyecto != null)
+                {
+                    throw new Exception("Esta compra ya esta asociada a un proyecto");
+                }
                 comp.idProyecto = idProyecto;
                 context.SaveChanges();
             }

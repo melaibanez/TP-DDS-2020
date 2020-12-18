@@ -57,6 +57,7 @@ namespace TP_DDS_MVC.DAOs
             using (MyDBContext context = new MyDBContext())
             {
                 added = context.Usuarios.Add(usuario);
+                context.SaveChanges();
             }
 
             return added;

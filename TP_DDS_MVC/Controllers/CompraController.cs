@@ -378,8 +378,9 @@ namespace TP_DDS_MVC.Controllers
             try
             {
 
-                if (/*compra.revisores == null ||*/ compra.descripcion == null || compra.egreso.prestadorDeServicios == null || compra.egreso.medioDePago == null)
-                {
+
+                if (compra.descripcion == null || compra.egreso.detalle == null || compra.egreso.idMedioDePago == 0 || compra.egreso.idPrestadorDeServicios == 0 || compra.cantMinimaPresupuestos < 0 || compra.egreso.fechaEgreso == null || compra.egreso.idMoneda == null){
+
                     throw new Exception("Es necesario completar todos los campos para continuar");
                 }
                  compra.idEntidad = ((Usuario)Session["usuario"]).idEntidad;

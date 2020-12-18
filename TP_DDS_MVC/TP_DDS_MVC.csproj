@@ -493,6 +493,7 @@
     <Content Include="Views\ProyectoFinanciamiento\AsociarIngreso.cshtml" />
     <Content Include="Views\Ingreso\DetalleIngreso.cshtml" />
     <Content Include="Views\Ingreso\EditIngreso.cshtml" />
+    <Content Include="Views\Ingreso\VinculadorManual.cshtml" />
     <Content Include="Views\User\VerEntidadJuridica.cshtml" />
     <Content Include="Views\User\VerEntidadBase.cshtml" />
     <Content Include="Views\User\VerEntidadError.cshtml" />

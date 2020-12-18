@@ -34,7 +34,7 @@ namespace TP_DDS_MVC.Controllers
                 if (proyecto.propuesta != null && proyecto.cantidadPresupuestos != 0 && proyecto.limiteErogacion != 0 && proyecto.fechaCierre != null)
                 {
                     proyecto.idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
-                    proyecto.director = (Usuario)Session["usuario"];
+                    proyecto.idDirector = ((Usuario)Session["usuario"]).idUsuario;
                     ProyectoFinanciamientoDAO.getInstancia().add(proyecto);
                     return Json(Url.Action("Index", "Home"));
                 } else
@@ -166,13 +166,13 @@ namespace TP_DDS_MVC.Controllers
             try
             {
                 ProyectoFinanciamientoDAO.getInstancia().deleteProyecto(id);
-                return View("ListProyectos");
+                return RedirectToAction("ListProyectos", "ProyectoFinanciamiento");
             }
             catch (Exception e)
             {
                 MyLogger.log(e.Message);
                 ViewBag.errorMsg = e.Message;
-                return View("ListProyectos");
+                return RedirectToAction("ListProyectos", "ProyectoFinanciamiento");
             }
         }
 
@@ -204,11 +204,11 @@ namespace TP_DDS_MVC.Controllers
         {
             int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
             try
-            {
-                if(idCompra == 0)
-                {
+            { 
+                if (idCompra == 0){
                     throw new Exception("Seleccione una compra");
                 }
+
                 CompraDAO.getInstancia().asociarCompraAProyecto(idProyecto, idCompra);
                 return RedirectToAction("DetalleProyectos", "ProyectoFinanciamiento", new {id=idProyecto });
             }

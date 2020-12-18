@@ -62,7 +62,7 @@ namespace TP_DDS_MVC
 
             routes.MapRoute(
                name: "Delete Compra",
-               url: "compra/edit/{id}",
+               url: "compra/delete/{id}",
                defaults: new { controller = "Compra", action = "DeleteCompra", id = UrlParameter.Optional }
            );
 

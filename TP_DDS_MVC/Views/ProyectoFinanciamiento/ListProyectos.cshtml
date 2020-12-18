@@ -29,8 +29,8 @@
                     <th scope="row">@proyecto.idProyecto</th>
                     <td>@proyecto.propuesta</td>
                     <td>@proyecto.fechaEjecucion</td>
-                    <td>@Html.ActionLink("Ver", "DetalleProyectos", "ProyectoFinanciamiento", new { id = proyecto.idProyecto }, new { @class = "btn btn-secondary btn-sm" })</td>
-                    <td>@Html.ActionLink("Eliminar", "DeleteProyecto", "ProyectoFinanciamiento", new { id = proyecto.idProyecto }, new { @class = "btn btn-secondary btn-sm" })</td>
+                    <td>@Html.ActionLink("Detalle", "DetalleProyectos", "ProyectoFinanciamiento", new { id = proyecto.idProyecto }, new { @class = "btn btn-secondary btn-sm" })</td>
+                    <td>@Html.ActionLink("Eliminar", "DeleteProyecto", "ProyectoFinanciamiento", new { id = proyecto.idProyecto }, new { @class = "btn btn-danger btn-sm" })</td>
                 </tr>
                 }
             </tbody>
