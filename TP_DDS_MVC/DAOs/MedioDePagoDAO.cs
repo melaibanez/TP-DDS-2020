@@ -30,7 +30,7 @@ namespace TP_DDS_MVC.DAOs
             using (MyDBContext context = new MyDBContext())
             {
 
-                return context.MediosDePago.Where(mdp => mdp.idEntidad == idEntidad).ToList();
+                return context.MediosDePago.Include("tipo").Where(mdp => mdp.idEntidad == idEntidad).ToList();
             }
         }
 

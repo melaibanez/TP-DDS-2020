@@ -145,10 +145,10 @@ namespace TP_DDS_MVC.Controllers
         public ActionResult AddMedioDePago(MedioDePago MDP)
         {
             try
-            {   if (MDP.tipo != null & MDP.numero != null)
+            {   if (MDP.idTipo != null & MDP.numero != null)
                 {
                     MDP.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
-                    MDP.tipo = TipoMedioDePagoDAO.getInstancia().getMedioDePago(MDP.tipo.id);
+                    //MDP.tipo = TipoMedioDePagoDAO.getInstancia().getMedioDePago(MDP.tipo.id);
                     MedioDePagoDAO.getInstancia().add(MDP);
                     return RedirectToAction("Index", "Home");
                 } else

@@ -52,6 +52,23 @@ namespace TP_DDS_MVC.DAOs
            
         }
 
+        public Entidad getEntidadBase(int id)
+        {
+            using (MyDBContext context = new MyDBContext())
+            {
+                return context.Entidades.Include("comprasRealizadas").Include("ingresos").Include("egresos").Where(e => e.idEntidad == id).FirstOrDefault();
+            }
+
+        }
+
+        public Entidad getEntidadJuridica(int id)
+        {
+            using (MyDBContext context = new MyDBContext())
+            {
+                return context.Entidades.Include("comprasRealizadas").Include("ingresos").Include("egresos").Include("direccionPostal").Where(e => e.idEntidad == id).FirstOrDefault();
+            }
+        }
+
         public List<EntidadJuridica> getEntidadesJuridicas()
         {
             using (MyDBContext context = new MyDBContext())
