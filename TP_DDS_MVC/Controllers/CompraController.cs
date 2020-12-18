@@ -69,8 +69,9 @@ namespace TP_DDS_MVC.Controllers
                 ViewBag.provincias = ProvinciaDAO.getInstancia().getProvincias();
                 ViewBag.ciudades = CiudadDAO.getInstancia().getCiudades();
                 MyLogger.log(e.Message);
-                ViewBag.errorMsg = e.Message;
-                return View();            
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+
+                return Json(e.Message);
             }
         }
 
@@ -111,6 +112,9 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
+                if(PDS.razonSocial == null && PDS.numDoc == null)
+                    throw new Exception("Debe completar todos los campos para continuar");
+
                 PDS.direccionPostal.validarDireccion();
                 PrestadorDeServiciosDAO.getInstancia().updatePrestadorDeServicios(PDS);
                 return RedirectToAction("ListPrestadorDeServicios", "Compra");
@@ -121,8 +125,9 @@ namespace TP_DDS_MVC.Controllers
                 ViewBag.provincias = ProvinciaDAO.getInstancia().getProvincias();
                 ViewBag.ciudades = CiudadDAO.getInstancia().getCiudades();
                 MyLogger.log(e.Message);
-                ViewBag.errorMsg = e.Message;
-                return View();
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+
+                return Json(e.Message);
             }
         }
 
@@ -152,10 +157,12 @@ namespace TP_DDS_MVC.Controllers
                 }
             }
             catch (Exception e)
-            {
-                MyLogger.log(e.Message);
+            {   
                 ViewBag.mediosDePago = TipoMedioDePagoDAO.getInstancia().getMediosDePago();
-                return View();
+                MyLogger.log(e.Message);
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                
+                return Json(e.Message);
             }
         }
 
@@ -214,7 +221,7 @@ namespace TP_DDS_MVC.Controllers
                 int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
                 if (req.presupuesto != null)
                 {
-                    if (req.presupuesto.idMedioDePago == null || req.presupuesto.idPrestadorDeServicios == 0 || req.presupuesto.items == null || req.presupuesto.idCompra == null || req.presupuesto.nroIdentificacion == null || req.presupuesto.tipo == null)
+                    if (req.presupuesto.idMedioDePago == 0 || req.presupuesto.idPrestadorDeServicios == 0 || req.presupuesto.items == null || req.presupuesto.idCompra == null || req.presupuesto.nroIdentificacion == null || req.presupuesto.tipo == null)
                     {
                         throw new Exception("Hubo un error. Revise los datos ingresados y vuelva a intentarlo.");
                     }
@@ -331,6 +338,10 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
+                /*if ()
+                {
+                    throw new Exception("Es necesario completar todos los campos para continuar");
+                }*/
                 CompraDAO.getInstancia().updateCompra(compra);
                 return RedirectToAction("ListCompras", "Compra");
             }
@@ -366,9 +377,9 @@ namespace TP_DDS_MVC.Controllers
             try
             {
 
-                if (compra.descripcion == null || compra.egreso.detalle == null || compra.egreso.idMedioDePago == 0 || compra.egreso.idPrestadorDeServicios == 0 || compra.cantMinimaPresupuestos < 0 || compra.egreso.fechaEgreso == null || compra.egreso.idMoneda == null)
+                if (compra.descripcion == null || compra.egreso.detalle == null || compra.egreso.idMedioDePago == 0 || compra.egreso.idPrestadorDeServicios == 0 || compra.cantMinimaPresupuestos < 0 || compra.egreso.fechaEgreso == null || compra.egreso.idMoneda == null){
                     throw new Exception("Es necesario completar todos los campos para continuar");
-                
+                }
                  compra.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
                  compra.egreso.idEntidad = ((Usuario)Session["usuario"]).idEntidad;
 

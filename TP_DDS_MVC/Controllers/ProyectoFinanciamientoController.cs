@@ -14,6 +14,7 @@ using MongoDB.Driver;
 using MongoDB.Bson;
 using System.Security.Policy;
 using Antlr.Runtime.Tree;
+using System.Net;
 
 namespace TP_DDS_MVC.Controllers
 {
@@ -44,7 +45,9 @@ namespace TP_DDS_MVC.Controllers
             catch (Exception e)
             {
                 MyLogger.log(e.Message);
-                return View();
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+
+                return Json(e.Message);
             }
         }
 
