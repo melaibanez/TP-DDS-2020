@@ -9,7 +9,14 @@
     <h2>Listado de ingresos</h2>
 </div>
 
+
 <div class="container-fluid">
+    @if (Model == null || Model.Count == 0)
+    {
+    <p class="ml-2 lead">No hay Ingresos cargadas</p>
+    }
+    else
+    {
     <table class="table table-striped">
         <thead>
             <tr>
@@ -23,15 +30,16 @@
         <tbody>
             @foreach (Ingreso ingreso in Model)
             {
-            <tr>
-                <th scope="row">@ingreso.idIngreso</th>
-                <td>@ingreso.descripcion</td>
-                <td>@ingreso.monto</td>
-                <td>@Html.ActionLink("Detalle", "DetalleIngreso", "Ingreso", new { id = ingreso.idIngreso }, new { @class = "btn btn-info btn-sm" })</td>
-                <td>@Html.ActionLink("Editar", "EditIngreso", "Ingreso", new { id = ingreso.idIngreso }, new { @class = "btn btn-secondary btn-sm" })</td>
-                <td>@Html.ActionLink("Eliminar", "DeleteIngreso", "Ingreso", new { id = ingreso.idIngreso }, new { @class = "btn btn-secondary btn-sm" })</td>
-            </tr>
+                <tr>
+                    <th scope="row">@ingreso.idIngreso</th>
+                    <td>@ingreso.descripcion</td>
+                    <td>@ingreso.monto</td>
+                    <td>@Html.ActionLink("Detalle", "DetalleIngreso", "Ingreso", new { id = ingreso.idIngreso }, new { @class = "btn btn-info btn-sm" })</td>
+                    <td>@Html.ActionLink("Editar", "EditIngreso", "Ingreso", new { id = ingreso.idIngreso }, new { @class = "btn btn-secondary btn-sm" })</td>
+                    <td>@Html.ActionLink("Eliminar", "DeleteIngreso", "Ingreso", new { id = ingreso.idIngreso }, new { @class = "btn btn-secondary btn-sm" })</td>
+                </tr>
             }
         </tbody>
     </table>
+    }
 </div>
