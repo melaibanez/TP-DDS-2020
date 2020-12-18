@@ -41,6 +41,14 @@ namespace TP_DDS_MVC.DAOs
             }
         }
 
+        public DocumentoComercial getDocComercial(int idEgreso)
+        {
+            using (MyDBContext context = new MyDBContext())
+            {
+                return context.DocumentosComerciales.Where(e => e.idEgreso == idEgreso && e.tipo != "Presupuesto").SingleOrDefault();
+            }
+        }
+
         public Egreso getEgreso(int id)
         {
             using (MyDBContext context = new MyDBContext())

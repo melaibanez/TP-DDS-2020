@@ -123,10 +123,17 @@ namespace TP_DDS_MVC.DAOs
         {
             using (MyDBContext context = new MyDBContext())
             {
-                var itemToRemove = context.Compras.Include("egreso").SingleOrDefault(x => x.idCompra == idCompra); //returns a single item.
+                var itemToRemove = context.Compras.Include("egreso").Include("presupuestos").Include("revisores").SingleOrDefault(x => x.idCompra == idCompra); //returns a single item.
 
                 if (itemToRemove != null)
                 {
+                    foreach(DocumentoComercial doc in itemToRemove.presupuestos)
+                    {
+                        context.DocumentosComerciales.Remove(doc);
+                    }
+                    itemToRemove.revisores.Clear();
+                    context.DocumentosComerciales.Remove(EgresoDAO.getInstancia().getDocComercial(itemToRemove.egreso.idEgreso));
+                    context.DocumentosComerciales.Remove(itemToRemove.egreso.docsComerciales.SingleOrDefault(d=> d.tipo != "Presupuesto"));
                     context.Egresos.Remove(itemToRemove.egreso); //Elimino la compra y el egreso asociado
                     context.Compras.Remove(itemToRemove);
                    
