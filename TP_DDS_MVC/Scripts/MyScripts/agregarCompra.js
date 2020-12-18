@@ -9,7 +9,7 @@
                 idMedioDePago: null,
                 montoTotal: 0,
                 descripcion: null,
-                idMoneda: null;
+                idMoneda: null,
                 idPrestadorDeServicios: null,
                 detalle: []
 
@@ -26,17 +26,17 @@ $(document).ready(function () {
 
 $("#agregarUsu").click(function () {
     $('#noUsu').hide()
+    if (parseInt($("#revisor").val()) > 0) {
+        data.model.compra.revisores.push({
+            idUsuario: parseInt($("#revisor").val())
+        })
 
-    data.model.compra.revisores.push({
-        idUsuario:parseInt($("#revisor").val())
-    })
+        $("#listaUsu").append('<li id="u' + $("#revisor").val() + '" class="list-group-item">' +
+            $("#revisor").val() + '&nbsp;-&nbsp;' +
+            '<button id="eliminar" value="u' + $("#revisor").val() + '" class="btn btn-outline-danger btn-sm" aria-label="Close">Eliminar</button ></li >');
 
-    $("#listaUsu").append('<li id="u' + $("#revisor").val() + '" class="list-group-item">' +
-        $("#revisor").val() + '&nbsp;-&nbsp;' +
-        '<button id="eliminar" value="u' + $("#revisor").val() + '" class="btn btn-outline-danger btn-sm" aria-label="Close">Eliminar</button ></li >');
-
-    $("#revisor").val('');
-
+        $("#revisor").val('');
+    }
 })
 
 $(document).on("click", "#eliminar", function () {
@@ -52,31 +52,32 @@ $(document).on("click", "#eliminar", function () {
 
 
 $("#agregarItem").click(function () {
-    $('#noItems').hide()
+    if ($("#descripcionItem").val() != '') {
+        $('#noItems').hide()
 
-    data.model.compra.egreso.detalle.push({
-        cant: $("#cantItem").val(),
-        descripcion: $("#descripcionItem").val(),
-        valor: $("#valorItem").val(),
-        categorias: $('#categoria').val().map(idCat => {
-            return {
-                idCategoria: parseInt(idCat)
-            }
+        data.model.compra.egreso.detalle.push({
+            cant: $("#cantItem").val(),
+            descripcion: $("#descripcionItem").val(),
+            valor: $("#valorItem").val(),
+            categorias: $('#categoria').val().map(idCat => {
+                return {
+                    idCategoria: parseInt(idCat)
+                }
+            })
         })
-    })
 
-    //data.model.compra.egreso.categorias.push($('#categoria').val())
+        //data.model.compra.egreso.categorias.push($('#categoria').val())
 
-    $("#listaItems").append('<li id="' + $("#descripcionItem").val() + '" class="list-group-item">' +
-        $("#descripcionItem").val() + '&nbsp;-&nbsp;' +
-        '$' + $("#valorItem").val() + '&nbsp;-&nbsp;' +
-        $("#cantItem").val() + ' unidades&nbsp;' +
-        '<button id="eliminarItem" value="' + $("#descripcionItem").val() + '" class="btn btn-outline-danger btn-sm" aria-label="Close">Eliminar</button ></li >');
+        $("#listaItems").append('<li id="' + $("#descripcionItem").val() + '" class="list-group-item">' +
+            $("#descripcionItem").val() + '&nbsp;-&nbsp;' +
+            '$' + $("#valorItem").val() + '&nbsp;-&nbsp;' +
+            $("#cantItem").val() + ' unidades&nbsp;' +
+            '<button id="eliminarItem" value="' + $("#descripcionItem").val() + '" class="btn btn-outline-danger btn-sm" aria-label="Close">Eliminar</button ></li >');
 
-    $("#descripcionItem").val('');
-    $("#valorItem").val(1);
-    $("#cantItem").val(1);
-
+        $("#descripcionItem").val('');
+        $("#valorItem").val(1);
+        $("#cantItem").val(1);
+    }
     console.log(data.model.compra.egreso.detalle);
 })
 

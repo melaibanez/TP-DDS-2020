@@ -31,9 +31,9 @@ namespace TP_DDS_MVC
             PersistenciaMoneda.persistirMonedas();
             PersistenciaDireccionPostal.persistirDatosAPI();
 
-            MyScheduler sched = MyScheduler.getInstance();
-            sched.run();
-            sched.agregarJobValidador();
+            //MyScheduler sched = MyScheduler.getInstance();
+            //sched.run();
+            //sched.agregarJobValidador();
         }
     }
 }
