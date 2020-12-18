@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using TP_DDS_MVC.Models.Otros;
 using TP_DDS_MVC.DAOs;
 using TP_DDS_MVC.Helpers.Validadores;
+using TP_DDS_MVC.Models.Entidades;
 
 namespace TP_DDS_MVC.Controllers
 {
@@ -100,6 +101,31 @@ namespace TP_DDS_MVC.Controllers
             else
             {
                 return RedirectToAction("Index", "Home");
+            }
+
+        }
+
+        public ActionResult VerEntidad()
+        {
+            try
+            {
+                int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+                var entidadUsuario = EntidadDAO.getInstancia().getEntidad(idEntidad);
+
+                if (entidadUsuario.GetType() == typeof(EntidadBase))
+                {
+                    var entidadUsuario2 = EntidadDAO.getInstancia().getEntidadJuridica(idEntidad);
+                    return View("VerEntidadBase", entidadUsuario2);
+                }
+                else
+                {
+                    var entidadUsuario2 = EntidadDAO.getInstancia().getEntidadBase(idEntidad);
+                    return View("VerEntidadJuridica", entidadUsuario2);
+                }
+            }
+            catch (Exception e)
+            {
+                return View("VerEntidadError");
             }
 
         }

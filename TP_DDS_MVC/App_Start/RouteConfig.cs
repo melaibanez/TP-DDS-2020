@@ -254,6 +254,12 @@ namespace TP_DDS_MVC
             );
 
             routes.MapRoute(
+                name: "Mi Entidad",
+                url: "usuario/mientidad",
+                defaults: new { controller = "User", action = "VerEntidad" }
+            );
+
+            routes.MapRoute(
                  name: "Panel Admin",
                  url: "usuario/admin",
                  defaults: new { controller = "User", action = "PanelAdmin" }
