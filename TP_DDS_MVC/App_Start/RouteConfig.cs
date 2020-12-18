@@ -72,8 +72,6 @@ namespace TP_DDS_MVC
                 defaults: new { controller = "Compra", action = "DetalleCompra", id = UrlParameter.Optional }
             );
 
-
-
             /// prestador de servicios
 
             routes.MapRoute(
@@ -253,6 +251,12 @@ namespace TP_DDS_MVC
                 name: "Bandeja de mensajes",
                 url: "usuario/mensajes",
                 defaults: new { controller = "User", action = "BandejaDeMensajes" }
+            );
+
+            routes.MapRoute(
+                name: "Mi Entidad",
+                url: "usuario/mientidad",
+                defaults: new { controller = "User", action = "VerEntidad" }
             );
 
             routes.MapRoute(
