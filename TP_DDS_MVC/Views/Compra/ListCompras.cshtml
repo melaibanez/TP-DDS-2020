@@ -22,7 +22,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Descripcion</th>
                     <th scope="col">Total egreso</th>
-                    <th></th>
+                    <th scope="col">Fecha egreso</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -30,15 +30,15 @@
             <tbody>
                 @foreach (Compra compra in Model)
                 {
-                    <tr>
-                        <th scope="row">@compra.idCompra</th>
-                        <td>@compra.descripcion</td>
-                        <td>$@compra.egreso.montoTotal</td>
+                <tr>
+                    <th scope="row">@compra.idCompra</th>
+                    <td>@compra.descripcion</td>
+                    <td>$@compra.egreso.montoTotal</td>
+                    <td>@compra.egreso.fechaEgreso</td>
+                    <td><input type="button" class="btn btn-info btn-sm" value="Detalle" onclick="window.open('@Url.Action("DetalleCompra", "Compra", new { id = compra.idCompra })')" /></td>
+                    <td>@Html.ActionLink("Editar", "EditCompra", "Compra", new { id = compra.idCompra }, new { @class = "btn btn-secondary btn-sm" })</td>
 
-                        <td><input type="button" class="btn btn-info btn-sm" value="Detalle" onclick="window.open('@Url.Action("DetalleCompra", "Compra", new { id = compra.idCompra })')" /></td>
-                        <td>@Html.ActionLink("Editar", "EditCompra", "Compra", new { id = compra.idCompra }, new { @class = "btn btn-secondary btn-sm" })</td>
-                        <td>@Html.ActionLink("Eliminar", "DeleteCompra", "Compra", new { id = compra.idCompra }, new { @class = "btn btn-danger btn-sm" })</td>
-                    </tr>
+                </tr>
                 }
             </tbody>
         </table>
