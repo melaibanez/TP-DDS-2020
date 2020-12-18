@@ -201,11 +201,11 @@ namespace TP_DDS_MVC.Controllers
         {
             int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
             try
-            {
-                if(idCompra == 0)
-                {
+            { 
+                if (idCompra == 0){
                     throw new Exception("Seleccione una compra");
                 }
+
                 CompraDAO.getInstancia().asociarCompraAProyecto(idProyecto, idCompra);
                 return RedirectToAction("DetalleProyectos", "ProyectoFinanciamiento", new {id=idProyecto });
             }

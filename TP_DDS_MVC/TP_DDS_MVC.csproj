@@ -493,6 +493,7 @@
     <Content Include="Views\ProyectoFinanciamiento\AsociarIngreso.cshtml" />
     <Content Include="Views\Ingreso\DetalleIngreso.cshtml" />
     <Content Include="Views\Ingreso\EditIngreso.cshtml" />
+    <Content Include="Views\Ingreso\VinculadorManual.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

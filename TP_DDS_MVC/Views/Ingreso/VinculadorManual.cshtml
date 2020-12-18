@@ -1,0 +1,69 @@
+﻿@using TP_DDS_MVC.Models.Ingresos;
+@using TP_DDS_MVC.Models.Compras;
+
+@{
+    ViewBag.Title = "Vinculador manual";
+}
+
+<div class="pb-3">
+    <h3>Vinculador manual</h3>
+</div>
+@if (ViewBag.errorMsg != null)
+{
+    <div class="alert alert-danger mb-3" role="alert">
+        @ViewBag.errorMsg
+    </div>
+}
+<div class="ml-lg-5">
+    @using (Html.BeginForm("VinculadorManual", "Ingreso", FormMethod.Post))
+    {
+    <div class="row">
+        <div class="form-group">
+            <label for="egreso">Seleccione un egreso:</label>
+            @if (ViewBag.compras.Count == 0)
+            {
+                <input class="form-control" type="text" placeholder="No hay egresos para vincular" style="width:1000px" disabled>
+            }
+            else
+            {
+                <input class="form-control" list="egresos" name="idEgreso" id="egreso" type="text" placeholder="Seleccionar...">
+                <datalist id="egresos">
+                    @foreach (Egreso egre in (List<Egreso>)ViewBag.egresos)
+                    {
+                        <option value="@egre.idEgreso">@egre.descripcion</option>
+                    }
+                </datalist>
+            }
+        </div>
+        <div class="form-group">
+            <label for="ingreso">Seleccione un ingreso:</label>
+            @if (ViewBag.ingresos.Count == 0)
+            {
+                <input class="form-control" type="text" placeholder="No hay ingresos para vincular" style="width:1000px" disabled>
+            }
+            else
+            {
+                <input class="form-control" list="ingresos" name="idIngreso" id="ingreso" type="text" placeholder="Seleccionar...">
+                <datalist id="compras">
+                    @foreach (Ingreso ing in (List<Ingreso>)ViewBag.ingresos)
+                    {
+                        <option value="@ing.idIngreso">@ing.descripcion</option>
+                    }
+                </datalist>
+            }
+        </div>
+    </div>
+        <div class="row">
+            @if (ViewBag.ingresos.Count == 0 || ViewBag.egresos.Count == 0)
+            {
+                <input class="btn btn-success col-2 mr-3" type="submit" value="Asociar" disabled />
+            }
+            else
+            {
+                <input class="btn btn-success col-2 mr-3" type="submit" value="Asociar" />
+            }
+            @Html.ActionLink("Volver", "Vinculador", "Ingreso", new { @class = "btn btn-secondary btn-md mr-4 col-1" })
+        </div>
+    }
+</div>
+

@@ -14,6 +14,7 @@ using MongoDB.Driver;
 using MongoDB.Bson;
 using TP_DDS_MVC.Models.Proyectos;
 using TP_DDS_MVC.Models.Otros;
+using TP_DDS_MVC.Models.Compras;
 
 namespace TP_DDS_MVC.Controllers
 {
@@ -54,42 +55,8 @@ namespace TP_DDS_MVC.Controllers
                 return View();
             }
         }
-                // GET: Ingreso
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        // GET: Ingreso/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Ingreso/Create
-        public ActionResult Create()
-        {
-            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
-            ViewBag.egresos = EgresoDAO.getInstancia().getEgresos(idEntidad);
-            return View();
-        }
-
-        // POST: Ingreso/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
+    
+        
         public ActionResult ListIngresos()
         {
             int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
@@ -189,6 +156,40 @@ namespace TP_DDS_MVC.Controllers
             ViewBag.ingresos = IngresoDAO.getInstancia().getIngresos(idEntidad);
 
             return Json(Url.Action("Index", "Home"));
+        }
+
+        public ActionResult VinculadorManual()
+        {
+            int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+            ViewBag.egresos = EgresoDAO.getInstancia().getEgresosSinVincular();
+            ViewBag.ingresos = IngresoDAO.getInstancia().getIngresos(idEntidad);
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult VinculadorManual(int idIngreso, int idEgreso)
+        {
+            try
+            {
+                Ingreso ing = IngresoDAO.getInstancia().getIngreso(idIngreso);
+                Egreso egre = EgresoDAO.getInstancia().getEgreso(idEgreso);
+
+                if(ing.egresosAsociados.Sum(e=>e.montoTotal) + egre.montoTotal > ing.monto)
+                {
+                    throw new Exception("El ingreso no tiene sufuciente monto para cubrir el egreso que desea agregar.");
+                }
+
+                egre.idIngresoAsociado = idIngreso;
+                return RedirectToAction("Vinculador", "Ingreso");
+            }
+            catch(Exception e){
+                int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
+                ViewBag.egresos = EgresoDAO.getInstancia().getEgresosSinVincular();
+                ViewBag.ingresos = IngresoDAO.getInstancia().getIngresos(idEntidad);
+                ViewBag.errorMsg = e.Message;
+                return View();
+            }
         }
     }
 }

@@ -8,6 +8,12 @@
 <div class="pb-3">
     <h3>Asociar una compra</h3>
 </div>
+@if (ViewBag.errorMsg != null)
+{
+    <div class="alert alert-danger mb-3" role="alert">
+        @ViewBag.errorMsg
+    </div>
+}
 <div class="ml-lg-5">
     @using (Html.BeginForm("AsociarEgreso", "ProyectoFinanciamiento", FormMethod.Post))
     {
@@ -29,7 +35,7 @@
                         }
                     </datalist>
                 }
-                </div>
+            </div>
         </div>
         <div class="row">
             @if (ViewBag.compras.Count == 0)
