@@ -11,7 +11,7 @@ namespace TP_DDS_MVC.Models.Compras
     public class TipoMedioDePago
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+
         public string id { get; set; }
         public string name { get; set; }
 

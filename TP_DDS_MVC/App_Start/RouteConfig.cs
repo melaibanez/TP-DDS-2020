@@ -72,11 +72,6 @@ namespace TP_DDS_MVC
                 defaults: new { controller = "Compra", action = "DetalleCompra", id = UrlParameter.Optional }
             );
 
-            routes.MapRoute(
-                name: "delete Compra",
-                url: "compra/delete/{id}",
-                defaults: new { controller = "Compra", action = "DeleteCompra", id = UrlParameter.Optional }
-            );
 
 
             /// prestador de servicios

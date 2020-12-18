@@ -14,6 +14,7 @@ namespace TP_DDS_MVC.Models.Compras
     {
         [Key]
         public int idMedioPago { get; set; }
+       
         [ForeignKey("tipo")]
         public string idTipo {get;set;}
         public TipoMedioDePago tipo { get; set; }
