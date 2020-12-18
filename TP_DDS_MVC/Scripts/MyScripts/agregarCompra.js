@@ -9,7 +9,7 @@
                 idMedioDePago: null,
                 montoTotal: 0,
                 descripcion: null,
-                idMoneda: null;
+                idMoneda: null,
                 idPrestadorDeServicios: null,
                 detalle: []
 

@@ -35,7 +35,7 @@
                 <td>@pres.nroIdentificacion</td>
                 <td>@pres.tipo</td>
                 <td><input type="button" class="btn btn-secondary btn-sm" value="Detalle" onclick="window.open('@Url.Action("DetallePresupuesto", "Compra", new { id = pres.idDocComercial })', '_blank')" /></td>
-                <td>@Html.ActionLink("Editar", "EditPresupuesto", "Compra", new { id = pres.idDocComercial }, new { @class = "btn btn-secondary btn-sm" })</td>
+                <!--<td>Html.ActionLink("Editar", "EditPresupuesto", "Compra", new { id = pres.idDocComercial }, new { class = "btn btn-secondary btn-sm" })</td>-->
                 <td>@Html.ActionLink("Eliminar", "DeletePresupuesto", "Compra", new { id = pres.idDocComercial }, new { @class = "btn btn-danger btn-sm" })</td>
             </tr>
             }

@@ -496,6 +496,7 @@
     <Content Include="Views\User\VerEntidadJuridica.cshtml" />
     <Content Include="Views\User\VerEntidadBase.cshtml" />
     <Content Include="Views\User\VerEntidadError.cshtml" />
+    <Content Include="Views\Compra\EditPresupuesto.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

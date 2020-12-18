@@ -166,6 +166,7 @@ namespace TP_DDS_MVC.Controllers
             }
         }
 
+        
         public ActionResult ListMedioDePago()
         {
             int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
@@ -173,11 +174,11 @@ namespace TP_DDS_MVC.Controllers
             return View(pres);
         }
 
-        public ActionResult DeleteMedioDePago(int idMedioDePago)
+        public ActionResult DeleteMedioDePago(int id)
         {
             try
             {
-                MedioDePagoDAO.getInstancia().deleteMedioDePago(idMedioDePago);
+                MedioDePagoDAO.getInstancia().deleteMedioDePago(id);
                 return View("ListMedioDePago");
             }
             catch (Exception e)
@@ -270,11 +271,11 @@ namespace TP_DDS_MVC.Controllers
             }
         }
 
-        public ActionResult EditPresupuesto(int id)
+        /*public ActionResult EditPresupuesto(int id)
         {
             //falta terminar
             return View();
-        }
+        }*/
 
         public ActionResult DeletePresupuesto(int id)
         {
@@ -377,7 +378,7 @@ namespace TP_DDS_MVC.Controllers
             try
             {
 
-                if (compra.revisores == null || compra.descripcion == null || compra.egreso.prestadorDeServicios == null || compra.egreso.medioDePago == null)
+                if (/*compra.revisores == null ||*/ compra.descripcion == null || compra.egreso.prestadorDeServicios == null || compra.egreso.medioDePago == null)
                 {
                     throw new Exception("Es necesario completar todos los campos para continuar");
                 }
@@ -440,6 +441,9 @@ namespace TP_DDS_MVC.Controllers
         {
             try
             {
+                if(criterio == null || categorias == null)
+                    throw new Exception("Es necesario completar todos los campos para continuar");
+
                 int idEntidad = ((Usuario)Session["usuario"]).idEntidad.Value;
 
                 List<string> categoriasSeparadas = categorias.Split(',').ToList();
