@@ -19,7 +19,7 @@
         <div class="row">
 
             <label for="medio">Instrumento</label>
-            @Html.DropDownListFor(m=>m.tipo.id, new SelectList(mediosDePago, "id", "name"), "Medio De Pago...", new { @class = "form-control" })
+            @Html.DropDownListFor(m=>m.idTipo, new SelectList(mediosDePago, "id", "name"), "Medio De Pago...", new { @class = "form-control" })
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <label>Numero del instrumento</label>
             @Html.TextBoxFor(m => m.numero)
