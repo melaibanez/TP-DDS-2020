@@ -73,7 +73,7 @@ namespace TP_DDS_MVC.Controllers
             else
             {
 
-                ViewBag.msg = "Nombre de usuario o contraseña incontrrecto";
+                ViewBag.msg = "Nombre de usuario o contraseña incorrecto";
                 return View();
 
             }
